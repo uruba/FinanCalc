@@ -1,0 +1,24 @@
+{
+  "name": "FinanCalc",
+  "description": "A lightweight, simple and easy PHP library for calculating annuities (e.g., mortgages) according to various input data",
+  "minimum-stability": "alpha",
+  "license": "Unlicense",
+  "authors": [
+    {
+      "name": "Václav Uruba",
+      "email": "uruba@outlook.com"
+    }
+  ],
+  "require": {
+    "php": ">=5.5.0",
+    "ext-bcmath" : "*"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "*"
+  },
+  "autoload": {
+    "psr-0" : {
+      "FinanCalc" : "src"
+    }
+  }
+}
