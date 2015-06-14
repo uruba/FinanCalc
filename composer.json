@@ -1,5 +1,5 @@
 {
-  "name": "FinanCalc",
+  "name": "uruba/FinanCalc",
   "description": "A lightweight, simple and easy PHP library for calculating annuities (e.g., mortgages) according to various input data",
   "minimum-stability": "alpha",
   "license": "Unlicense",
