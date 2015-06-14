@@ -17,8 +17,8 @@
     "phpunit/phpunit": "*"
   },
   "autoload": {
-    "psr-0" : {
-      "FinanCalc" : "src/"
+    "psr-4" : {
+      "FinanCalc\\" : "src/"
     }
   }
 }
