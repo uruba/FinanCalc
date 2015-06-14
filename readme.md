@@ -73,16 +73,16 @@ We'll demonstrate the process again on our *AnnuityCalculator* – step by step,
     ```php
     // Instantiation by a factory method 
     // – in our case we calculate a yearly-compounded annuity
-    // with a duration of 6 periods (here years),
-    // 40000 money units paid out per period
-    // and a compounding interest rate of 0.12 (i.e., 12%)
+    // with a duration of 5 periods (here years),
+    // 100000 money units paid out per period
+    // and a compounding interest rate of 0.15 (i.e., 15%)
     $annuityCalculatorObject = \FinanCalc\FinanCalc
                                     ::getInstance()
-                                    ->getFactory('DebtAmortizationFactory')
-                                    ->newYearlyDebtAmortizationInArrears(
-                                        40000,
-                                        6,
-                                        0.12);
+                                    ->getFactory('AnnuityCalculatorFactory')
+                                    ->newYearlyAnnuity(
+                                        100000, 
+                                        5, 
+                                        0.15);
     ```
 
 2. step is to get the mentioned "result" object:
