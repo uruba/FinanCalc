@@ -25,7 +25,7 @@ namespace FinanCalc\Utils {
         /**
          * Tries to set the value  of this enum
          *
-         * @param string $value
+         * @param int $value
          * @throws Exception If value is not part of this enum
          */
         public function setValue($value)

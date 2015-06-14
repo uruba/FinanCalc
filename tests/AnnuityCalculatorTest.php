@@ -132,8 +132,6 @@ class AnnuityCalculatorTest extends PHPUnit_Framework_TestCase {
     }
 
     protected function setUp() {
-        require_once dirname(__FILE__) . '/../src/FinanCalc.php';
-
         $this->annuityInstanceDirect = $this->getAnnuityInstanceDirect();
         $this->annuityInstanceFactory = $this->getAnnuityInstanceFactory();
         $this->perpetuityInstance = $this->getPerpetuity();

@@ -80,10 +80,4 @@ class DebtAmortizatorTest extends \PHPUnit_Framework_TestCase {
         $this->assertEquals($repayments[5]->getTotalAmount(), $INDIVIDUAL_REPAYMENT);
     }
 
-    protected function setUp() {
-        require_once dirname(__FILE__) . '/../src/FinanCalc.php';
-
-        parent::setUp();
-    }
-
 }

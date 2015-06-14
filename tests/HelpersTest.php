@@ -159,9 +159,4 @@ class HelpersTest extends PHPUnit_Framework_TestCase {
         );
     }
 
-    protected function setUp() {
-        require_once dirname(__FILE__) . '/../src/FinanCalc.php';
-
-        parent::setUp();
-    }
 }

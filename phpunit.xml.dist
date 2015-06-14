@@ -1,4 +1,6 @@
-<phpunit convertWarningsToExceptions="false">
+<phpunit
+        convertWarningsToExceptions="false"
+        bootstrap="tests/TestBootstrap.php">
 
     <testsuites>
         <testsuite name="Main Test Suite">
