@@ -2,6 +2,8 @@
 
 A lightweight, simple and easy PHP library for calculating annuities (e.g., mortgages) according to various input data
 
+[![Build Status](https://travis-ci.org/uruba/FinanCalc.svg?branch=master)](https://travis-ci.org/uruba/FinanCalc)
+
 ## Requirements
 * PHP 5.5+
 * BCMath module
