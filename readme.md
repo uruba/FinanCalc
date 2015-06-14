@@ -70,41 +70,41 @@ We'll demonstrate the process again on our *AnnuityCalculator* – step by step,
 
 1. step is to instantiate the appropriate calculator class, either by constructor or by a factory method (refer to the previous chapter for more information)
 
-```php
-// Instantiation by a factory method 
-// – in our case we calculate a yearly-compounded annuity
-// with a duration of 6 periods (here years),
-// 40000 money units paid out per period
-// and a compounding interest rate of 0.12 (i.e., 12%)
-$annuityCalculatorObject = \FinanCalc\FinanCalc
-                                ::getInstance()
-                                ->getFactory('DebtAmortizationFactory')
-                                ->newYearlyDebtAmortizationInArrears(
-                                    40000,
-                                    6,
-                                    0.12);
-```
+    ```php
+    // Instantiation by a factory method 
+    // – in our case we calculate a yearly-compounded annuity
+    // with a duration of 6 periods (here years),
+    // 40000 money units paid out per period
+    // and a compounding interest rate of 0.12 (i.e., 12%)
+    $annuityCalculatorObject = \FinanCalc\FinanCalc
+                                    ::getInstance()
+                                    ->getFactory('DebtAmortizationFactory')
+                                    ->newYearlyDebtAmortizationInArrears(
+                                        40000,
+                                        6,
+                                        0.12);
+    ```
 
 2. step is to get the mentioned "result" object:
 
-```php
-$result = $annuityCalculatorObject->getResult();
-```
+    ```php
+    $result = $annuityCalculatorObject->getResult();
+    ```
 
 3. step is to get the result by exploiting appropriate getter methods (for a detailed list of available gettter methods please refer to the **Reference** chapter)
 
-```php
-// get the present value of the annuity in arrears
-// (as a string)
-$PV = $result->getPresentValue(
-                    new AnnuityPaymentTypes(AnnuityPaymentTypes::IN_ARREARS)
-                );
-// get the future value of the annuity in arrears
-// (as a string)
-$FV = $result->getFutureValue(
-                    new AnnuityPaymentTypes(AnnuityPaymentTypes::IN_ARREARS)
-                );
-```
+    ```php
+    // get the present value of the annuity in arrears
+    // (as a string)
+    $PV = $result->getPresentValue(
+                        new AnnuityPaymentTypes(AnnuityPaymentTypes::IN_ARREARS)
+                    );
+    // get the future value of the annuity in arrears
+    // (as a string)
+    $FV = $result->getFutureValue(
+                        new AnnuityPaymentTypes(AnnuityPaymentTypes::IN_ARREARS)
+                    );
+    ```
 
 This concludes the process.
 
