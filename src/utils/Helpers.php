@@ -6,6 +6,9 @@ namespace FinanCalc\Utils {
     use FinanCalc\Constants\Strings;
     use InvalidArgumentException;
 
+    // TODO - resolve this temporary workaround (autoloader sometimes works and sometimes doesn't)
+    require_once dirname(__FILE__) . '/../constants/Strings.php';
+
     class Helpers {
         /**
          * @param $checkedVariable
@@ -18,7 +21,7 @@ namespace FinanCalc\Utils {
                 return true;
             }
 
-            throw new Exception(Strings::getIncompatibleTypesMessage($nameOfTheExpectedClass, get_class($checkedVariable)));
+            throw new InvalidArgumentException(Strings::getIncompatibleTypesMessage($nameOfTheExpectedClass, get_class($checkedVariable)));
         }
 
         /**
@@ -28,9 +31,9 @@ namespace FinanCalc\Utils {
         static function checkIfPositiveNumberOrThrowAnException($checkedVariable) {
             if (Helpers::checkIfPositiveNumber($checkedVariable)) {
                 return true;
-            } else {
-                throw new InvalidArgumentException(Strings::getMustBePositiveNumberMessage($checkedVariable));
             }
+
+            throw new InvalidArgumentException(Strings::getMustBePositiveNumberMessage($checkedVariable));
         }
 
         /**
@@ -42,9 +45,9 @@ namespace FinanCalc\Utils {
                 ||
                 Helpers::checkIfZero($checkedVariable)) {
                 return true;
-            } else {
-                throw new InvalidArgumentException(Strings::getMustNotBeNegativeNumberMessage($checkedVariable));
             }
+
+            throw new InvalidArgumentException(Strings::getMustNotBeNegativeNumberMessage($checkedVariable));
         }
 
         /**

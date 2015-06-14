@@ -18,7 +18,7 @@
   },
   "autoload": {
     "psr-0" : {
-      "FinanCalc" : "src"
+      "FinanCalc" : "src/"
     }
   }
 }

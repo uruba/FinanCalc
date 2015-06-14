@@ -21,7 +21,7 @@ Much more to come – including calculators for discount securities, bond valuat
 
 ### Place the library files into you directory structure
 
-Just copy all the files somewhere appropriate, like a dedicated "vendor" or "lib" directory (so that it doesn't make a mess out of your directory hierarchy). Nothing more is needed.
+Just copy all the files somewhere appropriate, like a dedicated "*vendor*" or "*lib*" directory (so that it doesn't make a mess out of your directory hierarchy). Nothing more is needed.
 
 ### Include it in your project
 
@@ -108,7 +108,7 @@ We'll demonstrate the process again on our *AnnuityCalculator* – step by step,
                     );
     ```
 
-This concludes the process.
+Therewith the process is concluded and you can now use the obtained results.
 
 
 ### Configuration
@@ -121,7 +121,7 @@ The default configuration values are currently to be found in the "*constants/De
 
 The library includes a "*test*" subdirectory which contains all the basic tests. For your peace of mind, feel free to give them a run on your setup (provided that you have PHPUnit good and ready) and ensure that everything checks out.
 
-The tests currently cover only ~70% of the library's code so they're also a subject of necessary future improvements.
+The tests currently cover only ~50% of the library's code so they're also a subject of necessary future improvements.
 
 ## Reference
 
