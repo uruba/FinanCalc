@@ -1,0 +1,9 @@
+<phpunit convertWarningsToExceptions="false">
+
+    <testsuites>
+        <testsuite name="Main Test Suite">
+            <directory>tests</directory>
+        </testsuite>
+    </testsuites>
+
+</phpunit>
