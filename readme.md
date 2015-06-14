@@ -66,7 +66,7 @@ $annuityCalculatorDirect = new FinanCalc\Calculators\DebtAmortizator(
 
 It's very simple to retrieve the results. Every calculator class implementing the *CalculatorInterface* has a getter method *getResult()*, which enables you to get an appropriate object representing the result of the calculation according to the data passed earlier to the constructor/factory method of a given calculator class.
 
-We'll demonstrate the process again on our *AnnuityCalculator* – step by step, day by day
+We'll demonstrate the process again on our *AnnuityCalculator* – step by step, day by day:
 
 1. step is to instantiate the appropriate calculator class, either by constructor or by a factory method (refer to the previous chapter for more information)
 
@@ -119,7 +119,7 @@ The default configuration values are currently to be found in the "*constants/De
 
 The library includes a "*test*" subdirectory which contains all the basic tests. For your peace of mind, feel free to give them a run on your setup (provided that you have PHPUnit good and ready) and ensure that everything checks out.
 
-The test currently cover only ~70% of the library's code so they're also a subject of necessary future improvements.
+The tests currently cover only ~70% of the library's code so they're also a subject of necessary future improvements.
 
 ## Reference
 
