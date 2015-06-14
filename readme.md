@@ -3,7 +3,7 @@
 A lightweight, simple and easy PHP library for calculating annuities (e.g., mortgages) according to various input data
 
 ## Requirements
-* PHP 5.3+
+* PHP 5.5+
 * BCMath module
 * PHPUnit for testing
 
