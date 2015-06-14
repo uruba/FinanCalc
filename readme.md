@@ -25,13 +25,11 @@ Just copy all the files somewhere appropriate, like a dedicated "*vendor*" or "*
 
 ### Include it in your project
 
-The initialization is dead simple. Just include the main **FinanCalc.php** file and you are good to go!
+The initialization is dead simple. Just include the main **FinanCalc.php** file and you are good to go! Alternatively, you can obtain the library as a package via Composer.
 
 ```php
 require_once dirname(__FILE__) . '/lib/FinanCalc/FinanCalc.php'; // replace the example path with yours
 ```
-
-Alternatively, you can obtain the library as a package via Composer, in which case the autoloader takes care of everything for you.
 
 ### Instantiation
 
