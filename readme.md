@@ -27,7 +27,7 @@ Alternatively, you can obtain the library as a package via Composer. It's hosted
 
 ### Include it in your project
 
-The initialization is dead simple. Just include the main **FinanCalc.php** file and you are good to go! Alternatively, you can obtain the library as a package via Composer.
+The initialization is dead simple. Just include the main **FinanCalc.php** file and you arr.
 
 ```php
 // replace the example Composer-bound path with yours
