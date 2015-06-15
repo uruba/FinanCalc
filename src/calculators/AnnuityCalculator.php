@@ -44,6 +44,7 @@ namespace FinanCalc\Calculators\AnnuityCalculator {
     use FinanCalc\Constants\AnnuityValueTypes;
     use FinanCalc\Constants\Defaults;
     use FinanCalc\Utils\Helpers;
+    use FinanCalc\Utils\InvalidArgumentException;
     use FinanCalc\Utils\MathFuncs;
 
     /**
@@ -67,7 +68,7 @@ namespace FinanCalc\Calculators\AnnuityCalculator {
          * @param $annuityNoOfCompoundingPeriods
          * @param $annuityInterest
          * @param $annuityPeriodLength
-         * @throws \FinanCalc\Utils\InvalidArgumentException
+         * @throws InvalidArgumentException
          */
         function __construct($annuitySinglePaymentAmount,
                              $annuityNoOfCompoundingPeriods,
@@ -109,6 +110,9 @@ namespace FinanCalc\Calculators\AnnuityCalculator {
             return $this->annuityInterest;
         }
 
+        /**
+         * @return string
+         */
         public function getAnnuityPeriodLengthInYears() {
             return MathFuncs::div(
                 $this->annuityPeriodLength,
@@ -116,6 +120,9 @@ namespace FinanCalc\Calculators\AnnuityCalculator {
             );
         }
 
+        /**
+         * @return string
+         */
         public function getAnnuityPeriodLengthInMonths() {
             return MathFuncs::div(
                 $this->annuityPeriodLength,

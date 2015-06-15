@@ -1,6 +1,10 @@
 <?php
 
 namespace FinanCalc\Constants {
+    /**
+     * Class Defaults
+     * @package FinanCalc\Constants
+     */
     class Defaults
     {
         /**

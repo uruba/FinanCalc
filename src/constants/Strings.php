@@ -1,6 +1,10 @@
 <?php
 
 namespace FinanCalc\Constants {
+    /**
+     * Class Strings
+     * @package FinanCalc\Constants
+     */
     class Strings
     {
         /**

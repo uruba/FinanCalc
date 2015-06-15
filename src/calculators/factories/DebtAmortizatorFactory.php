@@ -16,7 +16,10 @@ namespace FinanCalc\Calculators\Factories {
         /**
          *
          * Payments IN ARREARS
-         *
+         * @param $debtPrincipal
+         * @param $debtNoOfPeriods
+         * @param $debtInterest
+         * @return DebtAmortizator
          */
 
         public function newYearlyDebtAmortizationInArrears($debtPrincipal, $debtNoOfPeriods, $debtInterest)
@@ -29,6 +32,12 @@ namespace FinanCalc\Calculators\Factories {
                 new AnnuityPaymentTypes(AnnuityPaymentTypes::IN_ARREARS));
         }
 
+        /**
+         * @param $debtPrincipal
+         * @param $debtNoOfPeriods
+         * @param $debtInterest
+         * @return DebtAmortizator
+         */
         public function newMonthlyDebtAmortizationInArrears($debtPrincipal, $debtNoOfPeriods, $debtInterest)
         {
             return new DebtAmortizator(
@@ -39,6 +48,12 @@ namespace FinanCalc\Calculators\Factories {
                 new AnnuityPaymentTypes(AnnuityPaymentTypes::IN_ARREARS));
         }
 
+        /**
+         * @param $debtPrincipal
+         * @param $debtNoOfPeriods
+         * @param $debtInterest
+         * @return DebtAmortizator
+         */
         public function newDailyDebtAmortizationInArrears($debtPrincipal, $debtNoOfPeriods, $debtInterest)
         {
             return new DebtAmortizator(
@@ -49,6 +64,13 @@ namespace FinanCalc\Calculators\Factories {
                 new AnnuityPaymentTypes(AnnuityPaymentTypes::IN_ARREARS));
         }
 
+        /**
+         * @param $debtPrincipal
+         * @param $debtNoOfPeriods
+         * @param $debtInterest
+         * @param $debtSinglePeriodLength
+         * @return DebtAmortizator
+         */
         public function newDebtAmortizationInArrearsCustomPeriodLength($debtPrincipal, $debtNoOfPeriods, $debtInterest, $debtSinglePeriodLength) {
             return new DebtAmortizator(
                 $debtPrincipal,
@@ -61,7 +83,10 @@ namespace FinanCalc\Calculators\Factories {
         /**
          *
          * Payments IN ADVANCE
-         *
+         * @param $debtPrincipal
+         * @param $debtNoOfPeriods
+         * @param $debtInterest
+         * @return DebtAmortizator
          */
 
         public function newYearlyDebtAmortizationInAdvance($debtPrincipal, $debtNoOfPeriods, $debtInterest)
@@ -74,6 +99,12 @@ namespace FinanCalc\Calculators\Factories {
                 new AnnuityPaymentTypes(AnnuityPaymentTypes::IN_ADVANCE));
         }
 
+        /**
+         * @param $debtPrincipal
+         * @param $debtNoOfPeriods
+         * @param $debtInterest
+         * @return DebtAmortizator
+         */
         public function newMonthlyDebtAmortizationInAdvance($debtPrincipal, $debtNoOfPeriods, $debtInterest)
         {
             return new DebtAmortizator(
@@ -84,6 +115,12 @@ namespace FinanCalc\Calculators\Factories {
                 new AnnuityPaymentTypes(AnnuityPaymentTypes::IN_ADVANCE));
         }
 
+        /**
+         * @param $debtPrincipal
+         * @param $debtNoOfPeriods
+         * @param $debtInterest
+         * @return DebtAmortizator
+         */
         public function newDailyDebtAmortizationInAdvance($debtPrincipal, $debtNoOfPeriods, $debtInterest)
         {
             return new DebtAmortizator(
@@ -94,6 +131,13 @@ namespace FinanCalc\Calculators\Factories {
                 new AnnuityPaymentTypes(AnnuityPaymentTypes::IN_ADVANCE));
         }
 
+        /**
+         * @param $debtPrincipal
+         * @param $debtNoOfPeriods
+         * @param $debtInterest
+         * @param $debtSinglePeriodLength
+         * @return DebtAmortizator
+         */
         public function newDebtAmortizationInAdvanceCustomPeriodLength($debtPrincipal, $debtNoOfPeriods, $debtInterest, $debtSinglePeriodLength) {
             return new DebtAmortizator(
                 $debtPrincipal,

@@ -27,6 +27,7 @@
  * @license http://unlicense.org The Unlicense
  */
 namespace FinanCalc {
+    use Exception;
     use FinanCalc\Utils\Config;
     use FinanCalc\Calculators\Factories;
 
@@ -50,6 +51,9 @@ namespace FinanCalc {
             $this->populateFactoryClassesArray();
         }
 
+        /**
+         * @return FinanCalc
+         */
         public static function getInstance() {
             static $instance = null;
             if ($instance === null) {
@@ -64,11 +68,18 @@ namespace FinanCalc {
          *
          */
 
-
+        /**
+         * @return array
+         */
         public function getFactories() {
             return $this->factoryClasses;
         }
 
+        /**
+         * @param $factoryClassName
+         * @return mixed
+         * @throws Exception
+         */
         public function getFactory($factoryClassName) {
             if (array_key_exists($factoryClassName, $this->factoryClasses))
                 return $this->factoryClasses[$factoryClassName];
@@ -76,6 +87,9 @@ namespace FinanCalc {
                 throw new Exception("Factory class " . $factoryClassName . " is not initialized!");
         }
 
+        /**
+         * @param $configArray
+         */
         public function setConfig($configArray) {
             Config::init($configArray);
         }
