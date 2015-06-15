@@ -23,12 +23,15 @@ Much more to come – including calculators for discount securities, bond valuat
 
 Just copy all the files somewhere appropriate, like a dedicated "*vendor*" or "*lib*" directory (so that it doesn't make a mess out of your directory hierarchy). Nothing more is needed.
 
+Alternatively, you can obtain the library as a package via Composer. It's hosted on [Packagist](https://packagist.org/packages/uruba/financalc)
+
 ### Include it in your project
 
 The initialization is dead simple. Just include the main **FinanCalc.php** file and you are good to go! Alternatively, you can obtain the library as a package via Composer.
 
 ```php
-require_once dirname(__FILE__) . '/lib/FinanCalc/FinanCalc.php'; // replace the example path with yours
+// replace the example Composer-bound path with yours
+require_once dirname(__FILE__) . '/vendor/uruba/financalc/src/FinanCalc.php';
 ```
 
 ### Instantiation
@@ -37,10 +40,16 @@ You have two choices as to how to instantiate the appropriate class to get your 
 
 #### Factory methods
 
-Since the library automatically keeps track of pre-defined factory methods (in the namespace *FinanCalc\Calculators\Factories*), it's very easy and straightforward to utilize them.
+Since the library automatically keeps track of pre-defined factory methods (contained in the classes which are members of the namespace *FinanCalc\Calculators\Factories*), it's very easy and straightforward to utilize them.
+From the main *FinanCalc* object (whose instance you get by calling its static method *getInstance()*) you have to call the *getFactory()* method, which takes in the name of the factory class as a parameter of type *string* (you can find all the included factory classes in the *src/calculators/factories* directory).
+This method yields you the factory object, on which you can finally call the target factory method that produces the appropriate calculator instance for you.
 
 ```php
-$annuityCalculatorFactory = \FinanCalc\FinanCalc
+use FinanCalc\FinanCalc;
+
+...
+
+$annuityCalculatorFactory = FinanCalc
     ::getInstance()
     ->getFactory('DebtAmortizationFactory')
     ->newYearlyDebtAmortizationInArrears(
@@ -51,32 +60,42 @@ $annuityCalculatorFactory = \FinanCalc\FinanCalc
 
 #### Direct instantiation
 
-The second option is to instantiate the calculator class of your choice directly by calling its constructor with appropriate parameters.
+The second option is to instantiate the calculator class of your choice directly by calling its constructor with appropriate parameters (you can find all the included calculator classes in the *src/calculators* directory).
 
 ```php
-$annuityCalculatorDirect = new FinanCalc\Calculators\DebtAmortizator(
-        40000,
-        6,
-        0.12,
-        360,
-        new FinanCalc\Constants\AnnuityPaymentTypes(\FinanCalc\Constants\AnnuityPaymentTypes::IN_ARREARS));
+use FinanCalc\Calculators\DebtAmortizator;
+use FinanCalc\Constants\AnnuityPaymentTypes;
+
+...
+
+$annuityCalculatorDirect = = new DebtAmortizator(
+                                       40000,
+                                       6,
+                                       0.12,
+                                       360,
+                                       new AnnuityPaymentTypes(AnnuityPaymentTypes::IN_ARREARS));
 ```
 
 ### Getting results
 
 It's very simple to retrieve the results. Every calculator class implementing the *CalculatorInterface* has a getter method *getResult()*, which enables you to get an appropriate object representing the result of the calculation according to the data passed earlier to the constructor/factory method of a given calculator class.
 
-We'll demonstrate the process again on our *AnnuityCalculator* – step by step, day by day:
+We'll demonstrate the process on our *AnnuityCalculator* – step by step, day by day:
 
 1. step is to instantiate the appropriate calculator class, either by constructor or by a factory method (refer to the previous chapter for more information)
 
     ```php
+    use \FinanCalc\FinanCalc;
+    
+    ...
+    
     // Instantiation by a factory method 
-    // – in our case we calculate a yearly-compounded annuity
+    // – 
+    // in our case we calculate a yearly-compounded annuity
     // with a duration of 5 periods (here years),
     // 100000 money units paid out per period
     // and a compounding interest rate of 0.15 (i.e., 15%)
-    $annuityCalculatorObject = \FinanCalc\FinanCalc
+    $annuityCalculatorObject = FinanCalc
                                     ::getInstance()
                                     ->getFactory('AnnuityCalculatorFactory')
                                     ->newYearlyAnnuity(
@@ -106,7 +125,7 @@ We'll demonstrate the process again on our *AnnuityCalculator* – step by step,
                     );
     ```
 
-Therewith the process is concluded and you can now use the obtained results.
+Therewith the process is concluded and you can now use the obtained results as you see fit.
 
 
 ### Configuration

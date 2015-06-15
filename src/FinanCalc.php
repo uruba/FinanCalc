@@ -33,6 +33,10 @@ namespace FinanCalc {
     $GLOBALS['FINANCALC_ROOT'] = dirname(__FILE__);
     require_once($GLOBALS['FINANCALC_ROOT'] . '/init/bootstrap.php');
 
+    /**
+     * Class FinanCalc
+     * @package FinanCalc
+     */
     class FinanCalc {
         private $factoryClasses = array();
 

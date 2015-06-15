@@ -1,5 +1,9 @@
 <?php
 
+use FinanCalc\Calculators\DebtAmortizator;
+use FinanCalc\Constants\AnnuityPaymentTypes;
+use FinanCalc\FinanCalc;
+
 class DebtAmortizatorTest extends \PHPUnit_Framework_TestCase {
 
     /**
@@ -8,7 +12,7 @@ class DebtAmortizatorTest extends \PHPUnit_Framework_TestCase {
     public function testRepaymentsFactory() {
         // initialize a variable representing a DebtAmortizator
         // object obtained via a FACTORY method
-        $annuityCalculatorFactory = \FinanCalc\FinanCalc
+        $annuityCalculatorFactory = FinanCalc
             ::getInstance()
             ->getFactory('DebtAmortizationFactory')
             ->newYearlyDebtAmortizationInArrears(
@@ -25,12 +29,12 @@ class DebtAmortizatorTest extends \PHPUnit_Framework_TestCase {
     public function testRepaymentsDirect() {
         // initialize a variable representing a DebtAmortizator
         // object obtained via DIRECT instantiation
-        $annuityCalculatorDirect = new FinanCalc\Calculators\DebtAmortizator(
+        $annuityCalculatorDirect = new DebtAmortizator(
             40000,
             6,
             0.12,
             360,
-            new FinanCalc\Constants\AnnuityPaymentTypes(\FinanCalc\Constants\AnnuityPaymentTypes::IN_ARREARS));
+            new AnnuityPaymentTypes(AnnuityPaymentTypes::IN_ARREARS));
 
         $this->processResult($annuityCalculatorDirect->getResult());
     }
