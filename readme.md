@@ -70,7 +70,7 @@ use FinanCalc\Constants\AnnuityPaymentTypes;
 
 ...
 
-$annuityCalculatorDirect = = new DebtAmortizator(
+$annuityCalculatorDirect = new DebtAmortizator(
                                        40000,
                                        6,
                                        0.12,
