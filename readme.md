@@ -2,6 +2,7 @@
 
 A lightweight, simple and easy PHP library for calculating annuities (e.g., mortgages) according to various input data
 
+[![Composer package](https://img.shields.io/packagist/v/uruba/financalc.svg)](https://packagist.org/packages/uruba/financalc)
 [![Build Status](https://travis-ci.org/uruba/FinanCalc.svg?branch=master)](https://travis-ci.org/uruba/FinanCalc)
 
 ## Requirements
@@ -19,7 +20,7 @@ Much more to come – including calculators for discount securities, bond valuat
 
 ## Learning the ropes
 
-### Place the library files into you directory structure
+### Place the library files into your directory structure
 
 Just copy all the files somewhere appropriate, like a dedicated "*vendor*" or "*lib*" directory (so that it doesn't make a mess out of your directory hierarchy). Nothing more is needed.
 
@@ -134,7 +135,7 @@ Therewith the process is concluded and you can now use the obtained results as y
 
 The configuration capabilities are currently very limited so there's next to nothing to tinker with.
 
-The default configuration values are currently to be found in the "*constants/Default.php*" file, but in the future there will be a possibility to use an easily accessible JSON configuration file.
+The default configuration values are currently to be found in the "*constants/Default.php*" file, but there will be a possibility to use an easily accessible JSON configuration file in the future.
 
 ### Tests
 
