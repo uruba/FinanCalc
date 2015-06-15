@@ -1,7 +1,7 @@
 {
   "name": "uruba/financalc",
   "description": "A lightweight, simple and easy PHP library for calculating annuities (e.g., mortgages) according to various input data",
-  "minimum-stability": "alpha",
+  "keywords": ["calculator", "debt", "mortgage", "annuity", "amortization"],
   "license": "Unlicense",
   "authors": [
     {
