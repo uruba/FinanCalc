@@ -27,7 +27,7 @@ Alternatively, you can obtain the library as a package via Composer. It's hosted
 
 ### Include it in your project
 
-The initialization is dead simple. Just include the main **FinanCalc.php** file and you arr.
+The initialization is dead simple. Just include the main **FinanCalc.php** file and you are good to go!
 
 ```php
 // replace the example Composer-bound path with yours
@@ -41,7 +41,9 @@ You have two choices as to how to instantiate the appropriate class to get your 
 #### Factory methods
 
 Since the library automatically keeps track of pre-defined factory methods (contained in the classes which are members of the namespace *FinanCalc\Calculators\Factories*), it's very easy and straightforward to utilize them.
+
 From the main *FinanCalc* object (whose instance you get by calling its static method *getInstance()*) you have to call the *getFactory()* method, which takes in the name of the factory class as a parameter of type *string* (you can find all the included factory classes in the *src/calculators/factories* directory).
+
 This method yields you the factory object, on which you can finally call the target factory method that produces the appropriate calculator instance for you.
 
 ```php
