@@ -15,7 +15,7 @@ A lightweight, simple and easy PHP library for calculating annuities (e.g., mort
 
 Much more to come – including calculators for discount securities, bond valuation, duration, stock pricing...
 
-**Please bear in mind that this is an ALPHA version containing incomplete features. The codebase is prone to drastic changes during its way out of the alpha stage.**
+>**Please bear in mind that this is an ALPHA version containing incomplete features. The codebase is prone to drastic changes during its way out of the alpha stage.**
 
 ## Learning the ropes
 
