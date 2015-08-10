@@ -52,27 +52,53 @@ namespace FinanCalc\Calculators\BondFairValueCalculator {
                              $bondVIR,
                              $bondYearsToMaturity,
                              $bondPaymentFrequency) {
+            $this->setBondFaceValue($bondFaceValue);
+            $this->setBondAnnualCouponRate($bondAnnualCouponRate);
+            $this->setBondVIR($bondVIR);
+            $this->setBondYearsToMaturity($bondYearsToMaturity);
+            $this->setBondPaymentFrequency($bondPaymentFrequency);
+        }
 
+        /**
+         * @param $bondFaceValue
+         */
+        public function setBondFaceValue($bondFaceValue) {
             if(Helpers::checkIfPositiveNumberOrThrowAnException($bondFaceValue)) {
                 $this->bondFaceValue = $bondFaceValue;
             }
+        }
 
+        /**
+         * @param $bondAnnualCouponRate
+         */
+        public function setBondAnnualCouponRate($bondAnnualCouponRate) {
             if(Helpers::checkIfPositiveNumberOrThrowAnException($bondAnnualCouponRate)) {
                 $this->bondAnnualCouponRate = $bondAnnualCouponRate;
             }
+        }
 
-            if(Helpers::checkIfPositiveNumberOrThrowAnException($bondAnnualCouponRate)) {
-                $this->bondAnnualCouponRate = $bondAnnualCouponRate;
-            }
-
+        /**
+         * @param $bondVIR
+         */
+        public function setBondVIR($bondVIR) {
             if(Helpers::checkIfPositiveNumberOrThrowAnException($bondVIR)) {
                 $this->bondVIR = $bondVIR;
             }
+        }
 
+        /**
+         * @param $bondYearsToMaturity
+         */
+        public function setBondYearsToMaturity($bondYearsToMaturity) {
             if(Helpers::checkIfPositiveNumberOrThrowAnException($bondYearsToMaturity)) {
                 $this->bondYearsToMaturity = $bondYearsToMaturity;
             }
+        }
 
+        /**
+         * @param $bondPaymentFrequency
+         */
+        public function setBondPaymentFrequency($bondPaymentFrequency) {
             if(Helpers::checkIfPositiveNumberOrThrowAnException($bondPaymentFrequency)) {
                 $this->bondPaymentFrequency = $bondPaymentFrequency;
             }

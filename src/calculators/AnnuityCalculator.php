@@ -74,23 +74,41 @@ namespace FinanCalc\Calculators\AnnuityCalculator {
                              $annuityNoOfCompoundingPeriods,
                              $annuityInterest,
                              $annuityPeriodLength) {
-            // verify that the values passed to the constructor meet specific criteria and if they do,
-            // assign them to the respective members of this class
+            $this->setAnnuitySinglePaymentAmount($annuitySinglePaymentAmount);
+            $this->setAnnuityNoOfCompoundingPeriods($annuityNoOfCompoundingPeriods);
+            $this->setAnnuityInterest($annuityInterest);
+            $this->setAnnuityPeriodLength($annuityPeriodLength);
+        }
 
+        public function setAnnuitySinglePaymentAmount($annuitySinglePaymentAmount) {
             if(Helpers::checkIfPositiveNumberOrThrowAnException($annuitySinglePaymentAmount)) {
                 $this->annuitySinglePaymentAmount = $annuitySinglePaymentAmount;
             }
+        }
 
+        public function setAnnuityNoOfCompoundingPeriods($annuityNoOfCompoundingPeriods) {
             if(Helpers::checkIfNotNegativeNumberOrThrowAnException($annuityNoOfCompoundingPeriods)) {
                 $this->annuityNoOfCompoundingPeriods = $annuityNoOfCompoundingPeriods;
             }
 
+            if (
+                Helpers::checkIfPositiveNumber($this->annuityPeriodLength)
+                ||
+                Helpers::checkIfZero($this->annuityPeriodLength)
+            ) {
+                $this->setAnnuityPeriodLength($this->annuityPeriodLength);
+            }
+        }
+
+        public function setAnnuityInterest($annuityInterest) {
             if(Helpers::checkIfPositiveNumberOrThrowAnException($annuityInterest)) {
                 $this->annuityInterest = $annuityInterest;
             }
+        }
 
+        public function setAnnuityPeriodLength($annuityPeriodLength) {
             if(Helpers::checkIfNotNegativeNumberOrThrowAnException($annuityPeriodLength)) {
-                if (Helpers::checkIfZero($annuityNoOfCompoundingPeriods)) {
+                if (Helpers::checkIfZero($this->annuityNoOfCompoundingPeriods)) {
                     $this->annuityPeriodLength = INF;
                 } else {
                     $this->annuityPeriodLength = $annuityPeriodLength;

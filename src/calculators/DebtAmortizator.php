@@ -77,7 +77,7 @@ namespace FinanCalc\Calculators\DebtAmortizator {
          * @param string $debtPrincipal                [Value of the debt's principal as a string]
          * @param string $debtNoOfCompoundingPeriods   [Number of the debt's compounding periods as a string]
          * @param string $debtInterest                 [Value of the debt's interest in a decimal number 'multiplier' form as a string]
-         * @param string $debtPeriodLength             [Length of each of the debt's compounding periods as a string]
+         * @param string $debtPeriodLength             [Length of each of the debt's compounding periods in days as a string]
          * @param AnnuityPaymentTypes $debtPaymentType [Payment type of the debt]
          * @throws \InvalidArgumentException
          */
@@ -86,32 +86,57 @@ namespace FinanCalc\Calculators\DebtAmortizator {
                              $debtInterest,
                              $debtPeriodLength,
                              $debtPaymentType) {
+            $this->setDebtPrincipalWithoutRecalculation($debtPrincipal);
+            $this->setDebtNoOfCompoundingPeriodsWithoutRecalculation($debtNoOfCompoundingPeriods);
+            $this->setDebtInterestWithoutRecalculation($debtInterest);
+            $this->setDebtPeriodLength($debtPeriodLength);
+            $this->setDebtPaymentType($debtPaymentType);
+            $this->calculateDebtRepayments();
+        }
 
-            // verify that the values passed to the constructor meet specific criteria and if they do,
-            // assign them to the respective members of this class
-
+        private function setDebtPrincipalWithoutRecalculation($debtPrincipal) {
             if(Helpers::checkIfPositiveNumberOrThrowAnException($debtPrincipal)) {
                 $this->debtPrincipal = $debtPrincipal;
             }
+        }
 
+        private function setDebtNoOfCompoundingPeriodsWithoutRecalculation($debtNoOfCompoundingPeriods) {
             if(Helpers::checkIfPositiveNumberOrThrowAnException($debtNoOfCompoundingPeriods)) {
                 $this->debtNoOfCompoundingPeriods = $debtNoOfCompoundingPeriods;
             }
+        }
 
-            if(Helpers::checkIfPositiveNumberOrThrowAnException($debtPeriodLength)) {
-                $this->debtPeriodLength = $debtPeriodLength;
-            }
-
+        private function setDebtInterestWithoutRecalculation($debtInterest) {
             if(Helpers::checkIfPositiveNumberOrThrowAnException($debtInterest)) {
                 $this->debtInterest = $debtInterest;
             }
+        }
 
+        public function setDebtPrincipal($debtPrincipal) {
+            $this->setDebtPrincipalWithoutRecalculation($debtPrincipal);
+            $this->calculateDebtRepayments();
+        }
+
+        public function setDebtNoOfCompoundingPeriods($debtNoOfCompoundingPeriods) {
+            $this->setDebtNoOfCompoundingPeriodsWithoutRecalculation($debtNoOfCompoundingPeriods);
+            $this->calculateDebtRepayments();
+        }
+
+        public function setDebtPeriodLength($debtPeriodLength) {
+            if(Helpers::checkIfPositiveNumberOrThrowAnException($debtPeriodLength)) {
+                $this->debtPeriodLength = $debtPeriodLength;
+            }
+        }
+
+        public function setDebtInterest($debtInterest) {
+            $this->setDebtInterestWithoutRecalculation($debtInterest);
+            $this->calculateDebtRepayments();
+        }
+
+        public function setDebtPaymentType($debtPaymentType) {
             if(Helpers::checkIfInstanceOfAClassOrThrowAnException($debtPaymentType, AnnuityPaymentTypes::class)) {
                 $this->debtPaymentType = $debtPaymentType;
             }
-
-            // finally, calculate the amortization scheme
-            $this->calculateDebtRepayments();
         }
 
         /**
