@@ -23,15 +23,15 @@ namespace FinanCalc\Calculators {
          */
         function __construct($debtPrincipal,
                              $debtNoOfCompoundingPeriods,
-                             $debtInterest,
                              $debtPeriodLength,
-                             $debtPaymentType) {
+                             $debtInterest,
+                             AnnuityPaymentTypes $debtPaymentType) {
 
             // create new DebtInstance object passing on the parameters of this constructor
             $this->debtInstance = new DebtInstance($debtPrincipal,
                                                    $debtNoOfCompoundingPeriods,
-                                                   $debtInterest,
                                                    $debtPeriodLength,
+                                                   $debtInterest,
                                                    $debtPaymentType);
         }
 
@@ -83,13 +83,13 @@ namespace FinanCalc\Calculators\DebtAmortizator {
          */
         function __construct($debtPrincipal,
                              $debtNoOfCompoundingPeriods,
-                             $debtInterest,
                              $debtPeriodLength,
-                             $debtPaymentType) {
+                             $debtInterest,
+                             AnnuityPaymentTypes $debtPaymentType) {
             $this->setDebtPrincipalWithoutRecalculation($debtPrincipal);
             $this->setDebtNoOfCompoundingPeriodsWithoutRecalculation($debtNoOfCompoundingPeriods);
-            $this->setDebtInterestWithoutRecalculation($debtInterest);
             $this->setDebtPeriodLength($debtPeriodLength);
+            $this->setDebtInterestWithoutRecalculation($debtInterest);
             $this->setDebtPaymentType($debtPaymentType);
             $this->calculateDebtRepayments();
         }
@@ -133,7 +133,7 @@ namespace FinanCalc\Calculators\DebtAmortizator {
             $this->calculateDebtRepayments();
         }
 
-        public function setDebtPaymentType($debtPaymentType) {
+        public function setDebtPaymentType(AnnuityPaymentTypes $debtPaymentType) {
             if(Helpers::checkIfInstanceOfAClassOrThrowAnException($debtPaymentType, AnnuityPaymentTypes::class)) {
                 $this->debtPaymentType = $debtPaymentType;
             }

@@ -27,8 +27,8 @@ namespace FinanCalc\Calculators\Factories {
             return new DebtAmortizator(
                 $debtPrincipal,
                 $debtNoOfPeriods,
-                $debtInterest,
                 Defaults::LENGTH_YEAR_360_30,
+                $debtInterest,
                 new AnnuityPaymentTypes(AnnuityPaymentTypes::IN_ARREARS));
         }
 
@@ -43,8 +43,8 @@ namespace FinanCalc\Calculators\Factories {
             return new DebtAmortizator(
                 $debtPrincipal,
                 $debtNoOfPeriods,
-                $debtInterest,
                 Defaults::LENGTH_MONTH_360_30,
+                $debtInterest,
                 new AnnuityPaymentTypes(AnnuityPaymentTypes::IN_ARREARS));
         }
 
@@ -59,8 +59,8 @@ namespace FinanCalc\Calculators\Factories {
             return new DebtAmortizator(
                 $debtPrincipal,
                 $debtNoOfPeriods,
-                $debtInterest,
                 Defaults::LENGTH_DAY_360_30,
+                $debtInterest,
                 new AnnuityPaymentTypes(AnnuityPaymentTypes::IN_ARREARS));
         }
 
@@ -75,8 +75,8 @@ namespace FinanCalc\Calculators\Factories {
             return new DebtAmortizator(
                 $debtPrincipal,
                 $debtNoOfPeriods,
-                $debtInterest,
                 $debtSinglePeriodLength,
+                $debtInterest,
                 new AnnuityPaymentTypes(AnnuityPaymentTypes::IN_ARREARS));
         }
 
@@ -94,8 +94,8 @@ namespace FinanCalc\Calculators\Factories {
             return new DebtAmortizator(
                 $debtPrincipal,
                 $debtNoOfPeriods,
-                $debtInterest,
                 Defaults::LENGTH_YEAR_360_30,
+                $debtInterest,
                 new AnnuityPaymentTypes(AnnuityPaymentTypes::IN_ADVANCE));
         }
 
@@ -110,8 +110,8 @@ namespace FinanCalc\Calculators\Factories {
             return new DebtAmortizator(
                 $debtPrincipal,
                 $debtNoOfPeriods,
-                $debtInterest,
                 Defaults::LENGTH_MONTH_360_30,
+                $debtInterest,
                 new AnnuityPaymentTypes(AnnuityPaymentTypes::IN_ADVANCE));
         }
 
@@ -126,8 +126,8 @@ namespace FinanCalc\Calculators\Factories {
             return new DebtAmortizator(
                 $debtPrincipal,
                 $debtNoOfPeriods,
-                $debtInterest,
                 Defaults::LENGTH_DAY_360_30,
+                $debtInterest,
                 new AnnuityPaymentTypes(AnnuityPaymentTypes::IN_ADVANCE));
         }
 
@@ -142,8 +142,8 @@ namespace FinanCalc\Calculators\Factories {
             return new DebtAmortizator(
                 $debtPrincipal,
                 $debtNoOfPeriods,
-                $debtInterest,
                 $debtSinglePeriodLength,
+                $debtInterest,
                 new AnnuityPaymentTypes(AnnuityPaymentTypes::IN_ADVANCE));
         }
     }

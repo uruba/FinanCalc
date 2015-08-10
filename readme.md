@@ -148,15 +148,132 @@ The tests currently cover only ~50% of the library's code so they're also a subj
 
 Here you can find the documentation for each of the vanilla calculator types.
 
-### AnnuityCalculator
+The implicit types of setters'/constructors' arguments as well as getters' returned values is String if not stated otherwise.
 
-*To be added.*
+### AnnuityCalculator
+namespace `FinanCalc\Calculators`
+* **__construct($annuitySinglePaymentAmount, $annuityNoOfCompoundingPeriods, $annuityInterest, $annuityPeriodLength)**
+  * *$annuitySinglePaymentAmount* = **'K'** – amount of each individual payment (number greater than zero)
+  * *$annuityNoOfCompoundingPeriods* = **'n'** – number of periods pertaining to the interest compounding; if 'n = 0', the annuity is considered a perpetuity
+  * *$annuityInterest* = **'i'** – the interest rate by which the unpaid balance is multiplied (i.e., a decimal number typically lower than 1 and greater than 0)
+  * *$annuityPeriodLength* = length of a single period in days (number greater than zero)
+* **getResult()** – gets the ***AnnuityInstance*** object manufactured by the constructor
+
+#### AnnuityInstance (*AnnuityCalculator's result object*)
+namespace `FinanCalc\Calculators\AnnuityCalculator`
+##### Setters
+* **setAnnuitySinglePaymentAmount($annuitySinglePaymentAmount)** – sets K
+* **setAnnuityNoOfCompoundingPeriods($annuityNoOfCompoundingPeriods)** – sets n
+* **setAnnuityInterest($annuityInterest)** – sets i
+* **setAnnuityPeriodLength($annuityPeriodLength)** – sets the length of each compounding period in days
+##### Getters
+* **getAnnuitySinglePaymentAmount()** – gets K
+* **getAnnuityNoOfCompoundingPeriods()** – gets n
+* **getAnnuityInterest()** – gets i
+* **getAnnuityPeriodLengthInYears()** – gets the length of each compounding periods in years
+* **getAnnuityPeriodLengthInMonths()** – gets the length of each compounding periods in months
+* **getAnnuityPeriodLengthInDays()** – gets the length of each compounding periods in days
+* **getPresentValue(AnnuityPaymentTypes $annuityType)** – gets the present value of the annuity
+  * *AnuityPaymentTypes $annuityType* = determines whether the payments are made either at the beginning or the end of each of the annuity's periods
+  [*optional for perpetuities*]
+* **getFutureValue(AnnuityPaymentTypes $annuityType)** – gets the future value of the annuity
+  * *AnuityPaymentTypes $annuityType* = determines whether the payments are made either at the beginning or the end of each of the annuity's periods
+  [*optional for perpetuities*]
+* **getValue(AnnuityPaymentTypes $annuityPaymentType, AnnuityValueTypes $annuityValueType)** – gets either the present or the future value of the annuity
+  * *AnuityPaymentTypes $annuityPaymentType* = determines whether the payments are made either at the beginning or the end of each of the annuity's periods
+  [*optional for perpetuities*]
+  * *AnuityValueTypes $annuityValueType* = determines whether the result is the present or the future value of the annuity
+
+#### AnnuityPaymentTypes
+namespace `FinanCalc\Constants`
+* *IN_ADVANCE* = 1
+* *IN_ARREARS* = 2
+
+#### AnnuityValueTypes
+namespace `FinanCalc\Constants`
+* *PRESENT_VALUE* = 1
+* *FUTURE_VALUE* = 2
+
+* * *
 
 ### DebtAmortizator
+namespace `FinanCalc\Calculators`
+* **__construct($debtPrincipal, $debtNoOfCompoundingPeriods, $debtPeriodLength, $debtInterest, AnnuityPaymentTypes $debtPaymentType)**
+  * *$debtPrincipal* = **'PV'** – the principal of the debt (number greater than zero)
+  * *$debtNoOfCompoundingPeriods* = **'n'** – number of the debt's compounding periods (number greater than zero)
+  * *$debtPeriodLength* = length of each of the debt's compounding periods in days (number greater than zero)
+  * *$debtInterest* = **'i'** – interest by which the outstanding balance is multiplied (i.e., a decimal number typically lower than 1 and greater than 0)
+  * *AnnuityPaymentTypes $debtPaymentType* = determines whether the debt is paid in advance (at the beginning of each period) or in arrears (in the end of each period)
+* **getResult()** – gets the ***DebtInstance*** object manufactured by the constructor
 
-*To be added.*
+#### DebtInstance (*DebtAmortizator's result object*)
+namespace `FinanCalc\Calculators\DebtAmortizator`
+##### Setters
+* **setDebtPrincipal($debtPrincipal)** – sets PV
+* **setDebtNoOfCompoundingPeriods($debtNoOfCompoundingPeriods)** – sets n
+* **setDebtPeriodLength($debtPeriodLength)** – sets the length of each compounding period in days
+* **setDebtInterest($debtInterest)** – sets i
+* **setDebtPaymentType(AnnuityPaymentTypes $debtPaymentType)** – determines whether the compounding is done in advance or in arrears
+
+##### Getters
+* **getDebtDiscountFactor()** – gets the value of the debt's discount factor = **'v'**
+* **getDebtSingleRepayment()** – gets the amount of a single repayment = **'K'**
+* **getDebtPrincipal()** – gets PV
+* **getDebtNoOfCompoundingPeriods()** – gets n
+* **getDebtPeriodLengthInYears()**  – gets the length of each compounding period in years
+* **getDebtPeriodLengthInMonths()**  – gets the length of each compounding period in months
+* **getDebtPeriodLengthInDays()** – gets the length of each compounding period in days
+* **getDebtDurationInYears()** – gets the duration of the debt in years
+* **getDebtDurationInMonths()** – gets the duration of the debt in months
+* **getDebtDurationInDays()** – gets the duration of the debt in days
+* **getDebtInterest()** – gets i
+* **getDebtRepayments()** – gets the **array of RepaymentInstance** objects representing all the individual payments within the debt comprised into an array
+
+#### RepaymentInstance
+namespace `FinanCalc\Calculators\DebtAmortizator`
+* **getPrincipalAmount()** – gets the amount of the debt's principal covered by this single repayment
+* **getInterestAmount()** – gets the amount of the debt's interest covered by this single repayment
+* **getTotalAmount()** – gets the total amount covered by this individual repayment (both the "principal" and "interest" part)
+
+* * *
 
 ### BondFairValueCalculator
+namespace `FinanCalc\Calculators`
+* **__construct($bondFaceValue, $bondAnnualCouponRate, $bondVIR, $bondYearsToMaturity, $bondPaymentFrequency)**
+  * *$bondFaceValue* = **'F'** – face value of the bond (number greater than zero)
+  * *$bondAnnualCouponRate* = **'c'** – annual coupon rate of the bond (i.e., a decimal number typically lower than 1 and greater than 0)
+  * *$bondVIR* = **'i' or 'VIR'** – valuation interest rate of the bond (i.e., a decimal number typically lower than 1 and greater than 0)
+  * *bondYearsToMaturity* = number of years to the maturity of the bond (number greater than zero, can be a decimal number)
+  * *bondPaymentFrequency* = frequency of bond payments (expressed in a divisor of 12 months ~ 1 year); e.g.: divisor 2 means semi-annual payments
+* **getResult()** – gets the ***BondInstance*** object manufactured by the constructor
+
+#### BondInstance (*BondFairValueCalculator's result object*)
+namespace `FinanCalc\Calculators\BondFairValueCalculator`
+##### Setters
+* **setBondFaceValue($bondFaceValue)** – sets F
+* **setBondAnnualCouponRate($bondAnnualCouponRate)** – sets c
+* **setBondVIR($bondVIR)** – sets i/VIR
+* **setBondYearsToMaturity($bondYearsToMaturity)** – sets the number of years to the maturity of the bond
+* **setBondPaymentFrequency($bondPaymentFrequency)** – sets the frequency of bond payments
+
+##### Getters
+* **getBondFaceValue()** – gets F
+* **getBondAnnualCouponRate()** – gets c
+* **getBondVIR()** – gets i/VIR
+* **getBondYearsToMaturity()** – gets the number of years to the maturity of the bond
+* **getBondPaymentFrequncy()** – gets the frequency of bond payments
+* **getBondNoOfPayments()** – gets the total number of payments during the lifespan of the bond
+* **getBondFairValue()** – gets the fair (market) value of the bond [calculated as present value of future cashflows corresponding to the bond by means of the valuation interest rate]
+
+* * *
+
+## DISCLAIMER
+You are free to use/modify/extend the library as you please - for it to serve your purpose. As per the (un)license, the software is provided as is and the original author cannot be held liable for any losses/damages directly or indirectly resulting from using thereof.
+Attribution is welcome, but certainly not required.
+
+**NOTE**
+The library is currently work-in-progress and it is certain that new features will be added in the process.Consider this, therefore, as a preview product prone to abrupt and extensive changes that may affect functionality of an external code adapted to a prior version(s) of the library.
+Always explore the provisional compatibility of the library with your project in case you upgrade to a new version of the library (by means of an extensive testing of the code in which you are exerting the library's features).
 
 
 

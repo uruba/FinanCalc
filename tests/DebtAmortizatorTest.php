@@ -32,8 +32,8 @@ class DebtAmortizatorTest extends PHPUnit_Framework_TestCase {
         $annuityCalculatorDirect = new DebtAmortizator(
             40000,
             6,
-            0.12,
             360,
+            0.12,
             new AnnuityPaymentTypes(AnnuityPaymentTypes::IN_ARREARS));
 
         $this->processResult($annuityCalculatorDirect->getResult());

@@ -8,6 +8,13 @@ namespace FinanCalc\Calculators {
     class BondFairValueCalculator implements CalculatorInterface {
         private $bondInstance;
 
+        /**
+         * @param $bondFaceValue
+         * @param $bondAnnualCouponRate
+         * @param $bondVIR
+         * @param $bondYearsToMaturity
+         * @param int $bondPaymentFrequency
+         */
         function __construct($bondFaceValue,
                              $bondAnnualCouponRate,
                              $bondVIR,
@@ -20,6 +27,9 @@ namespace FinanCalc\Calculators {
                 $bondPaymentFrequency);
         }
 
+        /**
+         * @return BondInstance
+         */
         public function getResult()
         {
             return $this->bondInstance;
@@ -47,6 +57,13 @@ namespace FinanCalc\Calculators\BondFairValueCalculator {
         // e.g.: divisor 2 means semi-annual payments
         private $bondPaymentFrequency;
 
+        /**
+         * @param $bondFaceValue
+         * @param $bondAnnualCouponRate
+         * @param $bondVIR
+         * @param $bondYearsToMaturity
+         * @param $bondPaymentFrequency
+         */
         function __construct($bondFaceValue,
                              $bondAnnualCouponRate,
                              $bondVIR,
@@ -110,6 +127,10 @@ namespace FinanCalc\Calculators\BondFairValueCalculator {
 
         public function getBondAnnualCouponRate() {
             return $this->bondAnnualCouponRate;
+        }
+
+        public function getBondVIR() {
+            return $this->bondVIR;
         }
 
         public function getBondYearsToMaturity() {
