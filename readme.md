@@ -128,7 +128,7 @@ We'll demonstrate the process on our *AnnuityCalculator* – step by step, day b
                     );
     ```
 
-Therewith the process is concluded and you can now use the obtained results as you see fit.
+Therewith the process is concluded and you can now use the obtained results in any way you see fit.
 
 
 ### Configuration
@@ -145,7 +145,7 @@ The tests currently cover only ~50% of the library's code so they're also a subj
 
 ## Reference
 
-*To be added.*
+Here you can find the documentation for each of the vanilla calculator types.
 
 ### AnnuityCalculator
 
@@ -154,6 +154,8 @@ The tests currently cover only ~50% of the library's code so they're also a subj
 ### DebtAmortizator
 
 *To be added.*
+
+### BondFairValueCalculator
 
 
 

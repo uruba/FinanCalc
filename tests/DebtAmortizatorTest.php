@@ -4,7 +4,7 @@ use FinanCalc\Calculators\DebtAmortizator;
 use FinanCalc\Constants\AnnuityPaymentTypes;
 use FinanCalc\FinanCalc;
 
-class DebtAmortizatorTest extends \PHPUnit_Framework_TestCase {
+class DebtAmortizatorTest extends PHPUnit_Framework_TestCase {
 
     /**
      * Test the "factory" version

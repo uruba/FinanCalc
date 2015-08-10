@@ -8,7 +8,7 @@ namespace FinanCalc\Calculators\Factories {
 
     /**
      * Class DebtAmortizationFactory
-     * @package FinanCalc\Factories
+     * @package FinanCalc\Calculators\Factories
      */
     class DebtAmortizationFactory extends CalculatorFactoryAbstract {
         const MANUFACTURED_CLASS_NAME = 'FinanCalc\\Calculators\\DebtAmortizator';
