@@ -166,6 +166,7 @@ namespace `FinanCalc\Calculators\AnnuityCalculator`
 * **setAnnuityNoOfCompoundingPeriods($annuityNoOfCompoundingPeriods)** – sets n
 * **setAnnuityInterest($annuityInterest)** – sets i
 * **setAnnuityPeriodLength($annuityPeriodLength)** – sets the length of each compounding period in days
+
 ##### Getters
 * **getAnnuitySinglePaymentAmount()** – gets K
 * **getAnnuityNoOfCompoundingPeriods()** – gets n
