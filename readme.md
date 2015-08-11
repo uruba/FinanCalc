@@ -15,7 +15,7 @@ A lightweight, simple and easy PHP library for calculating annuities (e.g., mort
 * Debt amortization calculator
 * Bond fair (market) value calculator
 
-Much more to come – including calculators for discount securities, bond valuation, duration, stock pricing...
+Much more to come – including calculators for discount securities, ~~bond valuation~~, duration, stock pricing...
 
 >**Please bear in mind that this is an ALPHA version containing incomplete features. The codebase is prone to drastic changes during its way out of the alpha stage.**
 
@@ -148,7 +148,7 @@ The tests currently cover only ~50% of the library's code so they're also a subj
 
 Here you can find the documentation for each of the vanilla calculator types.
 
-The implicit types of setters'/constructors' arguments as well as getters' returned values is String if not stated otherwise.
+The implicit type of setters'/constructors' arguments as well as getters' returned values is String if not stated otherwise.
 
 ### AnnuityCalculator
 namespace `FinanCalc\Calculators`
