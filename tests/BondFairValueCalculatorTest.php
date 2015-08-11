@@ -2,6 +2,9 @@
 
 use FinanCalc\Calculators\BondFairValueCalculator\BondInstance;
 
+/**
+ * Class BondFairValueCalculatorTest
+ */
 class BondFairValueCalculatorTest extends PHPUnit_Framework_TestCase {
     private $bondInstanceDirectSemiAnnually,
             $bondInstanceFactorySemiAnnually;
@@ -14,6 +17,9 @@ class BondFairValueCalculatorTest extends PHPUnit_Framework_TestCase {
         $this->assertFairValue($this->bondInstanceFactorySemiAnnually);
     }
 
+    /**
+     * @param BondInstance $bondInstance
+     */
     private function assertFairValue(BondInstance $bondInstance) {
         $fairValue = $bondInstance->getBondFairValue();
 

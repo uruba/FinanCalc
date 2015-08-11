@@ -5,6 +5,10 @@ namespace FinanCalc\Calculators {
     use FinanCalc\Calculators\BondFairValueCalculator\BondInstance;
     use FinanCalc\Interfaces\CalculatorInterface;
 
+    /**
+     * Class BondFairValueCalculator
+     * @package FinanCalc\Calculators
+     */
     class BondFairValueCalculator implements CalculatorInterface {
         private $bondInstance;
 
@@ -30,8 +34,7 @@ namespace FinanCalc\Calculators {
         /**
          * @return BondInstance
          */
-        public function getResult()
-        {
+        public function getResult() {
             return $this->bondInstance;
         }
     }
@@ -40,22 +43,32 @@ namespace FinanCalc\Calculators {
 namespace FinanCalc\Calculators\BondFairValueCalculator {
 
     use FinanCalc\Calculators\AnnuityCalculator;
+    use FinanCalc\Interfaces\BondInstanceAbstract;
     use FinanCalc\Utils\Helpers;
     use FinanCalc\Utils\MathFuncs;
 
-    class BondInstance {
+    /**
+     * Class BondInstance
+     * @package FinanCalc\Calculators\BondFairValueCalculator
+     */
+    class BondInstance extends BondInstanceAbstract {
 
-        // the face value of the bond = 'F'
-        private $bondFaceValue;
-        // coupon rate of the bond = 'c'
-        private $bondAnnualCouponRate;
         // valuation interest rate of the bond = 'i'
         private $bondVIR;
+
+        // INHERITED MEMBERS
+        // face value of the bond = 'F'
+        // $bondFaceValue;
+
+        // coupon rate of the bond per annum = 'c'
+        // $bondAnnualCouponRate;
+
         // number of years to the maturity of the bond
-        private $bondYearsToMaturity;
+        // $bondYearsToMaturity;
+
         // frequency of bond payments (expressed in a divisor of 12 months ~ 1 year)
         // e.g.: divisor 2 means semi-annual payments
-        private $bondPaymentFrequency;
+        // $bondPaymentFrequency;
 
         /**
          * @param $bondFaceValue
@@ -77,24 +90,6 @@ namespace FinanCalc\Calculators\BondFairValueCalculator {
         }
 
         /**
-         * @param $bondFaceValue
-         */
-        public function setBondFaceValue($bondFaceValue) {
-            if(Helpers::checkIfPositiveNumberOrThrowAnException($bondFaceValue)) {
-                $this->bondFaceValue = $bondFaceValue;
-            }
-        }
-
-        /**
-         * @param $bondAnnualCouponRate
-         */
-        public function setBondAnnualCouponRate($bondAnnualCouponRate) {
-            if(Helpers::checkIfPositiveNumberOrThrowAnException($bondAnnualCouponRate)) {
-                $this->bondAnnualCouponRate = $bondAnnualCouponRate;
-            }
-        }
-
-        /**
          * @param $bondVIR
          */
         public function setBondVIR($bondVIR) {
@@ -104,54 +99,15 @@ namespace FinanCalc\Calculators\BondFairValueCalculator {
         }
 
         /**
-         * @param $bondYearsToMaturity
+         * @return mixed
          */
-        public function setBondYearsToMaturity($bondYearsToMaturity) {
-            if(Helpers::checkIfPositiveNumberOrThrowAnException($bondYearsToMaturity)) {
-                $this->bondYearsToMaturity = $bondYearsToMaturity;
-            }
-        }
-
-        /**
-         * @param $bondPaymentFrequency
-         */
-        public function setBondPaymentFrequency($bondPaymentFrequency) {
-            if(Helpers::checkIfPositiveNumberOrThrowAnException($bondPaymentFrequency)) {
-                $this->bondPaymentFrequency = $bondPaymentFrequency;
-            }
-        }
-
-        public function getBondFaceValue() {
-            return $this->bondFaceValue;
-        }
-
-        public function getBondAnnualCouponRate() {
-            return $this->bondAnnualCouponRate;
-        }
-
         public function getBondVIR() {
             return $this->bondVIR;
         }
 
-        public function getBondYearsToMaturity() {
-            return $this->bondYearsToMaturity;
-        }
-
-        public function getBondPaymentFrequency() {
-            return $this->bondPaymentFrequency;
-        }
-
-        public function getBondNoOfPayments() {
-            // number of payments during the duration of the bond
-            // is calculated from the number of years of the duration of the bond
-            // multiplied by the number of payments per year (i.e., payment frequency)
-            //, floored (to eliminate the last remaining incomplete due period)
-            return floor(MathFuncs::mul(
-                $this->bondYearsToMaturity,
-                $this->bondPaymentFrequency
-            ));
-        }
-
+        /**
+         * @return float
+         */
         public function getBondFairValue() {
             // we need to get the coupon rate per payment period = c/payment frequency
             $couponRateForPeriod = MathFuncs::div(
@@ -196,7 +152,8 @@ namespace FinanCalc\Calculators\BondFairValueCalculator {
                     MathFuncs::add(
                         MathFuncs::mul(
                             $couponRateForPeriod,
-                            $PVofUnitBondAnnuity),
+                            $PVofUnitBondAnnuity
+                        ),
                         MathFuncs::div(
                             1,
                             MathFuncs::pow(
@@ -210,7 +167,7 @@ namespace FinanCalc\Calculators\BondFairValueCalculator {
                     )
                 );
 
-            return Helpers::roundMoneyForDisplay($fairValue);
+            return $fairValue;
         }
     }
 }

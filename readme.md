@@ -240,7 +240,7 @@ namespace `FinanCalc\Calculators\DebtAmortizator`
 
 ### BondFairValueCalculator
 namespace `FinanCalc\Calculators`
-* **__construct($bondFaceValue, $bondAnnualCouponRate, $bondVIR, $bondYearsToMaturity, $bondPaymentFrequency)**
+* **__construct($bondFaceValue, $bondAnnualCouponRate, $bondVIR, $bondYearsToMaturity, $bondPaymentFrequency = 1)**
   * *$bondFaceValue* = **'F'** – face value of the bond (number greater than zero)
   * *$bondAnnualCouponRate* = **'c'** – annual coupon rate of the bond (i.e., a decimal number typically lower than 1 and greater than 0)
   * *$bondVIR* = **'i' or 'VIR'** – valuation interest rate of the bond (i.e., a decimal number typically lower than 1 and greater than 0)
@@ -265,6 +265,37 @@ namespace `FinanCalc\Calculators\BondFairValueCalculator`
 * **getBondPaymentFrequncy()** – gets the frequency of bond payments
 * **getBondNoOfPayments()** – gets the total number of payments during the lifespan of the bond
 * **getBondFairValue()** – gets the fair (market) value of the bond [calculated as present value of future cashflows corresponding to the bond by means of the valuation interest rate]
+
+* * *
+
+### BondYTMCalculator
+namespace `FinanCalc\Calculators`
+* **__construct($bondFaceValue, $bondMarketValue, $bondAnnualCouponRate, $bondYearsToMaturity, $bondPaymentFrequency = 1)**
+  * *$bondFaceValue* = **'F'** – face value of the bond (number greater than zero)
+  * *$bondMarketValue* = **'P'** – market value (i.e., price) of the bond (number greater than zero)
+  * *$bondAnnualCouponRate* = **'c'** – annual coupon rate of the bond (i.e., a decimal number typically lower than 1 and greater than 0)
+  * *bondYearsToMaturity* = number of years to the maturity of the bond (number greater than zero, can be a decimal number)
+  * *bondPaymentFrequency* = frequency of bond payments (expressed in a divisor of 12 months ~ 1 year); e.g.: divisor 2 means semi-annual payments
+* **getResult()** – gets the ***BondInstance*** object manufactured by the constructor
+
+#### BondInstance (*BondYTMCalculator's result object*)
+namespace `FinanCalc\Calculators\BondYTMCalculator`
+##### Setters
+* **setBondFaceValue($bondFaceValue)** – sets F
+* **setBondMarketValue($bondMarketValue)** – sets the market value of the bond
+* **setBondAnnualCouponRate($bondAnnualCouponRate)** – sets c
+* **setBondYearsToMaturity($bondYearsToMaturity)** – sets the number of years to the maturity of the bond
+* **setBondPaymentFrequency($bondPaymentFrequency)** – sets the frequency of bond payments
+
+##### Getters
+* **getBondFaceValue()** – gets F
+* **getBondMarketValue()** – gets the market value of the bond
+* **getBondAnnualCouponRate()** – gets c
+* **getBondYearsToMaturity()** – gets the number of years to the maturity of the bond
+* **getBondPaymentFrequncy()** – gets the frequency of bond payments
+* **getBondNoOfPayments()** – gets the total number of payments during the lifespan of the bond
+* **getApproxBondYTM()** – gets the approximate value of the bond's yield to maturity in the form of a decimal number [it is the internal rate of return of the bond]
+
 
 * * *
 
