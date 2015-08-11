@@ -56,7 +56,7 @@ use FinanCalc\FinanCalc;
 
 $annuityCalculatorFactory = FinanCalc
     ::getInstance()
-    ->getFactory('DebtAmortizationFactory')
+    ->getFactory('DebtAmortizatorFactory')
     ->newYearlyDebtAmortizationInArrears(
         40000,
         6,
@@ -160,6 +160,13 @@ namespace `FinanCalc\Calculators`
   * *$annuityPeriodLength* = length of a single period in days (number greater than zero)
 * **getResult()** – gets the ***AnnuityInstance*** object manufactured by the constructor
 
+#### AnnuityCalculatorFactory (*AnnuityCalculator's factory object'*)
+namespace `FinanCalc\Calculators\Factories`
+* **newYearlyAnnuity($annuitySinglePaymentAmount, $annuityNoOfCompoundingPeriods, $annuityInterest)**
+* **newMonthlyAnnuity($annuitySinglePaymentAmount, $annuityNoOfCompoundingPeriods, $annuityInterest)**
+* **newDailyAnnuity($annuitySinglePaymentAmount, $annuityNoOfCompoundingPeriods, $annuityInterest)**
+* **newPerpetuity($annuitySinglePaymentAmount, $annuityInterest)**
+
 #### AnnuityInstance (*AnnuityCalculator's result object*)
 namespace `FinanCalc\Calculators\AnnuityCalculator`
 ##### Setters
@@ -208,6 +215,17 @@ namespace `FinanCalc\Calculators`
   * *AnnuityPaymentTypes $debtPaymentType* = determines whether the debt is paid in advance (at the beginning of each period) or in arrears (in the end of each period)
 * **getResult()** – gets the ***DebtInstance*** object manufactured by the constructor
 
+#### DebtAmortizatorFactory (*DebtAmortizator's factory object'*)
+namespace `FinanCalc\Calculators\Factories`
+* **newYearlyDebtAmortizationInArrears($debtPrincipal, $debtNoOfPeriods, $debtInterest)**
+* **newMonthlyDebtAmortizationInArrears($debtPrincipal, $debtNoOfPeriods, $debtInterest)**
+* **newDailyDebtAmortizationInArrears($debtPrincipal, $debtNoOfPeriods, $debtInterest)**
+* **newDebtAmortizationInArrearsCustomPeriodLength($debtPrincipal, $debtNoOfPeriods, $debtInterest, $debtSinglePeriodLength)**
+* **newYearlyDebtAmortizationInAdvance($debtPrincipal, $debtNoOfPeriods, $debtInterest)**
+* **newMonthlyDebtAmortizationInAdvance($debtPrincipal, $debtNoOfPeriods, $debtInterest)**
+* **newDailyDebtAmortizationInAdvance($debtPrincipal, $debtNoOfPeriods, $debtInterest)**
+* **newDebtAmortizationInAdvanceCustomPeriodLength($debtPrincipal, $debtNoOfPeriods, $debtInterest, $debtSinglePeriodLength)**
+
 #### DebtInstance (*DebtAmortizator's result object*)
 namespace `FinanCalc\Calculators\DebtAmortizator`
 ##### Setters
@@ -249,6 +267,14 @@ namespace `FinanCalc\Calculators`
   * *bondPaymentFrequency* = frequency of bond payments (expressed in a divisor of 12 months ~ 1 year); e.g.: divisor 2 means semi-annual payments
 * **getResult()** – gets the ***BondInstance*** object manufactured by the constructor
 
+#### BondFairValueCalculatorFactory (*BondFairValueCalculator's factory object'*)
+namespace `FinanCalc\Calculators\Factories`
+* **newAnnualCouponsBond($bondFaceValue, $bondAnnualCouponRate, $bondVIR, $bondYearsToMaturity)**
+* **newSemiAnnualCouponsBond($bondFaceValue, $bondAnnualCouponRate, $bondVIR, $bondYearsToMaturity)**
+* **newQuarterlyCouponsBond($bondFaceValue, $bondAnnualCouponRate, $bondVIR, $bondYearsToMaturity)**
+* **newMonthlyCouponsBond($bondFaceValue, $bondAnnualCouponRate, $bondVIR, $bondYearsToMaturity)**
+* **newCustomCouponFrequencyBond($bondFaceValue, $bondAnnualCouponRate, $bondVIR, $bondYearsToMaturity, $bondPaymentFrequency)**
+
 #### BondInstance (*BondFairValueCalculator's result object*)
 namespace `FinanCalc\Calculators\BondFairValueCalculator`
 ##### Setters
@@ -278,6 +304,14 @@ namespace `FinanCalc\Calculators`
   * *bondYearsToMaturity* = number of years to the maturity of the bond (number greater than zero, can be a decimal number)
   * *bondPaymentFrequency* = frequency of bond payments (expressed in a divisor of 12 months ~ 1 year); e.g.: divisor 2 means semi-annual payments
 * **getResult()** – gets the ***BondInstance*** object manufactured by the constructor
+
+#### BondYTMCalculatorFactory (*BondYTMCalculator's factory object'*)
+namespace `FinanCalc\Calculators\Factories`
+* **newAnnualCouponsBond($bondFaceValue, $bondMarketValue, $bondAnnualCouponRate, $bondYearsToMaturity)**
+* **newSemiAnnualCouponsBond($bondFaceValue, $bondMarketValue, $bondAnnualCouponRate, $bondYearsToMaturity)**
+* **newQuarterlyCouponsBond($bondFaceValue, $bondMarketValue, $bondAnnualCouponRate, $bondYearsToMaturity)**
+* **newMonthlyCouponsBond($bondFaceValue, $bondMarketValue, $bondAnnualCouponRate, $bondYearsToMaturity)**
+* **newCustomCouponFrequencyBond($bondFaceValue, $bondMarketValue, $bondAnnualCouponRate, $bondYearsToMaturity, $bondPaymentFrequency)**
 
 #### BondInstance (*BondYTMCalculator's result object*)
 namespace `FinanCalc\Calculators\BondYTMCalculator`

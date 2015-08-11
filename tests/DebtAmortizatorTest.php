@@ -4,6 +4,9 @@ use FinanCalc\Calculators\DebtAmortizator;
 use FinanCalc\Constants\AnnuityPaymentTypes;
 use FinanCalc\FinanCalc;
 
+/**
+ * Class DebtAmortizatorTest
+ */
 class DebtAmortizatorTest extends PHPUnit_Framework_TestCase {
 
     /**
@@ -14,7 +17,7 @@ class DebtAmortizatorTest extends PHPUnit_Framework_TestCase {
         // object obtained via a FACTORY method
         $annuityCalculatorFactory = FinanCalc
             ::getInstance()
-            ->getFactory('DebtAmortizationFactory')
+            ->getFactory('DebtAmortizatorFactory')
             ->newYearlyDebtAmortizationInArrears(
                 40000,
                 6,
