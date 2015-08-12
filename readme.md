@@ -15,8 +15,9 @@ A lightweight, simple and easy PHP library for calculating annuities (e.g., mort
 * Debt amortization calculator
 * Bond fair value calculator
 * Bond Yield-to-Maturity calculator
+* Bond duration calculator
 
-Much more to come – including calculators for discount securities, ~~bond valuation~~, duration, stock pricing...
+Much more to come – including calculators for discount securities, ~~bond valuation~~, ~~duration~~, stock pricing...
 
 >**Please bear in mind that this is an ALPHA version containing incomplete features. The codebase is prone to drastic changes during its way out of the alpha stage.**
 

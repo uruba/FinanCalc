@@ -97,6 +97,9 @@ namespace FinanCalc\Calculators\BondYTMCalculator {
             }
         }
 
+        /**
+         * @return mixed
+         */
         public function getBondMarketValue() {
             return $this->bondMarketValue;
         }

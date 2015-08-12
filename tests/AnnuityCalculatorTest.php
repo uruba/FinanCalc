@@ -3,6 +3,9 @@
 use FinanCalc\Calculators\AnnuityCalculator\AnnuityInstance;
 use FinanCalc\Constants\AnnuityPaymentTypes;
 
+/**
+ * Class AnnuityCalculatorTest
+ */
 class AnnuityCalculatorTest extends PHPUnit_Framework_TestCase {
     private $annuityInstanceDirectYearly,
             $annuityInstanceFactoryYearly,
@@ -19,6 +22,9 @@ class AnnuityCalculatorTest extends PHPUnit_Framework_TestCase {
         $this->assertPVInArrears($this->annuityInstanceFactoryYearly);
     }
 
+    /**
+     * @param AnnuityInstance $annuityInstance
+     */
     private function assertPVInArrears(AnnuityInstance $annuityInstance) {
         $PV = $annuityInstance->getPresentValue(
             new AnnuityPaymentTypes(AnnuityPaymentTypes::IN_ARREARS)
@@ -38,6 +44,9 @@ class AnnuityCalculatorTest extends PHPUnit_Framework_TestCase {
         $this->assertFVInArrears($this->annuityInstanceFactoryYearly);
     }
 
+    /**
+     * @param AnnuityInstance $annuityInstance
+     */
     private function assertFVInArrears(AnnuityInstance $annuityInstance) {
         $FV = $annuityInstance->getFutureValue(
             new AnnuityPaymentTypes(AnnuityPaymentTypes::IN_ARREARS)
@@ -57,6 +66,9 @@ class AnnuityCalculatorTest extends PHPUnit_Framework_TestCase {
         $this->assertPVInAdvance($this->annuityInstanceFactoryYearly);
     }
 
+    /**
+     * @param AnnuityInstance $annuityInstance
+     */
     private function assertPVInAdvance(AnnuityInstance $annuityInstance) {
         $PV = $annuityInstance->getPresentValue(
             new AnnuityPaymentTypes(AnnuityPaymentTypes::IN_ADVANCE)
@@ -76,6 +88,9 @@ class AnnuityCalculatorTest extends PHPUnit_Framework_TestCase {
         $this->assertFVInAdvance($this->annuityInstanceFactoryYearly);
     }
 
+    /**
+     * @param AnnuityInstance $annuityInstance
+     */
     private function assertFVInAdvance(AnnuityInstance $annuityInstance) {
         $FV = $annuityInstance->getFutureValue(
             new AnnuityPaymentTypes(AnnuityPaymentTypes::IN_ADVANCE)

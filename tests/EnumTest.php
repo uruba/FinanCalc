@@ -3,6 +3,9 @@
 use FinanCalc\Constants\AnnuityPaymentTypes;
 use FinanCalc\Constants\AnnuityValueTypes;
 
+/**
+ * Class EnumTest
+ */
 class EnumTest extends PHPUnit_Framework_TestCase {
 
     public function testAnnuityValueTypes() {

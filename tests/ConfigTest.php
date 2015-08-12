@@ -2,6 +2,9 @@
 
 use FinanCalc\Utils\Config;
 
+/**
+ * Class ConfigTest
+ */
 class ConfigTest extends PHPUnit_Framework_TestCase {
 
     public function testSetNewValue() {

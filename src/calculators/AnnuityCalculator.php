@@ -80,12 +80,18 @@ namespace FinanCalc\Calculators\AnnuityCalculator {
             $this->setAnnuityPeriodLength($annuityPeriodLength);
         }
 
+        /**
+         * @param $annuitySinglePaymentAmount
+         */
         public function setAnnuitySinglePaymentAmount($annuitySinglePaymentAmount) {
             if(Helpers::checkIfPositiveNumberOrThrowAnException($annuitySinglePaymentAmount)) {
                 $this->annuitySinglePaymentAmount = $annuitySinglePaymentAmount;
             }
         }
 
+        /**
+         * @param $annuityNoOfCompoundingPeriods
+         */
         public function setAnnuityNoOfCompoundingPeriods($annuityNoOfCompoundingPeriods) {
             if(Helpers::checkIfNotNegativeNumberOrThrowAnException($annuityNoOfCompoundingPeriods)) {
                 $this->annuityNoOfCompoundingPeriods = $annuityNoOfCompoundingPeriods;
@@ -100,12 +106,18 @@ namespace FinanCalc\Calculators\AnnuityCalculator {
             }
         }
 
+        /**
+         * @param $annuityInterest
+         */
         public function setAnnuityInterest($annuityInterest) {
             if(Helpers::checkIfPositiveNumberOrThrowAnException($annuityInterest)) {
                 $this->annuityInterest = $annuityInterest;
             }
         }
 
+        /**
+         * @param $annuityPeriodLength
+         */
         public function setAnnuityPeriodLength($annuityPeriodLength) {
             if(Helpers::checkIfNotNegativeNumberOrThrowAnException($annuityPeriodLength)) {
                 if (Helpers::checkIfZero($this->annuityNoOfCompoundingPeriods)) {

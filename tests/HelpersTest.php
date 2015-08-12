@@ -3,6 +3,9 @@
 use FinanCalc\Calculators\AnnuityCalculator;
 use FinanCalc\Utils\Helpers;
 
+/**
+ * Class HelpersTest
+ */
 class HelpersTest extends PHPUnit_Framework_TestCase {
 
     public function testCheckInstancePositive() {

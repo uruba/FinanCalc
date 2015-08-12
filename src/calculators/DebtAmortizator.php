@@ -94,45 +94,69 @@ namespace FinanCalc\Calculators\DebtAmortizator {
             $this->calculateDebtRepayments();
         }
 
+        /**
+         * @param $debtPrincipal
+         */
         private function setDebtPrincipalWithoutRecalculation($debtPrincipal) {
             if(Helpers::checkIfPositiveNumberOrThrowAnException($debtPrincipal)) {
                 $this->debtPrincipal = $debtPrincipal;
             }
         }
 
+        /**
+         * @param $debtNoOfCompoundingPeriods
+         */
         private function setDebtNoOfCompoundingPeriodsWithoutRecalculation($debtNoOfCompoundingPeriods) {
             if(Helpers::checkIfPositiveNumberOrThrowAnException($debtNoOfCompoundingPeriods)) {
                 $this->debtNoOfCompoundingPeriods = $debtNoOfCompoundingPeriods;
             }
         }
 
+        /**
+         * @param $debtInterest
+         */
         private function setDebtInterestWithoutRecalculation($debtInterest) {
             if(Helpers::checkIfPositiveNumberOrThrowAnException($debtInterest)) {
                 $this->debtInterest = $debtInterest;
             }
         }
 
+        /**
+         * @param $debtPrincipal
+         */
         public function setDebtPrincipal($debtPrincipal) {
             $this->setDebtPrincipalWithoutRecalculation($debtPrincipal);
             $this->calculateDebtRepayments();
         }
 
+        /**
+         * @param $debtNoOfCompoundingPeriods
+         */
         public function setDebtNoOfCompoundingPeriods($debtNoOfCompoundingPeriods) {
             $this->setDebtNoOfCompoundingPeriodsWithoutRecalculation($debtNoOfCompoundingPeriods);
             $this->calculateDebtRepayments();
         }
 
+        /**
+         * @param $debtPeriodLength
+         */
         public function setDebtPeriodLength($debtPeriodLength) {
             if(Helpers::checkIfPositiveNumberOrThrowAnException($debtPeriodLength)) {
                 $this->debtPeriodLength = $debtPeriodLength;
             }
         }
 
+        /**
+         * @param $debtInterest
+         */
         public function setDebtInterest($debtInterest) {
             $this->setDebtInterestWithoutRecalculation($debtInterest);
             $this->calculateDebtRepayments();
         }
 
+        /**
+         * @param AnnuityPaymentTypes $debtPaymentType
+         */
         public function setDebtPaymentType(AnnuityPaymentTypes $debtPaymentType) {
             if(Helpers::checkIfInstanceOfAClassOrThrowAnException($debtPaymentType, AnnuityPaymentTypes::class)) {
                 $this->debtPaymentType = $debtPaymentType;
