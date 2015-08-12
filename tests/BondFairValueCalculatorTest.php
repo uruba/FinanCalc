@@ -27,7 +27,7 @@ class BondFairValueCalculatorTest extends PHPUnit_Framework_TestCase {
     }
 
     /**
-     * @return \FinanCalc\Calculators\BondFairValueCalculator\BondInstance
+     * @return BondInstance
      */
     private function getBondInstanceDirectSemiAnnually() {
         $bondFairValueCalculator = new \FinanCalc\Calculators\BondFairValueCalculator(10000, 0.12, 0.1, 7.5, 2);

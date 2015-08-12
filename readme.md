@@ -13,7 +13,7 @@ A lightweight, simple and easy PHP library for calculating annuities (e.g., mort
 ## Features
 * Annuity present and future value calculator
 * Debt amortization calculator
-* Bond fair (market) value calculator
+* Bond fair value calculator
 * Bond Yield-to-Maturity calculator
 
 Much more to come – including calculators for discount securities, ~~bond valuation~~, duration, stock pricing...
@@ -47,7 +47,7 @@ Since the library automatically keeps track of pre-defined factory methods (cont
 
 From the main *FinanCalc* object (whose instance you get by calling its static method *getInstance()*) you have to call the *getFactory()* method, which takes in the name of the factory class as a parameter of type *string* (you can find all the included factory classes in the *src/calculators/factories* directory).
 
-This method yields you the factory object, on which you can finally call the target factory method that produces the appropriate calculator instance for you.
+This method yields you the factory object, on which you can finally call the target factory method that produces the appropriate calculator instance for you (you can say that it is a factory of a factory of a desired result object – the reason for this "multi-layered factories" approach is laying ground for future extensibility of the calculator classes to provide more functionality whilst acting as a mid-layer between the top-most factory methods and the final result object).
 
 ```php
 use FinanCalc\FinanCalc;
@@ -160,7 +160,7 @@ namespace `FinanCalc\Calculators`
   * *$annuityPeriodLength* = length of a single period in days (number greater than zero)
 * **getResult()** – gets the ***AnnuityInstance*** object manufactured by the constructor
 
-#### AnnuityCalculatorFactory (*AnnuityCalculator's factory object'*)
+#### AnnuityCalculatorFactory (*AnnuityCalculator's factory object*)
 namespace `FinanCalc\Calculators\Factories`
 * **newYearlyAnnuity($annuitySinglePaymentAmount, $annuityNoOfCompoundingPeriods, $annuityInterest)**
 * **newMonthlyAnnuity($annuitySinglePaymentAmount, $annuityNoOfCompoundingPeriods, $annuityInterest)**
@@ -212,10 +212,10 @@ namespace `FinanCalc\Calculators`
   * *$debtNoOfCompoundingPeriods* = **'n'** – number of the debt's compounding periods (number greater than zero)
   * *$debtPeriodLength* = length of each of the debt's compounding periods in days (number greater than zero)
   * *$debtInterest* = **'i'** – interest by which the outstanding balance is multiplied (i.e., a decimal number typically lower than 1 and greater than 0)
-  * *AnnuityPaymentTypes $debtPaymentType* = determines whether the debt is paid in advance (at the beginning of each period) or in arrears (in the end of each period)
+  * *AnnuityPaymentTypes $debtPaymentType* = determines whether the debt is repaid in advance (at the beginning of each period) or in arrears (in the end of each period)
 * **getResult()** – gets the ***DebtInstance*** object manufactured by the constructor
 
-#### DebtAmortizatorFactory (*DebtAmortizator's factory object'*)
+#### DebtAmortizatorFactory (*DebtAmortizator's factory object*)
 namespace `FinanCalc\Calculators\Factories`
 * **newYearlyDebtAmortizationInArrears($debtPrincipal, $debtNoOfPeriods, $debtInterest)**
 * **newMonthlyDebtAmortizationInArrears($debtPrincipal, $debtNoOfPeriods, $debtInterest)**
@@ -267,7 +267,7 @@ namespace `FinanCalc\Calculators`
   * *bondPaymentFrequency* = frequency of bond payments (expressed in a divisor of 12 months ~ 1 year); e.g.: divisor 2 means semi-annual payments
 * **getResult()** – gets the ***BondInstance*** object manufactured by the constructor
 
-#### BondFairValueCalculatorFactory (*BondFairValueCalculator's factory object'*)
+#### BondFairValueCalculatorFactory (*BondFairValueCalculator's factory object*)
 namespace `FinanCalc\Calculators\Factories`
 * **newAnnualCouponsBond($bondFaceValue, $bondAnnualCouponRate, $bondVIR, $bondYearsToMaturity)**
 * **newSemiAnnualCouponsBond($bondFaceValue, $bondAnnualCouponRate, $bondVIR, $bondYearsToMaturity)**
@@ -291,7 +291,7 @@ namespace `FinanCalc\Calculators\BondFairValueCalculator`
 * **getBondYearsToMaturity()** – gets the number of years to the maturity of the bond
 * **getBondPaymentFrequncy()** – gets the frequency of bond payments
 * **getBondNoOfPayments()** – gets the total number of payments during the lifespan of the bond
-* **getBondFairValue()** – gets the fair (market) value of the bond [calculated as present value of future cashflows corresponding to the bond by means of the valuation interest rate]
+* **getBondFairValue()** – gets the fair value of the bond [calculated as present value of future cashflows corresponding to the bond by means of the valuation interest rate]
 
 * * *
 
@@ -305,7 +305,7 @@ namespace `FinanCalc\Calculators`
   * *bondPaymentFrequency* = frequency of bond payments (expressed in a divisor of 12 months ~ 1 year); e.g.: divisor 2 means semi-annual payments
 * **getResult()** – gets the ***BondInstance*** object manufactured by the constructor
 
-#### BondYTMCalculatorFactory (*BondYTMCalculator's factory object'*)
+#### BondYTMCalculatorFactory (*BondYTMCalculator's factory object*)
 namespace `FinanCalc\Calculators\Factories`
 * **newAnnualCouponsBond($bondFaceValue, $bondMarketValue, $bondAnnualCouponRate, $bondYearsToMaturity)**
 * **newSemiAnnualCouponsBond($bondFaceValue, $bondMarketValue, $bondAnnualCouponRate, $bondYearsToMaturity)**
@@ -334,6 +334,48 @@ namespace `FinanCalc\Calculators\BondYTMCalculator`
 
 * * *
 
+### BondDurationCalculator
+namespace `FinanCalc\Calculators`
+* **__construct($bondFaceValue, $bondAnnualCouponRate, $bondAnnualYield, $bondYearsToMaturity, $bondPaymentFrequency = 1)**
+  * *$bondFaceValue* = **'F'** – face value of the bond (number greater than zero)
+  * *$bondAnnualCouponRate* = **'c'** – annual coupon rate of the bond (i.e., a decimal number typically lower than 1 and greater than 0)
+  * *$bondAnnualYield* = annual yield of the bond (calculated as an interest rate divided by the bond's' value)
+  * *bondYearsToMaturity* = number of years to the maturity of the bond (number greater than zero, can be a decimal number)
+  * *bondPaymentFrequency* = frequency of bond payments (expressed in a divisor of 12 months ~ 1 year); e.g.: divisor 2 means semi-annual payments
+* **getResult()** – gets the ***BondInstance*** object manufactured by the constructor
+
+#### BondDurationCalculatorFactory (*BondDurationCalculator's factory object*)
+namespace `FinanCalc\Calculators\Factories`
+* **newAnnualCouponsBond($bondFaceValue, $bondAnnualCouponRate, $bondAnnualYield, $bondYearsToMaturity)**
+* **newSemiAnnualCouponsBond($bondFaceValue, $bondAnnualCouponRate, $bondAnnualYield, $bondYearsToMaturity)**
+* **newQuarterlyCouponsBond($bondFaceValue, $bondAnnualCouponRate, $bondAnnualYield, $bondYearsToMaturity)**
+* **newMonthlyCouponsBond($bondFaceValue, $bondAnnualCouponRate, $bondAnnualYield, $bondYearsToMaturity)**
+* **newCustomCouponFrequencyBond($bondFaceValue, $bondAnnualCouponRate, $bondAnnualYield, $bondYearsToMaturity, $bondPaymentFrequency)**
+
+#### BondInstance (*BondDurationCalculator's result object*)
+namespace `FinanCalc\Calculators\BondDurationCalculator`
+##### Setters
+* **setBondFaceValue($bondFaceValue)** – sets F
+* **setBondAnnualCouponRate($bondAnnualCouponRate)** – sets c
+* **setBondAnnualYield($bondAnnualYield)** – sets the annual yield of the bond
+* **setBondYearsToMaturity($bondYearsToMaturity)** – sets the number of years to the maturity of the bond
+* **setBondPaymentFrequency($bondPaymentFrequency)** – sets the frequency of bond payments
+
+##### Getters
+* **getBondFaceValue()** – gets F
+* **getBondAnnualCouponRate()** – gets c
+* **getBondAnnualYield()** – gets the annual yield of the bond
+* **getBondYieldPerPaymentPeriod()** – gets the yield of the bond per a payment period
+* **getBondYearsToMaturity()** – gets the number of years to the maturity of the bond
+* **getBondPaymentFrequncy()** – gets the frequency of bond payments
+* **getBondNoOfPayments()** – gets the total number of payments during the lifespan of the bond
+* **getBondNominalCashFlows()** – gets an array of the bond's nominal cash flows (coupons; in the last payment = coupon + face value)
+* **getBondDiscountedCashFlows()** – gets an array of the bond's discounted cash flows (nominal cash flows which are discounted by the means of the bond's yield per period)
+* **getBondPresentValue()** – gets the present value of the bond which is represented by sum of all the bond's discounted cash flows (i.e., all the array members returned by the method getBondDiscountedCashFLows() are summed up)
+* **getBondDuration()** – gets the bond's duration in years (can be a decimal number)
+
+* * *
+
 ## DISCLAIMER
 You are free to use/modify/extend the library as you please - for it to serve your purpose. As per the (un)license, the software is provided as is and the original author cannot be held liable for any losses/damages directly or indirectly resulting from using thereof.
 Attribution is welcome, but certainly not required.
@@ -341,6 +383,3 @@ Attribution is welcome, but certainly not required.
 **NOTE**
 The library is currently work-in-progress and it is certain that new features will be added in the process.Consider this, therefore, as a preview product prone to abrupt and extensive changes that may affect functionality of an external code adapted to a prior version(s) of the library.
 Always explore the provisional compatibility of the library with your project in case you upgrade to a new version of the library (by means of an extensive testing of the code in which you are exerting the library's features).
-
-
-

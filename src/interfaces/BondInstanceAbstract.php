@@ -56,27 +56,46 @@ namespace FinanCalc\Interfaces {
             }
         }
 
+        /**
+         * @return mixed
+         */
         public function getBondFaceValue() {
             return $this->bondFaceValue;
         }
 
+        /**
+         * @return mixed
+         */
         public function getBondAnnualCouponRate() {
             return $this->bondAnnualCouponRate;
         }
 
+        /**
+         * @return mixed
+         */
         public function getBondYearsToMaturity() {
             return $this->bondYearsToMaturity;
         }
 
+        /**
+         * @return mixed
+         */
         public function getBondPaymentFrequency() {
             return $this->bondPaymentFrequency;
+        }
+
+        /**
+         * @return float
+         */
+        public function getCouponPayment() {
+            return ($this->bondAnnualCouponRate / $this->bondPaymentFrequency) * $this->bondFaceValue;
         }
 
         /**
          * @return int
          */
         public function getBondNoOfPayments() {
-            // number of payments during the duration of the bond
+            // number of payments during the duration of the bond (up to the moment of its maturity)
             // is calculated from the number of years of the duration of the bond
             // multiplied by the number of payments per year (i.e., payment frequency)
             //, floored (to eliminate the last remaining incomplete due period)
