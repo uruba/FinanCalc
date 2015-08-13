@@ -10,3 +10,7 @@ php:
 
 # omitting "script:" will default to phpunit
 script: phpunit --coverage-text --testdox
+
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
