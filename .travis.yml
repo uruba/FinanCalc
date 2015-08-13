@@ -9,7 +9,7 @@ php:
   - hhvm
 
 # omitting "script:" will default to phpunit
-script: phpunit --coverage-text --testdox
+script: phpunit --coverage-text --testdox  --coverage-clover=coverage.xml
 
 
 after_success:
