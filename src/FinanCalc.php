@@ -90,7 +90,7 @@ namespace FinanCalc {
         /**
          * @param $configArray
          */
-        public function setConfig($configArray) {
+        public function setConfig($configArray = null) {
             Config::init($configArray);
         }
 

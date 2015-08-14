@@ -27,6 +27,15 @@ class BondFairValueCalculatorTest extends PHPUnit_Framework_TestCase {
     }
 
     /**
+     * Test presence in the main factories array
+     */
+    public function testPresenceInMainFactoriesArray() {
+        $this->assertTrue(
+            isObjectTypeInArray('FinanCalc\\Calculators\\Factories\\BondFairvalueCalculatorFactory', \FinanCalc\FinanCalc::getInstance()->getFactories())
+        );
+    }
+
+    /**
      * @return BondInstance
      */
     private function getBondInstanceDirectSemiAnnually() {

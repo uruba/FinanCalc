@@ -48,5 +48,9 @@ namespace FinanCalc\Utils {
             }
             self::$configArray[$key] = $value;
         }
+
+        public static function getConfigArray() {
+            return self::$configArray;
+        }
     }
 }
