@@ -115,6 +115,72 @@ class AnnuityCalculatorTest extends PHPUnit_Framework_TestCase {
     }
 
     /**
+     * Test monthly annuity factory
+     */
+    public function testMonthlyAnnuityFactoryMonthly() {
+        $annuityInstanceFactoryMonthly = $this->getAnnuityInstanceFactoryMonthly();
+
+        $this->assertFVInAdvance(
+            $annuityInstanceFactoryMonthly
+        );
+
+        $this->assertFVInArrears(
+            $annuityInstanceFactoryMonthly
+        );
+
+        $this->assertPVInAdvance(
+            $annuityInstanceFactoryMonthly
+        );
+
+        $this->assertPVInArrears(
+            $annuityInstanceFactoryMonthly
+        );
+
+        $this->assertEquals(1, $annuityInstanceFactoryMonthly->getAnnuityPeriodLengthInMonths());
+    }
+
+    private function getAnnuityInstanceFactoryMonthly() {
+        return \FinanCalc\FinanCalc
+            ::getInstance()
+            ->getFactory('AnnuityCalculatorFactory')
+            ->newMonthlyAnnuity(100000, 5, 0.15)
+            ->getResult();
+    }
+
+    /**
+     * Test daily annuity factory
+     */
+    public function testDailyAnnuityFactory() {
+        $annuityInstanceFactoryDaily = $this->getAnnuityInstanceFactoryDaily();
+
+        $this->assertFVInAdvance(
+            $annuityInstanceFactoryDaily
+        );
+
+        $this->assertFVInArrears(
+            $annuityInstanceFactoryDaily
+        );
+
+        $this->assertPVInAdvance(
+            $annuityInstanceFactoryDaily
+        );
+
+        $this->assertPVInArrears(
+            $annuityInstanceFactoryDaily
+        );
+
+        $this->assertEquals(1, $annuityInstanceFactoryDaily->getAnnuityPeriodLengthInDays());
+    }
+
+    private function getAnnuityInstanceFactoryDaily() {
+        return \FinanCalc\FinanCalc
+            ::getInstance()
+            ->getFactory('AnnuityCalculatorFactory')
+            ->newDailyAnnuity(100000, 5, 0.15)
+            ->getResult();
+    }
+
+    /**
      * Test presence in the main factories array
      */
     public function testPresenceInMainFactoriesArray() {

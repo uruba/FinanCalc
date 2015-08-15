@@ -158,7 +158,7 @@ namespace `FinanCalc\Calculators`
 * **__construct($annuitySinglePaymentAmount, $annuityNoOfCompoundingPeriods, $annuityInterest, $annuityPeriodLength)**
   * *$annuitySinglePaymentAmount* = **'K'** – amount of each individual payment (number greater than zero)
   * *$annuityNoOfCompoundingPeriods* = **'n'** – number of periods pertaining to the interest compounding; if 'n = 0', the annuity is considered a perpetuity
-  * *$annuityInterest* = **'i'** – the interest rate by which the unpaid balance is multiplied (i.e., a decimal number typically lower than 1 and greater than 0)
+  * *$annuityInterest* = **'i'** – the interest rate *per a single payment period* by which the unpaid balance is multiplied (i.e., a decimal number typically lower than 1 and greater than 0)
   * *$annuityPeriodLength* = length of a single period in days (number greater than zero)
 * **getResult()** – gets the ***AnnuityInstance*** object manufactured by the constructor
 
@@ -250,6 +250,7 @@ namespace `FinanCalc\Calculators\DebtAmortizator`
 * **getDebtDurationInDays()** – gets the duration of the debt in days
 * **getDebtInterest()** – gets i
 * **getDebtRepayments()** – gets the **array of RepaymentInstance** objects representing all the individual payments within the debt comprised into an array
+* **getDebtPaymentType()** – gets the information whether the debt installments are repaid in advance or in arrears
 
 #### RepaymentInstance
 namespace `FinanCalc\Calculators\DebtAmortizator`

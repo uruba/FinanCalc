@@ -305,6 +305,13 @@ namespace FinanCalc\Calculators\DebtAmortizator {
         public function getDebtRepayments() {
             return $this->debtRepayments;
         }
+
+        /**
+         * @return AnnuityPaymentTypes [Gets the payment type of the debt]
+         */
+        public function getDebtPaymentType() {
+            return $this->debtPaymentType;
+        }
     }
 
     /**

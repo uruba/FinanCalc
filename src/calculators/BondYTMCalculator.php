@@ -108,8 +108,15 @@ namespace FinanCalc\Calculators\BondYTMCalculator {
          * @return string
          */
         public function getApproxBondYTM() {
-            // we need to calculate the coupon payment C = F*c
-            $couponPayment = $this->bondFaceValue * $this->bondAnnualCouponRate;
+            // we need to calculate the coupon payment C = F*(c/payment frequency)
+            $couponPayment =
+                MathFuncs::mul(
+                    $this->bondFaceValue,
+                    MathFuncs::div(
+                        $this->bondAnnualCouponRate,
+                        $this->bondPaymentFrequency
+                    )
+                );
 
             // we use a formula to approximate the YTM = (C+(F-P)/n)/((F+P)/2)
             $approxYTM =

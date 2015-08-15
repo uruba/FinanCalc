@@ -40,12 +40,14 @@ namespace FinanCalc\Calculators {
 }
 
 namespace FinanCalc\Calculators\AnnuityCalculator {
+
+    use Exception;
     use FinanCalc\Constants\AnnuityPaymentTypes;
     use FinanCalc\Constants\AnnuityValueTypes;
     use FinanCalc\Constants\Defaults;
     use FinanCalc\Utils\Helpers;
-    use FinanCalc\Utils\InvalidArgumentException;
     use FinanCalc\Utils\MathFuncs;
+    use InvalidArgumentException;
 
     /**
      * Class AnnuityInstance
@@ -160,6 +162,9 @@ namespace FinanCalc\Calculators\AnnuityCalculator {
             );
         }
 
+        /**
+         * @return mixed
+         */
         public function getAnnuityPeriodLengthInDays() {
             return $this->annuityPeriodLength;
         }
@@ -192,7 +197,7 @@ namespace FinanCalc\Calculators\AnnuityCalculator {
          * @param AnnuityPaymentTypes $annuityPaymentType
          * @param AnnuityValueTypes $annuityValueType
          * @return null|string
-         * @throws \FinanCalc\Utils\Exception
+         * @throws Exception
          */
         public function getValue(AnnuityPaymentTypes $annuityPaymentType = null, AnnuityValueTypes $annuityValueType) {
             // if the number of the annuity's compounding periods
