@@ -14,8 +14,10 @@ namespace FinanCalc\Calculators\Factories {
         const MANUFACTURED_CLASS_NAME = 'FinanCalc\\Calculators\\DebtAmortizator';
 
         /**
-         *
          * Payments IN ARREARS
+         */
+
+        /**
          * @param $debtPrincipal
          * @param $debtNoOfPeriods
          * @param $debtInterest
@@ -81,8 +83,10 @@ namespace FinanCalc\Calculators\Factories {
         }
 
         /**
-         *
          * Payments IN ADVANCE
+         */
+
+        /**
          * @param $debtPrincipal
          * @param $debtNoOfPeriods
          * @param $debtInterest
