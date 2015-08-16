@@ -31,6 +31,10 @@ class EnumTest extends PHPUnit_Framework_TestCase {
             AnnuityValueTypes::PRESENT_VALUE,
             $annuityValueType->getValue()
         );
+        $this->assertEquals(
+            AnnuityValueTypes::PRESENT_VALUE,
+            $annuityValueType->magicProperty
+        );
     }
 
     public function testToString() {
