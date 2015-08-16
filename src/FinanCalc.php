@@ -23,7 +23,7 @@
  * Module php-bcmath
  *
  * @author Václav Uruba
- * @version 0.1.0
+ * @version 0.1.3
  * @license http://unlicense.org The Unlicense
  */
 namespace FinanCalc {
