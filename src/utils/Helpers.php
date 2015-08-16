@@ -45,9 +45,7 @@ namespace FinanCalc\Utils {
          * @return bool
          */
         static function checkIfNotNegativeNumberOrThrowAnException($checkedVariable) {
-            if (Helpers::checkIfPositiveNumber($checkedVariable)
-                ||
-                Helpers::checkIfZero($checkedVariable)) {
+            if (Helpers::checkIfPositiveNumber($checkedVariable) || Helpers::checkIfZero($checkedVariable)) {
                 return true;
             }
 

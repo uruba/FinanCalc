@@ -11,7 +11,7 @@ namespace FinanCalc\Utils {
         private static $configArray = array();
 
         /**
-         *
+         * PRIVATE constructor
          */
         private function __construct() {}
 
@@ -24,7 +24,7 @@ namespace FinanCalc\Utils {
             } else {
                 $defaultValues = array_merge($defaultValues, Defaults::$configDefault);
             }
-            self::$configArray = $defaultValues;
+            static::$configArray = $defaultValues;
         }
 
         /**
@@ -32,10 +32,11 @@ namespace FinanCalc\Utils {
          * @return mixed
          */
         public static function getConfigField($key){
-            if(empty(self::$configArray)) {
+            /** Shouldn't be needed when it's properly bootstrapped
+            if(empty(static::$configArray)) {
                 Config::init();
-            }
-            return self::$configArray[$key];
+            }*/
+            return static::$configArray[$key];
         }
 
         /**
@@ -43,17 +44,18 @@ namespace FinanCalc\Utils {
          * @param $value
          */
         public static function setConfigField($key, $value){
-            if(empty(self::$configArray)) {
+            /** Shouldn't be needed when it's properly bootstrapped
+            if(empty(static::$configArray)) {
                 Config::init();
-            }
-            self::$configArray[$key] = $value;
+            }}*/
+            static::$configArray[$key] = $value;
         }
 
         /**
          * @return array
          */
         public static function getConfigArray() {
-            return self::$configArray;
+            return static::$configArray;
         }
     }
 }
