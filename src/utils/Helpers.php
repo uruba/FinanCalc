@@ -6,9 +6,6 @@ namespace FinanCalc\Utils {
     use FinanCalc\Constants\Strings;
     use InvalidArgumentException;
 
-    // TODO - resolve this temporary workaround (autoloader sometimes works and sometimes doesn't)
-    require_once dirname(__FILE__) . '/../constants/Strings.php';
-
     /**
      * Class Helpers
      * @package FinanCalc\Utils
