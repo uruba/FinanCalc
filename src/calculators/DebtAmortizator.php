@@ -1,7 +1,6 @@
 <?php
 
 namespace FinanCalc\Calculators {
-    use FinanCalc\Constants\AnnuityPaymentTypes;
     use FinanCalc\Calculators\DebtAmortizator\DebtInstance;
     use FinanCalc\Interfaces\CalculatorInterface;
 
@@ -19,20 +18,17 @@ namespace FinanCalc\Calculators {
          * @param string $debtNoOfCompoundingPeriods   [Number of the debt's compounding periods as a string]
          * @param string $debtInterest                 [Value of the debt's interest in a decimal number 'multiplier' form as a string]
          * @param string $debtPeriodLength             [Length of each of the debt's compounding periods as a string]
-         * @param AnnuityPaymentTypes $debtPaymentType [Payment type of the debt]
          */
         function __construct($debtPrincipal,
                              $debtNoOfCompoundingPeriods,
                              $debtPeriodLength,
-                             $debtInterest,
-                             AnnuityPaymentTypes $debtPaymentType) {
+                             $debtInterest) {
 
             // create new DebtInstance object passing on the parameters of this constructor
             $this->debtInstance = new DebtInstance($debtPrincipal,
                                                    $debtNoOfCompoundingPeriods,
                                                    $debtPeriodLength,
-                                                   $debtInterest,
-                                                   $debtPaymentType);
+                                                   $debtInterest);
         }
 
         /**
@@ -48,7 +44,6 @@ namespace FinanCalc\Calculators {
 
 
 namespace FinanCalc\Calculators\DebtAmortizator {
-    use FinanCalc\Constants\AnnuityPaymentTypes;
     use FinanCalc\Constants\Defaults;
     use FinanCalc\Utils\Helpers;
     use FinanCalc\Utils\MathFuncs;
@@ -68,8 +63,6 @@ namespace FinanCalc\Calculators\DebtAmortizator {
         private $debtPeriodLength;
         // the interest rate by which the unpaid balance is multiplied (i.e., a decimal number) = 'i'
         private $debtInterest;
-        // payment type of the debt
-        private $debtPaymentType;
 
         /**
          * DebtInstance constructor
@@ -78,19 +71,16 @@ namespace FinanCalc\Calculators\DebtAmortizator {
          * @param string $debtNoOfCompoundingPeriods   [Number of the debt's compounding periods as a string]
          * @param string $debtInterest                 [Value of the debt's interest in a decimal number 'multiplier' form as a string]
          * @param string $debtPeriodLength             [Length of each of the debt's compounding periods in days as a string]
-         * @param AnnuityPaymentTypes $debtPaymentType [Payment type of the debt]
          * @throws \InvalidArgumentException
          */
         function __construct($debtPrincipal,
                              $debtNoOfCompoundingPeriods,
                              $debtPeriodLength,
-                             $debtInterest,
-                             AnnuityPaymentTypes $debtPaymentType) {
+                             $debtInterest) {
             $this->setDebtPrincipalWithoutRecalculation($debtPrincipal);
             $this->setDebtNoOfCompoundingPeriodsWithoutRecalculation($debtNoOfCompoundingPeriods);
             $this->setDebtPeriodLength($debtPeriodLength);
             $this->setDebtInterestWithoutRecalculation($debtInterest);
-            $this->setDebtPaymentType($debtPaymentType);
             $this->calculateDebtRepayments();
         }
 
@@ -152,15 +142,6 @@ namespace FinanCalc\Calculators\DebtAmortizator {
         public function setDebtInterest($debtInterest) {
             $this->setDebtInterestWithoutRecalculation($debtInterest);
             $this->calculateDebtRepayments();
-        }
-
-        /**
-         * @param AnnuityPaymentTypes $debtPaymentType
-         */
-        public function setDebtPaymentType(AnnuityPaymentTypes $debtPaymentType) {
-            if(Helpers::checkIfInstanceOfAClassOrThrowAnException($debtPaymentType, AnnuityPaymentTypes::class)) {
-                $this->debtPaymentType = $debtPaymentType;
-            }
         }
 
         /**
@@ -300,17 +281,10 @@ namespace FinanCalc\Calculators\DebtAmortizator {
         }
 
         /**
-         * @return Array [Array of individual debt repayments (RepaymentInstances)]
+         * @return RepaymentInstance[] [Array of individual debt repayments (RepaymentInstances)]
          */
         public function getDebtRepayments() {
             return $this->debtRepayments;
-        }
-
-        /**
-         * @return AnnuityPaymentTypes [Gets the payment type of the debt]
-         */
-        public function getDebtPaymentType() {
-            return $this->debtPaymentType;
         }
     }
 

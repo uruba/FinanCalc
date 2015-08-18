@@ -219,14 +219,10 @@ namespace `FinanCalc\Calculators`
 
 #### DebtAmortizatorFactory (*DebtAmortizator's factory object*)
 namespace `FinanCalc\Calculators\Factories`
-* **newYearlyDebtAmortizationInArrears($debtPrincipal, $debtNoOfPeriods, $debtInterest)**
-* **newMonthlyDebtAmortizationInArrears($debtPrincipal, $debtNoOfPeriods, $debtInterest)**
-* **newDailyDebtAmortizationInArrears($debtPrincipal, $debtNoOfPeriods, $debtInterest)**
-* **newDebtAmortizationInArrearsCustomPeriodLength($debtPrincipal, $debtNoOfPeriods, $debtInterest, $debtSinglePeriodLength)**
-* **newYearlyDebtAmortizationInAdvance($debtPrincipal, $debtNoOfPeriods, $debtInterest)**
-* **newMonthlyDebtAmortizationInAdvance($debtPrincipal, $debtNoOfPeriods, $debtInterest)**
-* **newDailyDebtAmortizationInAdvance($debtPrincipal, $debtNoOfPeriods, $debtInterest)**
-* **newDebtAmortizationInAdvanceCustomPeriodLength($debtPrincipal, $debtNoOfPeriods, $debtInterest, $debtSinglePeriodLength)**
+* **newYearlyDebtAmortization($debtPrincipal, $debtNoOfPeriods, $debtInterest)**
+* **newMonthlyDebtAmortization($debtPrincipal, $debtNoOfPeriods, $debtInterest)**
+* **newDailyDebtAmortization($debtPrincipal, $debtNoOfPeriods, $debtInterest)**
+* **newDebtAmortizationCustomPeriodLength($debtPrincipal, $debtNoOfPeriods, $debtInterest, $debtSinglePeriodLength)**
 
 #### DebtInstance (*DebtAmortizator's result object*)
 namespace `FinanCalc\Calculators\DebtAmortizator`
@@ -235,7 +231,6 @@ namespace `FinanCalc\Calculators\DebtAmortizator`
 * **setDebtNoOfCompoundingPeriods($debtNoOfCompoundingPeriods)** – sets n
 * **setDebtPeriodLength($debtPeriodLength)** – sets the length of each compounding period in days
 * **setDebtInterest($debtInterest)** – sets i
-* **setDebtPaymentType(AnnuityPaymentTypes $debtPaymentType)** – determines whether the compounding is done in advance or in arrears
 
 ##### Getters
 * **getDebtDiscountFactor()** – gets the value of the debt's discount factor = **'v'**
@@ -250,7 +245,6 @@ namespace `FinanCalc\Calculators\DebtAmortizator`
 * **getDebtDurationInDays()** – gets the duration of the debt in days
 * **getDebtInterest()** – gets i
 * **getDebtRepayments()** – gets the **array of RepaymentInstance** objects representing all the individual payments within the debt comprised into an array
-* **getDebtPaymentType()** – gets the information whether the debt installments are repaid in advance or in arrears
 
 #### RepaymentInstance
 namespace `FinanCalc\Calculators\DebtAmortizator`

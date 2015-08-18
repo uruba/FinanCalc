@@ -1,7 +1,6 @@
 <?php
 
 use FinanCalc\Calculators\DebtAmortizator;
-use FinanCalc\Constants\AnnuityPaymentTypes;
 use FinanCalc\Constants\Defaults;
 use FinanCalc\FinanCalc;
 use FinanCalc\Utils\MathFuncs;
@@ -12,15 +11,15 @@ use FinanCalc\Utils\MathFuncs;
 class DebtAmortizatorTest extends PHPUnit_Framework_TestCase {
 
     /**
-     * Test the "factory" version in arrears
+     * Test the "factory" version
      */
-    public function testRepaymentsFactoryYearlyInArrears() {
+    public function testRepaymentsFactoryYearly() {
         // initialize a variable representing a DebtAmortizator
         // object obtained via a FACTORY method
         $debtAmortizatorFactory = FinanCalc
             ::getInstance()
             ->getFactory('DebtAmortizatorFactory')
-            ->newYearlyDebtAmortizationInArrears(
+            ->newYearlyDebtAmortization(
                 40000,
                 6,
                 0.12);
@@ -28,44 +27,35 @@ class DebtAmortizatorTest extends PHPUnit_Framework_TestCase {
         $result = $debtAmortizatorFactory->getResult();
 
         $this->processResult($result);
-
-        $this->assertEquals(
-            AnnuityPaymentTypes::IN_ARREARS,
-            $result->getDebtPaymentType()->getValue());
     }
 
     /**
-     * Test the "direct" version in arrears
+     * Test the "direct" version
      */
-    public function testRepaymentsDirectYearlyInArrears() {
+    public function testRepaymentsDirectYearly() {
         // initialize a variable representing a DebtAmortizator
         // object obtained via DIRECT instantiation
         $debtAmortizatorDirect = new DebtAmortizator(
             40000,
             6,
             360,
-            0.12,
-            new AnnuityPaymentTypes(AnnuityPaymentTypes::IN_ARREARS));
+            0.12);
 
         $result = $debtAmortizatorDirect->getResult();
 
         $this->processResult($result);
-
-        $this->assertEquals(
-            AnnuityPaymentTypes::IN_ARREARS,
-            $result->getDebtPaymentType()->getValue());
     }
 
     /**
-     * Test the monthly factory version in arrears
+     * Test the monthly factory version
      */
-    public function testRepaymentsFactoryMonthlyInArrears() {
+    public function testRepaymentsFactoryMonthly() {
         // initialize a variable representing a DebtAmortizator
         // object obtained via a FACTORY method
         $debtAmortizatorFactory = FinanCalc
             ::getInstance()
             ->getFactory('DebtAmortizatorFactory')
-            ->newMonthlyDebtAmortizationInArrears(
+            ->newMonthlyDebtAmortization(
                 40000,
                 6,
                 0.12);
@@ -73,22 +63,18 @@ class DebtAmortizatorTest extends PHPUnit_Framework_TestCase {
         $result = $debtAmortizatorFactory->getResult();
 
         $this->processResult($result);
-
-        $this->assertEquals(
-            AnnuityPaymentTypes::IN_ARREARS,
-            $result->getDebtPaymentType()->getValue());
     }
 
     /**
-     * Test the daily factory version in arrears
+     * Test the daily factory version
      */
-    public function testRepaymentsFactoryDailyInArrears() {
+    public function testRepaymentsFactoryDaily() {
         // initialize a variable representing a DebtAmortizator
         // object obtained via a FACTORY method
         $debtAmortizatorFactory = FinanCalc
             ::getInstance()
             ->getFactory('DebtAmortizatorFactory')
-            ->newDailyDebtAmortizationInArrears(
+            ->newDailyDebtAmortization(
                 40000,
                 6,
                 0.12);
@@ -96,22 +82,18 @@ class DebtAmortizatorTest extends PHPUnit_Framework_TestCase {
         $result = $debtAmortizatorFactory->getResult();
 
         $this->processResult($result);
-
-        $this->assertEquals(
-            AnnuityPaymentTypes::IN_ARREARS,
-            $result->getDebtPaymentType()->getValue());
     }
 
     /**
-     * Test the yearly version in arrears, manufactured by a custom period length factory
+     * Test the yearly version, manufactured by a custom period length factory
      */
-    public function testRepaymentsFactoryCustomInArrears() {
+    public function testRepaymentsFactoryCustom() {
         // initialize a variable representing a DebtAmortizator
         // object obtained via a FACTORY method
         $debtAmortizatorFactory = FinanCalc
             ::getInstance()
             ->getFactory('DebtAmortizatorFactory')
-            ->newDebtAmortizationInArrearsCustomPeriodLength(
+            ->newDebtAmortizationCustomPeriodLength(
                 40000,
                 6,
                 0.12,
@@ -120,103 +102,6 @@ class DebtAmortizatorTest extends PHPUnit_Framework_TestCase {
         $result = $debtAmortizatorFactory->getResult();
 
         $this->processResult($result);
-
-        $this->assertEquals(
-            AnnuityPaymentTypes::IN_ARREARS,
-            $result->getDebtPaymentType()->getValue());
-    }
-
-    /**
-     * Test the yearly factory version in advance
-     */
-    public function testRepaymentsFactoryYearlyInAdvance() {
-        // initialize a variable representing a DebtAmortizator
-        // object obtained via a FACTORY method
-        $debtAmortizatorFactory = FinanCalc
-            ::getInstance()
-            ->getFactory('DebtAmortizatorFactory')
-            ->newYearlyDebtAmortizationInAdvance(
-                40000,
-                6,
-                0.12);
-
-        $result = $debtAmortizatorFactory->getResult();
-
-        $this->processResult($result);
-
-        $this->assertEquals(
-            AnnuityPaymentTypes::IN_ADVANCE,
-            $result->getDebtPaymentType()->getValue());
-    }
-
-    /**
-     * Test the monthly factory version in advance
-     */
-    public function testRepaymentsFactoryMonthlyInAdvance() {
-        // initialize a variable representing a DebtAmortizator
-        // object obtained via a FACTORY method
-        $debtAmortizatorFactory = FinanCalc
-            ::getInstance()
-            ->getFactory('DebtAmortizatorFactory')
-            ->newMonthlyDebtAmortizationInAdvance(
-                40000,
-                6,
-                0.12);
-
-        $result = $debtAmortizatorFactory->getResult();
-
-        $this->processResult($result);
-
-        $this->assertEquals(
-            AnnuityPaymentTypes::IN_ADVANCE,
-            $result->getDebtPaymentType()->getValue());
-    }
-
-    /**
-     * Test the daily factory version in advance
-     */
-    public function testRepaymentsFactoryDailyInAdvance() {
-        // initialize a variable representing a DebtAmortizator
-        // object obtained via a FACTORY method
-        $debtAmortizatorFactory = FinanCalc
-            ::getInstance()
-            ->getFactory('DebtAmortizatorFactory')
-            ->newDailyDebtAmortizationInAdvance(
-                40000,
-                6,
-                0.12);
-
-        $result = $debtAmortizatorFactory->getResult();
-
-        $this->processResult($result);
-
-        $this->assertEquals(
-            AnnuityPaymentTypes::IN_ADVANCE,
-            $result->getDebtPaymentType()->getValue());
-    }
-
-    /**
-     * Test the yearly version in advance, manufactured by a custom period length factory
-     */
-    public function testRepaymentsFactoryCustomInAdvance() {
-        // initialize a variable representing a DebtAmortizator
-        // object obtained via a FACTORY method
-        $debtAmortizatorFactory = FinanCalc
-            ::getInstance()
-            ->getFactory('DebtAmortizatorFactory')
-            ->newDebtAmortizationInAdvanceCustomPeriodLength(
-                40000,
-                6,
-                0.12,
-                360);
-
-        $result = $debtAmortizatorFactory->getResult();
-
-        $this->processResult($result);
-
-        $this->assertEquals(
-            AnnuityPaymentTypes::IN_ADVANCE,
-            $result->getDebtPaymentType()->getValue());
     }
 
     /**
