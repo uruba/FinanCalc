@@ -294,7 +294,7 @@ namespace `FinanCalc\Calculators\BondFairValueCalculator`
 * **getBondAnnualCouponRate()** – gets c
 * **getBondVIR()** – gets i/VIR
 * **getBondYearsToMaturity()** – gets the number of years to the maturity of the bond
-* **getBondPaymentFrequncy()** – gets the frequency of bond payments
+* **getBondPaymentFrequency()** – gets the frequency of bond payments
 * **getBondNoOfPayments()** – gets the total number of payments during the lifespan of the bond
 * **getBondFairValue()** – gets the fair value of the bond [calculated as present value of future cashflows corresponding to the bond by means of the valuation interest rate]
 
@@ -334,7 +334,7 @@ namespace `FinanCalc\Calculators\BondYTMCalculator`
 * **getBondMarketValue()** – gets the market value of the bond
 * **getBondAnnualCouponRate()** – gets c
 * **getBondYearsToMaturity()** – gets the number of years to the maturity of the bond
-* **getBondPaymentFrequncy()** – gets the frequency of bond payments
+* **getBondPaymentFrequency()** – gets the frequency of bond payments
 * **getBondNoOfPayments()** – gets the total number of payments during the lifespan of the bond
 * **getApproxBondYTM()** – gets the approximate value of the bond's yield to maturity in the form of a decimal number [it is the internal rate of return of the bond]
 
@@ -376,7 +376,7 @@ namespace `FinanCalc\Calculators\BondDurationCalculator`
 * **getBondAnnualYield()** – gets the annual yield of the bond
 * **getBondYieldPerPaymentPeriod()** – gets the yield of the bond per a payment period
 * **getBondYearsToMaturity()** – gets the number of years to the maturity of the bond
-* **getBondPaymentFrequncy()** – gets the frequency of bond payments
+* **getBondPaymentFrequency()** – gets the frequency of bond payments
 * **getBondNoOfPayments()** – gets the total number of payments during the lifespan of the bond
 * **getBondNominalCashFlows()** – gets an array of the bond's nominal cash flows (coupons; in the last payment = coupon + face value)
 * **getBondDiscountedCashFlows()** – gets an array of the bond's discounted cash flows (nominal cash flows which are discounted by the means of the bond's yield per period)
