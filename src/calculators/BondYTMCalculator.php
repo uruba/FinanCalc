@@ -3,13 +3,13 @@
 namespace FinanCalc\Calculators {
 
     use FinanCalc\Calculators\BondYTMCalculator\BondInstance;
-    use FinanCalc\Interfaces\CalculatorInterface;
+    use FinanCalc\Interfaces\CalculatorAbstract;
 
     /**
      * Class BondYTMCalculator
      * @package FinanCalc\Calculators
      */
-    class BondYTMCalculator implements CalculatorInterface {
+    class BondYTMCalculator extends CalculatorAbstract {
         private $bondInstance;
 
         /**
@@ -36,6 +36,24 @@ namespace FinanCalc\Calculators {
          */
         function getResult() {
             return $this->bondInstance;
+        }
+
+        /**
+         * @return array
+         */
+        public function getResultAsArray()
+        {
+            $bondInstance = $this->getResult();
+
+            return
+                [
+                    "bondFaceValue" => $bondInstance->getBondFaceValue(),
+                    "bondMarketValue" => $bondInstance->getBondMarketValue(),
+                    "bondAnnualCouponRate" => $bondInstance->getBondAnnualCouponRate(),
+                    "bondYearsToMaturity" => $bondInstance->getBondYearsToMaturity(),
+                    "bondPaymentFrequency" => $bondInstance->getBondPaymentFrequency(),
+                    "bondApproxYTM" => $bondInstance->getApproxBondYTM()
+                ];
         }
     }
 }

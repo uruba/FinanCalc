@@ -2,13 +2,13 @@
 
 namespace FinanCalc\Calculators {
     use FinanCalc\Calculators\DebtAmortizator\DebtInstance;
-    use FinanCalc\Interfaces\CalculatorInterface;
+    use FinanCalc\Interfaces\CalculatorAbstract;
 
     /**
      * Class DebtAmortizator
      * @package FinanCalc\Calculators
      */
-    class DebtAmortizator implements CalculatorInterface {
+    class DebtAmortizator extends CalculatorAbstract {
         private $debtInstance;
 
         /**
@@ -32,12 +32,52 @@ namespace FinanCalc\Calculators {
         }
 
         /**
-         * NOTE: Overridden method from the \FinanCalc\Interfaces\CalculatorInterface
+         * NOTE: Overridden method from the \FinanCalc\Interfaces\CalculatorAbstract
          *
          * @return \FinanCalc\Calculators\DebtAmortizator\DebtInstance
          */
         public function getResult() {
             return $this->debtInstance;
+        }
+
+        /**
+         * @return array
+         */
+        public function getResultAsArray()
+        {
+            $debtInstance = $this->getResult();
+
+            $debtRepayments = $debtInstance->getDebtRepayments();
+
+            foreach ($debtRepayments as &$debtRepayment) {
+                $debtRepayment = [
+                    "principalAmount" => $debtRepayment->getPrincipalAmount(),
+                    "interestAmount" => $debtRepayment->getInterestAmount(),
+                    "totalAmount" => $debtRepayment->getTotalAmount()
+                ];
+            }
+
+            return
+                [
+                    "debtPrincipal" => $debtInstance->getDebtPrincipal(),
+                    "debtNoOfCompoundingPeriods" => $debtInstance->getDebtNoOfCompoundingPeriods(),
+                    "debtPeriodLength" =>
+                        [
+                            "years" => $debtInstance->getDebtPeriodLengthInYears(),
+                            "months" => $debtInstance->getDebtPeriodLengthInMonths(),
+                            "days" => $debtInstance->getDebtPeriodLengthInDays()
+                        ],
+                    "debtInterest" => $debtInstance->getDebtInterest(),
+                    "debtDiscountFactor" => $debtInstance->getDebtDiscountFactor(),
+                    "debtDuration" =>
+                        [
+                            "years" => $debtInstance->getDebtDurationInYears(),
+                            "months" => $debtInstance->getDebtDurationInMonths(),
+                            "days" => $debtInstance->getDebtDurationInDays()
+                        ],
+                    "debtSingleRepayment" => $debtInstance->getDebtSingleRepayment(),
+                    "debtRepayments" => $debtRepayments
+                ];
         }
     }
 }
@@ -53,7 +93,8 @@ namespace FinanCalc\Calculators\DebtAmortizator {
      * @package FinanCalc\Calculators\DebtAmortizator
      */
     class DebtInstance {
-        private $debtRepayments = Array();
+        // list of individual debt's repayments as an array of RepaymentInstance objects
+        private $debtRepayments;
 
         // principal of the debt = 'PV'
         private $debtPrincipal;
@@ -128,6 +169,14 @@ namespace FinanCalc\Calculators\DebtAmortizator {
         }
 
         /**
+         * @param $debtInterest
+         */
+        public function setDebtInterest($debtInterest) {
+            $this->setDebtInterestWithoutRecalculation($debtInterest);
+            $this->calculateDebtRepayments();
+        }
+
+        /**
          * @param $debtPeriodLength
          */
         public function setDebtPeriodLength($debtPeriodLength) {
@@ -137,19 +186,11 @@ namespace FinanCalc\Calculators\DebtAmortizator {
         }
 
         /**
-         * @param $debtInterest
-         */
-        public function setDebtInterest($debtInterest) {
-            $this->setDebtInterestWithoutRecalculation($debtInterest);
-            $this->calculateDebtRepayments();
-        }
-
-        /**
          * Private function populating the $debtRepayments array which represents the amortization schedule
          * constructed on basis of the initial parameters passed to the constructor
          */
         private function calculateDebtRepayments() {
-            $this->debtRepayments = Array();
+            $this->debtRepayments = array();
             $unpaidBalance = $this->debtPrincipal;
 
             // calculate each repayment (more precisely its interest/principal components) and add it to the array
@@ -164,41 +205,6 @@ namespace FinanCalc\Calculators\DebtAmortizator {
 
                 $unpaidBalance = MathFuncs::sub($unpaidBalance, $principalAmount);
             }
-        }
-
-        /**
-         * @return string [Value of the debt's discount factor as a string]
-         */
-        public function getDebtDiscountFactor() {
-            // discount factor 'v = 1/(1+i)'
-            return MathFuncs::div(
-                1,
-                MathFuncs::add(
-                    1,
-                    $this->debtInterest
-                )
-            );
-
-        }
-
-        /**
-         * @return string [Value of a single debt repayment instance as a string]
-         */
-        public function getDebtSingleRepayment() {
-            // single repayment 'K = PV/((1-v^n)/i)'
-            return MathFuncs::div(
-                $this->debtPrincipal,
-                MathFuncs::div(
-                    MathFuncs::sub(
-                        1,
-                        MathFuncs::pow(
-                            $this->getDebtDiscountFactor(),
-                            $this->debtNoOfCompoundingPeriods
-                        )
-                    ),
-                    $this->debtInterest
-                )
-            );
         }
 
         /**
@@ -241,6 +247,28 @@ namespace FinanCalc\Calculators\DebtAmortizator {
         }
 
         /**
+         * @return string [Value of the debt's interest in a decimal number 'multiplier' form as a string]
+         */
+        public function getDebtInterest() {
+            return $this->debtInterest;
+        }
+
+        /**
+         * @return string [Value of the debt's discount factor as a string]
+         */
+        public function getDebtDiscountFactor() {
+            // discount factor 'v = 1/(1+i)'
+            return MathFuncs::div(
+                1,
+                MathFuncs::add(
+                    1,
+                    $this->debtInterest
+                )
+            );
+
+        }
+
+        /**
          * @return string [Duration of the debt in years as a string]
          */
         public function getDebtDurationInYears() {
@@ -274,10 +302,23 @@ namespace FinanCalc\Calculators\DebtAmortizator {
         }
 
         /**
-         * @return string [Value of the debt's interest in a decimal number 'multiplier' form as a string]
+         * @return string [Value of a single debt repayment instance as a string]
          */
-        public function getDebtInterest() {
-            return $this->debtInterest;
+        public function getDebtSingleRepayment() {
+            // single repayment 'K = PV/((1-v^n)/i)'
+            return MathFuncs::div(
+                $this->debtPrincipal,
+                MathFuncs::div(
+                    MathFuncs::sub(
+                        1,
+                        MathFuncs::pow(
+                            $this->getDebtDiscountFactor(),
+                            $this->debtNoOfCompoundingPeriods
+                        )
+                    ),
+                    $this->debtInterest
+                )
+            );
         }
 
         /**

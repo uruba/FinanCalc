@@ -31,8 +31,11 @@ namespace FinanCalc\Constants {
          * CONFIG defaults
          */
         public static $configDefault = array(
+            // factories
             'factories_relative_path' => '/calculators/factories',
-            'factories_namespace' => 'FinanCalc\\Calculators\\Factories'
+            'factories_namespace' => 'FinanCalc\\Calculators\\Factories',
+            // serializers
+            'serializers_root_elem_name' => 'root'
         );
     }
 }

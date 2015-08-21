@@ -19,6 +19,8 @@ A lightweight, simple and easy PHP library for calculating annuities (e.g., mort
 * Bond duration calculator
 
 Much more to come – including calculators for discount securities, ~~bond valuation~~, ~~duration~~, stock pricing...
+Also looking into other optimizations and improvements. Current hot ideas:
+* utilization of reflection in the getters of the calculators' result array for easier and less error-prone implementation of new calculator classes
 
 >**Please bear in mind that this is an ALPHA version containing incomplete features. The codebase is prone to drastic changes during its way out of the alpha stage.**
 
@@ -85,7 +87,7 @@ $annuityCalculatorDirect = new DebtAmortizator(
 
 ### Getting results
 
-It's very simple to retrieve the results. Every calculator class implementing the *CalculatorInterface* has a getter method *getResult()*, which enables you to get an appropriate object representing the result of the calculation according to the data passed earlier to the constructor/factory method of a given calculator class.
+It's very simple to retrieve the results. Every calculator class implementing the *CalculatorAbstract* has a getter method *getResult()*, which enables you to get an appropriate object representing the result of the calculation according to the data passed earlier to the constructor/factory method of a given calculator class.
 
 We'll demonstrate the process on our *AnnuityCalculator* – step by step, day by day:
 
@@ -161,6 +163,8 @@ namespace `FinanCalc\Calculators`
   * *$annuityInterest* = **'i'** – the interest rate *per a single payment period* by which the unpaid balance is multiplied (i.e., a decimal number typically lower than 1 and greater than 0)
   * *$annuityPeriodLength* = length of a single period in days (number greater than zero)
 * **getResult()** – gets the ***AnnuityInstance*** object manufactured by the constructor
+* **getResultAsArray()** – gets the array of the pertinent ***AnnuityInstance***'s property values
+* **getSerializedResult(SerializerInterface $serializer)** – gets the serialized result, according to the passed SerializerInterface object
 
 #### AnnuityCalculatorFactory (*AnnuityCalculator's factory object*)
 namespace `FinanCalc\Calculators\Factories`
@@ -216,6 +220,8 @@ namespace `FinanCalc\Calculators`
   * *$debtInterest* = **'i'** – interest by which the outstanding balance is multiplied (i.e., a decimal number typically lower than 1 and greater than 0)
   * *AnnuityPaymentTypes $debtPaymentType* = determines whether the debt is repaid in advance (at the beginning of each period) or in arrears (in the end of each period)
 * **getResult()** – gets the ***DebtInstance*** object manufactured by the constructor
+* **getResultAsArray()** – gets the array of the pertinent ***DebtInstance***'s property values
+* **getSerializedResult(SerializerInterface $serializer)** – gets the serialized result, according to the passed SerializerInterface object
 
 #### DebtAmortizatorFactory (*DebtAmortizator's factory object*)
 namespace `FinanCalc\Calculators\Factories`
@@ -263,6 +269,8 @@ namespace `FinanCalc\Calculators`
   * *bondYearsToMaturity* = number of years to the maturity of the bond (number greater than zero, can be a decimal number)
   * *bondPaymentFrequency* = frequency of bond payments (expressed in a divisor of 12 months ~ 1 year); e.g.: divisor 2 means semi-annual payments
 * **getResult()** – gets the ***BondInstance*** object manufactured by the constructor
+* **getResultAsArray()** – gets the array of the pertinent ***BondInstance***'s property values
+* **getSerializedResult(SerializerInterface $serializer)** – gets the serialized result, according to the passed SerializerInterface object
 
 #### BondFairValueCalculatorFactory (*BondFairValueCalculator's factory object*)
 namespace `FinanCalc\Calculators\Factories`
@@ -301,6 +309,8 @@ namespace `FinanCalc\Calculators`
   * *bondYearsToMaturity* = number of years to the maturity of the bond (number greater than zero, can be a decimal number)
   * *bondPaymentFrequency* = frequency of bond payments (expressed in a divisor of 12 months ~ 1 year); e.g.: divisor 2 means semi-annual payments
 * **getResult()** – gets the ***BondInstance*** object manufactured by the constructor
+* **getResultAsArray()** – gets the array of the pertinent ***BondInstance***'s property values
+* **getSerializedResult(SerializerInterface $serializer)** – gets the serialized result, according to the passed SerializerInterface object
 
 #### BondYTMCalculatorFactory (*BondYTMCalculator's factory object*)
 namespace `FinanCalc\Calculators\Factories`
@@ -340,6 +350,8 @@ namespace `FinanCalc\Calculators`
   * *bondYearsToMaturity* = number of years to the maturity of the bond (number greater than zero, can be a decimal number)
   * *bondPaymentFrequency* = frequency of bond payments (expressed in a divisor of 12 months ~ 1 year); e.g.: divisor 2 means semi-annual payments
 * **getResult()** – gets the ***BondInstance*** object manufactured by the constructor
+* **getResultAsArray()** – gets the array of the pertinent ***BondInstance***'s property values
+* **getSerializedResult(SerializerInterface $serializer)** – gets the serialized result, according to the passed SerializerInterface object
 
 #### BondDurationCalculatorFactory (*BondDurationCalculator's factory object*)
 namespace `FinanCalc\Calculators\Factories`

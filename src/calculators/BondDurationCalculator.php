@@ -3,14 +3,14 @@
 namespace FinanCalc\Calculators {
 
     use FinanCalc\Calculators\BondDurationCalculator\BondInstance;
-    use FinanCalc\Interfaces\CalculatorInterface;
+    use FinanCalc\Interfaces\CalculatorAbstract;
 
 
     /**
      * Class BondDurationCalculator
      * @package FinanCalc\Calculators
      */
-    class BondDurationCalculator implements CalculatorInterface {
+    class BondDurationCalculator extends CalculatorAbstract {
         private $bondInstance;
 
 
@@ -39,6 +39,28 @@ namespace FinanCalc\Calculators {
          */
         public function getResult() {
             return $this->bondInstance;
+        }
+
+        /**
+         * @return array
+         */
+        public function getResultAsArray()
+        {
+            $bondInstance = $this->getResult();
+
+            return
+                [
+                    "bondFaceValue" => $bondInstance->getBondFaceValue(),
+                    "bondAnnualCouponRate" => $bondInstance->getBondAnnualCouponRate(),
+                    "bondAnnualYield" => $bondInstance->getBondAnnualYield(),
+                    "bondYearsToMaturity" => $bondInstance->getBondYearsToMaturity(),
+                    "bondPaymentFrequency" => $bondInstance->getBondPaymentFrequency(),
+                    "bondYieldPerPaymentPeriod" => $bondInstance->getBondYieldPerPaymentPeriod(),
+                    "bondNominalCashFlows" => $bondInstance->getBondNominalCashFlows(),
+                    "bondDiscountedCashFlows" => $bondInstance->getBondDiscountedCashFlows(),
+                    "bondPresentValue" => $bondInstance->getBondPresentValue(),
+                    "bondDuration" => $bondInstance->getBondDuration()
+                ];
         }
     }
 }

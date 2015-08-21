@@ -1,20 +1,20 @@
 <?php
 
-use FinanCalc\Calculators\BondYTMCalculator\BondInstance;
+use FinanCalc\Calculators\BondYTMCalculator;
 
 /**
  * Class BondYTMCalculatorTest
  */
 class BondYTMCalculatorTest extends PHPUnit_Framework_TestCase {
-    private $bondInstanceDirectAnnually,
-            $bondInstanceFactoryAnnually;
+    private $bondYTMCalculatorDirectAnnually,
+            $bondYTMCalculatorFactoryAnnually;
 
     public function testApproxBondYTMDirectAnnually() {
-        $this->assertApproxBondYTM($this->bondInstanceDirectAnnually);
+        $this->assertApproxBondYTM($this->bondYTMCalculatorDirectAnnually);
     }
 
     public function testApproxBondYTMFactoryAnnually() {
-        $this->assertApproxBondYTM($this->bondInstanceFactoryAnnually);
+        $this->assertApproxBondYTM($this->bondYTMCalculatorFactoryAnnually);
     }
 
     /**
@@ -31,8 +31,7 @@ class BondYTMCalculatorTest extends PHPUnit_Framework_TestCase {
         $this->assertApproxBondYTM(\FinanCalc\FinanCalc
             ::getInstance()
             ->getFactory('BondYTMCalculatorFactory')
-            ->newSemiAnnualCouponsBond(10000, 10800, 0.292, 1.5)
-            ->getResult());
+            ->newSemiAnnualCouponsBond(10000, 10800, 0.292, 1.5));
     }
 
     /**
@@ -45,8 +44,7 @@ class BondYTMCalculatorTest extends PHPUnit_Framework_TestCase {
         $this->assertApproxBondYTM(\FinanCalc\FinanCalc
             ::getInstance()
             ->getFactory('BondYTMCalculatorFactory')
-            ->newQuarterlyCouponsBond(10000, 10800, 0.584, 0.75)
-            ->getResult());
+            ->newQuarterlyCouponsBond(10000, 10800, 0.584, 0.75));
     }
 
     /**
@@ -59,8 +57,7 @@ class BondYTMCalculatorTest extends PHPUnit_Framework_TestCase {
         $this->assertApproxBondYTM(\FinanCalc\FinanCalc
             ::getInstance()
             ->getFactory('BondYTMCalculatorFactory')
-            ->newMonthlyCouponsBond(10000, 10800, 1.752, 0.25)
-            ->getResult());
+            ->newMonthlyCouponsBond(10000, 10800, 1.752, 0.25));
     }
 
     /**
@@ -70,20 +67,23 @@ class BondYTMCalculatorTest extends PHPUnit_Framework_TestCase {
      * factory
      */
     public function testApproxBondYTMFactoryCustom(){
-        return \FinanCalc\FinanCalc
+        $this->assertApproxBondYTM(\FinanCalc\FinanCalc
             ::getInstance()
             ->getFactory('BondYTMCalculatorFactory')
-            ->newCustomCouponFrequencyBond(10000, 10800, 0.146, 3, 1)
-            ->getResult();
+            ->newCustomCouponFrequencyBond(10000, 10800, 0.146, 3, 1));
     }
 
-    /**
-     * @param BondInstance $bondInstance
-     */
-    private function assertApproxBondYTM(BondInstance $bondInstance) {
-        $approxBondYTM = $bondInstance->getApproxBondYTM();
 
-        $this->assertEquals(0.1147, round($approxBondYTM, 4));
+    /**
+     * @param BondYTMCalculator $bondYTMCalculator
+     */
+    private function assertApproxBondYTM(BondYTMCalculator $bondYTMCalculator) {
+        $approxBondYTM_direct = $bondYTMCalculator->getResult()->getApproxBondYTM();
+        $approxBondYTM_array = $bondYTMCalculator->getResultAsArray()["bondApproxYTM"];
+
+        $expected = "0.1147";
+        $this->assertEquals($expected, round($approxBondYTM_direct, 4));
+        $this->assertEquals($expected, round($approxBondYTM_array, 4));
     }
 
     /**
@@ -96,28 +96,26 @@ class BondYTMCalculatorTest extends PHPUnit_Framework_TestCase {
     }
 
     /**
-     * @return BondInstance
+     * @return BondYTMCalculator
      */
-    private function getBondInstanceDirectAnnually() {
-        $bondYTMCalculator = new \FinanCalc\Calculators\BondYTMCalculator(10000,10800, 0.146, 3, 1);
-        return $bondYTMCalculator->getResult();
+    private function getBondYTMCalculatorDirectAnnually() {
+        return new BondYTMCalculator(10000,10800, 0.146, 3, 1);
     }
 
     /**
      * @return mixed
      * @throws Exception
      */
-    private function getBondInstanceFactoryAnnually() {
+    private function getBondYTMCalculatorFactoryAnnually() {
         return \FinanCalc\FinanCalc
             ::getInstance()
             ->getFactory('BondYTMCalculatorFactory')
-            ->newAnnualCouponsBond(10000, 10800, 0.146, 3)
-            ->getResult();
+            ->newAnnualCouponsBond(10000, 10800, 0.146, 3);
     }
 
     protected function setUp() {
-        $this->bondInstanceDirectAnnually = $this->getBondInstanceDirectAnnually();
-        $this->bondInstanceFactoryAnnually = $this->getBondInstanceFactoryAnnually();
+        $this->bondYTMCalculatorDirectAnnually = $this->getBondYTMCalculatorDirectAnnually();
+        $this->bondYTMCalculatorFactoryAnnually = $this->getBondYTMCalculatorFactoryAnnually();
 
         parent::setUp();
     }

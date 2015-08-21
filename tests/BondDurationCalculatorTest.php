@@ -1,20 +1,20 @@
 <?php
-use FinanCalc\Calculators\BondDurationCalculator\BondInstance;
 
+use FinanCalc\Calculators\BondDurationCalculator;
 
 /**
  * Class BondDurationCalculatorTest
  */
 class BondDurationCalculatorTest extends PHPUnit_Framework_TestCase {
-    private $bondInstanceDirectAnnually,
-            $bondInstanceFactoryAnnually;
+    private $bondDurationCalculatorDirectAnnually,
+            $bondDurationCalculatorFactoryAnnually;
 
     public function testDurationDirectAnnually() {
-        $this->assertDuration($this->bondInstanceDirectAnnually);
+        $this->assertDuration($this->bondDurationCalculatorDirectAnnually);
     }
 
     public function testDurationFactoryAnnually() {
-        $this->assertDuration($this->bondInstanceFactoryAnnually);
+        $this->assertDuration($this->bondDurationCalculatorFactoryAnnually);
     }
 
     /**
@@ -31,8 +31,7 @@ class BondDurationCalculatorTest extends PHPUnit_Framework_TestCase {
         $this->assertDuration(\FinanCalc\FinanCalc
             ::getInstance()
             ->getFactory('BondDurationCalculatorFactory')
-            ->newSemiAnnualCouponsBond(1000, 0.16, 0.2, 1.5)
-            ->getResult());
+            ->newSemiAnnualCouponsBond(1000, 0.16, 0.2, 1.5));
     }
 
     /**
@@ -45,8 +44,7 @@ class BondDurationCalculatorTest extends PHPUnit_Framework_TestCase {
         $this->assertDuration(\FinanCalc\FinanCalc
             ::getInstance()
             ->getFactory('BondDurationCalculatorFactory')
-            ->newQuarterlyCouponsBond(1000, 0.32, 0.4, 0.75)
-            ->getResult());
+            ->newQuarterlyCouponsBond(1000, 0.32, 0.4, 0.75));
     }
 
     /**
@@ -59,8 +57,7 @@ class BondDurationCalculatorTest extends PHPUnit_Framework_TestCase {
         $this->assertDuration(\FinanCalc\FinanCalc
             ::getInstance()
             ->getFactory('BondDurationCalculatorFactory')
-            ->newMonthlyCouponsBond(1000, 0.96, 1.2, 0.25)
-            ->getResult());
+            ->newMonthlyCouponsBond(1000, 0.96, 1.2, 0.25));
     }
 
     /**
@@ -73,17 +70,20 @@ class BondDurationCalculatorTest extends PHPUnit_Framework_TestCase {
         $this->assertDuration(\FinanCalc\FinanCalc
             ::getInstance()
             ->getFactory('BondDurationCalculatorFactory')
-            ->newCustomCouponFrequencyBond(1000, 0.08, 0.1, 3, 1)
-            ->getResult());
+            ->newCustomCouponFrequencyBond(1000, 0.08, 0.1, 3, 1));
     }
 
-    /**
-     * @param BondInstance $bondInstance
-     */
-    private function assertDuration(BondInstance $bondInstance) {
-        $duration = $bondInstance->getBondDuration();
 
-        $this->assertEquals("2.78", round($duration, 2));
+    /**
+     * @param BondDurationCalculator $bondDurationCalculator
+     */
+    private function assertDuration(BondDurationCalculator $bondDurationCalculator) {
+        $bondDuration_direct = $bondDurationCalculator->getResult()->getBondDuration();
+        $bondDuration_array = $bondDurationCalculator->getResultAsArray()["bondDuration"];
+
+        $expected = "2.78";
+        $this->assertEquals($expected, round($bondDuration_direct, 2));
+        $this->assertEquals($expected, round($bondDuration_array, 2));
     }
 
     /**
@@ -96,11 +96,10 @@ class BondDurationCalculatorTest extends PHPUnit_Framework_TestCase {
     }
 
     /**
-     * @return BondInstance
+     * @return BondDurationCalculator
      */
     private function getBondInstanceDirectAnnually() {
-        $bondDurationCalculator = new \FinanCalc\Calculators\BondDurationCalculator(1000, 0.08, 0.1, 3);
-        return $bondDurationCalculator->getResult();
+        return new BondDurationCalculator(1000, 0.08, 0.1, 3);
     }
 
     /**
@@ -111,13 +110,12 @@ class BondDurationCalculatorTest extends PHPUnit_Framework_TestCase {
         return \FinanCalc\FinanCalc
             ::getInstance()
             ->getFactory('BondDurationCalculatorFactory')
-            ->newAnnualCouponsBond(1000, 0.08, 0.1, 3)
-            ->getResult();
+            ->newAnnualCouponsBond(1000, 0.08, 0.1, 3);
     }
 
     protected function setUp() {
-        $this->bondInstanceDirectAnnually = $this->getBondInstanceDirectAnnually();
-        $this->bondInstanceFactoryAnnually = $this->getBondInstanceFactoryAnnually();
+        $this->bondDurationCalculatorDirectAnnually = $this->getBondInstanceDirectAnnually();
+        $this->bondDurationCalculatorFactoryAnnually = $this->getBondInstanceFactoryAnnually();
 
         parent::setUp();
     }

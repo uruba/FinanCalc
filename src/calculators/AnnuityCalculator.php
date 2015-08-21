@@ -2,14 +2,15 @@
 
 namespace FinanCalc\Calculators {
     use FinanCalc\Calculators\AnnuityCalculator\AnnuityInstance;
+    use FinanCalc\Constants\AnnuityPaymentTypes;
     use FinanCalc\Constants\Defaults;
-    use FinanCalc\Interfaces\CalculatorInterface;
+    use FinanCalc\Interfaces\CalculatorAbstract;
 
     /**
      * Class AnnuityCalculator
      * @package FinanCalc\Calculators
      */
-    class AnnuityCalculator implements CalculatorInterface {
+    class AnnuityCalculator extends CalculatorAbstract {
         private $annuityInstance;
 
         /**
@@ -35,6 +36,46 @@ namespace FinanCalc\Calculators {
         public function getResult()
         {
             return $this->annuityInstance;
+        }
+
+
+        /**
+         * @return array
+         */
+        public function getResultAsArray()
+        {
+            $annuityInstance = $this->getResult();
+
+            return
+                [
+                    "annuitySinglePaymentAmount" => $annuityInstance->getAnnuitySinglePaymentAmount(),
+                    "annuityNoOfCompoundingPeriods" => $annuityInstance->getAnnuityNoOfCompoundingPeriods(),
+                    "annuityInterest" => $annuityInstance->getAnnuityInterest(),
+                    "annuityPeriodLength" =>
+                        [
+                            "years" => $annuityInstance->getAnnuityPeriodLengthInYears(),
+                            "months" => $annuityInstance->getAnnuityPeriodLengthInMonths(),
+                            "days" => $annuityInstance->getAnnuityPeriodLengthInDays()
+                        ],
+                    "annuityPresentValue" =>
+                        [
+                            "in_advance" => $annuityInstance->getPresentValue(
+                                new AnnuityPaymentTypes(AnnuityPaymentTypes::IN_ADVANCE)
+                            ),
+                            "in_arrears" => $annuityInstance->getPresentValue(
+                                new AnnuityPaymentTypes(AnnuityPaymentTypes::IN_ARREARS)
+                            )
+                        ],
+                    "annuityFutureValue" =>
+                        [
+                            "in_advance" => $annuityInstance->getFutureValue(
+                                new AnnuityPaymentTypes(AnnuityPaymentTypes::IN_ADVANCE)
+                            ),
+                            "in_arrears" => $annuityInstance->getFutureValue(
+                                new AnnuityPaymentTypes(AnnuityPaymentTypes::IN_ARREARS)
+                            )
+                        ],
+                ];
         }
     }
 }
@@ -130,14 +171,23 @@ namespace FinanCalc\Calculators\AnnuityCalculator {
             }
         }
 
+        /**
+         * @return mixed
+         */
         public function getAnnuitySinglePaymentAmount() {
             return $this->annuitySinglePaymentAmount;
         }
 
+        /**
+         * @return mixed
+         */
         public function getAnnuityNoOfCompoundingPeriods() {
             return $this->annuityNoOfCompoundingPeriods;
         }
 
+        /**
+         * @return mixed
+         */
         public function getAnnuityInterest() {
             return $this->annuityInterest;
         }

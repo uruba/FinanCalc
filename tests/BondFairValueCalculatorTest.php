@@ -1,20 +1,20 @@
 <?php
 
-use FinanCalc\Calculators\BondFairValueCalculator\BondInstance;
+use FinanCalc\Calculators\BondFairValueCalculator;
 
 /**
  * Class BondFairValueCalculatorTest
  */
 class BondFairValueCalculatorTest extends PHPUnit_Framework_TestCase {
-    private $bondInstanceDirectSemiAnnually,
-            $bondInstanceFactorySemiAnnually;
+    private $bondFairValueCalculatorDirectSemiAnnually,
+            $bondFairValueCalculatorFactorySemiAnnually;
 
     public function testFairValueDirectSemiAnnually() {
-        $this->assertFairValue($this->bondInstanceDirectSemiAnnually);
+        $this->assertFairValue($this->bondFairValueCalculatorDirectSemiAnnually);
     }
 
     public function testFairValueFactorySemiAnnually() {
-        $this->assertFairValue($this->bondInstanceFactorySemiAnnually);
+        $this->assertFairValue($this->bondFairValueCalculatorFactorySemiAnnually);
     }
 
     /** Test other factory methods */
@@ -29,8 +29,7 @@ class BondFairValueCalculatorTest extends PHPUnit_Framework_TestCase {
         $this->assertFairValue(\FinanCalc\FinanCalc
             ::getInstance()
             ->getFactory('BondFairValueCalculatorFactory')
-            ->newAnnualCouponsBond(10000, 0.06, 0.05, 15)
-            ->getResult());
+            ->newAnnualCouponsBond(10000, 0.06, 0.05, 15));
     }
 
     /**
@@ -43,8 +42,7 @@ class BondFairValueCalculatorTest extends PHPUnit_Framework_TestCase {
         $this->assertFairValue(\FinanCalc\FinanCalc
             ::getInstance()
             ->getFactory('BondFairValueCalculatorFactory')
-            ->newQuarterlyCouponsBond(10000, 0.24, 0.2, 3.75)
-            ->getResult());
+            ->newQuarterlyCouponsBond(10000, 0.24, 0.2, 3.75));
     }
 
     /**
@@ -57,8 +55,7 @@ class BondFairValueCalculatorTest extends PHPUnit_Framework_TestCase {
         $this->assertFairValue(\FinanCalc\FinanCalc
             ::getInstance()
             ->getFactory('BondFairValueCalculatorFactory')
-            ->newMonthlyCouponsBond(10000, 0.72, 0.6, 1.25)
-            ->getResult());
+            ->newMonthlyCouponsBond(10000, 0.72, 0.6, 1.25));
     }
 
     /**
@@ -68,20 +65,23 @@ class BondFairValueCalculatorTest extends PHPUnit_Framework_TestCase {
      * factory
      */
     public function testFairValueFactoryCustom() {
-        return \FinanCalc\FinanCalc
+        $this->assertFairValue(\FinanCalc\FinanCalc
             ::getInstance()
             ->getFactory('BondFairValueCalculatorFactory')
-            ->newCustomCouponFrequencyBond(10000, 0.12, 0.1, 7.5, 6)
-            ->getResult();
+            ->newCustomCouponFrequencyBond(10000, 0.12, 0.1, 7.5, 2));
     }
 
-    /**
-     * @param BondInstance $bondInstance
-     */
-    private function assertFairValue(BondInstance $bondInstance) {
-        $fairValue = $bondInstance->getBondFairValue();
 
-        $this->assertEquals("11038", round($fairValue, 0));
+    /**
+     * @param BondFairValueCalculator $bondFairValueCalculator
+     */
+    private function assertFairValue(BondFairValueCalculator $bondFairValueCalculator) {
+        $fairValue_direct = $bondFairValueCalculator->getResult()->getBondFairValue();
+        $fairValue_array = $bondFairValueCalculator->getResultAsArray()["bondFairValue"];
+
+        $expected = "11038";
+        $this->assertEquals($expected, round($fairValue_direct, 0));
+        $this->assertEquals($expected, round($fairValue_array, 0));
     }
 
     /**
@@ -94,28 +94,26 @@ class BondFairValueCalculatorTest extends PHPUnit_Framework_TestCase {
     }
 
     /**
-     * @return BondInstance
+     * @return BondFairValueCalculator
      */
-    private function getBondInstanceDirectSemiAnnually() {
-        $bondFairValueCalculator = new \FinanCalc\Calculators\BondFairValueCalculator(10000, 0.12, 0.1, 7.5, 2);
-        return $bondFairValueCalculator->getResult();
+    private function getBondFairValueCalculatorDirectSemiAnnually() {
+        return new BondFairValueCalculator(10000, 0.12, 0.1, 7.5, 2);
     }
 
     /**
      * @return mixed
      * @throws Exception
      */
-    private function getBondInstanceFactorySemiAnnually() {
+    private function getBondFairValueCalculatorFactorySemiAnnually() {
         return \FinanCalc\FinanCalc
             ::getInstance()
             ->getFactory('BondFairValueCalculatorFactory')
-            ->newSemiAnnualCouponsBond(10000, 0.12, 0.1, 7.5)
-            ->getResult();
+            ->newSemiAnnualCouponsBond(10000, 0.12, 0.1, 7.5);
     }
 
     protected function setUp() {
-        $this->bondInstanceDirectSemiAnnually = $this->getBondInstanceDirectSemiAnnually();
-        $this->bondInstanceFactorySemiAnnually = $this->getBondInstanceFactorySemiAnnually();
+        $this->bondFairValueCalculatorDirectSemiAnnually = $this->getBondFairValueCalculatorDirectSemiAnnually();
+        $this->bondFairValueCalculatorFactorySemiAnnually = $this->getBondFairValueCalculatorFactorySemiAnnually();
 
         parent::setUp();
     }
