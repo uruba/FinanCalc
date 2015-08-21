@@ -2,7 +2,8 @@
 /**
  * FinanCalc
  *
- * A lightweight, simple and easy PHP library for calculating annuities (e.g., mortgages) according to various input data
+ * A lightweight, simple and easy PHP library for calculating annuities (e.g., mortgages)
+ * and other financial instruments according to various input data
  *
  *
  * DISCLAIMER
@@ -23,7 +24,7 @@
  * Module php-bcmath
  *
  * @author Václav Uruba
- * @version 0.1.3
+ * @version 0.2.0
  * @license http://unlicense.org The Unlicense
  */
 namespace FinanCalc {

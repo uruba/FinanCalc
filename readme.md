@@ -1,6 +1,6 @@
 #FinanCalc
 
-A lightweight, simple and easy PHP library for calculating annuities (e.g., mortgages) according to various input data
+A lightweight, simple and easy PHP library for calculating annuities (e.g., mortgages) and other financial instruments according to various input data
 
 [![Composer package](https://img.shields.io/packagist/v/uruba/financalc.svg)](https://packagist.org/packages/uruba/financalc)
 [![Build Status](https://travis-ci.org/uruba/FinanCalc.svg?branch=master)](https://travis-ci.org/uruba/FinanCalc)
@@ -87,7 +87,11 @@ $annuityCalculatorDirect = new DebtAmortizator(
 
 ### Getting results
 
-It's very simple to retrieve the results. Every calculator class implementing the *CalculatorAbstract* has a getter method *getResult()*, which enables you to get an appropriate object representing the result of the calculation according to the data passed earlier to the constructor/factory method of a given calculator class.
+You have three options as to how to retrieve raw results of the calculations.
+
+#### Directly accessible result object
+
+It's very simple to retrieve the results. Every calculator class implementing the *CalculatorAbstract* has a getter method `getResult()`, which enables you to get an appropriate object representing the result of the calculation according to the data passed earlier to the constructor/factory method of a given calculator class.
 
 We'll demonstrate the process on our *AnnuityCalculator* – step by step, day by day:
 
@@ -119,7 +123,7 @@ We'll demonstrate the process on our *AnnuityCalculator* – step by step, day b
     $result = $annuityCalculatorObject->getResult();
     ```
 
-3. step is to get the result by exploiting appropriate getter methods (for a detailed list of available gettter methods please refer to the **Reference** chapter)
+3. step is to get the desired value by exploiting appropriate getter methods (for a detailed list of available gettter methods please refer to the **Reference** chapter)
 
     ```php
     // get the present value of the annuity in arrears
@@ -136,6 +140,127 @@ We'll demonstrate the process on our *AnnuityCalculator* – step by step, day b
 
 Therewith the process is concluded and you can now use the obtained results in any way you see fit.
 
+#### Serialized output
+
+If you want to get the marshaled object representation of the result, you can utilize the built-in `getSerializedResult(SerializerInterface $serializer)` which is implemented in the base abstract class from which every calculator class inherits. You just have to pass a serializer object (i.e., one which implements the *SerializerInterface* interface).
+
+We'll again demonstrate the process on our venerable *AnnuityCalculator* using the *XMLSerializer*:
+
+1. step is the same – instantiate the appropriate calculator class, either by constructor or by a factory method (refer to the previous chapter for more information)
+
+    ```php
+    use \FinanCalc\FinanCalc;
+
+    ...
+
+    // Instantiation by a factory method
+    // –
+    // in our case we calculate a yearly-compounded annuity
+    // with a duration of 5 periods (here years),
+    // 100000 money units paid out per period
+    // and a compounding interest rate of 0.15 (i.e., 15%)
+    $annuityCalculatorObject = FinanCalc
+                                    ::getInstance()
+                                    ->getFactory('AnnuityCalculatorFactory')
+                                    ->newYearlyAnnuity(
+                                        100000,
+                                        5,
+                                        0.15);
+    ```
+
+2. step is to get a serialized result object
+
+    ```php
+    $result = $annuityCalculatorObject->getSerializedResult(new XMLSerializer());
+    ```
+
+3. now we have the comprehensive representation of the result object in the target format conveniently as a string. In our example it looks like this:
+
+    ```xml
+    <?xml version="1.0" encoding="UTF-8"?>
+    <root>
+      <annuitySinglePaymentAmount>100000</annuitySinglePaymentAmount>
+      <annuityNoOfCompoundingPeriods>5</annuityNoOfCompoundingPeriods>
+      <annuityInterest>0.15</annuityInterest>
+      <annuityPeriodLength>
+        <years>1.00000000</years>
+        <months>12.00000000</months>
+        <days>360</days>
+      </annuityPeriodLength>
+      <annuityPresentValue>
+        <in_advance>385497.83</in_advance>
+        <in_arrears>335215.53</in_arrears>
+      </annuityPresentValue>
+      <annuityFutureValue>
+        <in_advance>775373.79</in_advance>
+        <in_arrears>674238.12</in_arrears>
+      </annuityFutureValue>
+    </root>
+    ```
+
+NOTE: The name of the "root" element in the XML outuput can be customized in the confing property `serializers_root_elem_name`. In the future, it will be automatically assigned according to a type of the result object.
+
+You can easily
+
+#### Array
+
+You can also get a result's representation as an array. This representation is primarily used to pass the calculator object's properties to a serializer. The output should therefore be equivalent except for the semantic representation. It also enables you to easily implement your own serializer classes.
+
+Let's demonstrate the process for the last time on our *AnnuityCalculator*:
+
+1. step is the same – instantiate the appropriate calculator class, either by constructor or by a factory method (refer to the previous chapter for more information)
+
+    ```php
+    use \FinanCalc\FinanCalc;
+
+    ...
+
+    // Instantiation by a factory method
+    // –
+    // in our case we calculate a yearly-compounded annuity
+    // with a duration of 5 periods (here years),
+    // 100000 money units paid out per period
+    // and a compounding interest rate of 0.15 (i.e., 15%)
+    $annuityCalculatorObject = FinanCalc
+                                    ::getInstance()
+                                    ->getFactory('AnnuityCalculatorFactory')
+                                    ->newYearlyAnnuity(
+                                        100000,
+                                        5,
+                                        0.15);
+    ```
+
+2. step is to get a result array
+
+    ```php
+    $result = $annuityCalculatorObject->getResultAsArray();
+    ```
+
+3. the result array will look like this (the "var_export" representation):
+
+    ```php
+    array (
+      'annuitySinglePaymentAmount' => 100000,
+      'annuityNoOfCompoundingPeriods' => 5,
+      'annuityInterest' => 0.14999999999999999,
+      'annuityPeriodLength' =>
+      array (
+        'years' => '1.00000000',
+        'months' => '12.00000000',
+        'days' => 360,
+      ),
+      'annuityPresentValue' =>
+      array (
+        'in_advance' => 385497.83000000002,
+        'in_arrears' => 335215.53000000003,
+      ),
+      'annuityFutureValue' =>
+      array (
+        'in_advance' => 775373.79000000004,
+        'in_arrears' => 674238.12,
+      ),
+    )
+    ```
 
 ### Configuration
 
@@ -380,7 +505,7 @@ namespace `FinanCalc\Calculators\BondDurationCalculator`
 * **getBondNoOfPayments()** – gets the total number of payments during the lifespan of the bond
 * **getBondNominalCashFlows()** – gets an array of the bond's nominal cash flows (coupons; in the last payment = coupon + face value)
 * **getBondDiscountedCashFlows()** – gets an array of the bond's discounted cash flows (nominal cash flows which are discounted by the means of the bond's yield per period)
-* **getBondPresentValue()** – gets the present value of the bond which is represented by sum of all the bond's discounted cash flows (i.e., all the array members returned by the method getBondDiscountedCashFLows() are summed up)
+* **getBondPresentValue()** – gets the present value of the bond which is represented by sum of all the bond's discounted cash flows (i.e., all the array members returned by the method getBondDiscountedCashFlows() are summed up)
 * **getBondDuration()** – gets the bond's duration in years (can be a decimal number)
 
 * * *
