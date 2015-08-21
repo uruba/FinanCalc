@@ -147,7 +147,7 @@ namespace FinanCalc\Calculators\BondDurationCalculator {
             $nominalCashFlows = array();
             for ($i = 1; $i <= $numberOfPayments; $i++) {
                 if ($i == $numberOfPayments) {
-                    $nominalCashFlows[$i] = $couponPayment + $this->bondFaceValue;
+                    $nominalCashFlows[$i] = MathFuncs::add($couponPayment, $this->bondFaceValue);
                 } else {
                     $nominalCashFlows[$i] = $couponPayment;
                 }
@@ -167,7 +167,12 @@ namespace FinanCalc\Calculators\BondDurationCalculator {
             $discountedCashFlows = array();
             $i = 1;
             foreach ($nominalCashFlows as $nominalCashFlowEntry) {
-                $discountedCashFlows[] = MathFuncs::mul($nominalCashFlowEntry, MathFuncs::pow($discountFactor, $i++));
+                $discountedCashFlows[] = MathFuncs::mul(
+                    $nominalCashFlowEntry,
+                    MathFuncs::pow(
+                        $discountFactor,
+                        $i++)
+                );
             }
 
             return $discountedCashFlows;
@@ -180,7 +185,7 @@ namespace FinanCalc\Calculators\BondDurationCalculator {
             // bond present value = sum of all discounted cash flows during the life of the bond
             $presentValue = 0;
             foreach ($this->getBondDiscountedCashFlows() as $discountedCashFlowEntry) {
-                $presentValue += $discountedCashFlowEntry;
+                $presentValue = MathFuncs::add($presentValue, $discountedCashFlowEntry);
             }
 
             return $presentValue;
@@ -195,7 +200,12 @@ namespace FinanCalc\Calculators\BondDurationCalculator {
             $auxiliaryValue = 0;
             $i = 1;
             foreach ($this->getBondDiscountedCashFlows() as $discountedCashFlowEntry) {
-                $auxiliaryValue += $discountedCashFlowEntry * $i++;
+                $auxiliaryValue = MathFuncs::add(
+                    $auxiliaryValue,
+                    MathFuncs::mul(
+                        $discountedCashFlowEntry,
+                        $i++)
+                );
             }
 
             $duration = MathFuncs::div($auxiliaryValue, $this->getBondPresentValue());
