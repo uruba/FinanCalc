@@ -32,7 +32,7 @@ namespace FinanCalc\Utils\Serializers {
                 function(\DOMElement $parentNode, $inputArray)
                 use ($domDocument, &$funcArrayToXML) {
                     foreach ($inputArray as $key => $value) {
-                        $key = str_replace(' ', '_', $key);
+                        $key = preg_replace('/(^[0-9])/', '_\1', str_replace(' ', '_', $key));
                         $isValueArray = is_array($value);
 
                         $elem = $domDocument->createElement($key, (!$isValueArray) ? $value : null);

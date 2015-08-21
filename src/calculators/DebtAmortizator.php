@@ -198,8 +198,8 @@ namespace FinanCalc\Calculators\DebtAmortizator {
             // NOTE: rounding to two decimal places takes place when calculating the interest and principal parts
             // of a single repayment
             for($i = 1; $i <= $this->debtNoOfCompoundingPeriods; $i++) {
-                $interestAmount = Helpers::roundMoneyForDisplay(MathFuncs::mul($this->debtInterest, $unpaidBalance));
-                $principalAmount = Helpers::roundMoneyForDisplay(MathFuncs::sub($this->getDebtSingleRepayment(), $interestAmount));
+                $interestAmount = MathFuncs::mul($this->debtInterest, $unpaidBalance);
+                $principalAmount = MathFuncs::sub($this->getDebtSingleRepayment(), $interestAmount);
 
                 array_push($this->debtRepayments, new RepaymentInstance($principalAmount, $interestAmount));
 
