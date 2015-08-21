@@ -174,7 +174,7 @@ We'll again demonstrate the process on our venerable *AnnuityCalculator* using t
     $result = $annuityCalculatorObject->getSerializedResult(new XMLSerializer());
     ```
 
-3. now we have the comprehensive representation of the result object in the target format conveniently as a string. In our example it looks like this:
+3. now we have the comprehensive representation of the result object in the target format. In our example it looks like this:
 
     ```xml
     <?xml version="1.0" encoding="UTF-8"?>
@@ -198,9 +198,9 @@ We'll again demonstrate the process on our venerable *AnnuityCalculator* using t
     </root>
     ```
 
-NOTE: The name of the "root" element in the XML outuput can be customized in the confing property `serializers_root_elem_name`. In the future, it will be automatically assigned according to a type of the result object.
+NOTE: The name of the "root" element in the XML output can be customized by the config property `serializers_root_elem_name`. In the future, it will be automatically assigned according to the type of the result object.
 
-You can easily
+You can easily implement your own serializer classes by implementing the *SerializerInterface*.
 
 #### Array
 
