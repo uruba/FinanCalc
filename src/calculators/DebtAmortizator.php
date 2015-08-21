@@ -201,7 +201,7 @@ namespace FinanCalc\Calculators\DebtAmortizator {
                 $interestAmount = MathFuncs::mul($this->debtInterest, $unpaidBalance);
                 $principalAmount = MathFuncs::sub($this->getDebtSingleRepayment(), $interestAmount);
 
-                array_push($this->debtRepayments, new RepaymentInstance($principalAmount, $interestAmount));
+                $this->debtRepayments[$i] = new RepaymentInstance($principalAmount, $interestAmount);
 
                 $unpaidBalance = MathFuncs::sub($unpaidBalance, $principalAmount);
             }

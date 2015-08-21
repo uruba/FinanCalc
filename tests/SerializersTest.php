@@ -85,23 +85,10 @@ class SerializersTest extends PHPUnit_Framework_TestCase
         // Debt repayments (principal part, interest part, total = principal part + interest part)
         $this->assertEquals(
             "4929.03",
-            $round2DP($xmlObject->debtRepayments->_0->principalAmount)
-        );
-        $this->assertEquals(
-            "4800.00",
-            $round2DP($xmlObject->debtRepayments->_0->interestAmount)
-        );
-        $this->assertEquals(
-            $INDIVIDUAL_REPAYMENT,
-            $round2DP($xmlObject->debtRepayments->_0->totalAmount)
-        );
-
-        $this->assertEquals(
-            "5520.51",
             $round2DP($xmlObject->debtRepayments->_1->principalAmount)
         );
         $this->assertEquals(
-            "4208.52",
+            "4800.00",
             $round2DP($xmlObject->debtRepayments->_1->interestAmount)
         );
         $this->assertEquals(
@@ -110,11 +97,11 @@ class SerializersTest extends PHPUnit_Framework_TestCase
         );
 
         $this->assertEquals(
-            "6182.97",
+            "5520.51",
             $round2DP($xmlObject->debtRepayments->_2->principalAmount)
         );
         $this->assertEquals(
-            "3546.06",
+            "4208.52",
             $round2DP($xmlObject->debtRepayments->_2->interestAmount)
         );
         $this->assertEquals(
@@ -123,11 +110,11 @@ class SerializersTest extends PHPUnit_Framework_TestCase
         );
 
         $this->assertEquals(
-            "6924.93",
+            "6182.97",
             $round2DP($xmlObject->debtRepayments->_3->principalAmount)
         );
         $this->assertEquals(
-            "2804.10",
+            "3546.06",
             $round2DP($xmlObject->debtRepayments->_3->interestAmount)
         );
         $this->assertEquals(
@@ -136,11 +123,11 @@ class SerializersTest extends PHPUnit_Framework_TestCase
         );
 
         $this->assertEquals(
-            "7755.92",
+            "6924.93",
             $round2DP($xmlObject->debtRepayments->_4->principalAmount)
         );
         $this->assertEquals(
-            "1973.11",
+            "2804.10",
             $round2DP($xmlObject->debtRepayments->_4->interestAmount)
         );
         $this->assertEquals(
@@ -149,16 +136,29 @@ class SerializersTest extends PHPUnit_Framework_TestCase
         );
 
         $this->assertEquals(
-            "8686.63",
+            "7755.92",
             $round2DP($xmlObject->debtRepayments->_5->principalAmount)
         );
         $this->assertEquals(
-            "1042.4",
+            "1973.11",
             $round2DP($xmlObject->debtRepayments->_5->interestAmount)
         );
         $this->assertEquals(
             $INDIVIDUAL_REPAYMENT,
             $round2DP($xmlObject->debtRepayments->_5->totalAmount)
+        );
+
+        $this->assertEquals(
+            "8686.63",
+            $round2DP($xmlObject->debtRepayments->_6->principalAmount)
+        );
+        $this->assertEquals(
+            "1042.4",
+            $round2DP($xmlObject->debtRepayments->_6->interestAmount)
+        );
+        $this->assertEquals(
+            $INDIVIDUAL_REPAYMENT,
+            $round2DP($xmlObject->debtRepayments->_6->totalAmount)
         );
     }
 }

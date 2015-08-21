@@ -138,29 +138,29 @@ class DebtAmortizatorTest extends PHPUnit_Framework_TestCase {
         $repayments = $result->getDebtRepayments();
 
         $INDIVIDUAL_REPAYMENT = "9729.03";
-        $this->assertEquals("4929.03", round($repayments[0]->getPrincipalAmount(), 2));
-        $this->assertEquals("4800.00", round($repayments[0]->getInterestAmount(), 2));
-        $this->assertEquals($INDIVIDUAL_REPAYMENT, round($repayments[0]->getTotalAmount(), 2));
-
-        $this->assertEquals("5520.51", round($repayments[1]->getPrincipalAmount(), 2));
-        $this->assertEquals("4208.52", round($repayments[1]->getInterestAmount(), 2));
+        $this->assertEquals("4929.03", round($repayments[1]->getPrincipalAmount(), 2));
+        $this->assertEquals("4800.00", round($repayments[1]->getInterestAmount(), 2));
         $this->assertEquals($INDIVIDUAL_REPAYMENT, round($repayments[1]->getTotalAmount(), 2));
 
-        $this->assertEquals("6182.97", round($repayments[2]->getPrincipalAmount(), 2));
-        $this->assertEquals("3546.06", round($repayments[2]->getInterestAmount(), 2));
+        $this->assertEquals("5520.51", round($repayments[2]->getPrincipalAmount(), 2));
+        $this->assertEquals("4208.52", round($repayments[2]->getInterestAmount(), 2));
         $this->assertEquals($INDIVIDUAL_REPAYMENT, round($repayments[2]->getTotalAmount(), 2));
 
-        $this->assertEquals("6924.93", round($repayments[3]->getPrincipalAmount(), 2));
-        $this->assertEquals("2804.10", round($repayments[3]->getInterestAmount(), 2));
+        $this->assertEquals("6182.97", round($repayments[3]->getPrincipalAmount(), 2));
+        $this->assertEquals("3546.06", round($repayments[3]->getInterestAmount(), 2));
         $this->assertEquals($INDIVIDUAL_REPAYMENT, round($repayments[3]->getTotalAmount(), 2));
 
-        $this->assertEquals("7755.92", round($repayments[4]->getPrincipalAmount(), 2));
-        $this->assertEquals("1973.11", round($repayments[4]->getInterestAmount(), 2));
+        $this->assertEquals("6924.93", round($repayments[4]->getPrincipalAmount(), 2));
+        $this->assertEquals("2804.10", round($repayments[4]->getInterestAmount(), 2));
         $this->assertEquals($INDIVIDUAL_REPAYMENT, round($repayments[4]->getTotalAmount(), 2));
 
-        $this->assertEquals("8686.63", round($repayments[5]->getPrincipalAmount(), 2));
-        $this->assertEquals("1042.4", round($repayments[5]->getInterestAmount(), 2));
+        $this->assertEquals("7755.92", round($repayments[5]->getPrincipalAmount(), 2));
+        $this->assertEquals("1973.11", round($repayments[5]->getInterestAmount(), 2));
         $this->assertEquals($INDIVIDUAL_REPAYMENT, round($repayments[5]->getTotalAmount(), 2));
+
+        $this->assertEquals("8686.63", round($repayments[6]->getPrincipalAmount(), 2));
+        $this->assertEquals("1042.4", round($repayments[6]->getInterestAmount(), 2));
+        $this->assertEquals($INDIVIDUAL_REPAYMENT, round($repayments[6]->getTotalAmount(), 2));
     }
 
 
@@ -202,29 +202,29 @@ class DebtAmortizatorTest extends PHPUnit_Framework_TestCase {
         $repayments = $resultArray["debtRepayments"];
 
         $INDIVIDUAL_REPAYMENT = "9729.03";
-        $this->assertEquals("4929.03", round($repayments[0]["principalAmount"], 2));
-        $this->assertEquals("4800.00", round($repayments[0]["interestAmount"], 2));
-        $this->assertEquals($INDIVIDUAL_REPAYMENT, round($repayments[0]["totalAmount"], 2));
-
-        $this->assertEquals("5520.51", round($repayments[1]["principalAmount"], 2));
-        $this->assertEquals("4208.52", round($repayments[1]["interestAmount"], 2));
+        $this->assertEquals("4929.03", round($repayments[1]["principalAmount"], 2));
+        $this->assertEquals("4800.00", round($repayments[1]["interestAmount"], 2));
         $this->assertEquals($INDIVIDUAL_REPAYMENT, round($repayments[1]["totalAmount"], 2));
 
-        $this->assertEquals("6182.97", round($repayments[2]["principalAmount"], 2));
-        $this->assertEquals("3546.06", round($repayments[2]["interestAmount"], 2));
+        $this->assertEquals("5520.51", round($repayments[2]["principalAmount"], 2));
+        $this->assertEquals("4208.52", round($repayments[2]["interestAmount"], 2));
         $this->assertEquals($INDIVIDUAL_REPAYMENT, round($repayments[2]["totalAmount"], 2));
 
-        $this->assertEquals("6924.93", round($repayments[3]["principalAmount"], 2));
-        $this->assertEquals("2804.10", round($repayments[3]["interestAmount"], 2));
+        $this->assertEquals("6182.97", round($repayments[3]["principalAmount"], 2));
+        $this->assertEquals("3546.06", round($repayments[3]["interestAmount"], 2));
         $this->assertEquals($INDIVIDUAL_REPAYMENT, round($repayments[3]["totalAmount"], 2));
 
-        $this->assertEquals("7755.92", round($repayments[4]["principalAmount"], 2));
-        $this->assertEquals("1973.11", round($repayments[4]["interestAmount"], 2));
+        $this->assertEquals("6924.93", round($repayments[4]["principalAmount"], 2));
+        $this->assertEquals("2804.10", round($repayments[4]["interestAmount"], 2));
         $this->assertEquals($INDIVIDUAL_REPAYMENT, round($repayments[4]["totalAmount"], 2));
 
-        $this->assertEquals("8686.63", round($repayments[5]["principalAmount"], 2));
-        $this->assertEquals("1042.4", round($repayments[5]["interestAmount"], 2));
+        $this->assertEquals("7755.92", round($repayments[5]["principalAmount"], 2));
+        $this->assertEquals("1973.11", round($repayments[5]["interestAmount"], 2));
         $this->assertEquals($INDIVIDUAL_REPAYMENT, round($repayments[5]["totalAmount"], 2));
+
+        $this->assertEquals("8686.63", round($repayments[6]["principalAmount"], 2));
+        $this->assertEquals("1042.4", round($repayments[6]["interestAmount"], 2));
+        $this->assertEquals($INDIVIDUAL_REPAYMENT, round($repayments[6]["totalAmount"], 2));
     }
 
     /**
