@@ -185,7 +185,7 @@ We'll again demonstrate the process on our venerable *AnnuityCalculator* using t
       <annuityPeriodLength>
         <years>1.00000000</years>
         <months>12.00000000</months>
-        <days>360</days>
+        <days>360.00000000</days>
       </annuityPeriodLength>
       <annuityPresentValue>
         <in_advance>385497.83</in_advance>
@@ -247,7 +247,7 @@ Let's demonstrate the process for the last time on our *AnnuityCalculator*:
       array (
         'years' => '1.00000000',
         'months' => '12.00000000',
-        'days' => 360,
+        'days' => '360.00000000',
       ),
       'annuityPresentValue' =>
       array (

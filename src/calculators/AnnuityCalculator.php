@@ -216,7 +216,10 @@ namespace FinanCalc\Calculators\AnnuityCalculator {
          * @return mixed
          */
         public function getAnnuityPeriodLengthInDays() {
-            return $this->annuityPeriodLength;
+            return MathFuncs::div(
+                $this->annuityPeriodLength,
+                Defaults::LENGTH_DAY_360_30
+            );
         }
 
         /**
