@@ -11,7 +11,6 @@ namespace FinanCalc\Utils\Serializers {
      */
     class XMLSerializer implements SerializerInterface {
 
-
         /**
          * @param array $inputArray
          * @return mixed
