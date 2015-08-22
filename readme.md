@@ -150,6 +150,7 @@ We'll again demonstrate the process on our venerable *AnnuityCalculator* using t
 
     ```php
     use \FinanCalc\FinanCalc;
+    use \FinanCalc\Utils\Serializers\XMLSerializer;
 
     ...
 
