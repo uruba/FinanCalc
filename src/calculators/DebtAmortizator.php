@@ -227,7 +227,8 @@ namespace FinanCalc\Calculators\DebtAmortizator {
         public function getDebtPeriodLengthInYears() {
             return MathFuncs::div(
                 $this->debtPeriodLength,
-                Defaults::LENGTH_YEAR_360_30);
+                Defaults::LENGTH_YEAR_360_30
+            );
         }
 
         /**
@@ -236,14 +237,18 @@ namespace FinanCalc\Calculators\DebtAmortizator {
         public function getDebtPeriodLengthInMonths() {
             return MathFuncs::div(
                 $this->debtPeriodLength,
-                Defaults::LENGTH_MONTH_360_30);
+                Defaults::LENGTH_MONTH_360_30
+            );
         }
 
         /**
          * @return string [Length of each of the debt's compounding periods in days as a string]
          */
         public function getDebtPeriodLengthInDays() {
-            return $this->debtPeriodLength;
+            return MathFuncs::div(
+                $this->debtPeriodLength,
+                Defaults::LENGTH_DAY_360_30
+            );
         }
 
         /**
