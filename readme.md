@@ -240,9 +240,9 @@ Let's demonstrate the process for the last time on our *AnnuityCalculator*:
 
     ```php
     array (
-      'annuitySinglePaymentAmount' => 100000,
-      'annuityNoOfCompoundingPeriods' => 5,
-      'annuityInterest' => 0.15,
+      'annuitySinglePaymentAmount' => '100000',
+      'annuityNoOfCompoundingPeriods' => '5',
+      'annuityInterest' => '0.15',
       'annuityPeriodLength' =>
       array (
         'years' => '1.00000000',
@@ -251,13 +251,13 @@ Let's demonstrate the process for the last time on our *AnnuityCalculator*:
       ),
       'annuityPresentValue' =>
       array (
-        'in_advance' => 385497.83,
-        'in_arrears' => 335215.53,
+        'in_advance' => '385497.83',
+        'in_arrears' => '335215.53',
       ),
       'annuityFutureValue' =>
       array (
-        'in_advance' => 775373.79,
-        'in_arrears' => 674238.12,
+        'in_advance' => '775373.79',
+        'in_arrears' => '674238.12',
       ),
     )
     ```

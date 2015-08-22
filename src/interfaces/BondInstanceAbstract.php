@@ -25,7 +25,7 @@ namespace FinanCalc\Interfaces {
          */
         public function setBondFaceValue($bondFaceValue) {
             if(Helpers::checkIfPositiveNumberOrThrowAnException($bondFaceValue)) {
-                $this->bondFaceValue = $bondFaceValue;
+                $this->bondFaceValue = (string)$bondFaceValue;
             }
         }
 
@@ -34,7 +34,7 @@ namespace FinanCalc\Interfaces {
          */
         public function setBondAnnualCouponRate($bondAnnualCouponRate) {
             if(Helpers::checkIfPositiveNumberOrThrowAnException($bondAnnualCouponRate)) {
-                $this->bondAnnualCouponRate = $bondAnnualCouponRate;
+                $this->bondAnnualCouponRate = (string)$bondAnnualCouponRate;
             }
         }
 
@@ -43,7 +43,7 @@ namespace FinanCalc\Interfaces {
          */
         public function setBondYearsToMaturity($bondYearsToMaturity) {
             if(Helpers::checkIfPositiveNumberOrThrowAnException($bondYearsToMaturity)) {
-                $this->bondYearsToMaturity = $bondYearsToMaturity;
+                $this->bondYearsToMaturity = (string)$bondYearsToMaturity;
             }
         }
 
@@ -52,7 +52,7 @@ namespace FinanCalc\Interfaces {
          */
         public function setBondPaymentFrequency($bondPaymentFrequency) {
             if(Helpers::checkIfPositiveNumberOrThrowAnException($bondPaymentFrequency)) {
-                $this->bondPaymentFrequency = $bondPaymentFrequency;
+                $this->bondPaymentFrequency = (string)$bondPaymentFrequency;
             }
         }
 

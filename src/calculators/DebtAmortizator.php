@@ -130,7 +130,7 @@ namespace FinanCalc\Calculators\DebtAmortizator {
          */
         private function setDebtPrincipalWithoutRecalculation($debtPrincipal) {
             if(Helpers::checkIfPositiveNumberOrThrowAnException($debtPrincipal)) {
-                $this->debtPrincipal = $debtPrincipal;
+                $this->debtPrincipal = (string)$debtPrincipal;
             }
         }
 
@@ -139,7 +139,7 @@ namespace FinanCalc\Calculators\DebtAmortizator {
          */
         private function setDebtNoOfCompoundingPeriodsWithoutRecalculation($debtNoOfCompoundingPeriods) {
             if(Helpers::checkIfPositiveNumberOrThrowAnException($debtNoOfCompoundingPeriods)) {
-                $this->debtNoOfCompoundingPeriods = $debtNoOfCompoundingPeriods;
+                $this->debtNoOfCompoundingPeriods = (string)$debtNoOfCompoundingPeriods;
             }
         }
 
@@ -148,7 +148,7 @@ namespace FinanCalc\Calculators\DebtAmortizator {
          */
         private function setDebtInterestWithoutRecalculation($debtInterest) {
             if(Helpers::checkIfPositiveNumberOrThrowAnException($debtInterest)) {
-                $this->debtInterest = $debtInterest;
+                $this->debtInterest = (string)$debtInterest;
             }
         }
 
@@ -181,7 +181,7 @@ namespace FinanCalc\Calculators\DebtAmortizator {
          */
         public function setDebtPeriodLength($debtPeriodLength) {
             if(Helpers::checkIfPositiveNumberOrThrowAnException($debtPeriodLength)) {
-                $this->debtPeriodLength = $debtPeriodLength;
+                $this->debtPeriodLength = (string)$debtPeriodLength;
             }
         }
 

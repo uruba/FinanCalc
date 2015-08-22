@@ -111,7 +111,7 @@ namespace FinanCalc\Calculators\BondFairValueCalculator {
          */
         public function setBondVIR($bondVIR) {
             if(Helpers::checkIfPositiveNumberOrThrowAnException($bondVIR)) {
-                $this->bondVIR = $bondVIR;
+                $this->bondVIR = (string)$bondVIR;
             }
         }
 

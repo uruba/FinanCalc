@@ -86,12 +86,13 @@ namespace FinanCalc\Utils {
             return null;
         }
 
+
         /**
          * @param $inputValue
-         * @return float
+         * @return string
          */
         static function roundMoneyForDisplay($inputValue) {
-            return round($inputValue, Defaults::MONEY_DECIMAL_PLACES_DISPLAY);
+            return (string)round($inputValue, Defaults::MONEY_DECIMAL_PLACES_DISPLAY);
         }
 
     }

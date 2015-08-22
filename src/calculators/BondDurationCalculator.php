@@ -118,7 +118,7 @@ namespace FinanCalc\Calculators\BondDurationCalculator {
          */
         public function setBondAnnualYield($bondAnnualYield) {
             if(Helpers::checkIfPositiveNumberOrThrowAnException($bondAnnualYield)) {
-                $this->bondAnnualYield = $bondAnnualYield;
+                $this->bondAnnualYield = (string)$bondAnnualYield;
             }
         }
 

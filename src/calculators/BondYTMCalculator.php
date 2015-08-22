@@ -111,7 +111,7 @@ namespace FinanCalc\Calculators\BondYTMCalculator {
          */
         public function setBondMarketValue($bondMarketValue) {
             if(Helpers::checkIfPositiveNumberOrThrowAnException($bondMarketValue)) {
-                $this->bondMarketValue = $bondMarketValue;
+                $this->bondMarketValue = (string)$bondMarketValue;
             }
         }
 
