@@ -3,7 +3,7 @@
 namespace FinanCalc\Calculators\Factories {
     use \FinanCalc\Constants\Defaults;
     use \FinanCalc\Calculators\DebtAmortizator;
-    use FinanCalc\Interfaces\CalculatorFactoryAbstract;
+    use FinanCalc\Interfaces\Calculator\CalculatorFactoryAbstract;
 
     /**
      * Class DebtAmortizatorFactory

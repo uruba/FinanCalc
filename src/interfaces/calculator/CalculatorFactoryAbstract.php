@@ -1,6 +1,6 @@
 <?php
 
-namespace FinanCalc\Interfaces {
+namespace FinanCalc\Interfaces\Calculator {
     /**
      * Class CalculatorFactoryAbstract
      * @package FinanCalc\Interfaces

@@ -3,7 +3,7 @@
 namespace FinanCalc\Calculators\Factories {
     use FinanCalc\Calculators\AnnuityCalculator;
     use FinanCalc\Constants\Defaults;
-    use FinanCalc\Interfaces\CalculatorFactoryAbstract;
+    use FinanCalc\Interfaces\Calculator\CalculatorFactoryAbstract;
 
     /**
      * Class AnnuityCalculatorFactory

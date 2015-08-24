@@ -1,6 +1,6 @@
 <?php
 
-namespace FinanCalc\Interfaces {
+namespace FinanCalc\Interfaces\Result {
 
     use FinanCalc\Utils\Helpers;
     use FinanCalc\Utils\MathFuncs;

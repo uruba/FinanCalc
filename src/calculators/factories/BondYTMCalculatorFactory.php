@@ -4,7 +4,7 @@ namespace FinanCalc\Calculators\Factories {
 
 
     use FinanCalc\Calculators\BondYTMCalculator;
-    use FinanCalc\Interfaces\CalculatorFactoryAbstract;
+    use FinanCalc\Interfaces\Calculator\CalculatorFactoryAbstract;
 
     /**
      * Class BondYTMCalculatorFactory

@@ -3,7 +3,7 @@
 namespace FinanCalc\Calculators\Factories {
 
     use FinanCalc\Calculators\BondDurationCalculator;
-    use FinanCalc\Interfaces\CalculatorFactoryAbstract;
+    use FinanCalc\Interfaces\Calculator\CalculatorFactoryAbstract;
 
 
     /**

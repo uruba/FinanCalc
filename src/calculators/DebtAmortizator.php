@@ -2,7 +2,7 @@
 
 namespace FinanCalc\Calculators {
     use FinanCalc\Calculators\DebtAmortizator\DebtInstance;
-    use FinanCalc\Interfaces\CalculatorAbstract;
+    use FinanCalc\Interfaces\Calculator\CalculatorAbstract;
 
     /**
      * Class DebtAmortizator

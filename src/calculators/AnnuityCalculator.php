@@ -4,7 +4,7 @@ namespace FinanCalc\Calculators {
     use FinanCalc\Calculators\AnnuityCalculator\AnnuityInstance;
     use FinanCalc\Constants\AnnuityPaymentTypes;
     use FinanCalc\Constants\Defaults;
-    use FinanCalc\Interfaces\CalculatorAbstract;
+    use FinanCalc\Interfaces\Calculator\CalculatorAbstract;
 
     /**
      * Class AnnuityCalculator

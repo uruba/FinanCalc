@@ -1,6 +1,6 @@
 <?php
 
-namespace FinanCalc\Interfaces {
+namespace FinanCalc\Interfaces\Calculator {
 
     use FinanCalc\Interfaces\Serializer\SerializerInterface;
 

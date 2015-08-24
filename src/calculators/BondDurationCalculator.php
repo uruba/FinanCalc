@@ -3,7 +3,7 @@
 namespace FinanCalc\Calculators {
 
     use FinanCalc\Calculators\BondDurationCalculator\BondInstance;
-    use FinanCalc\Interfaces\CalculatorAbstract;
+    use FinanCalc\Interfaces\Calculator\CalculatorAbstract;
 
 
     /**
@@ -67,7 +67,7 @@ namespace FinanCalc\Calculators {
 
 namespace FinanCalc\Calculators\BondDurationCalculator {
 
-    use FinanCalc\Interfaces\BondInstanceAbstract;
+    use FinanCalc\Interfaces\Result\BondInstanceAbstract;
     use FinanCalc\Utils\Helpers;
     use FinanCalc\Utils\MathFuncs;
 

@@ -3,7 +3,7 @@
 namespace FinanCalc\Calculators {
 
     use FinanCalc\Calculators\BondYTMCalculator\BondInstance;
-    use FinanCalc\Interfaces\CalculatorAbstract;
+    use FinanCalc\Interfaces\Calculator\CalculatorAbstract;
 
     /**
      * Class BondYTMCalculator
@@ -60,7 +60,7 @@ namespace FinanCalc\Calculators {
 
 namespace FinanCalc\Calculators\BondYTMCalculator {
 
-    use FinanCalc\Interfaces\BondInstanceAbstract;
+    use FinanCalc\Interfaces\Result\BondInstanceAbstract;
     use FinanCalc\Utils\Helpers;
     use FinanCalc\Utils\MathFuncs;
 
