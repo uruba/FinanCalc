@@ -98,7 +98,7 @@ We'll demonstrate the process on our *AnnuityCalculator* – step by step, day b
 1. step is to instantiate the appropriate calculator class, either by constructor or by a factory method (refer to the previous chapter for more information)
 
     ```php
-    use \FinanCalc\FinanCalc;
+    use FinanCalc\FinanCalc;
     
     ...
     
@@ -149,8 +149,8 @@ We'll again demonstrate the process on our venerable *AnnuityCalculator* using t
 1. step is the same – instantiate the appropriate calculator class, either by constructor or by a factory method (refer to the previous chapter for more information)
 
     ```php
-    use \FinanCalc\FinanCalc;
-    use \FinanCalc\Utils\Serializers\XMLSerializer;
+    use FinanCalc\FinanCalc;
+    use FinanCalc\Utils\Serializers\XMLSerializer;
 
     ...
 
@@ -212,7 +212,7 @@ Let's demonstrate the process for the last time on our *AnnuityCalculator*:
 1. step is the same – instantiate the appropriate calculator class, either by constructor or by a factory method (refer to the previous chapter for more information)
 
     ```php
-    use \FinanCalc\FinanCalc;
+    use FinanCalc\FinanCalc;
 
     ...
 

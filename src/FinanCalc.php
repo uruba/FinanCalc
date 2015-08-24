@@ -41,6 +41,7 @@ namespace FinanCalc {
      */
     class FinanCalc {
         private $factoryClasses = array();
+        private static $instance = null;
 
         /**
          *
@@ -52,15 +53,17 @@ namespace FinanCalc {
             $this->populateFactoryClassesArray();
         }
 
+        protected function __clone() {
+        }
+
         /**
          * @return FinanCalc
          */
         public static function getInstance() {
-            static $instance = null;
-            if ($instance === null) {
-                $instance = new FinanCalc();
+            if (static::$instance === null) {
+                static::$instance = new FinanCalc();
             }
-            return $instance;
+            return static::$instance;
         }
 
         /**
