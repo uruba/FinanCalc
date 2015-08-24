@@ -314,13 +314,13 @@ namespace `FinanCalc\Calculators\AnnuityCalculator`
 * **getAnnuityPeriodLengthInYears()** – gets the length of each compounding periods in years
 * **getAnnuityPeriodLengthInMonths()** – gets the length of each compounding periods in months
 * **getAnnuityPeriodLengthInDays()** – gets the length of each compounding periods in days
-* **getPresentValue(AnnuityPaymentTypes $annuityType)** – gets the present value of the annuity
+* **getAnnuityPresentValue(AnnuityPaymentTypes $annuityType)** – gets the present value of the annuity
   * *AnuityPaymentTypes $annuityType* = determines whether the payments are made either at the beginning or the end of each of the annuity's periods
   [*optional for perpetuities*]
-* **getFutureValue(AnnuityPaymentTypes $annuityType)** – gets the future value of the annuity
+* **getAnnuityFutureValue(AnnuityPaymentTypes $annuityType)** – gets the future value of the annuity
   * *AnuityPaymentTypes $annuityType* = determines whether the payments are made either at the beginning or the end of each of the annuity's periods
   [*optional for perpetuities*]
-* **getValue(AnnuityPaymentTypes $annuityPaymentType, AnnuityValueTypes $annuityValueType)** – gets either the present or the future value of the annuity
+* **getAnnuityValue(AnnuityPaymentTypes $annuityPaymentType, AnnuityValueTypes $annuityValueType)** – gets either the present or the future value of the annuity
   * *AnuityPaymentTypes $annuityPaymentType* = determines whether the payments are made either at the beginning or the end of each of the annuity's periods
   [*optional for perpetuities*]
   * *AnuityValueTypes $annuityValueType* = determines whether the result is the present or the future value of the annuity

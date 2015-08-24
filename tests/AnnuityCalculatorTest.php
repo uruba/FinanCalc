@@ -27,7 +27,7 @@ class AnnuityCalculatorTest extends PHPUnit_Framework_TestCase {
      * @param AnnuityCalculator $annuityCalculator
      */
     private function assertPVInArrears(AnnuityCalculator $annuityCalculator) {
-        $PV_direct = $annuityCalculator->getResult()->getPresentValue(
+        $PV_direct = $annuityCalculator->getResult()->getAnnuityPresentValue(
             new AnnuityPaymentTypes(AnnuityPaymentTypes::IN_ARREARS)
         );
 
@@ -55,7 +55,7 @@ class AnnuityCalculatorTest extends PHPUnit_Framework_TestCase {
      * @param AnnuityCalculator $annuityCalculator
      */
     private function assertFVInArrears(AnnuityCalculator $annuityCalculator) {
-        $FV_direct = $annuityCalculator->getResult()->getFutureValue(
+        $FV_direct = $annuityCalculator->getResult()->getAnnuityFutureValue(
             new AnnuityPaymentTypes(AnnuityPaymentTypes::IN_ARREARS)
         );
 
@@ -83,7 +83,7 @@ class AnnuityCalculatorTest extends PHPUnit_Framework_TestCase {
      * @param AnnuityCalculator $annuityCalculator
      */
     private function assertPVInAdvance(AnnuityCalculator $annuityCalculator) {
-        $PV_direct = $annuityCalculator->getResult()->getPresentValue(
+        $PV_direct = $annuityCalculator->getResult()->getAnnuityPresentValue(
             new AnnuityPaymentTypes(AnnuityPaymentTypes::IN_ADVANCE)
         );
 
@@ -111,7 +111,7 @@ class AnnuityCalculatorTest extends PHPUnit_Framework_TestCase {
      * @param AnnuityCalculator $annuityCalculator
      */
     private function assertFVInAdvance(AnnuityCalculator $annuityCalculator) {
-        $FV_direct = $annuityCalculator->getResult()->getFutureValue(
+        $FV_direct = $annuityCalculator->getResult()->getAnnuityFutureValue(
             new AnnuityPaymentTypes(AnnuityPaymentTypes::IN_ADVANCE)
         );
 
@@ -127,7 +127,7 @@ class AnnuityCalculatorTest extends PHPUnit_Framework_TestCase {
      * Test perpetuity
      */
     public function testPVPerpetuity() {
-        $PV_direct = $this->perpetuityCalculator->getResult()->getPresentValue();
+        $PV_direct = $this->perpetuityCalculator->getResult()->getAnnuityPresentValue();
 
         $PV_array_advance = $this->perpetuityCalculator->getResultAsArray()["annuityPresentValue"]["in_advance"];
         $PV_array_arrears = $this->perpetuityCalculator->getResultAsArray()["annuityPresentValue"]["in_arrears"];
@@ -139,7 +139,7 @@ class AnnuityCalculatorTest extends PHPUnit_Framework_TestCase {
     }
 
     public function testFVPerpetuity() {
-        $FV_direct = $this->perpetuityCalculator->getResult()->getFutureValue();
+        $FV_direct = $this->perpetuityCalculator->getResult()->getAnnuityFutureValue();
 
         $FV_array_advance = $this->perpetuityCalculator->getResultAsArray()["annuityFutureValue"]["in_advance"];
         $FV_array_arrears = $this->perpetuityCalculator->getResultAsArray()["annuityFutureValue"]["in_arrears"];

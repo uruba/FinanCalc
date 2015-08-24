@@ -59,19 +59,19 @@ namespace FinanCalc\Calculators {
                         ],
                     "annuityPresentValue" =>
                         [
-                            "in_advance" => $annuityInstance->getPresentValue(
+                            "in_advance" => $annuityInstance->getAnnuityPresentValue(
                                 new AnnuityPaymentTypes(AnnuityPaymentTypes::IN_ADVANCE)
                             ),
-                            "in_arrears" => $annuityInstance->getPresentValue(
+                            "in_arrears" => $annuityInstance->getAnnuityPresentValue(
                                 new AnnuityPaymentTypes(AnnuityPaymentTypes::IN_ARREARS)
                             )
                         ],
                     "annuityFutureValue" =>
                         [
-                            "in_advance" => $annuityInstance->getFutureValue(
+                            "in_advance" => $annuityInstance->getAnnuityFutureValue(
                                 new AnnuityPaymentTypes(AnnuityPaymentTypes::IN_ADVANCE)
                             ),
-                            "in_arrears" => $annuityInstance->getFutureValue(
+                            "in_arrears" => $annuityInstance->getAnnuityFutureValue(
                                 new AnnuityPaymentTypes(AnnuityPaymentTypes::IN_ARREARS)
                             )
                         ],
@@ -223,9 +223,9 @@ namespace FinanCalc\Calculators\AnnuityCalculator {
          * @param AnnuityPaymentTypes $annuityType
          * @return null|string
          */
-        public function getPresentValue(AnnuityPaymentTypes $annuityType = null) {
+        public function getAnnuityPresentValue(AnnuityPaymentTypes $annuityType = null) {
             return $this
-                ->getValue(
+                ->getAnnuityValue(
                     $annuityType,
                     new AnnuityValueTypes(AnnuityValueTypes::PRESENT_VALUE)
                 );
@@ -235,9 +235,9 @@ namespace FinanCalc\Calculators\AnnuityCalculator {
          * @param AnnuityPaymentTypes $annuityType
          * @return null|string
          */
-        public function getFutureValue(AnnuityPaymentTypes $annuityType = null) {
+        public function getAnnuityFutureValue(AnnuityPaymentTypes $annuityType = null) {
             return $this
-                ->getValue(
+                ->getAnnuityValue(
                     $annuityType,
                     new AnnuityValueTypes(AnnuityValueTypes::FUTURE_VALUE)
                 );
@@ -249,7 +249,7 @@ namespace FinanCalc\Calculators\AnnuityCalculator {
          * @return null|string
          * @throws Exception
          */
-        public function getValue(AnnuityPaymentTypes $annuityPaymentType = null, AnnuityValueTypes $annuityValueType) {
+        public function getAnnuityValue(AnnuityPaymentTypes $annuityPaymentType = null, AnnuityValueTypes $annuityValueType) {
             // if the number of the annuity's compounding periods
             // is set to zero, we're dealing with a perpetuity
             if (Helpers::checkIfZero($this->annuityNoOfCompoundingPeriods)) {
