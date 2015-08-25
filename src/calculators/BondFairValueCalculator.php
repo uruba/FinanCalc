@@ -52,7 +52,7 @@ namespace FinanCalc\Calculators {
          * @param $bondVIR
          */
         public function setBondVIR($bondVIR) {
-            if(Helpers::checkIfPositiveNumberOrThrowAnException($bondVIR)) {
+            if (Helpers::checkIfPositiveNumberOrThrowAnException($bondVIR)) {
                 $this->bondVIR = (string)$bondVIR;
             }
         }

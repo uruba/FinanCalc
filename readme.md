@@ -489,6 +489,30 @@ namespace `FinanCalc\Calculators\Factories`
 
 * * *
 
+### StockInvestmentRatiosCalculator
+namespace `FinanCalc\Calculators`
+* **__construct($totalDividends, $earningAfterTaxes, $noOfStocks)**
+  * *$totalDividends* – sum of dividends per a period
+  * *$earningAfterTaxes* – amount earned after taxes
+  * *$noOfStocks* – number of stocks (total if constant, average if fluctuating)
+
+#### Setters
+* **setTotalDividends($totalDividends)** – sets the sum of dividends per a period
+* **setEarningsAfterTaxes($earningsAfterTaxes)** – sets the amount earned after taxes
+* **setNoOfStocks($noOfStocks)** – sets the number of stocks
+
+#### Getters
+* **getTotalDividends()** – sets the sum of dividends per a period
+* **getEarningsAfterTaxes()** – sets the amount earned after taxes
+* **getNoOfStocks()** – gets the number of stocks
+* **getDividendPerStock()** – gets the dividend per stock (DPS) value
+* **getEarningsPerStock()** – gets the earning per stock (EPS) value
+* **getPayoutRatio()** – gets the payout ratio (also referred to as "dividend payout ratio")
+* **getDividendRatio()** – gets the dividend ratio (the payout ratio to the power of -1)
+* **getRetentionRatio()** – gets the retention ("plowback") ratio
+
+* * *
+
 ## DISCLAIMER
 You are free to use/modify/extend the library as you please - for it to serve your purpose. As per the (un)license, the software is provided as is and the original author cannot be held liable for any losses/damages directly or indirectly resulting from using thereof.
 Attribution is welcome, but certainly not required.

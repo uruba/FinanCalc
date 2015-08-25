@@ -96,7 +96,7 @@ class BondFairValueCalculatorTest extends PHPUnit_Framework_TestCase {
     /**
      * @return BondFairValueCalculator
      */
-    private function getBondFairValueCalculatorDirectSemiAnnually() {
+    private function newBondFairValueCalculatorDirectSemiAnnually() {
         return new BondFairValueCalculator(10000, 0.12, 0.1, 7.5, 2);
     }
 
@@ -104,7 +104,7 @@ class BondFairValueCalculatorTest extends PHPUnit_Framework_TestCase {
      * @return mixed
      * @throws Exception
      */
-    private function getBondFairValueCalculatorFactorySemiAnnually() {
+    private function newBondFairValueCalculatorFactorySemiAnnually() {
         return \FinanCalc\FinanCalc
             ::getInstance()
             ->getFactory('BondFairValueCalculatorFactory')
@@ -112,8 +112,8 @@ class BondFairValueCalculatorTest extends PHPUnit_Framework_TestCase {
     }
 
     protected function setUp() {
-        $this->bondFairValueCalculatorDirectSemiAnnually = $this->getBondFairValueCalculatorDirectSemiAnnually();
-        $this->bondFairValueCalculatorFactorySemiAnnually = $this->getBondFairValueCalculatorFactorySemiAnnually();
+        $this->bondFairValueCalculatorDirectSemiAnnually = $this->newBondFairValueCalculatorDirectSemiAnnually();
+        $this->bondFairValueCalculatorFactorySemiAnnually = $this->newBondFairValueCalculatorFactorySemiAnnually();
 
         parent::setUp();
     }

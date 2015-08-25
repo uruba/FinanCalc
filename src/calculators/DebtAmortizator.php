@@ -48,7 +48,7 @@ namespace FinanCalc\Calculators {
          * @param $debtPrincipal
          */
         private function setDebtPrincipalWithoutRecalculation($debtPrincipal) {
-            if(Helpers::checkIfPositiveNumberOrThrowAnException($debtPrincipal)) {
+            if (Helpers::checkIfPositiveNumberOrThrowAnException($debtPrincipal)) {
                 $this->debtPrincipal = (string)$debtPrincipal;
             }
         }
@@ -57,7 +57,7 @@ namespace FinanCalc\Calculators {
          * @param $debtNoOfCompoundingPeriods
          */
         private function setDebtNoOfCompoundingPeriodsWithoutRecalculation($debtNoOfCompoundingPeriods) {
-            if(Helpers::checkIfPositiveNumberOrThrowAnException($debtNoOfCompoundingPeriods)) {
+            if (Helpers::checkIfPositiveNumberOrThrowAnException($debtNoOfCompoundingPeriods)) {
                 $this->debtNoOfCompoundingPeriods = (string)$debtNoOfCompoundingPeriods;
             }
         }
@@ -66,7 +66,7 @@ namespace FinanCalc\Calculators {
          * @param $debtInterest
          */
         private function setDebtInterestWithoutRecalculation($debtInterest) {
-            if(Helpers::checkIfPositiveNumberOrThrowAnException($debtInterest)) {
+            if (Helpers::checkIfPositiveNumberOrThrowAnException($debtInterest)) {
                 $this->debtInterest = (string)$debtInterest;
             }
         }
@@ -99,7 +99,7 @@ namespace FinanCalc\Calculators {
          * @param $debtPeriodLength
          */
         public function setDebtPeriodLength($debtPeriodLength) {
-            if(Helpers::checkIfPositiveNumberOrThrowAnException($debtPeriodLength)) {
+            if (Helpers::checkIfPositiveNumberOrThrowAnException($debtPeriodLength)) {
                 $this->debtPeriodLength = (string)$debtPeriodLength;
             }
         }

@@ -154,7 +154,7 @@ class AnnuityCalculatorTest extends PHPUnit_Framework_TestCase {
      * Test monthly annuity factory
      */
     public function testMonthlyAnnuityFactory() {
-        $annuityCalculatorFactoryMonthly = $this->getAnnuityCalculatorFactoryMonthly();
+        $annuityCalculatorFactoryMonthly = $this->newAnnuityCalculatorFactoryMonthly();
 
         $this->assertFVInAdvance(
             $annuityCalculatorFactoryMonthly
@@ -184,7 +184,7 @@ class AnnuityCalculatorTest extends PHPUnit_Framework_TestCase {
      * @return mixed
      * @throws Exception
      */
-    private function getAnnuityCalculatorFactoryMonthly() {
+    private function newAnnuityCalculatorFactoryMonthly() {
         return \FinanCalc\FinanCalc
             ::getInstance()
             ->getFactory('AnnuityCalculatorFactory')
@@ -195,7 +195,7 @@ class AnnuityCalculatorTest extends PHPUnit_Framework_TestCase {
      * Test daily annuity factory
      */
     public function testDailyAnnuityFactory() {
-        $annuityCalculatorFactoryDaily = $this->getAnnuityCalculatorFactoryDaily();
+        $annuityCalculatorFactoryDaily = $this->newAnnuityCalculatorFactoryDaily();
 
         $this->assertFVInAdvance(
             $annuityCalculatorFactoryDaily
@@ -225,7 +225,7 @@ class AnnuityCalculatorTest extends PHPUnit_Framework_TestCase {
      * @return mixed
      * @throws Exception
      */
-    private function getAnnuityCalculatorFactoryDaily() {
+    private function newAnnuityCalculatorFactoryDaily() {
         return \FinanCalc\FinanCalc
             ::getInstance()
             ->getFactory('AnnuityCalculatorFactory')
@@ -244,15 +244,15 @@ class AnnuityCalculatorTest extends PHPUnit_Framework_TestCase {
     /**
      * @return \FinanCalc\Calculators\AnnuityCalculator
      */
-    private function getAnnuityCalculatorDirectYearly() {
-        return new \FinanCalc\Calculators\AnnuityCalculator(100000, 5, Defaults::LENGTH_YEAR_360_30, 0.15);
+    private function newAnnuityCalculatorDirectYearly() {
+        return new AnnuityCalculator(100000, 5, Defaults::LENGTH_YEAR_360_30, 0.15);
     }
 
     /**
      * @return \FinanCalc\Calculators\AnnuityCalculator
      * @throws Exception
      */
-    private function getAnnuityCalculatorFactoryYearly() {
+    private function newAnnuityCalculatorFactoryYearly() {
         return \FinanCalc\FinanCalc
             ::getInstance()
             ->getFactory('AnnuityCalculatorFactory')
@@ -263,7 +263,7 @@ class AnnuityCalculatorTest extends PHPUnit_Framework_TestCase {
      * @return \FinanCalc\Calculators\AnnuityCalculator
      * @throws Exception
      */
-    private function getPerpetuity() {
+    private function newPerpetuity() {
         return \FinanCalc\FinanCalc
             ::getInstance()
             ->getFactory('AnnuityCalculatorFactory')
@@ -271,10 +271,9 @@ class AnnuityCalculatorTest extends PHPUnit_Framework_TestCase {
     }
 
     protected function setUp() {
-        $this->annuityCalculatorDirectYearly = $this->getAnnuityCalculatorDirectYearly();
-        $this->annuityCalculatorFactoryYearly = $this->getAnnuityCalculatorFactoryYearly();
-        $this->perpetuityCalculator = $this->getPerpetuity();
-
+        $this->annuityCalculatorDirectYearly = $this->newAnnuityCalculatorDirectYearly();
+        $this->annuityCalculatorFactoryYearly = $this->newAnnuityCalculatorFactoryYearly();
+        $this->perpetuityCalculator = $this->newPerpetuity();
 
         parent::setUp();
     }

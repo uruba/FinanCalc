@@ -9,7 +9,6 @@ namespace FinanCalc\Calculators {
     use FinanCalc\Interfaces\Calculator\CalculatorAbstract;
     use FinanCalc\Utils\Helpers;
     use FinanCalc\Utils\MathFuncs;
-    use InvalidArgumentException;
 
     /**
      * Class AnnuityCalculator
@@ -22,17 +21,17 @@ namespace FinanCalc\Calculators {
         // number of periods pertaining to the interest compounding = 'n'
         // if 'n = 0', the annuity is considered a perpetuity
         private $annuityNoOfCompoundingPeriods;
-        // the interest rate by which the unpaid balance is multiplied (i.e., a decimal number) = 'i'
-        private $annuityInterest;
         // length of a single period in days
         private $annuityPeriodLength;
+        // the interest rate by which the unpaid balance is multiplied (i.e., a decimal number) = 'i'
+        private $annuityInterest;
+
 
         /**
          * @param $annuitySinglePaymentAmount
          * @param $annuityNoOfCompoundingPeriods
          * @param $annuityPeriodLength
          * @param $annuityInterest
-         * @throws InvalidArgumentException
          */
         function __construct($annuitySinglePaymentAmount,
                              $annuityNoOfCompoundingPeriods,
@@ -48,7 +47,7 @@ namespace FinanCalc\Calculators {
          * @param $annuitySinglePaymentAmount
          */
         public function setAnnuitySinglePaymentAmount($annuitySinglePaymentAmount) {
-            if(Helpers::checkIfPositiveNumberOrThrowAnException($annuitySinglePaymentAmount)) {
+            if (Helpers::checkIfPositiveNumberOrThrowAnException($annuitySinglePaymentAmount)) {
                 $this->annuitySinglePaymentAmount = (string)$annuitySinglePaymentAmount;
             }
         }
@@ -57,7 +56,7 @@ namespace FinanCalc\Calculators {
          * @param $annuityNoOfCompoundingPeriods
          */
         public function setAnnuityNoOfCompoundingPeriods($annuityNoOfCompoundingPeriods) {
-            if(Helpers::checkIfNotNegativeNumberOrThrowAnException($annuityNoOfCompoundingPeriods)) {
+            if (Helpers::checkIfNotNegativeNumberOrThrowAnException($annuityNoOfCompoundingPeriods)) {
                 $this->annuityNoOfCompoundingPeriods = (string)$annuityNoOfCompoundingPeriods;
             }
 
@@ -71,7 +70,7 @@ namespace FinanCalc\Calculators {
          * @param $annuityPeriodLength
          */
         public function setAnnuityPeriodLength($annuityPeriodLength) {
-            if(Helpers::checkIfNotNegativeNumberOrThrowAnException($annuityPeriodLength)) {
+            if (Helpers::checkIfNotNegativeNumberOrThrowAnException($annuityPeriodLength)) {
                 if (Helpers::checkIfZero($this->annuityNoOfCompoundingPeriods)) {
                     $this->annuityPeriodLength = INF;
                 } else {
@@ -84,7 +83,7 @@ namespace FinanCalc\Calculators {
          * @param $annuityInterest
          */
         public function setAnnuityInterest($annuityInterest) {
-            if(Helpers::checkIfPositiveNumberOrThrowAnException($annuityInterest)) {
+            if (Helpers::checkIfPositiveNumberOrThrowAnException($annuityInterest)) {
                 $this->annuityInterest = (string)$annuityInterest;
             }
         }
@@ -236,7 +235,7 @@ namespace FinanCalc\Calculators {
                     $denominator = $this->annuityInterest;
                 }
 
-                if(isset($numerator) && isset($denominator)) {
+                if (isset($numerator) && isset($denominator)) {
                     return Helpers::roundMoneyForDisplay(
                     // PV|FV = K*(PV|FV of unit annuity)
                         MathFuncs::mul(

@@ -98,7 +98,7 @@ class BondYTMCalculatorTest extends PHPUnit_Framework_TestCase {
     /**
      * @return BondYTMCalculator
      */
-    private function getBondYTMCalculatorDirectAnnually() {
+    private function newBondYTMCalculatorDirectAnnually() {
         return new BondYTMCalculator(10000,10800, 0.146, 3, 1);
     }
 
@@ -106,7 +106,7 @@ class BondYTMCalculatorTest extends PHPUnit_Framework_TestCase {
      * @return mixed
      * @throws Exception
      */
-    private function getBondYTMCalculatorFactoryAnnually() {
+    private function newBondYTMCalculatorFactoryAnnually() {
         return \FinanCalc\FinanCalc
             ::getInstance()
             ->getFactory('BondYTMCalculatorFactory')
@@ -114,8 +114,8 @@ class BondYTMCalculatorTest extends PHPUnit_Framework_TestCase {
     }
 
     protected function setUp() {
-        $this->bondYTMCalculatorDirectAnnually = $this->getBondYTMCalculatorDirectAnnually();
-        $this->bondYTMCalculatorFactoryAnnually = $this->getBondYTMCalculatorFactoryAnnually();
+        $this->bondYTMCalculatorDirectAnnually = $this->newBondYTMCalculatorDirectAnnually();
+        $this->bondYTMCalculatorFactoryAnnually = $this->newBondYTMCalculatorFactoryAnnually();
 
         parent::setUp();
     }

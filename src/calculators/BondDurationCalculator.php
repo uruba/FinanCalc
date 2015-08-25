@@ -53,7 +53,7 @@ namespace FinanCalc\Calculators {
          * @param $bondAnnualYield
          */
         public function setBondAnnualYield($bondAnnualYield) {
-            if(Helpers::checkIfPositiveNumberOrThrowAnException($bondAnnualYield)) {
+            if (Helpers::checkIfPositiveNumberOrThrowAnException($bondAnnualYield)) {
                 $this->bondAnnualYield = (string)$bondAnnualYield;
             }
         }

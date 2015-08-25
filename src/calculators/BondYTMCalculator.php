@@ -52,7 +52,7 @@ namespace FinanCalc\Calculators {
          * @param $bondMarketValue
          */
         public function setBondMarketValue($bondMarketValue) {
-            if(Helpers::checkIfPositiveNumberOrThrowAnException($bondMarketValue)) {
+            if (Helpers::checkIfPositiveNumberOrThrowAnException($bondMarketValue)) {
                 $this->bondMarketValue = (string)$bondMarketValue;
             }
         }

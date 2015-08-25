@@ -98,7 +98,7 @@ class BondDurationCalculatorTest extends PHPUnit_Framework_TestCase {
     /**
      * @return BondDurationCalculator
      */
-    private function getBondInstanceDirectAnnually() {
+    private function newBondInstanceDirectAnnually() {
         return new BondDurationCalculator(1000, 0.08, 0.1, 3);
     }
 
@@ -106,7 +106,7 @@ class BondDurationCalculatorTest extends PHPUnit_Framework_TestCase {
      * @return mixed
      * @throws Exception
      */
-    private function getBondInstanceFactoryAnnually() {
+    private function newBondInstanceFactoryAnnually() {
         return \FinanCalc\FinanCalc
             ::getInstance()
             ->getFactory('BondDurationCalculatorFactory')
@@ -114,8 +114,8 @@ class BondDurationCalculatorTest extends PHPUnit_Framework_TestCase {
     }
 
     protected function setUp() {
-        $this->bondDurationCalculatorDirectAnnually = $this->getBondInstanceDirectAnnually();
-        $this->bondDurationCalculatorFactoryAnnually = $this->getBondInstanceFactoryAnnually();
+        $this->bondDurationCalculatorDirectAnnually = $this->newBondInstanceDirectAnnually();
+        $this->bondDurationCalculatorFactoryAnnually = $this->newBondInstanceFactoryAnnually();
 
         parent::setUp();
     }
