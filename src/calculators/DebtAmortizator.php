@@ -1,98 +1,17 @@
 <?php
 
 namespace FinanCalc\Calculators {
-    use FinanCalc\Calculators\DebtAmortizator\DebtInstance;
+
+    use FinanCalc\Constants\Defaults;
     use FinanCalc\Interfaces\Calculator\CalculatorAbstract;
+    use FinanCalc\Utils\Helpers;
+    use FinanCalc\Utils\MathFuncs;
 
     /**
      * Class DebtAmortizator
      * @package FinanCalc\Calculators
      */
     class DebtAmortizator extends CalculatorAbstract {
-        private $debtInstance;
-
-        /**
-         * DebtAmortizator constructor
-         *
-         * @param string $debtPrincipal                [Value of the debt's principal as a string]
-         * @param string $debtNoOfCompoundingPeriods   [Number of the debt's compounding periods as a string]
-         * @param string $debtInterest                 [Value of the debt's interest in a decimal number 'multiplier' form as a string]
-         * @param string $debtPeriodLength             [Length of each of the debt's compounding periods as a string]
-         */
-        function __construct($debtPrincipal,
-                             $debtNoOfCompoundingPeriods,
-                             $debtPeriodLength,
-                             $debtInterest) {
-
-            // create new DebtInstance object passing on the parameters of this constructor
-            $this->debtInstance = new DebtInstance($debtPrincipal,
-                                                   $debtNoOfCompoundingPeriods,
-                                                   $debtPeriodLength,
-                                                   $debtInterest);
-        }
-
-        /**
-         * NOTE: Overridden method from the \FinanCalc\Interfaces\CalculatorAbstract
-         *
-         * @return \FinanCalc\Calculators\DebtAmortizator\DebtInstance
-         */
-        public function getResult() {
-            return $this->debtInstance;
-        }
-
-        /**
-         * @return array
-         */
-        public function getResultAsArray()
-        {
-            $debtInstance = $this->getResult();
-
-            $debtRepayments = $debtInstance->getDebtRepayments();
-
-            foreach ($debtRepayments as &$debtRepayment) {
-                $debtRepayment = [
-                    "principalAmount" => $debtRepayment->getPrincipalAmount(),
-                    "interestAmount" => $debtRepayment->getInterestAmount(),
-                    "totalAmount" => $debtRepayment->getTotalAmount()
-                ];
-            }
-
-            return
-                [
-                    "debtPrincipal" => $debtInstance->getDebtPrincipal(),
-                    "debtNoOfCompoundingPeriods" => $debtInstance->getDebtNoOfCompoundingPeriods(),
-                    "debtPeriodLength" =>
-                        [
-                            "years" => $debtInstance->getDebtPeriodLengthInYears(),
-                            "months" => $debtInstance->getDebtPeriodLengthInMonths(),
-                            "days" => $debtInstance->getDebtPeriodLengthInDays()
-                        ],
-                    "debtInterest" => $debtInstance->getDebtInterest(),
-                    "debtDiscountFactor" => $debtInstance->getDebtDiscountFactor(),
-                    "debtDuration" =>
-                        [
-                            "years" => $debtInstance->getDebtDurationInYears(),
-                            "months" => $debtInstance->getDebtDurationInMonths(),
-                            "days" => $debtInstance->getDebtDurationInDays()
-                        ],
-                    "debtSingleRepayment" => $debtInstance->getDebtSingleRepayment(),
-                    "debtRepayments" => $debtRepayments
-                ];
-        }
-    }
-}
-
-
-namespace FinanCalc\Calculators\DebtAmortizator {
-    use FinanCalc\Constants\Defaults;
-    use FinanCalc\Utils\Helpers;
-    use FinanCalc\Utils\MathFuncs;
-
-    /**
-     * Class DebtInstance
-     * @package FinanCalc\Calculators\DebtAmortizator
-     */
-    class DebtInstance {
         // list of individual debt's repayments as an array of RepaymentInstance objects
         private $debtRepayments;
 
@@ -332,6 +251,46 @@ namespace FinanCalc\Calculators\DebtAmortizator {
         public function getDebtRepayments() {
             return $this->debtRepayments;
         }
+
+        /**
+         * @return array
+         */
+        public function getResultAsArray()
+        {
+            $debtRepayments = $this->getDebtRepayments();
+
+            foreach ($debtRepayments as &$debtRepayment) {
+                $debtRepayment = [
+                    "principalAmount" => $debtRepayment->getPrincipalAmount(),
+                    "interestAmount" => $debtRepayment->getInterestAmount(),
+                    "totalAmount" => $debtRepayment->getTotalAmount()
+                ];
+            }
+
+            return
+                [
+                    "debtPrincipal" => $this->getDebtPrincipal(),
+                    "debtNoOfCompoundingPeriods" => $this->getDebtNoOfCompoundingPeriods(),
+                    "debtPeriodLength" =>
+                        [
+                            "years" => $this->getDebtPeriodLengthInYears(),
+                            "months" => $this->getDebtPeriodLengthInMonths(),
+                            "days" => $this->getDebtPeriodLengthInDays()
+                        ],
+                    "debtInterest" => $this->getDebtInterest(),
+                    "debtDiscountFactor" => $this->getDebtDiscountFactor(),
+                    "debtDuration" =>
+                        [
+                            "years" => $this->getDebtDurationInYears(),
+                            "months" => $this->getDebtDurationInMonths(),
+                            "days" => $this->getDebtDurationInDays()
+                        ],
+                    "debtSingleRepayment" => $this->getDebtSingleRepayment(),
+                    "debtRepayments" => $debtRepayments
+                ];
+        }
+
+
     }
 
     /**
@@ -371,6 +330,4 @@ namespace FinanCalc\Calculators\DebtAmortizator {
             return MathFuncs::add($this->principalAmount, $this->interestAmount);
         }
     }
-
-
 }

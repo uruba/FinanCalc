@@ -78,7 +78,7 @@ class BondDurationCalculatorTest extends PHPUnit_Framework_TestCase {
      * @param BondDurationCalculator $bondDurationCalculator
      */
     private function assertDuration(BondDurationCalculator $bondDurationCalculator) {
-        $bondDuration_direct = $bondDurationCalculator->getResult()->getBondDuration();
+        $bondDuration_direct = $bondDurationCalculator->getBondDuration();
         $bondDuration_array = $bondDurationCalculator->getResultAsArray()["bondDuration"];
 
         $expected = "2.78";

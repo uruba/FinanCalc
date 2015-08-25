@@ -1,7 +1,6 @@
 <?php
 
 use FinanCalc\Calculators\DebtAmortizator;
-use FinanCalc\Calculators\DebtAmortizator\DebtInstance;
 use FinanCalc\Constants\Defaults;
 use FinanCalc\FinanCalc;
 use FinanCalc\Utils\MathFuncs;
@@ -25,7 +24,7 @@ class DebtAmortizatorTest extends PHPUnit_Framework_TestCase {
                 6,
                 0.12);
 
-        $this->processResult($debtAmortizatorFactory->getResult());
+        $this->processResult($debtAmortizatorFactory);
         $this->processArray($debtAmortizatorFactory->getResultAsArray());
     }
 
@@ -41,7 +40,7 @@ class DebtAmortizatorTest extends PHPUnit_Framework_TestCase {
             360,
             0.12);
 
-        $this->processResult($debtAmortizatorDirect->getResult());
+        $this->processResult($debtAmortizatorDirect);
         $this->processArray($debtAmortizatorDirect->getResultAsArray());
     }
 
@@ -59,7 +58,7 @@ class DebtAmortizatorTest extends PHPUnit_Framework_TestCase {
                 6,
                 0.12);
 
-        $this->processResult($debtAmortizatorFactory->getResult());
+        $this->processResult($debtAmortizatorFactory);
         $this->processArray($debtAmortizatorFactory->getResultAsArray());
     }
 
@@ -77,7 +76,7 @@ class DebtAmortizatorTest extends PHPUnit_Framework_TestCase {
                 6,
                 0.12);
 
-        $this->processResult($debtAmortizatorFactory->getResult());
+        $this->processResult($debtAmortizatorFactory);
         $this->processArray($debtAmortizatorFactory->getResultAsArray());
     }
 
@@ -96,14 +95,15 @@ class DebtAmortizatorTest extends PHPUnit_Framework_TestCase {
                 0.12,
                 360);
 
-        $this->processResult($debtAmortizatorFactory->getResult());
+        $this->processResult($debtAmortizatorFactory);
         $this->processArray($debtAmortizatorFactory->getResultAsArray());
     }
 
+
     /**
-     * @param \FinanCalc\Calculators\DebtAmortizator\DebtInstance $result
+     * @param DebtAmortizator $result
      */
-    private function processResult(DebtInstance $result) {
+    private function processResult(DebtAmortizator $result) {
         $this->assertEquals("40000", $result->getDebtPrincipal());
         $this->assertEquals("6", $result->getDebtNoOfCompoundingPeriods());
 

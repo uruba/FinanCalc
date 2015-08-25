@@ -2,73 +2,15 @@
 
 namespace FinanCalc\Calculators {
 
-    use FinanCalc\Calculators\BondYTMCalculator\BondInstance;
-    use FinanCalc\Interfaces\Calculator\CalculatorAbstract;
+    use FinanCalc\Interfaces\Calculator\BondCalculatorAbstract;
+    use FinanCalc\Utils\Helpers;
+    use FinanCalc\Utils\MathFuncs;
 
     /**
      * Class BondYTMCalculator
      * @package FinanCalc\Calculators
      */
-    class BondYTMCalculator extends CalculatorAbstract {
-        private $bondInstance;
-
-        /**
-         * @param $bondFaceValue
-         * @param $bondMarketValue
-         * @param $bondAnnualCouponRate
-         * @param $bondYearsToMaturity
-         * @param int $bondPaymentFrequency
-         */
-        function __construct($bondFaceValue,
-                             $bondMarketValue,
-                             $bondAnnualCouponRate,
-                             $bondYearsToMaturity,
-                             $bondPaymentFrequency = 1) {
-            $this->bondInstance = new BondInstance($bondFaceValue,
-                $bondMarketValue,
-                $bondAnnualCouponRate,
-                $bondYearsToMaturity,
-                $bondPaymentFrequency);
-        }
-
-        /**
-         * @return BondInstance
-         */
-        function getResult() {
-            return $this->bondInstance;
-        }
-
-        /**
-         * @return array
-         */
-        public function getResultAsArray()
-        {
-            $bondInstance = $this->getResult();
-
-            return
-                [
-                    "bondFaceValue" => $bondInstance->getBondFaceValue(),
-                    "bondMarketValue" => $bondInstance->getBondMarketValue(),
-                    "bondAnnualCouponRate" => $bondInstance->getBondAnnualCouponRate(),
-                    "bondYearsToMaturity" => $bondInstance->getBondYearsToMaturity(),
-                    "bondPaymentFrequency" => $bondInstance->getBondPaymentFrequency(),
-                    "bondApproxYTM" => $bondInstance->getApproxBondYTM()
-                ];
-        }
-    }
-}
-
-namespace FinanCalc\Calculators\BondYTMCalculator {
-
-    use FinanCalc\Interfaces\Result\BondInstanceAbstract;
-    use FinanCalc\Utils\Helpers;
-    use FinanCalc\Utils\MathFuncs;
-
-    /**
-     * Class BondInstance
-     * @package FinanCalc\Calculators\BondYTMCalculator
-     */
-    class BondInstance extends BondInstanceAbstract {
+    class BondYTMCalculator extends BondCalculatorAbstract {
 
         // market value of the bond = 'P'
         private $bondMarketValue;
@@ -98,7 +40,7 @@ namespace FinanCalc\Calculators\BondYTMCalculator {
                              $bondMarketValue,
                              $bondAnnualCouponRate,
                              $bondYearsToMaturity,
-                             $bondPaymentFrequency) {
+                             $bondPaymentFrequency = 1) {
             $this->setBondFaceValue($bondFaceValue);
             $this->setBondMarketValue($bondMarketValue);
             $this->setBondAnnualCouponRate($bondAnnualCouponRate);
@@ -159,5 +101,21 @@ namespace FinanCalc\Calculators\BondYTMCalculator {
         }
 
         // TODO – add a method for precise bond YTM calculation by means of a polynominal equation
+
+        /**
+         * @return array
+         */
+        public function getResultAsArray()
+        {
+            return
+                [
+                    "bondFaceValue" => $this->getBondFaceValue(),
+                    "bondMarketValue" => $this->getBondMarketValue(),
+                    "bondAnnualCouponRate" => $this->getBondAnnualCouponRate(),
+                    "bondYearsToMaturity" => $this->getBondYearsToMaturity(),
+                    "bondPaymentFrequency" => $this->getBondPaymentFrequency(),
+                    "bondApproxYTM" => $this->getApproxBondYTM()
+                ];
+        }
     }
 }

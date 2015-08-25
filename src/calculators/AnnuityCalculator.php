@@ -1,100 +1,21 @@
 <?php
 
 namespace FinanCalc\Calculators {
-    use FinanCalc\Calculators\AnnuityCalculator\AnnuityInstance;
+
+    use Exception;
     use FinanCalc\Constants\AnnuityPaymentTypes;
+    use FinanCalc\Constants\AnnuityValueTypes;
     use FinanCalc\Constants\Defaults;
     use FinanCalc\Interfaces\Calculator\CalculatorAbstract;
+    use FinanCalc\Utils\Helpers;
+    use FinanCalc\Utils\MathFuncs;
+    use InvalidArgumentException;
 
     /**
      * Class AnnuityCalculator
      * @package FinanCalc\Calculators
      */
     class AnnuityCalculator extends CalculatorAbstract {
-        private $annuityInstance;
-
-        /**
-         * @param $annuitySinglePaymentAmount
-         * @param $annuityNoOfCompoundingPeriods
-         * @param $annuityInterest
-         * @param $annuityPeriodLength
-         */
-        function __construct($annuitySinglePaymentAmount,
-                             $annuityNoOfCompoundingPeriods,
-                             $annuityInterest,
-                             $annuityPeriodLength = Defaults::LENGTH_YEAR_360_30) {
-
-            $this->annuityInstance = new AnnuityInstance($annuitySinglePaymentAmount,
-                                                         $annuityNoOfCompoundingPeriods,
-                                                         $annuityInterest,
-                                                         $annuityPeriodLength);
-        }
-
-        /**
-         * @return AnnuityInstance
-         */
-        public function getResult()
-        {
-            return $this->annuityInstance;
-        }
-
-
-        /**
-         * @return array
-         */
-        public function getResultAsArray()
-        {
-            $annuityInstance = $this->getResult();
-
-            return
-                [
-                    "annuitySinglePaymentAmount" => $annuityInstance->getAnnuitySinglePaymentAmount(),
-                    "annuityNoOfCompoundingPeriods" => $annuityInstance->getAnnuityNoOfCompoundingPeriods(),
-                    "annuityInterest" => $annuityInstance->getAnnuityInterest(),
-                    "annuityPeriodLength" =>
-                        [
-                            "years" => $annuityInstance->getAnnuityPeriodLengthInYears(),
-                            "months" => $annuityInstance->getAnnuityPeriodLengthInMonths(),
-                            "days" => $annuityInstance->getAnnuityPeriodLengthInDays()
-                        ],
-                    "annuityPresentValue" =>
-                        [
-                            "in_advance" => $annuityInstance->getAnnuityPresentValue(
-                                new AnnuityPaymentTypes(AnnuityPaymentTypes::IN_ADVANCE)
-                            ),
-                            "in_arrears" => $annuityInstance->getAnnuityPresentValue(
-                                new AnnuityPaymentTypes(AnnuityPaymentTypes::IN_ARREARS)
-                            )
-                        ],
-                    "annuityFutureValue" =>
-                        [
-                            "in_advance" => $annuityInstance->getAnnuityFutureValue(
-                                new AnnuityPaymentTypes(AnnuityPaymentTypes::IN_ADVANCE)
-                            ),
-                            "in_arrears" => $annuityInstance->getAnnuityFutureValue(
-                                new AnnuityPaymentTypes(AnnuityPaymentTypes::IN_ARREARS)
-                            )
-                        ],
-                ];
-        }
-    }
-}
-
-namespace FinanCalc\Calculators\AnnuityCalculator {
-
-    use Exception;
-    use FinanCalc\Constants\AnnuityPaymentTypes;
-    use FinanCalc\Constants\AnnuityValueTypes;
-    use FinanCalc\Constants\Defaults;
-    use FinanCalc\Utils\Helpers;
-    use FinanCalc\Utils\MathFuncs;
-    use InvalidArgumentException;
-
-    /**
-     * Class AnnuityInstance
-     * @package FinanCalc\Calculators\AnnuityCalculator
-     */
-    class AnnuityInstance {
 
         // amount of each individual payment = 'K'
         private $annuitySinglePaymentAmount;
@@ -116,7 +37,7 @@ namespace FinanCalc\Calculators\AnnuityCalculator {
         function __construct($annuitySinglePaymentAmount,
                              $annuityNoOfCompoundingPeriods,
                              $annuityInterest,
-                             $annuityPeriodLength) {
+                             $annuityPeriodLength = Defaults::LENGTH_YEAR_360_30) {
             $this->setAnnuitySinglePaymentAmount($annuitySinglePaymentAmount);
             $this->setAnnuityNoOfCompoundingPeriods($annuityNoOfCompoundingPeriods);
             $this->setAnnuityInterest($annuityInterest);
@@ -285,39 +206,39 @@ namespace FinanCalc\Calculators\AnnuityCalculator {
                 );
 
                 if ($annuityValueType->getValue() == AnnuityValueTypes::PRESENT_VALUE) {
-                   // PV numerator = 1-v^n
-                   $numerator = MathFuncs::sub(
-                       1,
-                       MathFuncs::pow(
-                           $discountFactor,
-                           $this->annuityNoOfCompoundingPeriods
-                       )
-                   );
+                    // PV numerator = 1-v^n
+                    $numerator = MathFuncs::sub(
+                        1,
+                        MathFuncs::pow(
+                            $discountFactor,
+                            $this->annuityNoOfCompoundingPeriods
+                        )
+                    );
                 } elseif ($annuityValueType->getValue() == AnnuityValueTypes::FUTURE_VALUE) {
-                   // FV numerator = (1+i)^n-1
-                   $numerator = MathFuncs::sub(
-                       MathFuncs::pow(
-                           MathFuncs::add(
-                               1,
-                               $this->annuityInterest
-                           ),
-                           $this->annuityNoOfCompoundingPeriods
-                       ),
-                       1
-                   );
+                    // FV numerator = (1+i)^n-1
+                    $numerator = MathFuncs::sub(
+                        MathFuncs::pow(
+                            MathFuncs::add(
+                                1,
+                                $this->annuityInterest
+                            ),
+                            $this->annuityNoOfCompoundingPeriods
+                        ),
+                        1
+                    );
                 }
 
                 if ($annuityPaymentType->getValue() == AnnuityPaymentTypes::IN_ADVANCE) {
-                   // in advance denom. = 1-v
-                   $denominator = MathFuncs::sub(1, $discountFactor);
+                    // in advance denom. = 1-v
+                    $denominator = MathFuncs::sub(1, $discountFactor);
                 } elseif ($annuityPaymentType->getValue() == AnnuityPaymentTypes::IN_ARREARS) {
-                   // in arrears denom. = i
-                   $denominator = $this->annuityInterest;
+                    // in arrears denom. = i
+                    $denominator = $this->annuityInterest;
                 }
 
                 if(isset($numerator) && isset($denominator)) {
                     return Helpers::roundMoneyForDisplay(
-                        // PV|FV = K*(PV|FV of unit annuity)
+                    // PV|FV = K*(PV|FV of unit annuity)
                         MathFuncs::mul(
                             MathFuncs::div(
                                 $numerator,
@@ -331,6 +252,41 @@ namespace FinanCalc\Calculators\AnnuityCalculator {
             return null;
         }
 
-
+        /**
+         * @return array
+         */
+        public function getResultAsArray()
+        {
+            return
+                [
+                    "annuitySinglePaymentAmount" => $this->getAnnuitySinglePaymentAmount(),
+                    "annuityNoOfCompoundingPeriods" => $this->getAnnuityNoOfCompoundingPeriods(),
+                    "annuityInterest" => $this->getAnnuityInterest(),
+                    "annuityPeriodLength" =>
+                        [
+                            "years" => $this->getAnnuityPeriodLengthInYears(),
+                            "months" => $this->getAnnuityPeriodLengthInMonths(),
+                            "days" => $this->getAnnuityPeriodLengthInDays()
+                        ],
+                    "annuityPresentValue" =>
+                        [
+                            "in_advance" => $this->getAnnuityPresentValue(
+                                new AnnuityPaymentTypes(AnnuityPaymentTypes::IN_ADVANCE)
+                            ),
+                            "in_arrears" => $this->getAnnuityPresentValue(
+                                new AnnuityPaymentTypes(AnnuityPaymentTypes::IN_ARREARS)
+                            )
+                        ],
+                    "annuityFutureValue" =>
+                        [
+                            "in_advance" => $this->getAnnuityFutureValue(
+                                new AnnuityPaymentTypes(AnnuityPaymentTypes::IN_ADVANCE)
+                            ),
+                            "in_arrears" => $this->getAnnuityFutureValue(
+                                new AnnuityPaymentTypes(AnnuityPaymentTypes::IN_ARREARS)
+                            )
+                        ],
+                ];
+        }
     }
 }

@@ -76,7 +76,7 @@ class BondFairValueCalculatorTest extends PHPUnit_Framework_TestCase {
      * @param BondFairValueCalculator $bondFairValueCalculator
      */
     private function assertFairValue(BondFairValueCalculator $bondFairValueCalculator) {
-        $fairValue_direct = $bondFairValueCalculator->getResult()->getBondFairValue();
+        $fairValue_direct = $bondFairValueCalculator->getBondFairValue();
         $fairValue_array = $bondFairValueCalculator->getResultAsArray()["bondFairValue"];
 
         $expected = "11038";

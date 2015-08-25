@@ -2,73 +2,15 @@
 
 namespace FinanCalc\Calculators {
 
-    use FinanCalc\Calculators\BondFairValueCalculator\BondInstance;
-    use FinanCalc\Interfaces\Calculator\CalculatorAbstract;
+    use FinanCalc\Interfaces\Calculator\BondCalculatorAbstract;
+    use FinanCalc\Utils\Helpers;
+    use FinanCalc\Utils\MathFuncs;
 
     /**
      * Class BondFairValueCalculator
      * @package FinanCalc\Calculators
      */
-    class BondFairValueCalculator extends CalculatorAbstract {
-        private $bondInstance;
-
-        /**
-         * @param $bondFaceValue
-         * @param $bondAnnualCouponRate
-         * @param $bondVIR
-         * @param $bondYearsToMaturity
-         * @param int $bondPaymentFrequency
-         */
-        function __construct($bondFaceValue,
-                             $bondAnnualCouponRate,
-                             $bondVIR,
-                             $bondYearsToMaturity,
-                             $bondPaymentFrequency = 1) {
-            $this->bondInstance = new BondInstance($bondFaceValue,
-                $bondAnnualCouponRate,
-                $bondVIR,
-                $bondYearsToMaturity,
-                $bondPaymentFrequency);
-        }
-
-        /**
-         * @return BondInstance
-         */
-        public function getResult() {
-            return $this->bondInstance;
-        }
-
-        /**
-         * @return array
-         */
-        public function getResultAsArray()
-        {
-            $bondInstance = $this->getResult();
-
-            return
-                [
-                    "bondFaceValue" => $bondInstance->getBondFaceValue(),
-                    "bondAnnualCouponRate" => $bondInstance->getBondAnnualCouponRate(),
-                    "bondVIR" => $bondInstance->getBondVIR(),
-                    "bondYearsToMaturity" => $bondInstance->getBondYearsToMaturity(),
-                    "bondFairValue" => $bondInstance->getBondFairValue()
-                ];
-        }
-    }
-}
-
-namespace FinanCalc\Calculators\BondFairValueCalculator {
-
-    use FinanCalc\Calculators\AnnuityCalculator;
-    use FinanCalc\Interfaces\Result\BondInstanceAbstract;
-    use FinanCalc\Utils\Helpers;
-    use FinanCalc\Utils\MathFuncs;
-
-    /**
-     * Class BondInstance
-     * @package FinanCalc\Calculators\BondFairValueCalculator
-     */
-    class BondInstance extends BondInstanceAbstract {
+    class BondFairValueCalculator extends BondCalculatorAbstract {
 
         // valuation interest rate of the bond = 'i'
         private $bondVIR;
@@ -98,7 +40,7 @@ namespace FinanCalc\Calculators\BondFairValueCalculator {
                              $bondAnnualCouponRate,
                              $bondVIR,
                              $bondYearsToMaturity,
-                             $bondPaymentFrequency) {
+                             $bondPaymentFrequency = 1) {
             $this->setBondFaceValue($bondFaceValue);
             $this->setBondAnnualCouponRate($bondAnnualCouponRate);
             $this->setBondVIR($bondVIR);
@@ -185,6 +127,21 @@ namespace FinanCalc\Calculators\BondFairValueCalculator {
                 );
 
             return $fairValue;
+        }
+
+        /**
+         * @return array
+         */
+        public function getResultAsArray()
+        {
+            return
+                [
+                    "bondFaceValue" => $this->getBondFaceValue(),
+                    "bondAnnualCouponRate" => $this->getBondAnnualCouponRate(),
+                    "bondVIR" => $this->getBondVIR(),
+                    "bondYearsToMaturity" => $this->getBondYearsToMaturity(),
+                    "bondFairValue" => $this->getBondFairValue()
+                ];
         }
     }
 }

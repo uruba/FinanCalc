@@ -9,7 +9,6 @@ namespace FinanCalc\Interfaces\Calculator {
      * @package FinanCalc\Interfaces
      */
     abstract class CalculatorAbstract {
-        public abstract function getResult();
         public abstract function getResultAsArray();
 
         /**

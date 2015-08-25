@@ -1,6 +1,6 @@
 <?php
 
-namespace FinanCalc\Interfaces\Result {
+namespace FinanCalc\Interfaces\Calculator {
 
     use FinanCalc\Utils\Helpers;
     use FinanCalc\Utils\MathFuncs;
@@ -9,7 +9,7 @@ namespace FinanCalc\Interfaces\Result {
      * Class BondInstanceAbstract
      * @package FinanCalc\Interfaces
      */
-    abstract class BondInstanceAbstract {
+    abstract class BondCalculatorAbstract extends CalculatorAbstract {
         // face value of the bond = 'F'
         protected $bondFaceValue;
         // coupon rate of the bond per annum = 'c'

@@ -2,80 +2,16 @@
 
 namespace FinanCalc\Calculators {
 
-    use FinanCalc\Calculators\BondDurationCalculator\BondInstance;
-    use FinanCalc\Interfaces\Calculator\CalculatorAbstract;
+    use FinanCalc\Interfaces\Calculator\BondCalculatorAbstract;
+    use FinanCalc\Utils\Helpers;
+    use FinanCalc\Utils\MathFuncs;
 
 
     /**
      * Class BondDurationCalculator
      * @package FinanCalc\Calculators
      */
-    class BondDurationCalculator extends CalculatorAbstract {
-        private $bondInstance;
-
-
-        /**
-         * @param $bondFaceValue
-         * @param $bondAnnualCouponRate
-         * @param $bondAnnualYield
-         * @param $bondYearsToMaturity
-         * @param int $bondPaymentFrequency
-         */
-        function __construct($bondFaceValue,
-                             $bondAnnualCouponRate,
-                             $bondAnnualYield,
-                             $bondYearsToMaturity,
-                             $bondPaymentFrequency = 1) {
-            $this->bondInstance = new BondInstance($bondFaceValue,
-                $bondAnnualCouponRate,
-                $bondAnnualYield,
-                $bondYearsToMaturity,
-                $bondPaymentFrequency
-                );
-        }
-
-        /**
-         * @return BondInstance
-         */
-        public function getResult() {
-            return $this->bondInstance;
-        }
-
-        /**
-         * @return array
-         */
-        public function getResultAsArray()
-        {
-            $bondInstance = $this->getResult();
-
-            return
-                [
-                    "bondFaceValue" => $bondInstance->getBondFaceValue(),
-                    "bondAnnualCouponRate" => $bondInstance->getBondAnnualCouponRate(),
-                    "bondAnnualYield" => $bondInstance->getBondAnnualYield(),
-                    "bondYearsToMaturity" => $bondInstance->getBondYearsToMaturity(),
-                    "bondPaymentFrequency" => $bondInstance->getBondPaymentFrequency(),
-                    "bondYieldPerPaymentPeriod" => $bondInstance->getBondYieldPerPaymentPeriod(),
-                    "bondNominalCashFlows" => $bondInstance->getBondNominalCashFlows(),
-                    "bondDiscountedCashFlows" => $bondInstance->getBondDiscountedCashFlows(),
-                    "bondPresentValue" => $bondInstance->getBondPresentValue(),
-                    "bondDuration" => $bondInstance->getBondDuration()
-                ];
-        }
-    }
-}
-
-namespace FinanCalc\Calculators\BondDurationCalculator {
-
-    use FinanCalc\Interfaces\Result\BondInstanceAbstract;
-    use FinanCalc\Utils\Helpers;
-    use FinanCalc\Utils\MathFuncs;
-
-    /**
-     * Class BondInstance
-     * @package FinanCalc\Calculators\BondDurationCalculator
-     */
-    class BondInstance extends BondInstanceAbstract {
+    class BondDurationCalculator extends BondCalculatorAbstract {
 
         // annual yield of the bond
         private $bondAnnualYield;
@@ -105,7 +41,7 @@ namespace FinanCalc\Calculators\BondDurationCalculator {
                              $bondAnnualCouponRate,
                              $bondAnnualYield,
                              $bondYearsToMaturity,
-                             $bondPaymentFrequency) {
+                             $bondPaymentFrequency = 1) {
             $this->setBondFaceValue($bondFaceValue);
             $this->setBondAnnualCouponRate($bondAnnualCouponRate);
             $this->setBondAnnualYield($bondAnnualYield);
@@ -212,6 +148,25 @@ namespace FinanCalc\Calculators\BondDurationCalculator {
 
             return $duration;
         }
-    }
 
+        /**
+         * @return array
+         */
+        public function getResultAsArray()
+        {
+            return
+                [
+                    "bondFaceValue" => $this->getBondFaceValue(),
+                    "bondAnnualCouponRate" => $this->getBondAnnualCouponRate(),
+                    "bondAnnualYield" => $this->getBondAnnualYield(),
+                    "bondYearsToMaturity" => $this->getBondYearsToMaturity(),
+                    "bondPaymentFrequency" => $this->getBondPaymentFrequency(),
+                    "bondYieldPerPaymentPeriod" => $this->getBondYieldPerPaymentPeriod(),
+                    "bondNominalCashFlows" => $this->getBondNominalCashFlows(),
+                    "bondDiscountedCashFlows" => $this->getBondDiscountedCashFlows(),
+                    "bondPresentValue" => $this->getBondPresentValue(),
+                    "bondDuration" => $this->getBondDuration()
+                ];
+        }
+    }
 }

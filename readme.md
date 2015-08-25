@@ -51,7 +51,7 @@ Since the library automatically keeps track of pre-defined factory methods (cont
 
 From the main *FinanCalc* object (whose instance you get by calling its static method *getInstance()*) you have to call the *getFactory()* method, which takes in the name of the factory class as a parameter of type *string* (you can find all the included factory classes in the *src/calculators/factories* directory).
 
-This method yields you the factory object, on which you can finally call the target factory method that produces the appropriate calculator instance for you (you can say that it is a factory of a factory of a desired result object – the reason for this "multi-layered factories" approach is laying ground for future extensibility of the calculator classes to provide more functionality whilst acting as a mid-layer between the top-most factory methods and the final result object).
+This method yields you the final calculator object on which you can call the appropriate methods to retrieve your results or change input parameters via its setters.
 
 ```php
 use FinanCalc\FinanCalc;
@@ -91,7 +91,7 @@ You have three options as to how to retrieve raw results of the calculations.
 
 #### Directly accessible result object
 
-It's very simple to retrieve the results. Every calculator class implementing the *CalculatorAbstract* has a getter method `getResult()`, which enables you to get an appropriate object representing the result of the calculation according to the data passed earlier to the constructor/factory method of a given calculator class.
+It's very simple to retrieve the results. ~~Every calculator class implementing the *CalculatorAbstract* has a getter method `getResult()`, which enables you to get an appropriate object representing the result of the calculation according to the data passed earlier to the constructor/factory method of a given calculator class~~ (not since the version 0.3.0, please update your code by removing the calls of the getResult() method if you're upgrading from any of the earlier versions).
 
 We'll demonstrate the process on our *AnnuityCalculator* – step by step, day by day:
 
@@ -117,23 +117,17 @@ We'll demonstrate the process on our *AnnuityCalculator* – step by step, day b
                                         0.15);
     ```
 
-2. step is to get the mentioned "result" object:
-
-    ```php
-    $result = $annuityCalculatorObject->getResult();
-    ```
-
-3. step is to get the desired value by exploiting appropriate getter methods (for a detailed list of available gettter methods please refer to the **Reference** chapter)
+2. step is to get the desired value by exploiting appropriate getter methods (for a detailed list of available gettter methods please refer to the **Reference** chapter)
 
     ```php
     // get the present value of the annuity in arrears
     // (as a string)
-    $PV = $result->getPresentValue(
+    $PV = $annuityCalculatorObject->getPresentValue(
                         new AnnuityPaymentTypes(AnnuityPaymentTypes::IN_ARREARS)
                     );
     // get the future value of the annuity in arrears
     // (as a string)
-    $FV = $result->getFutureValue(
+    $FV = $annuityCalculatorObject->getFutureValue(
                         new AnnuityPaymentTypes(AnnuityPaymentTypes::IN_ARREARS)
                     );
     ```
@@ -169,7 +163,7 @@ We'll again demonstrate the process on our venerable *AnnuityCalculator* using t
                                         0.15);
     ```
 
-2. step is to get a serialized result object
+2. step is to get the serialized result object
 
     ```php
     $result = $annuityCalculatorObject->getSerializedResult(new XMLSerializer());
@@ -231,7 +225,7 @@ Let's demonstrate the process for the last time on our *AnnuityCalculator*:
                                         0.15);
     ```
 
-2. step is to get a result array
+2. step is to get the result array
 
     ```php
     $result = $annuityCalculatorObject->getResultAsArray();
@@ -288,19 +282,7 @@ namespace `FinanCalc\Calculators`
   * *$annuityNoOfCompoundingPeriods* = **'n'** – number of periods pertaining to the interest compounding; if 'n = 0', the annuity is considered a perpetuity
   * *$annuityInterest* = **'i'** – the interest rate *per a single payment period* by which the unpaid balance is multiplied (i.e., a decimal number typically lower than 1 and greater than 0)
   * *$annuityPeriodLength* = length of a single period in days (number greater than zero)
-* **getResult()** – gets the ***AnnuityInstance*** object manufactured by the constructor
-* **getResultAsArray()** – gets the array of the pertinent ***AnnuityInstance***'s property values
-* **getSerializedResult(SerializerInterface $serializer)** – gets the serialized result, according to the passed SerializerInterface object
 
-#### AnnuityCalculatorFactory (*AnnuityCalculator's factory object*)
-namespace `FinanCalc\Calculators\Factories`
-* **newYearlyAnnuity($annuitySinglePaymentAmount, $annuityNoOfCompoundingPeriods, $annuityInterest)**
-* **newMonthlyAnnuity($annuitySinglePaymentAmount, $annuityNoOfCompoundingPeriods, $annuityInterest)**
-* **newDailyAnnuity($annuitySinglePaymentAmount, $annuityNoOfCompoundingPeriods, $annuityInterest)**
-* **newPerpetuity($annuitySinglePaymentAmount, $annuityInterest)**
-
-#### AnnuityInstance (*AnnuityCalculator's result object*)
-namespace `FinanCalc\Calculators\AnnuityCalculator`
 ##### Setters
 * **setAnnuitySinglePaymentAmount($annuitySinglePaymentAmount)** – sets K
 * **setAnnuityNoOfCompoundingPeriods($annuityNoOfCompoundingPeriods)** – sets n
@@ -315,15 +297,28 @@ namespace `FinanCalc\Calculators\AnnuityCalculator`
 * **getAnnuityPeriodLengthInMonths()** – gets the length of each compounding periods in months
 * **getAnnuityPeriodLengthInDays()** – gets the length of each compounding periods in days
 * **getAnnuityPresentValue(AnnuityPaymentTypes $annuityType)** – gets the present value of the annuity
-  * *AnuityPaymentTypes $annuityType* = determines whether the payments are made either at the beginning or the end of each of the annuity's periods
-  [*optional for perpetuities*]
+* *AnuityPaymentTypes $annuityType* = determines whether the payments are made either at the beginning or the end of each of the annuity's periods
+[*optional for perpetuities*]
 * **getAnnuityFutureValue(AnnuityPaymentTypes $annuityType)** – gets the future value of the annuity
-  * *AnuityPaymentTypes $annuityType* = determines whether the payments are made either at the beginning or the end of each of the annuity's periods
-  [*optional for perpetuities*]
+* *AnuityPaymentTypes $annuityType* = determines whether the payments are made either at the beginning or the end of each of the annuity's periods
+[*optional for perpetuities*]
 * **getAnnuityValue(AnnuityPaymentTypes $annuityPaymentType, AnnuityValueTypes $annuityValueType)** – gets either the present or the future value of the annuity
-  * *AnuityPaymentTypes $annuityPaymentType* = determines whether the payments are made either at the beginning or the end of each of the annuity's periods
-  [*optional for perpetuities*]
-  * *AnuityValueTypes $annuityValueType* = determines whether the result is the present or the future value of the annuity
+* *AnuityPaymentTypes $annuityPaymentType* = determines whether the payments are made either at the beginning or the end of each of the annuity's periods
+[*optional for perpetuities*]
+* *AnuityValueTypes $annuityValueType* = determines whether the result is the present or the future value of the annuity
+* **getResultAsArray()** – gets the array of the pertinent ***AnnuityInstance***'s property values
+* **getSerializedResult(SerializerInterface $serializer)** – gets the serialized result, according to the passed SerializerInterface object
+
+#### AnnuityCalculatorFactory (*AnnuityCalculator's factory object*)
+namespace `FinanCalc\Calculators\Factories`
+* **newYearlyAnnuity($annuitySinglePaymentAmount, $annuityNoOfCompoundingPeriods, $annuityInterest)**
+* **newMonthlyAnnuity($annuitySinglePaymentAmount, $annuityNoOfCompoundingPeriods, $annuityInterest)**
+* **newDailyAnnuity($annuitySinglePaymentAmount, $annuityNoOfCompoundingPeriods, $annuityInterest)**
+* **newPerpetuity($annuitySinglePaymentAmount, $annuityInterest)**
+
+#### AnnuityInstance (*AnnuityCalculator's result object*)
+namespace `FinanCalc\Calculators\AnnuityCalculator`
+
 
 #### AnnuityPaymentTypes
 namespace `FinanCalc\Constants`
@@ -345,19 +340,7 @@ namespace `FinanCalc\Calculators`
   * *$debtPeriodLength* = length of each of the debt's compounding periods in days (number greater than zero)
   * *$debtInterest* = **'i'** – interest by which the outstanding balance is multiplied (i.e., a decimal number typically lower than 1 and greater than 0)
   * *AnnuityPaymentTypes $debtPaymentType* = determines whether the debt is repaid in advance (at the beginning of each period) or in arrears (in the end of each period)
-* **getResult()** – gets the ***DebtInstance*** object manufactured by the constructor
-* **getResultAsArray()** – gets the array of the pertinent ***DebtInstance***'s property values
-* **getSerializedResult(SerializerInterface $serializer)** – gets the serialized result, according to the passed SerializerInterface object
 
-#### DebtAmortizatorFactory (*DebtAmortizator's factory object*)
-namespace `FinanCalc\Calculators\Factories`
-* **newYearlyDebtAmortization($debtPrincipal, $debtNoOfPeriods, $debtInterest)**
-* **newMonthlyDebtAmortization($debtPrincipal, $debtNoOfPeriods, $debtInterest)**
-* **newDailyDebtAmortization($debtPrincipal, $debtNoOfPeriods, $debtInterest)**
-* **newDebtAmortizationCustomPeriodLength($debtPrincipal, $debtNoOfPeriods, $debtInterest, $debtSinglePeriodLength)**
-
-#### DebtInstance (*DebtAmortizator's result object*)
-namespace `FinanCalc\Calculators\DebtAmortizator`
 ##### Setters
 * **setDebtPrincipal($debtPrincipal)** – sets PV
 * **setDebtNoOfCompoundingPeriods($debtNoOfCompoundingPeriods)** – sets n
@@ -377,6 +360,15 @@ namespace `FinanCalc\Calculators\DebtAmortizator`
 * **getDebtDurationInDays()** – gets the duration of the debt in days
 * **getDebtInterest()** – gets i
 * **getDebtRepayments()** – gets the **array of RepaymentInstance** objects representing all the individual payments within the debt comprised into an array
+* **getResultAsArray()** – gets the array of the pertinent ***DebtInstance***'s property values
+* **getSerializedResult(SerializerInterface $serializer)** – gets the serialized result, according to the passed SerializerInterface object
+
+#### DebtAmortizatorFactory (*DebtAmortizator's factory object*)
+namespace `FinanCalc\Calculators\Factories`
+* **newYearlyDebtAmortization($debtPrincipal, $debtNoOfPeriods, $debtInterest)**
+* **newMonthlyDebtAmortization($debtPrincipal, $debtNoOfPeriods, $debtInterest)**
+* **newDailyDebtAmortization($debtPrincipal, $debtNoOfPeriods, $debtInterest)**
+* **newDebtAmortizationCustomPeriodLength($debtPrincipal, $debtNoOfPeriods, $debtInterest, $debtSinglePeriodLength)**
 
 #### RepaymentInstance
 namespace `FinanCalc\Calculators\DebtAmortizator`
@@ -394,20 +386,7 @@ namespace `FinanCalc\Calculators`
   * *$bondVIR* = **'i' or 'VIR'** – valuation interest rate of the bond (i.e., a decimal number typically lower than 1 and greater than 0)
   * *bondYearsToMaturity* = number of years to the maturity of the bond (number greater than zero, can be a decimal number)
   * *bondPaymentFrequency* = frequency of bond payments (expressed in a divisor of 12 months ~ 1 year); e.g.: divisor 2 means semi-annual payments
-* **getResult()** – gets the ***BondInstance*** object manufactured by the constructor
-* **getResultAsArray()** – gets the array of the pertinent ***BondInstance***'s property values
-* **getSerializedResult(SerializerInterface $serializer)** – gets the serialized result, according to the passed SerializerInterface object
 
-#### BondFairValueCalculatorFactory (*BondFairValueCalculator's factory object*)
-namespace `FinanCalc\Calculators\Factories`
-* **newAnnualCouponsBond($bondFaceValue, $bondAnnualCouponRate, $bondVIR, $bondYearsToMaturity)**
-* **newSemiAnnualCouponsBond($bondFaceValue, $bondAnnualCouponRate, $bondVIR, $bondYearsToMaturity)**
-* **newQuarterlyCouponsBond($bondFaceValue, $bondAnnualCouponRate, $bondVIR, $bondYearsToMaturity)**
-* **newMonthlyCouponsBond($bondFaceValue, $bondAnnualCouponRate, $bondVIR, $bondYearsToMaturity)**
-* **newCustomCouponFrequencyBond($bondFaceValue, $bondAnnualCouponRate, $bondVIR, $bondYearsToMaturity, $bondPaymentFrequency)**
-
-#### BondInstance (*BondFairValueCalculator's result object*)
-namespace `FinanCalc\Calculators\BondFairValueCalculator`
 ##### Setters
 * **setBondFaceValue($bondFaceValue)** – sets F
 * **setBondAnnualCouponRate($bondAnnualCouponRate)** – sets c
@@ -423,6 +402,20 @@ namespace `FinanCalc\Calculators\BondFairValueCalculator`
 * **getBondPaymentFrequency()** – gets the frequency of bond payments
 * **getBondNoOfPayments()** – gets the total number of payments during the lifespan of the bond
 * **getBondFairValue()** – gets the fair value of the bond [calculated as present value of future cashflows corresponding to the bond by means of the valuation interest rate]
+* **getResultAsArray()** – gets the array of the pertinent ***BondInstance***'s property values
+* **getSerializedResult(SerializerInterface $serializer)** – gets the serialized result, according to the passed SerializerInterface object
+
+#### BondFairValueCalculatorFactory (*BondFairValueCalculator's factory object*)
+namespace `FinanCalc\Calculators\Factories`
+* **newAnnualCouponsBond($bondFaceValue, $bondAnnualCouponRate, $bondVIR, $bondYearsToMaturity)**
+* **newSemiAnnualCouponsBond($bondFaceValue, $bondAnnualCouponRate, $bondVIR, $bondYearsToMaturity)**
+* **newQuarterlyCouponsBond($bondFaceValue, $bondAnnualCouponRate, $bondVIR, $bondYearsToMaturity)**
+* **newMonthlyCouponsBond($bondFaceValue, $bondAnnualCouponRate, $bondVIR, $bondYearsToMaturity)**
+* **newCustomCouponFrequencyBond($bondFaceValue, $bondAnnualCouponRate, $bondVIR, $bondYearsToMaturity, $bondPaymentFrequency)**
+
+#### BondInstance (*BondFairValueCalculator's result object*)
+namespace `FinanCalc\Calculators\BondFairValueCalculator`
+
 
 * * *
 
@@ -434,20 +427,7 @@ namespace `FinanCalc\Calculators`
   * *$bondAnnualCouponRate* = **'c'** – annual coupon rate of the bond (i.e., a decimal number typically lower than 1 and greater than 0)
   * *bondYearsToMaturity* = number of years to the maturity of the bond (number greater than zero, can be a decimal number)
   * *bondPaymentFrequency* = frequency of bond payments (expressed in a divisor of 12 months ~ 1 year); e.g.: divisor 2 means semi-annual payments
-* **getResult()** – gets the ***BondInstance*** object manufactured by the constructor
-* **getResultAsArray()** – gets the array of the pertinent ***BondInstance***'s property values
-* **getSerializedResult(SerializerInterface $serializer)** – gets the serialized result, according to the passed SerializerInterface object
 
-#### BondYTMCalculatorFactory (*BondYTMCalculator's factory object*)
-namespace `FinanCalc\Calculators\Factories`
-* **newAnnualCouponsBond($bondFaceValue, $bondMarketValue, $bondAnnualCouponRate, $bondYearsToMaturity)**
-* **newSemiAnnualCouponsBond($bondFaceValue, $bondMarketValue, $bondAnnualCouponRate, $bondYearsToMaturity)**
-* **newQuarterlyCouponsBond($bondFaceValue, $bondMarketValue, $bondAnnualCouponRate, $bondYearsToMaturity)**
-* **newMonthlyCouponsBond($bondFaceValue, $bondMarketValue, $bondAnnualCouponRate, $bondYearsToMaturity)**
-* **newCustomCouponFrequencyBond($bondFaceValue, $bondMarketValue, $bondAnnualCouponRate, $bondYearsToMaturity, $bondPaymentFrequency)**
-
-#### BondInstance (*BondYTMCalculator's result object*)
-namespace `FinanCalc\Calculators\BondYTMCalculator`
 ##### Setters
 * **setBondFaceValue($bondFaceValue)** – sets F
 * **setBondMarketValue($bondMarketValue)** – sets the market value of the bond
@@ -463,7 +443,16 @@ namespace `FinanCalc\Calculators\BondYTMCalculator`
 * **getBondPaymentFrequency()** – gets the frequency of bond payments
 * **getBondNoOfPayments()** – gets the total number of payments during the lifespan of the bond
 * **getApproxBondYTM()** – gets the approximate value of the bond's yield to maturity in the form of a decimal number [it is the internal rate of return of the bond]
+* **getResultAsArray()** – gets the array of the pertinent ***BondInstance***'s property values
+* **getSerializedResult(SerializerInterface $serializer)** – gets the serialized result, according to the passed SerializerInterface object
 
+#### BondYTMCalculatorFactory (*BondYTMCalculator's factory object*)
+namespace `FinanCalc\Calculators\Factories`
+* **newAnnualCouponsBond($bondFaceValue, $bondMarketValue, $bondAnnualCouponRate, $bondYearsToMaturity)**
+* **newSemiAnnualCouponsBond($bondFaceValue, $bondMarketValue, $bondAnnualCouponRate, $bondYearsToMaturity)**
+* **newQuarterlyCouponsBond($bondFaceValue, $bondMarketValue, $bondAnnualCouponRate, $bondYearsToMaturity)**
+* **newMonthlyCouponsBond($bondFaceValue, $bondMarketValue, $bondAnnualCouponRate, $bondYearsToMaturity)**
+* **newCustomCouponFrequencyBond($bondFaceValue, $bondMarketValue, $bondAnnualCouponRate, $bondYearsToMaturity, $bondPaymentFrequency)**
 
 * * *
 
@@ -475,20 +464,7 @@ namespace `FinanCalc\Calculators`
   * *$bondAnnualYield* = annual yield of the bond (calculated as an interest rate divided by the bond's' value)
   * *bondYearsToMaturity* = number of years to the maturity of the bond (number greater than zero, can be a decimal number)
   * *bondPaymentFrequency* = frequency of bond payments (expressed in a divisor of 12 months ~ 1 year); e.g.: divisor 2 means semi-annual payments
-* **getResult()** – gets the ***BondInstance*** object manufactured by the constructor
-* **getResultAsArray()** – gets the array of the pertinent ***BondInstance***'s property values
-* **getSerializedResult(SerializerInterface $serializer)** – gets the serialized result, according to the passed SerializerInterface object
 
-#### BondDurationCalculatorFactory (*BondDurationCalculator's factory object*)
-namespace `FinanCalc\Calculators\Factories`
-* **newAnnualCouponsBond($bondFaceValue, $bondAnnualCouponRate, $bondAnnualYield, $bondYearsToMaturity)**
-* **newSemiAnnualCouponsBond($bondFaceValue, $bondAnnualCouponRate, $bondAnnualYield, $bondYearsToMaturity)**
-* **newQuarterlyCouponsBond($bondFaceValue, $bondAnnualCouponRate, $bondAnnualYield, $bondYearsToMaturity)**
-* **newMonthlyCouponsBond($bondFaceValue, $bondAnnualCouponRate, $bondAnnualYield, $bondYearsToMaturity)**
-* **newCustomCouponFrequencyBond($bondFaceValue, $bondAnnualCouponRate, $bondAnnualYield, $bondYearsToMaturity, $bondPaymentFrequency)**
-
-#### BondInstance (*BondDurationCalculator's result object*)
-namespace `FinanCalc\Calculators\BondDurationCalculator`
 ##### Setters
 * **setBondFaceValue($bondFaceValue)** – sets F
 * **setBondAnnualCouponRate($bondAnnualCouponRate)** – sets c
@@ -508,6 +484,16 @@ namespace `FinanCalc\Calculators\BondDurationCalculator`
 * **getBondDiscountedCashFlows()** – gets an array of the bond's discounted cash flows (nominal cash flows which are discounted by the means of the bond's yield per period)
 * **getBondPresentValue()** – gets the present value of the bond which is represented by sum of all the bond's discounted cash flows (i.e., all the array members returned by the method getBondDiscountedCashFlows() are summed up)
 * **getBondDuration()** – gets the bond's duration in years (can be a decimal number)
+* **getResultAsArray()** – gets the array of the pertinent ***BondInstance***'s property values
+* **getSerializedResult(SerializerInterface $serializer)** – gets the serialized result, according to the passed SerializerInterface object
+
+#### BondDurationCalculatorFactory (*BondDurationCalculator's factory object*)
+namespace `FinanCalc\Calculators\Factories`
+* **newAnnualCouponsBond($bondFaceValue, $bondAnnualCouponRate, $bondAnnualYield, $bondYearsToMaturity)**
+* **newSemiAnnualCouponsBond($bondFaceValue, $bondAnnualCouponRate, $bondAnnualYield, $bondYearsToMaturity)**
+* **newQuarterlyCouponsBond($bondFaceValue, $bondAnnualCouponRate, $bondAnnualYield, $bondYearsToMaturity)**
+* **newMonthlyCouponsBond($bondFaceValue, $bondAnnualCouponRate, $bondAnnualYield, $bondYearsToMaturity)**
+* **newCustomCouponFrequencyBond($bondFaceValue, $bondAnnualCouponRate, $bondAnnualYield, $bondYearsToMaturity, $bondPaymentFrequency)**
 
 * * *
 

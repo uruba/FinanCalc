@@ -78,7 +78,7 @@ class BondYTMCalculatorTest extends PHPUnit_Framework_TestCase {
      * @param BondYTMCalculator $bondYTMCalculator
      */
     private function assertApproxBondYTM(BondYTMCalculator $bondYTMCalculator) {
-        $approxBondYTM_direct = $bondYTMCalculator->getResult()->getApproxBondYTM();
+        $approxBondYTM_direct = $bondYTMCalculator->getApproxBondYTM();
         $approxBondYTM_array = $bondYTMCalculator->getResultAsArray()["bondApproxYTM"];
 
         $expected = "0.1147";
