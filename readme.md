@@ -316,10 +316,6 @@ namespace `FinanCalc\Calculators\Factories`
 * **newDailyAnnuity($annuitySinglePaymentAmount, $annuityNoOfCompoundingPeriods, $annuityInterest)**
 * **newPerpetuity($annuitySinglePaymentAmount, $annuityInterest)**
 
-#### AnnuityInstance (*AnnuityCalculator's result object*)
-namespace `FinanCalc\Calculators\AnnuityCalculator`
-
-
 #### AnnuityPaymentTypes
 namespace `FinanCalc\Constants`
 * *IN_ADVANCE* = 1
@@ -412,10 +408,6 @@ namespace `FinanCalc\Calculators\Factories`
 * **newQuarterlyCouponsBond($bondFaceValue, $bondAnnualCouponRate, $bondVIR, $bondYearsToMaturity)**
 * **newMonthlyCouponsBond($bondFaceValue, $bondAnnualCouponRate, $bondVIR, $bondYearsToMaturity)**
 * **newCustomCouponFrequencyBond($bondFaceValue, $bondAnnualCouponRate, $bondVIR, $bondYearsToMaturity, $bondPaymentFrequency)**
-
-#### BondInstance (*BondFairValueCalculator's result object*)
-namespace `FinanCalc\Calculators\BondFairValueCalculator`
-
 
 * * *
 
