@@ -332,7 +332,7 @@ namespace `FinanCalc\Constants`
 
 ### DebtAmortizator
 namespace `FinanCalc\Calculators`
-* **__construct($debtPrincipal, $debtNoOfCompoundingPeriods, $debtPeriodLength, $debtInterest, AnnuityPaymentTypes $debtPaymentType)**
+* **__construct($debtPrincipal, $debtNoOfCompoundingPeriods, $debtPeriodLength, $debtInterest)**
   * *$debtPrincipal* = **'PV'** – the principal of the debt (number greater than zero)
   * *$debtNoOfCompoundingPeriods* = **'n'** – number of the debt's compounding periods (number greater than zero)
   * *$debtPeriodLength* = length of each of the debt's compounding periods in days (number greater than zero)
