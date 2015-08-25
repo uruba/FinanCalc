@@ -22,8 +22,8 @@ namespace FinanCalc\Calculators\Factories {
             return new AnnuityCalculator(
                 $annuitySinglePaymentAmount,
                 $annuityNoOfCompoundingPeriods,
-                $annuityInterest,
-                Defaults::LENGTH_YEAR_360_30);
+                Defaults::LENGTH_YEAR_360_30,
+                $annuityInterest);
         }
 
         /**
@@ -36,8 +36,8 @@ namespace FinanCalc\Calculators\Factories {
             return new AnnuityCalculator(
                 $annuitySinglePaymentAmount,
                 $annuityNoOfCompoundingPeriods,
-                $annuityInterest,
-                Defaults::LENGTH_MONTH_360_30);
+                Defaults::LENGTH_MONTH_360_30,
+                $annuityInterest);
         }
 
         /**
@@ -50,8 +50,8 @@ namespace FinanCalc\Calculators\Factories {
             return new AnnuityCalculator(
                 $annuitySinglePaymentAmount,
                 $annuityNoOfCompoundingPeriods,
-                $annuityInterest,
-                Defaults::LENGTH_DAY_360_30);
+                Defaults::LENGTH_DAY_360_30,
+                $annuityInterest);
         }
 
         /**
@@ -62,6 +62,7 @@ namespace FinanCalc\Calculators\Factories {
         public function newPerpetuity($annuitySinglePaymentAmount, $annuityInterest) {
             return new AnnuityCalculator(
                 $annuitySinglePaymentAmount,
+                0,
                 0,
                 $annuityInterest);
         }

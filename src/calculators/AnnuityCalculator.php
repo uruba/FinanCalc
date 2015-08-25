@@ -30,18 +30,18 @@ namespace FinanCalc\Calculators {
         /**
          * @param $annuitySinglePaymentAmount
          * @param $annuityNoOfCompoundingPeriods
-         * @param $annuityInterest
          * @param $annuityPeriodLength
+         * @param $annuityInterest
          * @throws InvalidArgumentException
          */
         function __construct($annuitySinglePaymentAmount,
                              $annuityNoOfCompoundingPeriods,
-                             $annuityInterest,
-                             $annuityPeriodLength = Defaults::LENGTH_YEAR_360_30) {
+                             $annuityPeriodLength,
+                             $annuityInterest) {
             $this->setAnnuitySinglePaymentAmount($annuitySinglePaymentAmount);
             $this->setAnnuityNoOfCompoundingPeriods($annuityNoOfCompoundingPeriods);
-            $this->setAnnuityInterest($annuityInterest);
             $this->setAnnuityPeriodLength($annuityPeriodLength);
+            $this->setAnnuityInterest($annuityInterest);
         }
 
         /**
@@ -68,15 +68,6 @@ namespace FinanCalc\Calculators {
         }
 
         /**
-         * @param $annuityInterest
-         */
-        public function setAnnuityInterest($annuityInterest) {
-            if(Helpers::checkIfPositiveNumberOrThrowAnException($annuityInterest)) {
-                $this->annuityInterest = (string)$annuityInterest;
-            }
-        }
-
-        /**
          * @param $annuityPeriodLength
          */
         public function setAnnuityPeriodLength($annuityPeriodLength) {
@@ -86,6 +77,15 @@ namespace FinanCalc\Calculators {
                 } else {
                     $this->annuityPeriodLength = (string)$annuityPeriodLength;
                 }
+            }
+        }
+
+        /**
+         * @param $annuityInterest
+         */
+        public function setAnnuityInterest($annuityInterest) {
+            if(Helpers::checkIfPositiveNumberOrThrowAnException($annuityInterest)) {
+                $this->annuityInterest = (string)$annuityInterest;
             }
         }
 
@@ -101,13 +101,6 @@ namespace FinanCalc\Calculators {
          */
         public function getAnnuityNoOfCompoundingPeriods() {
             return $this->annuityNoOfCompoundingPeriods;
-        }
-
-        /**
-         * @return mixed
-         */
-        public function getAnnuityInterest() {
-            return $this->annuityInterest;
         }
 
         /**
@@ -138,6 +131,13 @@ namespace FinanCalc\Calculators {
                 $this->annuityPeriodLength,
                 Defaults::LENGTH_DAY_360_30
             );
+        }
+
+        /**
+         * @return mixed
+         */
+        public function getAnnuityInterest() {
+            return $this->annuityInterest;
         }
 
         /**

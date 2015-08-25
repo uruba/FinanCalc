@@ -2,6 +2,7 @@
 
 use FinanCalc\Calculators\AnnuityCalculator;
 use FinanCalc\Constants\AnnuityPaymentTypes;
+use FinanCalc\Constants\Defaults;
 
 /**
  * Class AnnuityCalculatorTest
@@ -244,7 +245,7 @@ class AnnuityCalculatorTest extends PHPUnit_Framework_TestCase {
      * @return \FinanCalc\Calculators\AnnuityCalculator
      */
     private function getAnnuityCalculatorDirectYearly() {
-        return new \FinanCalc\Calculators\AnnuityCalculator(100000, 5, 0.15, 360);
+        return new \FinanCalc\Calculators\AnnuityCalculator(100000, 5, Defaults::LENGTH_YEAR_360_30, 0.15);
     }
 
     /**

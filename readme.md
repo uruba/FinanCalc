@@ -282,22 +282,22 @@ namespace `FinanCalc\Calculators`
 * **__construct($annuitySinglePaymentAmount, $annuityNoOfCompoundingPeriods, $annuityInterest, $annuityPeriodLength)**
   * *$annuitySinglePaymentAmount* = **'K'** – amount of each individual payment (number greater than zero)
   * *$annuityNoOfCompoundingPeriods* = **'n'** – number of periods pertaining to the interest compounding; if 'n = 0', the annuity is considered a perpetuity
-  * *$annuityInterest* = **'i'** – the interest rate *per a single payment period* by which the unpaid balance is multiplied (i.e., a decimal number typically lower than 1 and greater than 0)
   * *$annuityPeriodLength* = length of a single period in days (number greater than zero)
+  * *$annuityInterest* = **'i'** – the interest rate *per a single payment period* by which the unpaid balance is multiplied (i.e., a decimal number typically lower than 1 and greater than 0)
 
 ##### Setters
 * **setAnnuitySinglePaymentAmount($annuitySinglePaymentAmount)** – sets K
 * **setAnnuityNoOfCompoundingPeriods($annuityNoOfCompoundingPeriods)** – sets n
-* **setAnnuityInterest($annuityInterest)** – sets i
 * **setAnnuityPeriodLength($annuityPeriodLength)** – sets the length of each compounding period in days
+* **setAnnuityInterest($annuityInterest)** – sets i
 
 ##### Getters
 * **getAnnuitySinglePaymentAmount()** – gets K
 * **getAnnuityNoOfCompoundingPeriods()** – gets n
-* **getAnnuityInterest()** – gets i
 * **getAnnuityPeriodLengthInYears()** – gets the length of each compounding periods in years
 * **getAnnuityPeriodLengthInMonths()** – gets the length of each compounding periods in months
 * **getAnnuityPeriodLengthInDays()** – gets the length of each compounding periods in days
+* **getAnnuityInterest()** – gets i
 * **getAnnuityPresentValue(AnnuityPaymentTypes $annuityType)** – gets the present value of the annuity
 * *AnuityPaymentTypes $annuityType* = determines whether the payments are made either at the beginning or the end of each of the annuity's periods
 [*optional for perpetuities*]
