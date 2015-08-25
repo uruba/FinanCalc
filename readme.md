@@ -336,8 +336,7 @@ namespace `FinanCalc\Calculators`
   * *$debtPrincipal* = **'PV'** – the principal of the debt (number greater than zero)
   * *$debtNoOfCompoundingPeriods* = **'n'** – number of the debt's compounding periods (number greater than zero)
   * *$debtPeriodLength* = length of each of the debt's compounding periods in days (number greater than zero)
-  * *$debtInterest* = **'i'** – interest by which the outstanding balance is multiplied (i.e., a decimal number typically lower than 1 and greater than 0)
-  * *AnnuityPaymentTypes $debtPaymentType* = determines whether the debt is repaid in advance (at the beginning of each period) or in arrears (in the end of each period)
+  * *$debtInterest* = **'i'** – interest per a compounding period, by which the outstanding balance is multiplied (i.e., a decimal number typically lower than 1 and greater than 0)
 
 ##### Setters
 * **setDebtPrincipal($debtPrincipal)** – sets PV

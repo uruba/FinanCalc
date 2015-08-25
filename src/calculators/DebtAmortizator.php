@@ -29,8 +29,8 @@ namespace FinanCalc\Calculators {
          *
          * @param string $debtPrincipal                [Value of the debt's principal as a string]
          * @param string $debtNoOfCompoundingPeriods   [Number of the debt's compounding periods as a string]
-         * @param string $debtInterest                 [Value of the debt's interest in a decimal number 'multiplier' form as a string]
          * @param string $debtPeriodLength             [Length of each of the debt's compounding periods in days as a string]
+         * @param string $debtInterest                 [Value of the debt's interest in a decimal number 'multiplier' form as a string]
          * @throws \InvalidArgumentException
          */
         function __construct($debtPrincipal,
