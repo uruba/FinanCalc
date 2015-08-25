@@ -503,8 +503,8 @@ namespace `FinanCalc\Calculators`
 * **setNoOfStocks($noOfStocks)** – sets the number of stocks
 
 #### Getters
-* **getTotalDividends()** – sets the sum of dividends per a period
-* **getEarningsAfterTaxes()** – sets the amount earned after taxes
+* **getTotalDividends()** – gets the sum of dividends per a period
+* **getEarningsAfterTaxes()** – gets the amount earned after taxes
 * **getNoOfStocks()** – gets the number of stocks
 * **getDividendPerStock()** – gets the dividend per stock (DPS) value
 * **getEarningsPerStock()** – gets the earning per stock (EPS) value
