@@ -21,6 +21,7 @@ A lightweight, simple and easy PHP library for calculating annuities (e.g., mort
 Much more to come – including calculators for discount securities, ~~bond valuation~~, ~~duration~~, stock pricing...
 Also looking into other optimizations and improvements. Current hot ideas:
 * utilization of reflection in the getters of the calculators' result array for easier and less error-prone implementation of new calculator classes
+* time functions for determining the exact dates of events pertaining to calculated instruments
 
 >**Please bear in mind that this is an ALPHA version containing incomplete features. The codebase is prone to drastic changes during its way out of the alpha stage.**
 
@@ -61,7 +62,7 @@ use FinanCalc\FinanCalc;
 $annuityCalculatorFactory = FinanCalc
     ::getInstance()
     ->getFactory('DebtAmortizatorFactory')
-    ->newYearlyDebtAmortizationInArrears(
+    ->newYearlyDebtAmortization(
         40000,
         6,
         0.12);
@@ -81,10 +82,8 @@ use FinanCalc\Constants\AnnuityPaymentTypes;
 $annuityCalculatorDirect = new DebtAmortizator(
                                        40000,
                                        6,
-                                       0.12,
                                        Defaults::LENGTH_YEAR_360_30,
-                                       new AnnuityPaymentTypes(AnnuityPaymentTypes::IN_ARREARS)
-                                       );
+                                       0.12);
 ```
 
 ### Getting results
