@@ -21,14 +21,14 @@ namespace FinanCalc\Calculators {
 
         /**
          * @param $totalDividends
-         * @param $earningAfterTaxes
+         * @param $earningsAfterTaxes
          * @param $noOfStocks
          */
         function __construct($totalDividends,
-                             $earningAfterTaxes,
+                             $earningsAfterTaxes,
                              $noOfStocks) {
             $this->setTotalDividends($totalDividends);
-            $this->setEarningsAfterTaxes($earningAfterTaxes);
+            $this->setEarningsAfterTaxes($earningsAfterTaxes);
             $this->setNoOfStocks($noOfStocks);
         }
 
@@ -70,14 +70,14 @@ namespace FinanCalc\Calculators {
          * @return mixed
          */
         public function getEarningsAfterTaxes() {
-            return $this->totalDividends;
+            return $this->earningsAfterTaxes;
         }
 
         /**
          * @return mixed
          */
         public function getNoOfStocks() {
-            return $this->totalDividends;
+            return $this->noOfStocks;
         }
 
         /**

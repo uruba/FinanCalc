@@ -492,10 +492,10 @@ namespace `FinanCalc\Calculators\Factories`
 
 ### StockInvestmentRatiosCalculator
 namespace `FinanCalc\Calculators`
-* **__construct($totalDividends, $earningAfterTaxes, $noOfStocks)**
-  * *$totalDividends* – sum of dividends per a period
-  * *$earningAfterTaxes* – amount earned after taxes
-  * *$noOfStocks* – number of stocks (total if constant, average if fluctuating)
+* **__construct($totalDividends, $earningsAfterTaxes, $noOfStocks)**
+  * *$totalDividends* = sum of dividends per a period
+  * *$earningsAfterTaxes* = amount earned after taxes
+  * *$noOfStocks* = number of stocks (total if constant, average if fluctuating)
 
 #### Setters
 * **setTotalDividends($totalDividends)** – sets the sum of dividends per a period
