@@ -37,7 +37,7 @@ class DebtAmortizatorTest extends PHPUnit_Framework_TestCase {
         $debtAmortizatorDirect = new DebtAmortizator(
             40000,
             6,
-            360,
+            Defaults::LENGTH_YEAR_360_30,
             0.12);
 
         $this->processResult($debtAmortizatorDirect);
@@ -93,7 +93,7 @@ class DebtAmortizatorTest extends PHPUnit_Framework_TestCase {
                 40000,
                 6,
                 0.12,
-                360);
+                Defaults::LENGTH_YEAR_360_30);
 
         $this->processResult($debtAmortizatorFactory);
         $this->processArray($debtAmortizatorFactory->getResultAsArray());
