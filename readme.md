@@ -91,7 +91,7 @@ You have three options as to how to retrieve raw results of the calculations.
 
 #### Directly accessible result object
 
-It's very simple to retrieve the results. ~~Every calculator class implementing the *CalculatorAbstract* has a getter method `getResult()`, which enables you to get an appropriate object representing the result of the calculation according to the data passed earlier to the constructor/factory method of a given calculator class~~ (not since the version 0.3.0, please update your code by removing the calls of the getResult() method if you're upgrading from any of the earlier versions).
+It's very simple to retrieve the results just by calling the appropriate getter methods. ~~Every calculator class implementing the *CalculatorAbstract* has a getter method `getResult()`, which enables you to get an appropriate object representing the result of the calculation according to the data passed earlier to the constructor/factory method of a given calculator class~~ *(this intermediate step is unneeded since the version 0.3.0, please update your code by removing the calls of the getResult() method if you're upgrading from any of the earlier versions)*.
 
 We'll demonstrate the process on our *AnnuityCalculator* – step by step, day by day:
 
