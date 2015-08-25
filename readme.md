@@ -511,6 +511,10 @@ namespace `FinanCalc\Calculators`
 * **getDividendRatio()** – gets the dividend ratio (the payout ratio to the power of -1)
 * **getRetentionRatio()** – gets the retention ("plowback") ratio
 
+#### StockInvestmentRatiosCalculatorFactory (*StockInvestmentRatiosCalculator's factory object*)
+namespace `FinanCalc\Calculators\Factories`
+* **newCustomStocks($totalDividends, $earningAfterTaxes, $noOfStocks)**
+
 * * *
 
 ## DISCLAIMER
