@@ -21,7 +21,7 @@ A lightweight, simple and easy PHP library for calculating annuities (e.g., mort
 
 Much more to come – including calculators for discount securities, ~~bond valuation~~, ~~duration~~, stock pricing...
 Also looking into other optimizations and improvements. Current hot ideas:
-* utilization of reflection in the getters of the calculators' result array for easier and less error-prone implementation of new calculator classes
+* ~~utilization of reflection in the getters of the calculators' result array for easier and less error-prone implementation of new calculator classes~~ (this has already been tackled by the means of utilizing a helper array of property names)
 * time functions for determining the exact dates of events pertaining to calculated instruments
 
 >**Please bear in mind that this is an ALPHA version containing incomplete features. The codebase is prone to drastic changes during its way out of the alpha stage.**
