@@ -24,6 +24,28 @@ namespace FinanCalc\Calculators {
         // the interest rate by which the unpaid balance is multiplied (i.e., a decimal number) = 'i'
         private $debtInterest;
 
+        // props returned by the getResultAsArray method by default
+        protected $propResultArray = [
+            "debtPrincipal",
+            "debtNoOfCompoundingPeriods",
+            "debtPeriodLength" =>
+                [
+                    "years" => "debtPeriodLengthInYears",
+                    "months" => "debtPeriodLengthInMonths",
+                    "days" => "debtPeriodLengthInDays"
+                ],
+            "debtInterest",
+            "debtDiscountFactor",
+            "debtDuration" =>
+                [
+                    "years" => "debtDurationInYears",
+                    "months" => "debtDurationInMonths",
+                    "days" => "debtDurationInDays"
+                ],
+            "debtSingleRepayment",
+            "debtRepayments" => "debtRepaymentsAsArrays"
+        ];
+
         /**
          * DebtInstance constructor
          *
@@ -255,41 +277,19 @@ namespace FinanCalc\Calculators {
         /**
          * @return array
          */
-        public function getResultAsArray()
-        {
-            $debtRepayments = $this->getDebtRepayments();
-
-            foreach ($debtRepayments as &$debtRepayment) {
-                $debtRepayment = [
-                    "principalAmount" => $debtRepayment->getPrincipalAmount(),
-                    "interestAmount" => $debtRepayment->getInterestAmount(),
-                    "totalAmount" => $debtRepayment->getTotalAmount()
+        public function getDebtRepaymentsAsArrays() {
+            $repayments = array();
+            $i = 1;
+            foreach ($this->debtRepayments as $repayment) {
+                $repayments[$i++] = [
+                    "principalAmount" => $repayment->getPrincipalAmount(),
+                    "interestAmount" => $repayment->getInterestAmount(),
+                    "totalAmount" => $repayment->getTotalAmount()
                 ];
             }
 
-            return
-                [
-                    "debtPrincipal" => $this->getDebtPrincipal(),
-                    "debtNoOfCompoundingPeriods" => $this->getDebtNoOfCompoundingPeriods(),
-                    "debtPeriodLength" =>
-                        [
-                            "years" => $this->getDebtPeriodLengthInYears(),
-                            "months" => $this->getDebtPeriodLengthInMonths(),
-                            "days" => $this->getDebtPeriodLengthInDays()
-                        ],
-                    "debtInterest" => $this->getDebtInterest(),
-                    "debtDiscountFactor" => $this->getDebtDiscountFactor(),
-                    "debtDuration" =>
-                        [
-                            "years" => $this->getDebtDurationInYears(),
-                            "months" => $this->getDebtDurationInMonths(),
-                            "days" => $this->getDebtDurationInDays()
-                        ],
-                    "debtSingleRepayment" => $this->getDebtSingleRepayment(),
-                    "debtRepayments" => $debtRepayments
-                ];
+            return $repayments;
         }
-
 
     }
 

@@ -26,6 +26,28 @@ namespace FinanCalc\Calculators {
         // the interest rate by which the unpaid balance is multiplied (i.e., a decimal number) = 'i'
         private $annuityInterest;
 
+        // props returned by the getResultAsArray method by default
+        protected $propResultArray = [
+            "annuitySinglePaymentAmount",
+            "annuityNoOfCompoundingPeriods",
+            "annuityInterest",
+            "annuityPeriodLength" =>
+                [
+                    "years" => "annuityPeriodLengthInYears",
+                    "months" => "annuityPeriodLengthInMonths",
+                    "days" => "annuityPeriodLengthInDays"
+                ],
+            "annuityPresentValue" =>
+                [
+                    "in_advance" => "annuityPresentValueInAdvance",
+                    "in_arrears" => "annuityPresentValueInArrears"
+                ],
+            "annuityFutureValue" =>
+                [
+                    "in_advance" => "annuityFutureValueInAdvance",
+                    "in_arrears" => "annuityFutureValueInArrears"
+                ],
+        ];
 
         /**
          * @param $annuitySinglePaymentAmount
@@ -152,6 +174,26 @@ namespace FinanCalc\Calculators {
         }
 
         /**
+         * @return null|string
+         */
+        public function getAnnuityPresentValueInAdvance() {
+            return $this
+                ->getAnnuityPresentValue(
+                    new AnnuityPaymentTypes(AnnuityPaymentTypes::IN_ADVANCE)
+                );
+        }
+
+        /**
+         * @return null|string
+         */
+        public function getAnnuityPresentValueInArrears() {
+            return $this
+                ->getAnnuityPresentValue(
+                    new AnnuityPaymentTypes(AnnuityPaymentTypes::IN_ARREARS)
+                );
+        }
+
+        /**
          * @param AnnuityPaymentTypes $annuityType
          * @return null|string
          */
@@ -161,6 +203,25 @@ namespace FinanCalc\Calculators {
                     $annuityType,
                     new AnnuityValueTypes(AnnuityValueTypes::FUTURE_VALUE)
                 );
+        }
+
+        /**
+         * @return null|string
+         */
+        public function getAnnuityFutureValueInAdvance() {
+            return $this
+                ->getAnnuityFutureValue(
+                    new AnnuityPaymentTypes(AnnuityPaymentTypes::IN_ADVANCE)
+                );
+        }
+
+        /**
+         * @return null|string
+         */
+        public function getAnnuityFutureValueInArrears() {
+            return $this->getAnnuityFutureValue(
+                new AnnuityPaymentTypes(AnnuityPaymentTypes::IN_ARREARS)
+            );
         }
 
         /**
@@ -249,43 +310,6 @@ namespace FinanCalc\Calculators {
             }
 
             return null;
-        }
-
-        /**
-         * @return array
-         */
-        public function getResultAsArray()
-        {
-            return
-                [
-                    "annuitySinglePaymentAmount" => $this->getAnnuitySinglePaymentAmount(),
-                    "annuityNoOfCompoundingPeriods" => $this->getAnnuityNoOfCompoundingPeriods(),
-                    "annuityInterest" => $this->getAnnuityInterest(),
-                    "annuityPeriodLength" =>
-                        [
-                            "years" => $this->getAnnuityPeriodLengthInYears(),
-                            "months" => $this->getAnnuityPeriodLengthInMonths(),
-                            "days" => $this->getAnnuityPeriodLengthInDays()
-                        ],
-                    "annuityPresentValue" =>
-                        [
-                            "in_advance" => $this->getAnnuityPresentValue(
-                                new AnnuityPaymentTypes(AnnuityPaymentTypes::IN_ADVANCE)
-                            ),
-                            "in_arrears" => $this->getAnnuityPresentValue(
-                                new AnnuityPaymentTypes(AnnuityPaymentTypes::IN_ARREARS)
-                            )
-                        ],
-                    "annuityFutureValue" =>
-                        [
-                            "in_advance" => $this->getAnnuityFutureValue(
-                                new AnnuityPaymentTypes(AnnuityPaymentTypes::IN_ADVANCE)
-                            ),
-                            "in_arrears" => $this->getAnnuityFutureValue(
-                                new AnnuityPaymentTypes(AnnuityPaymentTypes::IN_ARREARS)
-                            )
-                        ],
-                ];
         }
     }
 }

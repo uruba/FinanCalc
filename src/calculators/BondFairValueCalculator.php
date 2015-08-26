@@ -29,6 +29,15 @@ namespace FinanCalc\Calculators {
         // e.g.: divisor 2 means semi-annual payments
         // $bondPaymentFrequency;
 
+        // props returned by the getResultAsArray method by default
+        protected $propResultArray = [
+            "bondFaceValue",
+            "bondAnnualCouponRate",
+            "bondVIR",
+            "bondYearsToMaturity",
+            "bondFairValue"
+        ];
+
         /**
          * @param $bondFaceValue
          * @param $bondAnnualCouponRate
@@ -127,21 +136,6 @@ namespace FinanCalc\Calculators {
                 );
 
             return $fairValue;
-        }
-
-        /**
-         * @return array
-         */
-        public function getResultAsArray()
-        {
-            return
-                [
-                    "bondFaceValue" => $this->getBondFaceValue(),
-                    "bondAnnualCouponRate" => $this->getBondAnnualCouponRate(),
-                    "bondVIR" => $this->getBondVIR(),
-                    "bondYearsToMaturity" => $this->getBondYearsToMaturity(),
-                    "bondFairValue" => $this->getBondFairValue()
-                ];
         }
     }
 }

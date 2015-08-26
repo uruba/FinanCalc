@@ -29,6 +29,16 @@ namespace FinanCalc\Calculators {
         // e.g.: divisor 2 means semi-annual payments
         // $bondPaymentFrequency;
 
+        // props returned by the getResultAsArray method by default
+        protected $propResultArray = [
+            "bondFaceValue",
+            "bondMarketValue",
+            "bondAnnualCouponRate",
+            "bondYearsToMaturity",
+            "bondPaymentFrequency",
+            "bondApproxYTM" => "approxBondYTM"
+        ];
+
         /**
          * @param $bondFaceValue
          * @param $bondMarketValue
@@ -101,21 +111,5 @@ namespace FinanCalc\Calculators {
         }
 
         // TODO – add a method for precise bond YTM calculation by means of a polynominal equation
-
-        /**
-         * @return array
-         */
-        public function getResultAsArray()
-        {
-            return
-                [
-                    "bondFaceValue" => $this->getBondFaceValue(),
-                    "bondMarketValue" => $this->getBondMarketValue(),
-                    "bondAnnualCouponRate" => $this->getBondAnnualCouponRate(),
-                    "bondYearsToMaturity" => $this->getBondYearsToMaturity(),
-                    "bondPaymentFrequency" => $this->getBondPaymentFrequency(),
-                    "bondApproxYTM" => $this->getApproxBondYTM()
-                ];
-        }
     }
 }

@@ -19,6 +19,18 @@ namespace FinanCalc\Calculators {
         // number of stocks (total if constant, average if fluctuating)
         private $noOfStocks;
 
+        // props returned by the getResultAsArray method by default
+        protected $propResultArray = [
+                "totalDividends",
+                "earningsAfterTaxes",
+                "noOfStocks",
+                "dividendPerStock",
+                "earningsPerStock",
+                "payoutRatio",
+                "dividendRatio",
+                "retentionRatio"
+        ];
+
         /**
          * @param $totalDividends
          * @param $earningsAfterTaxes
@@ -130,22 +142,5 @@ namespace FinanCalc\Calculators {
             );
         }
 
-        /**
-         * @return array
-         */
-        public function getResultAsArray()
-        {
-            return
-                [
-                    "totalDividends" => $this->getTotalDividends(),
-                    "earningsAfterTaxes" => $this->getEarningsAfterTaxes(),
-                    "noOfStocks" => $this->getNoOfStocks(),
-                    "dividendPerStock" => $this->getDividendPerStock(),
-                    "earningsPerStock" => $this->getEarningsPerStock(),
-                    "payoutRatio" => $this->getPayoutRatio(),
-                    "dividendRatio" => $this->getDividendRatio(),
-                    "retentionRatio" => $this->getRetentionRatio()
-            ];
-        }
     }
 }

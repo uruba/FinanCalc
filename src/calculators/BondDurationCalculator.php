@@ -30,6 +30,20 @@ namespace FinanCalc\Calculators {
         // e.g.: divisor 2 means semi-annual payments
         // $bondPaymentFrequency;
 
+        // props returned by the getResultAsArray method by default
+        protected $propResultArray = [
+            "bondFaceValue",
+            "bondAnnualCouponRate",
+            "bondAnnualYield",
+            "bondYearsToMaturity",
+            "bondPaymentFrequency",
+            "bondYieldPerPaymentPeriod",
+            "bondNominalCashFlows",
+            "bondDiscountedCashFlows",
+            "bondPresentValue",
+            "bondDuration"
+        ];
+
         /**
          * @param $bondFaceValue
          * @param $bondAnnualCouponRate
@@ -147,26 +161,6 @@ namespace FinanCalc\Calculators {
             $duration = MathFuncs::div($auxiliaryValue, $this->getBondPresentValue());
 
             return $duration;
-        }
-
-        /**
-         * @return array
-         */
-        public function getResultAsArray()
-        {
-            return
-                [
-                    "bondFaceValue" => $this->getBondFaceValue(),
-                    "bondAnnualCouponRate" => $this->getBondAnnualCouponRate(),
-                    "bondAnnualYield" => $this->getBondAnnualYield(),
-                    "bondYearsToMaturity" => $this->getBondYearsToMaturity(),
-                    "bondPaymentFrequency" => $this->getBondPaymentFrequency(),
-                    "bondYieldPerPaymentPeriod" => $this->getBondYieldPerPaymentPeriod(),
-                    "bondNominalCashFlows" => $this->getBondNominalCashFlows(),
-                    "bondDiscountedCashFlows" => $this->getBondDiscountedCashFlows(),
-                    "bondPresentValue" => $this->getBondPresentValue(),
-                    "bondDuration" => $this->getBondDuration()
-                ];
         }
     }
 }

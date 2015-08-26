@@ -299,16 +299,20 @@ namespace `FinanCalc\Calculators`
 * **getAnnuityPeriodLengthInDays()** – gets the length of each compounding periods in days
 * **getAnnuityInterest()** – gets i
 * **getAnnuityPresentValue(AnnuityPaymentTypes $annuityType)** – gets the present value of the annuity
-* *AnuityPaymentTypes $annuityType* = determines whether the payments are made either at the beginning or the end of each of the annuity's periods
-[*optional for perpetuities*]
+  * *AnuityPaymentTypes $annuityType* = determines whether the payments are made either at the beginning or the end of each of the annuity's periods
+    [*optional for perpetuities*]
+* **getAnnuityPresentValueInAdvance()** – shorthand for *getAnnuityPresentValue(new AnnuityPaymentTypes(AnnuityPaymentTypes::IN_ADVANCE))*
+* **getAnnuityPresentValueInArrears()** – shorthand for *getAnnuityPresentValue(new AnnuityPaymentTypes(AnnuityPaymentTypes::IN_ARREARS))*
 * **getAnnuityFutureValue(AnnuityPaymentTypes $annuityType)** – gets the future value of the annuity
-* *AnuityPaymentTypes $annuityType* = determines whether the payments are made either at the beginning or the end of each of the annuity's periods
-[*optional for perpetuities*]
+  * *AnuityPaymentTypes $annuityType* = determines whether the payments are made either at the beginning or the end of each of the annuity's periods
+    [*optional for perpetuities*]
+* **getAnnuityFutureValueInAdvance()** – shorthand for *getAnnuityFutureValue(new AnnuityPaymentTypes(AnnuityPaymentTypes::IN_ADVANCE))*
+* **getAnnuityFutureValueInArrears()** – shorthand for *getAnnuityFutureValue(new AnnuityPaymentTypes(AnnuityPaymentTypes::IN_ARREARS))*
 * **getAnnuityValue(AnnuityPaymentTypes $annuityPaymentType, AnnuityValueTypes $annuityValueType)** – gets either the present or the future value of the annuity
-* *AnuityPaymentTypes $annuityPaymentType* = determines whether the payments are made either at the beginning or the end of each of the annuity's periods
-[*optional for perpetuities*]
-* *AnuityValueTypes $annuityValueType* = determines whether the result is the present or the future value of the annuity
-* **getResultAsArray()** – gets the array of the pertinent ***AnnuityInstance***'s property values
+  * *AnuityPaymentTypes $annuityPaymentType* = determines whether the payments are made either at the beginning or the end of each of the annuity's periods
+    [*optional for perpetuities*]
+  * *AnuityValueTypes $annuityValueType* = determines whether the result is the present or the future value of the annuity
+* **getResultAsArray(array $propResultArray = null)** – gets the array of the pertinent property values which you can specify (e.g., if you want only a specified subset thereof) via the optional argument
 * **getSerializedResult(SerializerInterface $serializer)** – gets the serialized result, according to the passed SerializerInterface object
 
 #### AnnuityCalculatorFactory (*AnnuityCalculator's factory object*)
@@ -357,7 +361,8 @@ namespace `FinanCalc\Calculators`
 * **getDebtDurationInDays()** – gets the duration of the debt in days
 * **getDebtInterest()** – gets i
 * **getDebtRepayments()** – gets the **array of RepaymentInstance** objects representing all the individual payments within the debt comprised into an array
-* **getResultAsArray()** – gets the array of the pertinent ***DebtInstance***'s property values
+* **getDebtRepaymentsAsArrays()** – gets the **array of associative arrays** (i.e., an array of RepaymentInstances converted to arrays) representing all the individual payments within the debt
+* **getResultAsArray(array $propResultArray = null)** – gets the array of the pertinent property values which you can specify (e.g., if you want only a specified subset thereof) via the optional argument
 * **getSerializedResult(SerializerInterface $serializer)** – gets the serialized result, according to the passed SerializerInterface object
 
 #### DebtAmortizatorFactory (*DebtAmortizator's factory object*)
@@ -399,7 +404,7 @@ namespace `FinanCalc\Calculators`
 * **getBondPaymentFrequency()** – gets the frequency of bond payments
 * **getBondNoOfPayments()** – gets the total number of payments during the lifespan of the bond
 * **getBondFairValue()** – gets the fair value of the bond [calculated as present value of future cashflows corresponding to the bond by means of the valuation interest rate]
-* **getResultAsArray()** – gets the array of the pertinent ***BondInstance***'s property values
+* **getResultAsArray(array $propResultArray = null)** – gets the array of the pertinent property values which you can specify (e.g., if you want only a specified subset thereof) via the optional argument
 * **getSerializedResult(SerializerInterface $serializer)** – gets the serialized result, according to the passed SerializerInterface object
 
 #### BondFairValueCalculatorFactory (*BondFairValueCalculator's factory object*)
@@ -436,7 +441,7 @@ namespace `FinanCalc\Calculators`
 * **getBondPaymentFrequency()** – gets the frequency of bond payments
 * **getBondNoOfPayments()** – gets the total number of payments during the lifespan of the bond
 * **getApproxBondYTM()** – gets the approximate value of the bond's yield to maturity in the form of a decimal number [it is the internal rate of return of the bond]
-* **getResultAsArray()** – gets the array of the pertinent ***BondInstance***'s property values
+* **getResultAsArray(array $propResultArray = null)** – gets the array of the pertinent property values which you can specify (e.g., if you want only a specified subset thereof) via the optional argument
 * **getSerializedResult(SerializerInterface $serializer)** – gets the serialized result, according to the passed SerializerInterface object
 
 #### BondYTMCalculatorFactory (*BondYTMCalculator's factory object*)
@@ -477,7 +482,7 @@ namespace `FinanCalc\Calculators`
 * **getBondDiscountedCashFlows()** – gets an array of the bond's discounted cash flows (nominal cash flows which are discounted by the means of the bond's yield per period)
 * **getBondPresentValue()** – gets the present value of the bond which is represented by sum of all the bond's discounted cash flows (i.e., all the array members returned by the method getBondDiscountedCashFlows() are summed up)
 * **getBondDuration()** – gets the bond's duration in years (can be a decimal number)
-* **getResultAsArray()** – gets the array of the pertinent ***BondInstance***'s property values
+* **getResultAsArray(array $propResultArray = null)** – gets the array of the pertinent property values which you can specify (e.g., if you want only a specified subset thereof) via the optional argument
 * **getSerializedResult(SerializerInterface $serializer)** – gets the serialized result, according to the passed SerializerInterface object
 
 #### BondDurationCalculatorFactory (*BondDurationCalculator's factory object*)
@@ -511,6 +516,8 @@ namespace `FinanCalc\Calculators`
 * **getPayoutRatio()** – gets the payout ratio (also referred to as "dividend payout ratio")
 * **getDividendRatio()** – gets the dividend ratio (the payout ratio to the power of -1)
 * **getRetentionRatio()** – gets the retention ("plowback") ratio
+* **getResultAsArray(array $propResultArray = null)** – gets the array of the pertinent property values which you can specify (e.g., if you want only a specified subset thereof) via the optional argument
+* **getSerializedResult(SerializerInterface $serializer)** – gets the serialized result, according to the passed SerializerInterface object
 
 #### StockInvestmentRatiosCalculatorFactory (*StockInvestmentRatiosCalculator's factory object*)
 namespace `FinanCalc\Calculators\Factories`
