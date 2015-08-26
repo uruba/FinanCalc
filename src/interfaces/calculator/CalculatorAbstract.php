@@ -20,7 +20,7 @@ namespace FinanCalc\Interfaces\Calculator {
                 if ($this->propResultArray !== null && is_array($this->propResultArray)) {
                     $propResultArray = $this->propResultArray;
                 } else {
-                    error_log("$propResultArray has not been supplied – neither by the argument, nor by the class field");
+                    error_log('$propResultArray has not been supplied – neither by the argument, nor by the class field');
                     return false;
                 }
             }
