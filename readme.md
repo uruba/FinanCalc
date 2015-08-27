@@ -279,7 +279,7 @@ The implicit type of setters'/constructors' arguments as well as getters' return
 
 ### AnnuityCalculator
 namespace `FinanCalc\Calculators`
-* **__construct($annuitySinglePaymentAmount, $annuityNoOfCompoundingPeriods, $annuityInterest, $annuityPeriodLength)**
+* **__construct($annuitySinglePaymentAmount, $annuityNoOfCompoundingPeriods, $annuityPeriodLength, $annuityInterest)**
   * *$annuitySinglePaymentAmount* = **'K'** – amount of each individual payment (number greater than zero)
   * *$annuityNoOfCompoundingPeriods* = **'n'** – number of periods pertaining to the interest compounding; if 'n = 0', the annuity is considered a perpetuity
   * *$annuityPeriodLength* = length of a single period in days (number greater than zero)
