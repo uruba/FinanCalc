@@ -162,4 +162,10 @@ class HelpersTest extends PHPUnit_Framework_TestCase {
         );
     }
 
+    public function testIsObjectTypeInArrayFalse() {
+        $this->assertFalse(
+            isObjectTypeInArray('Fake', [])
+        );
+    }
+
 }

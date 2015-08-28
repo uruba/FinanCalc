@@ -2,9 +2,7 @@
 
 spl_autoload_register(function($class) {
     if (!isset($GLOBALS['FINANCALC_ROOT'])) {
-        return;
-
-        // throw new Exception('Global variable containing path to the library root has not been set.');
+        throw new Exception('Global variable containing path to the library root has not been set.');
     }
 
     $exploded_class = explode("\\", $class);

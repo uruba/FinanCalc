@@ -26,6 +26,24 @@ class DebtAmortizatorTest extends PHPUnit_Framework_TestCase {
 
         $this->processResult($debtAmortizatorFactory);
         $this->processArray($debtAmortizatorFactory->getResultAsArray());
+
+        // test setters and getters by assigning mock values
+        $debtAmortizatorFactory->setDebtPrincipal(1);
+        $debtAmortizatorFactory->setDebtNoOfCompoundingPeriods(2);
+        $debtAmortizatorFactory->setDebtInterest(3);
+
+        $this->assertEquals(
+            1,
+            $debtAmortizatorFactory->getDebtPrincipal()
+        );
+        $this->assertEquals(
+            2,
+            $debtAmortizatorFactory->getDebtNoOfCompoundingPeriods()
+        );
+        $this->assertEquals(
+            3,
+            $debtAmortizatorFactory->getDebtInterest()
+        );
     }
 
     /**
