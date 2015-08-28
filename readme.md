@@ -83,7 +83,7 @@ use FinanCalc\Constants\AnnuityPaymentTypes;
 $annuityCalculatorDirect = new DebtAmortizator(
                                        40000,
                                        6,
-                                       Defaults::LENGTH_YEAR_360_30,
+                                       TimeUtils::getDaysFromYears(1),
                                        0.12);
 ```
 
