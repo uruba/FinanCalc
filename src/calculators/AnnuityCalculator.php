@@ -5,10 +5,10 @@ namespace FinanCalc\Calculators {
     use Exception;
     use FinanCalc\Constants\AnnuityPaymentTypes;
     use FinanCalc\Constants\AnnuityValueTypes;
-    use FinanCalc\Constants\Defaults;
     use FinanCalc\Interfaces\Calculator\CalculatorAbstract;
     use FinanCalc\Utils\Helpers;
     use FinanCalc\Utils\MathFuncs;
+    use FinanCalc\Utils\TimeUtils;
 
     /**
      * Class AnnuityCalculator
@@ -128,9 +128,8 @@ namespace FinanCalc\Calculators {
          * @return string
          */
         public function getAnnuityPeriodLengthInYears() {
-            return MathFuncs::div(
-                $this->annuityPeriodLength,
-                Defaults::LENGTH_YEAR_360_30
+            return TimeUtils::getYearsFromDays(
+                $this->annuityPeriodLength
             );
         }
 
@@ -138,9 +137,8 @@ namespace FinanCalc\Calculators {
          * @return string
          */
         public function getAnnuityPeriodLengthInMonths() {
-            return MathFuncs::div(
-                $this->annuityPeriodLength,
-                Defaults::LENGTH_MONTH_360_30
+            return TimeUtils::getMonthsFromDays(
+                $this->annuityPeriodLength
             );
         }
 
@@ -148,9 +146,8 @@ namespace FinanCalc\Calculators {
          * @return mixed
          */
         public function getAnnuityPeriodLengthInDays() {
-            return MathFuncs::div(
-                $this->annuityPeriodLength,
-                Defaults::LENGTH_DAY_360_30
+            return TimeUtils::getDaysFromDays(
+                $this->annuityPeriodLength
             );
         }
 

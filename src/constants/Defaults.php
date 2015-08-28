@@ -8,15 +8,6 @@ namespace FinanCalc\Constants {
     class Defaults
     {
         /**
-         * TIME defaults
-         */
-        const LENGTH_YEAR_360_30 = 360;
-        const LENGTH_MONTH_360_30 = 30;
-        const LENGTH_DAY_360_30 = 1;
-
-        const DEFAULT_PERIOD_LENGTH = self::LENGTH_YEAR_360_30;
-
-        /**
          * MONEY defaults
          */
         const MONEY_DECIMAL_PLACES_PRECISION = 8;
@@ -35,7 +26,24 @@ namespace FinanCalc\Constants {
             'factories_relative_path' => '/calculators/factories',
             'factories_namespace' => 'FinanCalc\\Calculators\\Factories',
             // serializers
-            'serializers_root_elem_name' => 'root'
+            'serializers_root_elem_name' => 'root',
+            // time config
+            'day_count_convention' => '30/360',
+            'available_day_count_conventions' => [
+                '30/360' => [
+                    'days_in_a_year' => '360',
+                    'days_in_a_month' => '30'
+                ]
+                /**
+                 Not working yet
+                ,
+                'Actual/365' => [
+                    'days_in_a_year' => '365',
+                    'days_in_a_month' => '0'
+                ]
+                 *
+                 */
+            ]
         );
     }
 }

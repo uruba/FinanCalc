@@ -2,8 +2,8 @@
 
 namespace FinanCalc\Calculators\Factories {
     use FinanCalc\Calculators\AnnuityCalculator;
-    use FinanCalc\Constants\Defaults;
     use FinanCalc\Interfaces\Calculator\CalculatorFactoryAbstract;
+    use FinanCalc\Utils\TimeUtils;
 
     /**
      * Class AnnuityCalculatorFactory
@@ -22,7 +22,7 @@ namespace FinanCalc\Calculators\Factories {
             return new AnnuityCalculator(
                 $annuitySinglePaymentAmount,
                 $annuityNoOfCompoundingPeriods,
-                Defaults::LENGTH_YEAR_360_30,
+                TimeUtils::getDaysFromYears(1),
                 $annuityInterest);
         }
 
@@ -36,7 +36,7 @@ namespace FinanCalc\Calculators\Factories {
             return new AnnuityCalculator(
                 $annuitySinglePaymentAmount,
                 $annuityNoOfCompoundingPeriods,
-                Defaults::LENGTH_MONTH_360_30,
+                TimeUtils::getDaysFromMonths(1),
                 $annuityInterest);
         }
 
@@ -50,7 +50,7 @@ namespace FinanCalc\Calculators\Factories {
             return new AnnuityCalculator(
                 $annuitySinglePaymentAmount,
                 $annuityNoOfCompoundingPeriods,
-                Defaults::LENGTH_DAY_360_30,
+                1,
                 $annuityInterest);
         }
 

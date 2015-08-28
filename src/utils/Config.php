@@ -1,7 +1,10 @@
 <?php
 
 namespace FinanCalc\Utils {
+
+    use Exception;
     use FinanCalc\Constants\Defaults;
+    use FinanCalc\Constants\Strings;
 
     /**
      * Class Config
@@ -22,7 +25,7 @@ namespace FinanCalc\Utils {
             if ($defaultValues == null) {
                 $defaultValues = Defaults::$configDefault;
             } else {
-                $defaultValues = array_merge($defaultValues, Defaults::$configDefault);
+                $defaultValues = array_merge(Defaults::$configDefault, $defaultValues);
             }
             static::$configArray = $defaultValues;
         }
@@ -30,13 +33,20 @@ namespace FinanCalc\Utils {
         /**
          * @param $key
          * @return mixed
+         * @throws Exception
          */
         public static function getConfigField($key){
             /** Shouldn't be needed when it's properly bootstrapped
             if(empty(static::$configArray)) {
                 Config::init();
             }*/
-            return static::$configArray[$key];
+            $configField = static::$configArray[$key];
+
+            if ($configField === null) {
+                throw new Exception(Strings::getConfigFieldNotFoundMessage($key));
+            }
+
+            return $configField;
         }
 
         /**

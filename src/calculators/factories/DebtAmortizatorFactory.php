@@ -1,9 +1,9 @@
 <?php
 
 namespace FinanCalc\Calculators\Factories {
-    use \FinanCalc\Constants\Defaults;
     use \FinanCalc\Calculators\DebtAmortizator;
     use FinanCalc\Interfaces\Calculator\CalculatorFactoryAbstract;
+    use FinanCalc\Utils\TimeUtils;
 
     /**
      * Class DebtAmortizatorFactory
@@ -23,7 +23,7 @@ namespace FinanCalc\Calculators\Factories {
             return new DebtAmortizator(
                 $debtPrincipal,
                 $debtNoOfPeriods,
-                Defaults::LENGTH_YEAR_360_30,
+                TimeUtils::getDaysFromYears(1),
                 $debtInterest);
         }
 
@@ -38,7 +38,7 @@ namespace FinanCalc\Calculators\Factories {
             return new DebtAmortizator(
                 $debtPrincipal,
                 $debtNoOfPeriods,
-                Defaults::LENGTH_MONTH_360_30,
+                TimeUtils::getDaysFromMonths(1),
                 $debtInterest);
         }
 
@@ -53,7 +53,7 @@ namespace FinanCalc\Calculators\Factories {
             return new DebtAmortizator(
                 $debtPrincipal,
                 $debtNoOfPeriods,
-                Defaults::LENGTH_DAY_360_30,
+                1,
                 $debtInterest);
         }
 

@@ -38,5 +38,15 @@ namespace FinanCalc\Constants {
 
             return sprintf($MUST_BE_NOT_NEGATIVE_NUMBER_MESSAGE, $foundValue);
         }
+
+        /**
+         * @param $configField [Name of the expected value as a string]
+         * @return string      [Concatenated message as a string]
+         */
+        static function getConfigFieldNotFoundMessage($configField) {
+            $CONFIG_FIELD_NOT_FOUND_MESSAGE = "Config field %s has not been defined!";
+
+            return sprintf($CONFIG_FIELD_NOT_FOUND_MESSAGE, $configField);
+        }
     }
 }
