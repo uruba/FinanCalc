@@ -36,7 +36,7 @@ class ConfigTest extends PHPUnit_Framework_TestCase {
 
     public function testGetOneOfTheDefaultValues() {
         $this->assertEquals(
-            '/calculators/factories',
+            '/Calculators/Factories',
             Config::getConfigField('factories_relative_path'));
     }
 

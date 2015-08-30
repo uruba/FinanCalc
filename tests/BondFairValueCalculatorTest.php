@@ -85,7 +85,7 @@ class BondFairValueCalculatorTest extends PHPUnit_Framework_TestCase {
     }
 
     /**
-     * Test presence in the main factories array
+     * Test presence in the main Factories array
      */
     public function testPresenceInMainFactoriesArray() {
         $this->assertTrue(
