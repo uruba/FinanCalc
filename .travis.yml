@@ -8,7 +8,9 @@ php:
   - 7.0
   - hhvm
 
-before_script: composer dump-autoload
+before_script:
+  - composer self-update
+  - composer install --prefer-source --no-interaction
 
 # omitting "script:" will default to phpunit
 script: phpunit --coverage-text --testdox  --coverage-clover=coverage.xml
