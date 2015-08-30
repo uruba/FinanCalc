@@ -43,6 +43,8 @@ The initialization is dead simple. Just include the main **FinanCalc.php** file 
 require_once dirname(__FILE__) . '/vendor/uruba/financalc/src/FinanCalc.php';
 ```
 
+Or, if you are using Composer, you can use its `autoload.php` file.
+
 ### Instantiation
 
 You have two choices as to how to instantiate the appropriate class to get your results:
@@ -75,7 +77,6 @@ The second option is to instantiate the calculator class of your choice directly
 
 ```php
 use FinanCalc\Calculators\DebtAmortizator;
-use FinanCalc\Constants\AnnuityPaymentTypes;
 use FinanCalc\Utils\TimeUtils;
 
 ...

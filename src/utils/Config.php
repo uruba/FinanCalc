@@ -36,10 +36,10 @@ namespace FinanCalc\Utils {
          * @throws Exception
          */
         public static function getConfigField($key){
-            /** Shouldn't be needed when it's properly bootstrapped
             if(empty(static::$configArray)) {
                 Config::init();
-            }*/
+            }
+
             $configField = static::$configArray[$key];
 
             if ($configField === null) {
@@ -54,10 +54,10 @@ namespace FinanCalc\Utils {
          * @param $value
          */
         public static function setConfigField($key, $value){
-            /** Shouldn't be needed when it's properly bootstrapped
             if(empty(static::$configArray)) {
                 Config::init();
-            }}*/
+            }
+
             static::$configArray[$key] = $value;
         }
 
