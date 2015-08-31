@@ -1,0 +1,11 @@
+<phpunit
+        convertWarningsToExceptions="false"
+        bootstrap="tests/TestBootstrapComposer.php">
+
+    <testsuites>
+        <testsuite name="Composer autoloader">
+            <directory>tests</directory>
+        </testsuite>
+    </testsuites>
+
+</phpunit>

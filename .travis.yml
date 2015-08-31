@@ -13,7 +13,9 @@ before_script:
   - composer install --prefer-source --no-interaction
 
 # omitting "script:" will default to phpunit
-script: phpunit --coverage-text --testdox  --coverage-clover=coverage.xml
+script:
+  - phpunit --coverage-text --testdox -c phpunit_composer.xml
+  - phpunit --coverage-text --testdox  --coverage-clover=coverage.xml -c phpunit_builtin_autoloader.xml
 
 
 after_success:

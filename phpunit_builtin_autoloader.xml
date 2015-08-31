@@ -1,9 +1,9 @@
 <phpunit
         convertWarningsToExceptions="false"
-        bootstrap="tests/TestBootstrap.php">
+        bootstrap="tests/TestBootstrapBuiltinAutoloader.php">
 
     <testsuites>
-        <testsuite name="Main Test Suite">
+        <testsuite name="Built-in autoloader">
             <directory>tests</directory>
         </testsuite>
     </testsuites>
