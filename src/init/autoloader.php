@@ -10,9 +10,6 @@ spl_autoload_register(function($class) {
         array_shift($exploded_class);
 
     $le = array_pop($exploded_class);
-    foreach ($exploded_class as &$elem) {
-        $elem = strtolower($elem);
-    }
     array_push($exploded_class, $le);
 
     $relative_class_path = implode("/", $exploded_class);
