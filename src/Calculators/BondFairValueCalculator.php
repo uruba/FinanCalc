@@ -35,6 +35,7 @@ namespace FinanCalc\Calculators {
             "bondAnnualCouponRate",
             "bondVIR",
             "bondYearsToMaturity",
+            "bondPaymentFrequency",
             "bondFairValue"
         ];
 
