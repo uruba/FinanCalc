@@ -47,8 +47,6 @@ namespace FinanCalc\Calculators {
         ];
 
         /**
-         * DebtInstance constructor
-         *
          * @param string $debtPrincipal                [Value of the debt's principal as a string]
          * @param string $debtNoOfCompoundingPeriods   [Number of the debt's compounding periods as a string]
          * @param string $debtPeriodLength             [Length of each of the debt's compounding periods in days as a string]
