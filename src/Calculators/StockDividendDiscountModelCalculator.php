@@ -3,6 +3,7 @@
 namespace FinanCalc\Calculators {
 
     use FinanCalc\Constants\StockDDMTypes;
+    use FinanCalc\Interfaces\Calculator\CalculatorAbstract;
     use FinanCalc\Utils\Helpers;
     use FinanCalc\Utils\MathFuncs;
 
@@ -10,11 +11,25 @@ namespace FinanCalc\Calculators {
      * Class StockDividendDiscountModelCalculator
      * @package FinanCalc\Calculators
      */
-    class StockDividendDiscountModelCalculator {
-        private $stockVIR;
-        private $stockAnnualDividendsValue;
-        private $stockAnnualDividendsGrowth;
+    class StockDividendDiscountModelCalculator extends CalculatorAbstract {
+
+        // the type of the dividend discount model according to which the result will be calculated
         private $dividendDiscountModelType;
+        // stock's valuation interest rate
+        private $stockVIR;
+        // absolute value of the stock's annual dividends
+        private $stockAnnualDividendsValue;
+        // the rate by which the stock's annual dividends are annually multiplied (i.e., a decimal number between 0 and 1)
+        // this value applies only to the multiple growth dividend discount model
+        private $stockAnnualDividendsGrowth;
+
+        // props returned by the getResultAsArray method by default
+        protected $propResultArray = [
+            "dividendDiscountModelType",
+            "stockVIR",
+            "stockAnnualDividendsValue",
+            "stockAnnualDividendsGrowth"
+        ];
 
         /**
          * @param StockDDMTypes $dividendDiscountModelType
