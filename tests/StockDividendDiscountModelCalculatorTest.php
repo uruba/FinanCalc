@@ -16,6 +16,12 @@ class StockDividendDiscountModelCalculatorTest extends PHPUnit_Framework_TestCas
         );
     }
 
+    public function testStockDividendDiscountModelFactory() {
+        $this->assertStockDDM(
+            $this->stockDividendDiscountModelCalculatorFactory
+        );
+    }
+
     public function testExceptionStockPresentValue() {
         $this->setExpectedException("Exception");
 
@@ -37,6 +43,19 @@ class StockDividendDiscountModelCalculatorTest extends PHPUnit_Framework_TestCas
 
         $stockDDMCalculator = $this->stockDividendDiscountModelCalculatorDirect;
         $stockDDMCalculator->setStockAnnualDividendsGrowth(0.05);
+    }
+
+    public function testFactoryMultipleGrowthDividendDiscountModel() {
+        $stockDDMCalculator = \FinanCalc\FinanCalc
+            ::getInstance()
+            ->getFactory('StockDividendDiscountModelCalculatorFactory')
+            ->newMultipleGrowthDividendDiscountModel(
+                0.1,
+                75,
+                0.05
+            );
+
+        $this->assertEquals(1575, $stockDDMCalculator->getStockPresentValue());
     }
 
     /**
@@ -92,8 +111,23 @@ class StockDividendDiscountModelCalculatorTest extends PHPUnit_Framework_TestCas
             75);
     }
 
+    /**
+     * @return mixed
+     * @throws Exception
+     */
+    private function newStockDividendDiscountModelCalculatorFactory() {
+        return \FinanCalc\FinanCalc
+            ::getInstance()
+            ->getFactory('StockDividendDiscountModelCalculatorFactory')
+            ->newZeroGrowthDividendDiscountModel(
+                0.1,
+                75
+            );
+    }
+
     protected function setUp() {
         $this->stockDividendDiscountModelCalculatorDirect = $this->newStockDividendDiscountModelCalculatorDirect();
+        $this->stockDividendDiscountModelCalculatorFactory = $this->newStockDividendDiscountModelCalculatorFactory();
 
         parent::setUp();
     }
