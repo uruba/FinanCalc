@@ -17,6 +17,7 @@ A lightweight, simple and easy PHP library for calculating annuities (e.g., mort
 * Bond fair value calculator
 * Bond Yield-to-Maturity calculator
 * Bond duration calculator
+* Dividend Discount Model (DDM) calculator
 * Investment ratios calculator for stocks/shares
 
 Much more to come – including calculators for discount securities, ~~bond valuation~~, ~~duration~~, stock pricing...
