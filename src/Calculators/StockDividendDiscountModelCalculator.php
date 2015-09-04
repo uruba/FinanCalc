@@ -2,10 +2,12 @@
 
 namespace FinanCalc\Calculators {
 
+    use Exception;
     use FinanCalc\Constants\StockDDMTypes;
     use FinanCalc\Interfaces\Calculator\CalculatorAbstract;
     use FinanCalc\Utils\Helpers;
     use FinanCalc\Utils\MathFuncs;
+    use InvalidArgumentException;
 
     /**
      * Class StockDividendDiscountModelCalculator
@@ -28,7 +30,8 @@ namespace FinanCalc\Calculators {
             "dividendDiscountModelType",
             "stockVIR",
             "stockAnnualDividendsValue",
-            "stockAnnualDividendsGrowth"
+            "stockAnnualDividendsGrowth",
+            "stockPresentValue"
         ];
 
         /**
@@ -67,32 +70,41 @@ namespace FinanCalc\Calculators {
 
         /**
          * @param $stockAnnualDividendsGrowth
-         * @return bool
          */
         public function setStockAnnualDividendsGrowth($stockAnnualDividendsGrowth) {
-            if ($this->dividendDiscountModelType == StockDDMTypes::ZERO_GROWTH && $stockAnnualDividendsGrowth !== null) {
-                return false;
+            $dividendDiscountModelType = $this->dividendDiscountModelType->getValue();
+
+            if ($dividendDiscountModelType == StockDDMTypes::ZERO_GROWTH
+                &&
+                $stockAnnualDividendsGrowth !== null
+            ) {
+                throw new InvalidArgumentException('You cannot set the $stockAnnualDividendsGrowth on the zero-growth type discount dividend model calculator!');
             }
 
-            if (Helpers::checkIfPositiveNumberOrThrowAnException($stockAnnualDividendsGrowth)) {
-                if (Helpers::checkIfLeftOperandGreaterOrThrowAnEception(
+            if ($dividendDiscountModelType == StockDDMTypes::MULTIPLE_GROWTH) {
+                if (Helpers::checkIfPositiveNumberOrThrowAnException($stockAnnualDividendsGrowth)) {
+                    Helpers::checkIfLeftOperandGreaterOrThrowAnEception(
                         $this->stockVIR,
-                        $this->stockAnnualDividendsGrowth,
+                        $stockAnnualDividendsGrowth,
                         "The stock's valuation interest rate has to be higher than the stock's annual dividend growth"
-                        )
-                    ) {
-                    $this->stockAnnualDividendsGrowth = $stockAnnualDividendsGrowth;
-                    return true;
+                    );
                 }
             }
 
-            return false;
+            $this->stockAnnualDividendsGrowth = $stockAnnualDividendsGrowth;
         }
 
         /**
          * @param StockDDMTypes $dividendDiscountModelType
          */
         public function setDividendDiscountModelType(StockDDMTypes $dividendDiscountModelType) {
+            if (
+                $dividendDiscountModelType->getValue() == StockDDMTypes::ZERO_GROWTH
+                &&
+                $this->stockAnnualDividendsGrowth !== null
+            ) {
+                $this->stockAnnualDividendsGrowth = null;
+            }
             $this->dividendDiscountModelType = $dividendDiscountModelType;
         }
 
@@ -124,8 +136,10 @@ namespace FinanCalc\Calculators {
             return $this->dividendDiscountModelType;
         }
 
+
         /**
          * @return null|string
+         * @throws Exception
          */
         public function getStockPresentValue() {
             switch ($this->dividendDiscountModelType->getValue()) {
@@ -135,6 +149,9 @@ namespace FinanCalc\Calculators {
                         $this->stockVIR
                     );
                 case StockDDMTypes::MULTIPLE_GROWTH:
+                    if ($this->stockAnnualDividendsGrowth === null) {
+                        throw new Exception("You have to set the stockAnnualDividendsGrowth for the multiple growth model!");
+                    }
                     return MathFuncs::mul(
                         $this->stockAnnualDividendsValue,
                         MathFuncs::div(
