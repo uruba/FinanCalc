@@ -8,7 +8,7 @@ namespace FinanCalc\Calculators {
     use FinanCalc\Interfaces\Calculator\CalculatorAbstract;
     use FinanCalc\Utils\Helpers;
     use FinanCalc\Utils\MathFuncs;
-    use FinanCalc\Utils\TimeUtils;
+    use FinanCalc\Utils\Time\TimeUtils;
 
     /**
      * Class AnnuityCalculator

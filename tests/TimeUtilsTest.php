@@ -1,6 +1,6 @@
 <?php
 
-use FinanCalc\Utils\TimeUtils;
+use FinanCalc\Utils\Time\TimeUtils;
 
 /**
  * Class TimeUtilsTest

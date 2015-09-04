@@ -3,7 +3,7 @@
 use FinanCalc\Calculators\DebtAmortizator;
 use FinanCalc\FinanCalc;
 use FinanCalc\Utils\MathFuncs;
-use FinanCalc\Utils\TimeUtils;
+use FinanCalc\Utils\Time\TimeUtils;
 
 /**
  * Class DebtAmortizatorTest

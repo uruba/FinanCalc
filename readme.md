@@ -78,7 +78,7 @@ The second option is to instantiate the calculator class of your choice directly
 
 ```php
 use FinanCalc\Calculators\DebtAmortizator;
-use FinanCalc\Utils\TimeUtils;
+use FinanCalc\Utils\Time\TimeUtils;
 
 ...
 

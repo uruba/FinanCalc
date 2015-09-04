@@ -1,9 +1,11 @@
 <?php
 
 
-namespace FinanCalc\Utils {
+namespace FinanCalc\Utils\Time {
 
     use Exception;
+    use FinanCalc\Utils\Config;
+    use FinanCalc\Utils\MathFuncs;
 
     /**
      * Class TimeUtils
