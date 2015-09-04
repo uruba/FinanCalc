@@ -8,6 +8,7 @@ use FinanCalc\Utils\TimeUtils;
  * Class AnnuityCalculatorTest
  */
 class AnnuityCalculatorTest extends PHPUnit_Framework_TestCase {
+    /** @var  AnnuityCalculator */
     private $annuityCalculatorDirectYearly,
             $annuityCalculatorFactoryYearly,
             $perpetuityCalculator;

@@ -7,6 +7,7 @@ use FinanCalc\Constants\StockDDMTypes;
  * Class StockDividendDiscountModelCalculatorTest
  */
 class StockDividendDiscountModelCalculatorTest extends PHPUnit_Framework_TestCase {
+    /** @var  StockDividendDiscountModelCalculator */
     private $stockDividendDiscountModelCalculatorDirect,
             $stockDividendDiscountModelCalculatorFactory;
 
@@ -61,7 +62,7 @@ class StockDividendDiscountModelCalculatorTest extends PHPUnit_Framework_TestCas
     /**
      * @param $stockDividendDiscountModelCalculator
      */
-    private function assertStockDDM($stockDividendDiscountModelCalculator) {
+    private function assertStockDDM(StockDividendDiscountModelCalculator $stockDividendDiscountModelCalculator) {
         $this->assertZeroGrowthStockDDM($stockDividendDiscountModelCalculator);
 
         $stockDividendDiscountModelCalculator->setDividendDiscountModelType(new StockDDMTypes(StockDDMTypes::MULTIPLE_GROWTH));

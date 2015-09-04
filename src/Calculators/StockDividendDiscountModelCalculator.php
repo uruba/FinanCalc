@@ -15,6 +15,7 @@ namespace FinanCalc\Calculators {
      */
     class StockDividendDiscountModelCalculator extends CalculatorAbstract {
 
+        /** @var  StockDDMTypes */
         // the type of the dividend discount model according to which the result will be calculated
         private $dividendDiscountModelType;
         // stock's valuation interest rate

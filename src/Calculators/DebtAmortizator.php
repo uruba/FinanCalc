@@ -12,6 +12,7 @@ namespace FinanCalc\Calculators {
      * @package FinanCalc\Calculators
      */
     class DebtAmortizator extends CalculatorAbstract {
+        /** @var  RepaymentInstance[] */
         // list of individual debt's repayments as an array of RepaymentInstance objects
         private $debtRepayments;
 

@@ -1,5 +1,6 @@
 <?php
 
+use FinanCalc\Calculators\DebtAmortizator;
 use FinanCalc\FinanCalc;
 use FinanCalc\Utils\Serializers\JSONSerializer;
 use FinanCalc\Utils\Serializers\XMLSerializer;
@@ -9,6 +10,7 @@ use FinanCalc\Utils\Serializers\XMLSerializer;
  */
 class SerializersTest extends PHPUnit_Framework_TestCase
 {
+    /** @var  DebtAmortizator */
     // we will test the serializer on the most complex class with nested elements
     // the example is the same as in the DebtAmortizatorTest
     private $debtAmortizatorFactory;
