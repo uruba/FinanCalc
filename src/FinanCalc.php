@@ -29,6 +29,7 @@
  */
 namespace FinanCalc {
     use Exception;
+    use FinanCalc\Interfaces\Calculator\CalculatorFactoryAbstract;
     use FinanCalc\Utils\Config;
     use FinanCalc\Calculators\Factories;
 
@@ -73,7 +74,7 @@ namespace FinanCalc {
          */
 
         /**
-         * @return array
+         * @return CalculatorFactoryAbstract[]
          */
         public function getFactories() {
             return $this->factoryClasses;
@@ -81,7 +82,7 @@ namespace FinanCalc {
 
         /**
          * @param $factoryClassName
-         * @return mixed
+         * @return CalculatorFactoryAbstract
          * @throws Exception
          */
         public function getFactory($factoryClassName) {

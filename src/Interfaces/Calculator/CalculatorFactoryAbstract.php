@@ -1,6 +1,9 @@
 <?php
 
 namespace FinanCalc\Interfaces\Calculator {
+
+    use ReflectionClass;
+
     /**
      * Class CalculatorFactoryAbstract
      * @package FinanCalc\Interfaces
@@ -19,6 +22,15 @@ namespace FinanCalc\Interfaces\Calculator {
             if (!class_exists(static::MANUFACTURED_CLASS_NAME)) {
                 throw new \Exception("Class" . static::MANUFACTURED_CLASS_NAME .  " not defined");
             }
+        }
+
+        /**
+         * @param array $args
+         * @return CalculatorAbstract
+         */
+        protected function manufactureInstance(array $args) {
+            $manufacturedClass = new ReflectionClass(static::MANUFACTURED_CLASS_NAME);
+            return $manufacturedClass->newInstanceArgs($args);
         }
     }
 }

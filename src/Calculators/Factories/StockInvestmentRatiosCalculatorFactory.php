@@ -19,10 +19,13 @@ namespace FinanCalc\Calculators\Factories {
          * @return StockInvestmentRatiosCalculator
          */
         public function newCustomStocks($totalDividends, $earningAfterTaxes, $noOfStocks) {
-            return new StockInvestmentRatiosCalculator(
-                $totalDividends,
-                $earningAfterTaxes,
-                $noOfStocks);
+            return $this->manufactureInstance(
+                [
+                    $totalDividends,
+                    $earningAfterTaxes,
+                    $noOfStocks
+                ]
+            );
         }
     }
 }

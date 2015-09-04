@@ -21,7 +21,7 @@ namespace FinanCalc\Calculators {
         private $stockVIR;
         // absolute value of the stock's annual dividends
         private $stockAnnualDividendsValue;
-        // the rate by which the stock's annual dividends are annually multiplied (i.e., a decimal number between 0 and 1)
+        // the rate by which the stock's annual dividends grow annually (i.e., a decimal number between 0 and 1)
         // this value applies only to the multiple growth dividend discount model
         private $stockAnnualDividendsGrowth;
 

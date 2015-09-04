@@ -11,7 +11,7 @@ namespace FinanCalc\Calculators\Factories {
      * @package FinanCalc\Calculators\Factories
      */
     class StockDividendDiscountModelCalculatorFactory extends CalculatorFactoryAbstract {
-        const MANUFACTURED_CLASS_NAME = 'FinanCalc\\Calculators\\BondYTMCalculator';
+        const MANUFACTURED_CLASS_NAME = 'FinanCalc\\Calculators\\StockDividendDiscountModelCalculator';
 
         /**
          * @param $stockVIR
@@ -19,10 +19,12 @@ namespace FinanCalc\Calculators\Factories {
          * @return StockDividendDiscountModelCalculator
          */
         public function newZeroGrowthDividendDiscountModel($stockVIR, $stockAnnualDividendValue) {
-            return new StockDividendDiscountModelCalculator(
-                new StockDDMTypes(StockDDMTypes::ZERO_GROWTH),
-                $stockVIR,
-                $stockAnnualDividendValue
+            return $this->manufactureInstance(
+                [
+                    new StockDDMTypes(StockDDMTypes::ZERO_GROWTH),
+                    $stockVIR,
+                    $stockAnnualDividendValue
+                ]
             );
         }
 
@@ -33,11 +35,13 @@ namespace FinanCalc\Calculators\Factories {
          * @return StockDividendDiscountModelCalculator
          */
         public function newMultipleGrowthDividendDiscountModel($stockVIR, $stockAnnualDividendValue, $stockAnnualDividendsGrowth) {
-            return new StockDividendDiscountModelCalculator(
-                new StockDDMTypes(StockDDMTypes::MULTIPLE_GROWTH),
-                $stockVIR,
-                $stockAnnualDividendValue,
-                $stockAnnualDividendsGrowth
+            return $this->manufactureInstance(
+                [
+                    new StockDDMTypes(StockDDMTypes::MULTIPLE_GROWTH),
+                    $stockVIR,
+                    $stockAnnualDividendValue,
+                    $stockAnnualDividendsGrowth
+                ]
             );
         }
     }

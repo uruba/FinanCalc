@@ -20,11 +20,14 @@ namespace FinanCalc\Calculators\Factories {
          */
         public function newYearlyDebtAmortization($debtPrincipal, $debtNoOfPeriods, $debtInterest)
         {
-            return new DebtAmortizator(
-                $debtPrincipal,
-                $debtNoOfPeriods,
-                TimeUtils::getDaysFromYears(1),
-                $debtInterest);
+            return $this->manufactureInstance(
+                [
+                    $debtPrincipal,
+                    $debtNoOfPeriods,
+                    TimeUtils::getDaysFromYears(1),
+                    $debtInterest
+                ]
+            );
         }
 
         /**
@@ -35,11 +38,14 @@ namespace FinanCalc\Calculators\Factories {
          */
         public function newMonthlyDebtAmortization($debtPrincipal, $debtNoOfPeriods, $debtInterest)
         {
-            return new DebtAmortizator(
-                $debtPrincipal,
-                $debtNoOfPeriods,
-                TimeUtils::getDaysFromMonths(1),
-                $debtInterest);
+            return $this->manufactureInstance(
+                [
+                    $debtPrincipal,
+                    $debtNoOfPeriods,
+                    TimeUtils::getDaysFromMonths(1),
+                    $debtInterest
+                ]
+            );
         }
 
         /**
@@ -50,11 +56,14 @@ namespace FinanCalc\Calculators\Factories {
          */
         public function newDailyDebtAmortization($debtPrincipal, $debtNoOfPeriods, $debtInterest)
         {
-            return new DebtAmortizator(
-                $debtPrincipal,
-                $debtNoOfPeriods,
-                1,
-                $debtInterest);
+            return $this->manufactureInstance(
+                [
+                    $debtPrincipal,
+                    $debtNoOfPeriods,
+                    1,
+                    $debtInterest
+                ]
+            );
         }
 
         /**
@@ -65,11 +74,14 @@ namespace FinanCalc\Calculators\Factories {
          * @return DebtAmortizator
          */
         public function newDebtAmortizationCustomPeriodLength($debtPrincipal, $debtNoOfPeriods, $debtInterest, $debtSinglePeriodLength) {
-            return new DebtAmortizator(
-                $debtPrincipal,
-                $debtNoOfPeriods,
-                $debtSinglePeriodLength,
-                $debtInterest);
+            return $this->manufactureInstance(
+                [
+                    $debtPrincipal,
+                    $debtNoOfPeriods,
+                    $debtSinglePeriodLength,
+                    $debtInterest
+                ]
+            );
         }
     }
 }

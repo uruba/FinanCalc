@@ -21,11 +21,14 @@ namespace FinanCalc\Calculators\Factories {
          * @return BondFairValueCalculator
          */
         public function newAnnualCouponsBond($bondFaceValue, $bondAnnualCouponRate, $bondVIR, $bondYearsToMaturity) {
-            return new BondFairValueCalculator(
-                $bondFaceValue,
-                $bondAnnualCouponRate,
-                $bondVIR,
-                $bondYearsToMaturity);
+            return $this->manufactureInstance(
+                [
+                    $bondFaceValue,
+                    $bondAnnualCouponRate,
+                    $bondVIR,
+                    $bondYearsToMaturity
+                ]
+            );
         }
 
         /**
@@ -36,12 +39,15 @@ namespace FinanCalc\Calculators\Factories {
          * @return BondFairValueCalculator
          */
         public function newSemiAnnualCouponsBond($bondFaceValue, $bondAnnualCouponRate, $bondVIR, $bondYearsToMaturity) {
-            return new BondFairValueCalculator(
-                $bondFaceValue,
-                $bondAnnualCouponRate,
-                $bondVIR,
-                $bondYearsToMaturity,
-                2);
+            return $this->manufactureInstance(
+                [
+                    $bondFaceValue,
+                    $bondAnnualCouponRate,
+                    $bondVIR,
+                    $bondYearsToMaturity,
+                    2
+                ]
+            );
         }
 
         /**
@@ -52,12 +58,15 @@ namespace FinanCalc\Calculators\Factories {
          * @return BondFairValueCalculator
          */
         public function newQuarterlyCouponsBond($bondFaceValue, $bondAnnualCouponRate, $bondVIR, $bondYearsToMaturity) {
-            return new BondFairValueCalculator(
-                $bondFaceValue,
-                $bondAnnualCouponRate,
-                $bondVIR,
-                $bondYearsToMaturity,
-                4);
+            return $this->manufactureInstance(
+                [
+                    $bondFaceValue,
+                    $bondAnnualCouponRate,
+                    $bondVIR,
+                    $bondYearsToMaturity,
+                    4
+                ]
+            );
         }
 
         /**
@@ -68,12 +77,15 @@ namespace FinanCalc\Calculators\Factories {
          * @return BondFairValueCalculator
          */
         public function newMonthlyCouponsBond($bondFaceValue, $bondAnnualCouponRate, $bondVIR, $bondYearsToMaturity) {
-            return new BondFairValueCalculator(
-                $bondFaceValue,
-                $bondAnnualCouponRate,
-                $bondVIR,
-                $bondYearsToMaturity,
-                12);
+            return $this->manufactureInstance(
+                [
+                    $bondFaceValue,
+                    $bondAnnualCouponRate,
+                    $bondVIR,
+                    $bondYearsToMaturity,
+                    12
+                ]
+            );
         }
 
         /**
@@ -85,12 +97,15 @@ namespace FinanCalc\Calculators\Factories {
          * @return BondFairValueCalculator
          */
         public function newCustomCouponFrequencyBond($bondFaceValue, $bondAnnualCouponRate, $bondVIR, $bondYearsToMaturity, $bondPaymentFrequency) {
-            return new BondFairValueCalculator(
-                $bondFaceValue,
-                $bondAnnualCouponRate,
-                $bondVIR,
-                $bondYearsToMaturity,
-                $bondPaymentFrequency);
+            return $this->manufactureInstance(
+                [
+                    $bondFaceValue,
+                    $bondAnnualCouponRate,
+                    $bondVIR,
+                    $bondYearsToMaturity,
+                    $bondPaymentFrequency
+                ]
+            );
         }
     }
 }

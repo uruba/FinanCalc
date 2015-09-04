@@ -19,11 +19,14 @@ namespace FinanCalc\Calculators\Factories {
          * @return AnnuityCalculator
          */
         public function newYearlyAnnuity($annuitySinglePaymentAmount, $annuityNoOfCompoundingPeriods, $annuityInterest) {
-            return new AnnuityCalculator(
-                $annuitySinglePaymentAmount,
-                $annuityNoOfCompoundingPeriods,
-                TimeUtils::getDaysFromYears(1),
-                $annuityInterest);
+            return $this->manufactureInstance(
+                [
+                    $annuitySinglePaymentAmount,
+                    $annuityNoOfCompoundingPeriods,
+                    TimeUtils::getDaysFromYears(1),
+                    $annuityInterest
+                ]
+            );
         }
 
         /**
@@ -33,11 +36,14 @@ namespace FinanCalc\Calculators\Factories {
          * @return AnnuityCalculator
          */
         public function newMonthlyAnnuity($annuitySinglePaymentAmount, $annuityNoOfCompoundingPeriods, $annuityInterest) {
-            return new AnnuityCalculator(
-                $annuitySinglePaymentAmount,
-                $annuityNoOfCompoundingPeriods,
-                TimeUtils::getDaysFromMonths(1),
-                $annuityInterest);
+            return $this->manufactureInstance(
+                [
+                    $annuitySinglePaymentAmount,
+                    $annuityNoOfCompoundingPeriods,
+                    TimeUtils::getDaysFromMonths(1),
+                    $annuityInterest
+                ]
+            );
         }
 
         /**
@@ -47,11 +53,14 @@ namespace FinanCalc\Calculators\Factories {
          * @return AnnuityCalculator
          */
         public function newDailyAnnuity($annuitySinglePaymentAmount, $annuityNoOfCompoundingPeriods, $annuityInterest) {
-            return new AnnuityCalculator(
-                $annuitySinglePaymentAmount,
-                $annuityNoOfCompoundingPeriods,
-                1,
-                $annuityInterest);
+            return $this->manufactureInstance(
+                [
+                    $annuitySinglePaymentAmount,
+                    $annuityNoOfCompoundingPeriods,
+                    1,
+                    $annuityInterest
+                ]
+            );
         }
 
         /**
@@ -60,11 +69,14 @@ namespace FinanCalc\Calculators\Factories {
          * @return AnnuityCalculator
          */
         public function newPerpetuity($annuitySinglePaymentAmount, $annuityInterest) {
-            return new AnnuityCalculator(
-                $annuitySinglePaymentAmount,
-                0,
-                0,
-                $annuityInterest);
+            return $this->manufactureInstance(
+                [
+                    $annuitySinglePaymentAmount,
+                    0,
+                    0,
+                    $annuityInterest
+                ]
+            );
         }
     }
 }
