@@ -496,6 +496,41 @@ namespace `FinanCalc\Calculators\Factories`
 
 * * *
 
+### StockDividendDiscountModelCalculator
+namespace `FinanCalc\Calculators`
+* **__construct(StockDDMTypes $dividendDiscountModelType, $stockVIR, $stockAnnualDividendValue, $stockAnnualDividendsGrowth = null)**
+  * *$dividendDiscountModelType* = the type of the dividend discount model according to which the result will be calculated (value of the type *StockDDMTypes*)
+  * *$stockVIR* = **'i'** – stock's valuation interest rate
+  * *$stockAnnualDividendsValue* = **'D'** – absolute value of the stock's annual dividends
+  * *$stockAnnualDividendsGrowth* = **'g'** – the rate by which the stock's annual dividends are annually multiplied (i.e., a decimal number between 0 and 1) [*this value applies only to the multiple growth dividend discount model*]
+
+#### Setters
+* **setDividendDiscountModelType(StockDDMTypes $dividendDiscountModelType)** – sets the type of the dividend discount model
+* **setStockVIR($stockVIR)** – sets i
+* **setStockAnnualDividendsValue($stockAnnualDividendsValue)** – sets D
+* **setStockAnnualDividendsGrowth($stockAnnualDividendsGrowth)** – sets g
+
+#### Getters
+* **getDividendDiscountModelType()** – gets the type of the dividend discount model
+* **getStockVIR()** – gets i
+* **getStockAnnualDividendsValue()** – gets D
+* **getStockAnnualDividendsGrowth()** – gets g
+* **getStockPresentValue()** – gets the present (~ fair) value of the stock
+* **getResultAsArray(array $propResultArray = null)** – gets the array of the pertinent property values which you can specify (e.g., if you want only a specified subset thereof) via the optional argument
+* **getSerializedResult(SerializerInterface $serializer)** – gets the serialized result, according to the passed SerializerInterface object
+
+#### StockDividendDiscountModelCalculatorFactory (*StockDividendDiscountModelCalculator's factory object*)
+namespace `FinanCalc\Calculators\Factories`
+* **newZeroGrowthDividendDiscountModel($stockVIR, $stockAnnualDividendValue)**
+* **newMultipleGrowthDividendDiscountModel($stockVIR, $stockAnnualDividendValue, $stockAnnualDividendsGrowth)**
+
+#### StockDDMTypes
+namespace `FinanCalc\Constants`
+* *ZERO_GROWTH* = 1
+* *MULTIPLE_GROWTH* = 2
+
+* * *
+
 ### StockInvestmentRatiosCalculator
 namespace `FinanCalc\Calculators`
 * **__construct($totalDividends, $earningsAfterTaxes, $noOfStocks)**

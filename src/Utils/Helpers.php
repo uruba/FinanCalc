@@ -26,6 +26,20 @@ namespace FinanCalc\Utils {
         }
 
         /**
+         * @param $leftOperand
+         * @param $rightOperand
+         * @param $messageOnException
+         * @return bool
+         */
+        static function checkIfLeftOperandGreaterOrThrowAnEception($leftOperand, $rightOperand, $messageOnException) {
+            if (MathFuncs::comp($leftOperand, $rightOperand) === 1) {
+                return true;
+            }
+
+            throw new InvalidArgumentException($messageOnException);
+        }
+
+        /**
          * @param $checkedVariable
          * @return bool
          */
