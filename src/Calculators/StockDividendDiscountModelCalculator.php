@@ -51,6 +51,20 @@ namespace FinanCalc\Calculators {
         }
 
         /**
+         * @param StockDDMTypes $dividendDiscountModelType
+         */
+        public function setDividendDiscountModelType(StockDDMTypes $dividendDiscountModelType) {
+            if (
+                $dividendDiscountModelType->getValue() == StockDDMTypes::ZERO_GROWTH
+                &&
+                $this->stockAnnualDividendsGrowth !== null
+            ) {
+                $this->stockAnnualDividendsGrowth = null;
+            }
+            $this->dividendDiscountModelType = $dividendDiscountModelType;
+        }
+
+        /**
          * @param $stockVIR
          */
         public function setStockVIR($stockVIR){
@@ -95,17 +109,10 @@ namespace FinanCalc\Calculators {
         }
 
         /**
-         * @param StockDDMTypes $dividendDiscountModelType
+         * @return mixed
          */
-        public function setDividendDiscountModelType(StockDDMTypes $dividendDiscountModelType) {
-            if (
-                $dividendDiscountModelType->getValue() == StockDDMTypes::ZERO_GROWTH
-                &&
-                $this->stockAnnualDividendsGrowth !== null
-            ) {
-                $this->stockAnnualDividendsGrowth = null;
-            }
-            $this->dividendDiscountModelType = $dividendDiscountModelType;
+        public function getDividendDiscountModelType() {
+            return $this->dividendDiscountModelType;
         }
 
         /**
@@ -128,14 +135,6 @@ namespace FinanCalc\Calculators {
         public function getStockAnnualDividendsGrowth() {
             return $this->stockAnnualDividendsGrowth;
         }
-
-        /**
-         * @return mixed
-         */
-        public function getDividendDiscountModelType() {
-            return $this->dividendDiscountModelType;
-        }
-
 
         /**
          * @return null|string
