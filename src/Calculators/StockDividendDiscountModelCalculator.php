@@ -143,6 +143,7 @@ namespace FinanCalc\Calculators {
         public function getStockPresentValue() {
             switch ($this->dividendDiscountModelType->getValue()) {
                 case StockDDMTypes::ZERO_GROWTH:
+                    // PV = D/i
                     return MathFuncs::div(
                         $this->stockAnnualDividendsValue,
                         $this->stockVIR
@@ -151,6 +152,7 @@ namespace FinanCalc\Calculators {
                     if ($this->stockAnnualDividendsGrowth === null) {
                         throw new Exception("You have to set the stockAnnualDividendsGrowth for the multiple growth model!");
                     }
+                    // PV = (D*(1+g))/(i-g)
                     return MathFuncs::mul(
                         $this->stockAnnualDividendsValue,
                         MathFuncs::div(
