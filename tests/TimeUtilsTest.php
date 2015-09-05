@@ -1,14 +1,29 @@
 <?php
 
-use FinanCalc\Utils\TimeUtils;
+use FinanCalc\Utils\Time\TimeSpan;
+use FinanCalc\Utils\Time\TimeUtils;
 
 /**
  * Class TimeUtilsTest
  */
 class TimeUtilsTest extends PHPUnit_Framework_TestCase {
+    private $timeSpan;
+
     private $YEARS = 1;
     private $MONTHS = 12;
     private $DAYS = 360;
+
+    public function testYearsFromTimeSpan() {
+        $this->assertEquals(1.75, TimeUtils::getYearsFromTimeSpan($this->timeSpan));
+    }
+
+    public function testMonthsFromTimeSpan() {
+        $this->assertEquals(21, TimeUtils::getMonthsFromTimeSpan($this->timeSpan));
+    }
+
+    public function testDaysFromTimeSpan() {
+        $this->assertEquals(630, TimeUtils::getDaysFromTimeSpan($this->timeSpan));
+    }
 
     public function testGetYearsFromDays() {
         $this->assertEquals(
@@ -71,5 +86,11 @@ class TimeUtilsTest extends PHPUnit_Framework_TestCase {
             $this->DAYS,
             TimeUtils::getDaysFromYears($this->YEARS)
         );
+    }
+
+    protected function setUp() {
+        $this->timeSpan = TimeSpan::asDuration(1, 6, 90);
+
+        parent::setUp();
     }
 }

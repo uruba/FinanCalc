@@ -1,15 +1,72 @@
 <?php
 
 
-namespace FinanCalc\Utils {
+namespace FinanCalc\Utils\Time {
 
     use Exception;
+    use FinanCalc\Utils\Config;
+    use FinanCalc\Utils\MathFuncs;
 
     /**
      * Class TimeUtils
      * @package FinanCalc\Utils
      */
     class TimeUtils {
+
+        /**
+         * @param TimeSpan $timeSpan
+         * @return string
+         * @throws Exception
+         */
+        public static function getYearsFromTimeSpan(TimeSpan $timeSpan) {
+            $monthsComponent = MathFuncs::div(
+                $timeSpan->getMonths(),
+                12
+            );
+            $daysComponent = self::getCurrentDayCountConvention()['days_in_a_year'] == 0 ?
+                0 :
+                MathFuncs::div(
+                    $timeSpan->getDays(),
+                    self::getCurrentDayCountConvention()['days_in_a_year']
+                );
+
+            return MathFuncs::add($timeSpan->getYears(), MathFuncs::add($monthsComponent, $daysComponent));
+        }
+
+        /**
+         * @param TimeSpan $timeSpan
+         * @return string
+         * @throws Exception
+         */
+        public static function getMonthsFromTimeSpan(TimeSpan $timeSpan) {
+            $yearsComponent = MathFuncs::mul($timeSpan->getYears(), 12);
+            $daysComponent = self::getCurrentDayCountConvention()['days_in_a_month'] == 0 ?
+                0 :
+                MathFuncs::div(
+                    $timeSpan->getDays(),
+                    self::getCurrentDayCountConvention()['days_in_a_month']
+                );
+
+            return MathFuncs::add($timeSpan->getMonths(), MathFuncs::add($yearsComponent, $daysComponent));
+        }
+
+        /**
+         * @param TimeSpan $timeSpan
+         * @return string
+         * @throws Exception
+         */
+        public static function getDaysFromTimeSpan(TimeSpan $timeSpan) {
+            $yearsComponent = MathFuncs::mul(
+                $timeSpan->getYears(),
+                self::getCurrentDayCountConvention()['days_in_a_year']
+            );
+            $monthsComponent = MathFuncs::mul(
+                $timeSpan->getMonths(),
+                self::getCurrentDayCountConvention()['days_in_a_month']
+            );
+
+            return MathFuncs::add($timeSpan->getDays(), MathFuncs::add($yearsComponent, $monthsComponent));
+        }
 
         /**
          * @param $numberOfDays
@@ -114,6 +171,10 @@ namespace FinanCalc\Utils {
             );
         }
 
+        /**
+         * @return mixed
+         * @throws Exception
+         */
         public static function getCurrentDayCountConvention() {
             $dayCountConventionIdentifier = Config::getConfigField('day_count_convention');
             $availableDayCountConventions = Config::getConfigField('available_day_count_conventions');

@@ -2,7 +2,7 @@
 
 use FinanCalc\Calculators\AnnuityCalculator;
 use FinanCalc\Constants\AnnuityPaymentTypes;
-use FinanCalc\Utils\TimeUtils;
+use FinanCalc\Utils\Time\TimeUtils;
 
 /**
  * Class AnnuityCalculatorTest
