@@ -14,3 +14,18 @@ function isObjectTypeInArray($objectType, $array) {
 
     return false;
 }
+
+/**
+ * @param $object
+ * @param $methodName
+ * @param array $parameters
+ * @return mixed
+ */
+function invokeMethod(&$object, $methodName, array $parameters = array())
+{
+    $reflection = new \ReflectionClass(get_class($object));
+    $method = $reflection->getMethod($methodName);
+    $method->setAccessible(true);
+
+    return $method->invokeArgs($object, $parameters);
+}
