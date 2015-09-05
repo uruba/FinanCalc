@@ -17,7 +17,7 @@ class TimeUtilsTest extends PHPUnit_Framework_TestCase {
         $this->assertEquals(1.75, TimeUtils::getYearsFromTimeSpan($this->timeSpan));
     }
 
-    public function testMonthsFromTimespan() {
+    public function testMonthsFromTimeSpan() {
         $this->assertEquals(21, TimeUtils::getMonthsFromTimeSpan($this->timeSpan));
     }
 
