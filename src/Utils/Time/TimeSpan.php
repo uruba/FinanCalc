@@ -81,13 +81,13 @@ namespace FinanCalc\Utils\Time {
          * @param DateTime $startDate
          */
         public function setStartDate(DateTime $startDate) {
-            $endDate = $this->endDate;
-            if ($endDate !== null) {
-                $this->checkStartEndDateAndSetInterval($startDate, $endDate);
+            if ($this->endDate !== null) {
+                $this->checkStartEndDateAndSetInterval($startDate, $this->endDate);
             } else {
                 $endDate = clone $startDate;
                 $this->endDate = $endDate->add($this->dateInterval);
             }
+
             $this->startDate = $startDate;
         }
 
