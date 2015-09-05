@@ -2,6 +2,7 @@
 
 namespace FinanCalc\Interfaces\Calculator {
 
+    use Exception;
     use ReflectionClass;
 
     /**
@@ -12,15 +13,15 @@ namespace FinanCalc\Interfaces\Calculator {
         const MANUFACTURED_CLASS_NAME = null;
 
         /**
-         * @throws \Exception
+         * @throws Exception
          */
         public function __construct() {
             if (!is_string(static::MANUFACTURED_CLASS_NAME)) {
-                throw new \Exception("String class constant MANUFACTURED_CLASS_NAME has to be defined!");
+                throw new Exception("String class constant MANUFACTURED_CLASS_NAME has to be defined!");
             }
 
             if (!class_exists(static::MANUFACTURED_CLASS_NAME)) {
-                throw new \Exception("Class" . static::MANUFACTURED_CLASS_NAME .  " not defined");
+                throw new Exception("Class" . static::MANUFACTURED_CLASS_NAME .  " not defined");
             }
         }
 
