@@ -62,7 +62,7 @@ namespace FinanCalc\Calculators {
             ) {
                 $this->stockAnnualDividendsGrowth = null;
             }
-            $this->dividendDiscountModelType = (string)$dividendDiscountModelType;
+            $this->dividendDiscountModelType = $dividendDiscountModelType;
         }
 
         /**
@@ -106,7 +106,10 @@ namespace FinanCalc\Calculators {
                 }
             }
 
-            $this->stockAnnualDividendsGrowth = (string)$stockAnnualDividendsGrowth;
+            $this->stockAnnualDividendsGrowth =
+                $stockAnnualDividendsGrowth === null ?
+                    $stockAnnualDividendsGrowth :
+                    (string)$stockAnnualDividendsGrowth;
         }
 
         /**
