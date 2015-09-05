@@ -6,6 +6,18 @@ use FinanCalc\Utils\Time\TimeSpan;
  */
 class TimeSpanTest extends PHPUnit_Framework_TestCase
 {
+    public function testExceptionStartDateNotLowerThanEndDate() {
+        $this->setExpectedException("InvalidArgumentException");
+
+        TimeSpan::asInterval(new DateTime(), new DateTime());
+    }
+
+    public function testExceptionZeroDuration() {
+        $this->setExpectedException("InvalidArgumentException");
+
+        TimeSpan::asDuration(0);
+    }
+
     public function testTimeSpanAsDuration() {
         $timeSpan = TimeSpan::asDuration(0, 6);
         $this->assertNull($timeSpan->getStartDate());
@@ -52,8 +64,8 @@ class TimeSpanTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(new DateTime("2012-01-01"), $timeSpan->getStartDate());
         $this->assertEquals(new DateTime("2012-06-01"), $timeSpan->getEndDate());
         $this->assertEquals(0, $timeSpan->getYears());
-        $this->assertEquals(4, $timeSpan->getMonths());
-        $this->assertEquals(31, $timeSpan->getDays());
+        $this->assertEquals(5, $timeSpan->getMonths());
+        $this->assertEquals(0, $timeSpan->getDays());
 
         $timeSpan->setEndDate(new DateTime("2013-01-01"));
         $this->assertEquals(new DateTime("2012-01-01"), $timeSpan->getStartDate());
@@ -76,10 +88,17 @@ class TimeSpanTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(0, $timeSpan->getMonths());
         $this->assertEquals(0, $timeSpan->getDays());
 
-        $timeSpan->setStartDate(new DateTime("2011-01-01"));
-        $this->assertEquals(new DateTime("2011-01-01"), $timeSpan->getStartDate());
+        $timeSpan->setStartDate(new DateTime("2012-01-01"));
+        $this->assertEquals(new DateTime("2012-01-01"), $timeSpan->getStartDate());
         $this->assertEquals(new DateTime("2013-01-01"), $timeSpan->getEndDate());
-        $this->assertEquals(2, $timeSpan->getYears());
+        $this->assertEquals(1, $timeSpan->getYears());
+        $this->assertEquals(0, $timeSpan->getMonths());
+        $this->assertEquals(0, $timeSpan->getDays());
+
+        $timeSpan->setStartDate(new DateTime("2012-01-02"));
+        $this->assertEquals(new DateTime("2012-01-02"), $timeSpan->getStartDate());
+        $this->assertEquals(new DateTime("2013-01-01"), $timeSpan->getEndDate());
+        $this->assertEquals(1, $timeSpan->getYears());
         $this->assertEquals(0, $timeSpan->getMonths());
         $this->assertEquals(0, $timeSpan->getDays());
     }

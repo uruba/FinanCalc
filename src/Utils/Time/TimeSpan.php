@@ -32,11 +32,11 @@ namespace FinanCalc\Utils\Time {
          */
         public static function asDuration(
             $years,
-            $months,
+            $months = 0,
             $days = 0
         ) {
             $newThis = new TimeSpan();
-            $newThis->setDateInterval($years, $months, $days);
+            $newThis->newDateIntervalAbsolute($years, $months, $days);
 
             return $newThis;
         }
@@ -51,7 +51,7 @@ namespace FinanCalc\Utils\Time {
         public static function asDurationWithStartDate(
             DateTime $startDate,
             $years,
-            $months,
+            $months = 0,
             $days = 0
         ) {
             $newThis = TimeSpan::asDuration($years, $months, $days);
@@ -81,10 +81,6 @@ namespace FinanCalc\Utils\Time {
          * @param DateTime $startDate
          */
         public function setStartDate(DateTime $startDate) {
-            if ($startDate === null) {
-                throw new InvalidArgumentException('$startDate cannot be assigned null, use the clearStartEndDate() method instead!');
-            }
-
             $endDate = $this->endDate;
             if ($endDate !== null) {
                 $this->checkStartEndDateAndSetInterval($startDate, $endDate);
@@ -99,10 +95,6 @@ namespace FinanCalc\Utils\Time {
          * @param DateTime $endDate
          */
         public function setEndDate(DateTime $endDate) {
-            if ($endDate === null) {
-                throw new InvalidArgumentException('$endDate cannot be assigned null, use the clearStartEndDate() method instead!');
-            }
-
             if ($this->startDate !== null) {
                 $this->checkStartEndDateAndSetInterval($this->startDate, $endDate);
             } else {
@@ -158,25 +150,42 @@ namespace FinanCalc\Utils\Time {
         /** PRIVATE methods */
 
         /**
+         * @param DateInterval $dateInterval
+         */
+        private function setDateInterval(DateInterval $dateInterval) {
+            if($dateInterval->y == 0 && $dateInterval->m == 0 && $dateInterval->d == 0) {
+                throw new InvalidArgumentException("The duration has to be greater than zero!");
+            }
+
+            $this->dateInterval = $dateInterval;
+        }
+
+        /**
          * @param $years
          * @param $months
          * @param $days
          */
-        private function setDateInterval($years, $months, $days) {
-            $this->dateInterval = new DateInterval(
-                                        "P" .
-                                        (string)$years . "Y" .
-                                        (string)$months . "M" .
-                                        (string)$days . "D"
-                                    );
+        private function newDateIntervalAbsolute($years, $months, $days) {
+            $this->setdateInterval(
+                new DateInterval(
+                    "P" .
+                    (string)$years . "Y" .
+                    (string)$months . "M" .
+                    (string)$days . "D"
+                )
+            );
         }
 
         /**
          * @param DateTime $startDate
          * @param DateTime $endDate
          */
-        function setDateIntervalSE(DateTime $startDate, DateTime $endDate) {
-            $this->dateInterval = $startDate->diff($endDate, true);
+        private function newDateIntervalDifference(DateTime $startDate, DateTime $endDate) {
+            $this->setDateInterval(
+                $this->roundDateInterval(
+                    $startDate->diff($endDate)
+                )
+            );
         }
 
         /**
@@ -185,10 +194,29 @@ namespace FinanCalc\Utils\Time {
          */
         private function checkStartEndDateAndSetInterval(DateTime $startDate, DateTime $endDate) {
             if ($startDate < $endDate) {
-                $this->setDateIntervalSE($startDate, $endDate);
+                $this->newDateIntervalDifference($startDate, $endDate);
             } else {
-                throw new InvalidArgumentException("Start date has to be lower than the end date! " . var_dump($endDate));
+                throw new InvalidArgumentException("Start date has to be lower than the end date!");
             }
+        }
+
+        /**
+         * @param DateInterval $dateInterval
+         * @return DateInterval
+         */
+        private function roundDateInterval(DateInterval $dateInterval) {
+            // TODO: make more intelligent rounding based on the start and end date
+            if (in_array($dateInterval->d, [30, 31])) {
+                $dateInterval->d = 0;
+                $dateInterval->m += 1;
+            }
+
+            if ($dateInterval->m == 12) {
+                $dateInterval->y += 1;
+                $dateInterval->m = 0;
+            }
+
+            return $dateInterval;
         }
     }
 }
