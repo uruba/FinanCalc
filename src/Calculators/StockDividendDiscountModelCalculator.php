@@ -62,7 +62,7 @@ namespace FinanCalc\Calculators {
             ) {
                 $this->stockAnnualDividendsGrowth = null;
             }
-            $this->dividendDiscountModelType = $dividendDiscountModelType;
+            $this->dividendDiscountModelType = (string)$dividendDiscountModelType;
         }
 
         /**
@@ -70,7 +70,7 @@ namespace FinanCalc\Calculators {
          */
         public function setStockVIR($stockVIR){
             if (Helpers::checkIfPositiveNumberOrThrowAnException($stockVIR)) {
-                $this->stockVIR = $stockVIR;
+                $this->stockVIR = (string)$stockVIR;
             }
         }
 
@@ -79,7 +79,7 @@ namespace FinanCalc\Calculators {
          */
         public function setStockAnnualDividendsValue($stockAnnualDividendsValue) {
             if (Helpers::checkIfPositiveNumberOrThrowAnException($stockAnnualDividendsValue)) {
-                $this->stockAnnualDividendsValue = $stockAnnualDividendsValue;
+                $this->stockAnnualDividendsValue = (string)$stockAnnualDividendsValue;
             }
         }
 
@@ -106,7 +106,7 @@ namespace FinanCalc\Calculators {
                 }
             }
 
-            $this->stockAnnualDividendsGrowth = $stockAnnualDividendsGrowth;
+            $this->stockAnnualDividendsGrowth = (string)$stockAnnualDividendsGrowth;
         }
 
         /**
