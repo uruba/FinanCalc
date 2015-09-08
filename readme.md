@@ -296,9 +296,10 @@ namespace `FinanCalc\Calculators`
 ##### Getters
 * **getAnnuitySinglePaymentAmount()** – gets K
 * **getAnnuityNoOfCompoundingPeriods()** – gets n
-* **getAnnuityPeriodLengthInYears()** – gets the length of each compounding periods in years
-* **getAnnuityPeriodLengthInMonths()** – gets the length of each compounding periods in months
-* **getAnnuityPeriodLengthInDays()** – gets the length of each compounding periods in days
+* **getAnnuityPeriodLength()** – gets the length of each compounding period as a TimeSpan object
+* **getAnnuityPeriodLengthInYears()** – gets the length of each compounding period in years
+* **getAnnuityPeriodLengthInMonths()** – gets the length of each compounding period in months
+* **getAnnuityPeriodLengthInDays()** – gets the length of each compounding period in days
 * **getAnnuityInterest()** – gets i
 * **getAnnuityPresentValue(AnnuityPaymentTypes $annuityType)** – gets the present value of the annuity
   * *AnuityPaymentTypes $annuityType* = determines whether the payments are made either at the beginning or the end of each of the annuity's periods
@@ -355,6 +356,7 @@ namespace `FinanCalc\Calculators`
 * **getDebtSingleRepayment()** – gets the amount of a single repayment = **'K'**
 * **getDebtPrincipal()** – gets PV
 * **getDebtNoOfCompoundingPeriods()** – gets n
+* **getDebtPeriodLength()** – gets the length of each compounding period as a TimeSpan object
 * **getDebtPeriodLengthInYears()**  – gets the length of each compounding period in years
 * **getDebtPeriodLengthInMonths()**  – gets the length of each compounding period in months
 * **getDebtPeriodLengthInDays()** – gets the length of each compounding period in days
