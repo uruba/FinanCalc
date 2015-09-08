@@ -85,7 +85,7 @@ use FinanCalc\Utils\Time\TimeUtils;
 $annuityCalculatorDirect = new DebtAmortizator(
                                        40000,
                                        6,
-                                       TimeUtils::getDaysFromYears(1),
+                                       TimeSpan::asDuration(1),
                                        0.12);
 ```
 
@@ -281,16 +281,16 @@ The implicit type of setters'/constructors' arguments as well as getters' return
 
 ### AnnuityCalculator
 namespace `FinanCalc\Calculators`
-* **__construct($annuitySinglePaymentAmount, $annuityNoOfCompoundingPeriods, $annuityPeriodLength, $annuityInterest)**
+* **__construct($annuitySinglePaymentAmount, $annuityNoOfCompoundingPeriods, TimeSpan $annuityPeriodLength, $annuityInterest)**
   * *$annuitySinglePaymentAmount* = **'K'** – amount of each individual payment (number greater than zero)
   * *$annuityNoOfCompoundingPeriods* = **'n'** – number of periods pertaining to the interest compounding; if 'n = 0', the annuity is considered a perpetuity
-  * *$annuityPeriodLength* = length of a single period in days (number greater than zero)
+  * *$annuityPeriodLength* = length of a single period as a TimeSpan object
   * *$annuityInterest* = **'i'** – the interest rate *per a single payment period* by which the unpaid balance is multiplied (i.e., a decimal number typically lower than 1 and greater than 0)
 
 ##### Setters
 * **setAnnuitySinglePaymentAmount($annuitySinglePaymentAmount)** – sets K
 * **setAnnuityNoOfCompoundingPeriods($annuityNoOfCompoundingPeriods)** – sets n
-* **setAnnuityPeriodLength($annuityPeriodLength)** – sets the length of each compounding period in days
+* **setAnnuityPeriodLength(TimeSpan $annuityPeriodLength)** – sets the length of each compounding period in days
 * **setAnnuityInterest($annuityInterest)** – sets i
 
 ##### Getters

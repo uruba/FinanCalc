@@ -174,9 +174,14 @@ class AnnuityCalculatorTest extends PHPUnit_Framework_TestCase {
         );
 
         $this->assertEquals(
+            TimeSpan::asDuration(0,1,0),
+            $annuityCalculatorFactoryMonthly
+                ->getAnnuityPeriodLength()
+        );
+
+        $this->assertEquals(
             1,
             $annuityCalculatorFactoryMonthly
-
                 ->getAnnuityPeriodLengthInMonths()
         );
     }
@@ -215,9 +220,14 @@ class AnnuityCalculatorTest extends PHPUnit_Framework_TestCase {
         );
 
         $this->assertEquals(
+            TimeSpan::asDuration(0,0,1),
+            $annuityCalculatorFactoryDaily
+                ->getAnnuityPeriodLength()
+        );
+
+        $this->assertEquals(
             1,
             $annuityCalculatorFactoryDaily
-
                 ->getAnnuityPeriodLengthInDays()
         );
     }

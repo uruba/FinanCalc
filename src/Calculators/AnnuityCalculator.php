@@ -125,6 +125,13 @@ namespace FinanCalc\Calculators {
         }
 
         /**
+         * @return TimeSpan
+         */
+        public function getAnnuityPeriodLength() {
+            return $this->annuityPeriodLength;
+        }
+
+        /**
          * @return string
          */
         public function getAnnuityPeriodLengthInYears() {
