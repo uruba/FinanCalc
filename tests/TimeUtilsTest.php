@@ -15,15 +15,15 @@ class TimeUtilsTest extends PHPUnit_Framework_TestCase {
     private $DAYS = 360;
 
     public function testYearsFromTimeSpan() {
-        $this->assertEquals(1.75, $this->timeSpan->asYears());
+        $this->assertEquals(1.75, $this->timeSpan->toYears());
     }
 
     public function testMonthsFromTimeSpan() {
-        $this->assertEquals(21, $this->timeSpan->asMonths());
+        $this->assertEquals(21, $this->timeSpan->toMonths());
     }
 
     public function testDaysFromTimeSpan() {
-        $this->assertEquals(630, $this->timeSpan->asDays());
+        $this->assertEquals(630, $this->timeSpan->toDays());
     }
 
     public function testGetYearsFromDays() {

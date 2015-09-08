@@ -154,7 +154,7 @@ namespace FinanCalc\Utils\Time {
          * @return string
          * @throws Exception
          */
-        public function asYears() {
+        public function toYears() {
             $monthsComponent = MathFuncs::div(
                 $this->getMonthsComponent(),
                 12
@@ -173,7 +173,7 @@ namespace FinanCalc\Utils\Time {
          * @return string
          * @throws Exception
          */
-        public function asMonths() {
+        public function toMonths() {
             $yearsComponent = MathFuncs::mul($this->getYearsComponent(), 12);
             $daysComponent = TimeUtils::getCurrentDayCountConvention()['days_in_a_month'] == 0 ?
                 0 :
@@ -189,7 +189,7 @@ namespace FinanCalc\Utils\Time {
          * @return string
          * @throws Exception
          */
-        public function asDays() {
+        public function toDays() {
             $yearsComponent = MathFuncs::mul(
                 $this->getYearsComponent(),
                 TimeUtils::getCurrentDayCountConvention()['days_in_a_year']
@@ -278,7 +278,7 @@ namespace FinanCalc\Utils\Time {
          * @return string
          */
         public function __toString() {
-            return $this->asDays();
+            return $this->toDays();
         }
     }
 }

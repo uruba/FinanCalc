@@ -128,21 +128,21 @@ namespace FinanCalc\Calculators {
          * @return string
          */
         public function getAnnuityPeriodLengthInYears() {
-            return $this->annuityPeriodLength->asYears();
+            return $this->annuityPeriodLength->toYears();
         }
 
         /**
          * @return string
          */
         public function getAnnuityPeriodLengthInMonths() {
-            return $this->annuityPeriodLength->asMonths();
+            return $this->annuityPeriodLength->toMonths();
         }
 
         /**
          * @return mixed
          */
         public function getAnnuityPeriodLengthInDays() {
-            return $this->annuityPeriodLength->asDays();
+            return $this->annuityPeriodLength->toDays();
         }
 
         /**
