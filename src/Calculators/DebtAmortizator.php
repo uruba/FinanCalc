@@ -5,7 +5,7 @@ namespace FinanCalc\Calculators {
     use FinanCalc\Interfaces\Calculator\CalculatorAbstract;
     use FinanCalc\Utils\Helpers;
     use FinanCalc\Utils\MathFuncs;
-    use FinanCalc\Utils\Time\TimeUtils;
+    use FinanCalc\Utils\Time\TimeSpan;
 
     /**
      * Class DebtAmortizator
@@ -21,6 +21,7 @@ namespace FinanCalc\Calculators {
         // number of periods pertaining to the interest compounding = 'n'
         private $debtNoOfCompoundingPeriods;
         // length of a single period in days
+        /** @var  TimeSpan */
         private $debtPeriodLength;
         // the interest rate by which the unpaid balance is multiplied (i.e., a decimal number) = 'i'
         private $debtInterest;
@@ -48,15 +49,14 @@ namespace FinanCalc\Calculators {
         ];
 
         /**
-         * @param string $debtPrincipal                [Value of the debt's principal as a string]
-         * @param string $debtNoOfCompoundingPeriods   [Number of the debt's compounding periods as a string]
-         * @param string $debtPeriodLength             [Length of each of the debt's compounding periods in days as a string]
-         * @param string $debtInterest                 [Value of the debt's interest in a decimal number 'multiplier' form as a string]
-         * @throws \InvalidArgumentException
+         * @param $debtPrincipal
+         * @param $debtNoOfCompoundingPeriods
+         * @param TimeSpan $debtPeriodLength
+         * @param $debtInterest
          */
         function __construct($debtPrincipal,
                              $debtNoOfCompoundingPeriods,
-                             $debtPeriodLength,
+                             TimeSpan $debtPeriodLength,
                              $debtInterest) {
             $this->setDebtPrincipalWithoutRecalculation($debtPrincipal);
             $this->setDebtNoOfCompoundingPeriodsWithoutRecalculation($debtNoOfCompoundingPeriods);
@@ -109,20 +109,20 @@ namespace FinanCalc\Calculators {
         }
 
         /**
+         * @param $debtPeriodLength
+         */
+        public function setDebtPeriodLength(TimeSpan $debtPeriodLength) {
+            if (Helpers::checkIfPositiveNumberOrThrowAnException((string)$debtPeriodLength)) {
+                $this->debtPeriodLength = $debtPeriodLength;
+            }
+        }
+
+        /**
          * @param $debtInterest
          */
         public function setDebtInterest($debtInterest) {
             $this->setDebtInterestWithoutRecalculation($debtInterest);
             $this->calculateDebtRepayments();
-        }
-
-        /**
-         * @param $debtPeriodLength
-         */
-        public function setDebtPeriodLength($debtPeriodLength) {
-            if (Helpers::checkIfPositiveNumberOrThrowAnException($debtPeriodLength)) {
-                $this->debtPeriodLength = (string)$debtPeriodLength;
-            }
         }
 
         /**
@@ -162,30 +162,31 @@ namespace FinanCalc\Calculators {
         }
 
         /**
+         * @return TimeSpan
+         */
+        public function getDebtPeriodLength() {
+            return $this->debtPeriodLength;
+        }
+
+        /**
          * @return string [Length of each of the debt's compounding periods in years as a string]
          */
         public function getDebtPeriodLengthInYears() {
-            return TimeUtils::getYearsFromDays(
-                $this->debtPeriodLength
-            );
+            return $this->debtPeriodLength->toYears();
         }
 
         /**
          * @return string [Length of each of the debt's compounding periods in months as a string]
          */
         public function getDebtPeriodLengthInMonths() {
-            return TimeUtils::getMonthsFromDays(
-                $this->debtPeriodLength
-            );
+            return $this->debtPeriodLength->toMonths();
         }
 
         /**
          * @return string [Length of each of the debt's compounding periods in days as a string]
          */
         public function getDebtPeriodLengthInDays() {
-            return TimeUtils::getDaysFromDays(
-                $this->debtPeriodLength
-            );
+            return $this->debtPeriodLength->toDays();
         }
 
         /**
@@ -214,33 +215,30 @@ namespace FinanCalc\Calculators {
          * @return string [Duration of the debt in years as a string]
          */
         public function getDebtDurationInYears() {
-            return TimeUtils::getYearsFromDays(
-                MathFuncs::mul(
-                    $this->debtNoOfCompoundingPeriods,
-                    $this->debtPeriodLength)
-            );
+            return MathFuncs::mul(
+                        $this->debtNoOfCompoundingPeriods,
+                        $this->debtPeriodLength->toYears()
+                    );
         }
 
         /**
          * @return string [Duration of the debt in months as a string]
          */
         public function getDebtDurationInMonths() {
-            return TimeUtils::getMonthsFromDays(
-                MathFuncs::mul(
-                    $this->debtNoOfCompoundingPeriods,
-                    $this->debtPeriodLength)
-            );
+            return MathFuncs::mul(
+                        $this->debtNoOfCompoundingPeriods,
+                        $this->debtPeriodLength->toMonths()
+                    );
         }
 
         /**
          * @return string [Duration of the debt in years as a string]
          */
         public function getDebtDurationInDays() {
-            return TimeUtils::getDaysFromDays(
-                MathFuncs::mul(
-                    $this->debtNoOfCompoundingPeriods,
-                    $this->debtPeriodLength)
-            );
+            return MathFuncs::mul(
+                        $this->debtNoOfCompoundingPeriods,
+                        $this->debtPeriodLength->toDays()
+                    );
         }
 
         /**

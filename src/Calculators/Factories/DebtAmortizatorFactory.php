@@ -3,7 +3,7 @@
 namespace FinanCalc\Calculators\Factories {
     use \FinanCalc\Calculators\DebtAmortizator;
     use FinanCalc\Interfaces\Calculator\CalculatorFactoryAbstract;
-    use FinanCalc\Utils\Time\TimeUtils;
+    use FinanCalc\Utils\Time\TimeSpan;
 
     /**
      * Class DebtAmortizatorFactory
@@ -24,7 +24,7 @@ namespace FinanCalc\Calculators\Factories {
                 [
                     $debtPrincipal,
                     $debtNoOfPeriods,
-                    TimeUtils::getDaysFromYears(1),
+                    TimeSpan::asDuration(1),
                     $debtInterest
                 ]
             );
@@ -42,7 +42,7 @@ namespace FinanCalc\Calculators\Factories {
                 [
                     $debtPrincipal,
                     $debtNoOfPeriods,
-                    TimeUtils::getDaysFromMonths(1),
+                    TimeSpan::asDuration(0, 1),
                     $debtInterest
                 ]
             );
@@ -60,7 +60,7 @@ namespace FinanCalc\Calculators\Factories {
                 [
                     $debtPrincipal,
                     $debtNoOfPeriods,
-                    1,
+                    TimeSpan::asDuration(0, 0, 1),
                     $debtInterest
                 ]
             );
@@ -69,16 +69,16 @@ namespace FinanCalc\Calculators\Factories {
         /**
          * @param $debtPrincipal
          * @param $debtNoOfPeriods
+         * @param TimeSpan $debtPeriodLength
          * @param $debtInterest
-         * @param $debtSinglePeriodLength
-         * @return DebtAmortizator
+         * @return \FinanCalc\Interfaces\Calculator\CalculatorAbstract
          */
-        public function newDebtAmortizationCustomPeriodLength($debtPrincipal, $debtNoOfPeriods, $debtInterest, $debtSinglePeriodLength) {
+        public function newDebtAmortizationCustomPeriodLength($debtPrincipal, $debtNoOfPeriods, TimeSpan $debtPeriodLength, $debtInterest) {
             return $this->manufactureInstance(
                 [
                     $debtPrincipal,
                     $debtNoOfPeriods,
-                    $debtSinglePeriodLength,
+                    $debtPeriodLength,
                     $debtInterest
                 ]
             );

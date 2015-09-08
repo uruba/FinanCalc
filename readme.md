@@ -338,16 +338,16 @@ namespace `FinanCalc\Constants`
 
 ### DebtAmortizator
 namespace `FinanCalc\Calculators`
-* **__construct($debtPrincipal, $debtNoOfCompoundingPeriods, $debtPeriodLength, $debtInterest)**
+* **__construct($debtPrincipal, $debtNoOfCompoundingPeriods, TimeSpan $debtPeriodLength, $debtInterest)**
   * *$debtPrincipal* = **'PV'** – the principal of the debt (number greater than zero)
   * *$debtNoOfCompoundingPeriods* = **'n'** – number of the debt's compounding periods (number greater than zero)
-  * *$debtPeriodLength* = length of each of the debt's compounding periods in days (number greater than zero)
+  * *$debtPeriodLength* = length of each of the debt's compounding periods as a TimeSpan object
   * *$debtInterest* = **'i'** – interest per a compounding period, by which the outstanding balance is multiplied (i.e., a decimal number typically lower than 1 and greater than 0)
 
 ##### Setters
 * **setDebtPrincipal($debtPrincipal)** – sets PV
 * **setDebtNoOfCompoundingPeriods($debtNoOfCompoundingPeriods)** – sets n
-* **setDebtPeriodLength($debtPeriodLength)** – sets the length of each compounding period in days
+* **setDebtPeriodLength(TimeSpan $debtPeriodLength)** – sets the length of each compounding period
 * **setDebtInterest($debtInterest)** – sets i
 
 ##### Getters

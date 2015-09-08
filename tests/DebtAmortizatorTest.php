@@ -3,6 +3,7 @@
 use FinanCalc\Calculators\DebtAmortizator;
 use FinanCalc\FinanCalc;
 use FinanCalc\Utils\MathFuncs;
+use FinanCalc\Utils\Time\TimeSpan;
 use FinanCalc\Utils\Time\TimeUtils;
 
 /**
@@ -55,7 +56,7 @@ class DebtAmortizatorTest extends PHPUnit_Framework_TestCase {
         $debtAmortizatorDirect = new DebtAmortizator(
             40000,
             6,
-            TimeUtils::getDaysFromYears(1),
+            TimeSpan::asDuration(1),
             0.12);
 
         $this->processResult($debtAmortizatorDirect);
@@ -110,8 +111,8 @@ class DebtAmortizatorTest extends PHPUnit_Framework_TestCase {
             ->newDebtAmortizationCustomPeriodLength(
                 40000,
                 6,
-                0.12,
-                TimeUtils::getDaysFromYears(1));
+                TimeSpan::asDuration(1),
+                0.12);
 
         $this->processResult($debtAmortizatorFactory);
         $this->processArray($debtAmortizatorFactory->getResultAsArray());
@@ -139,17 +140,27 @@ class DebtAmortizatorTest extends PHPUnit_Framework_TestCase {
             $result->getDebtPeriodLengthInMonths());
 
         $this->assertEquals(
-            MathFuncs::div(
-                $result->getDebtDurationInDays(),
-                TimeUtils::getDaysFromYears(1)
-            ),
-            $result->getDebtDurationInYears());
+            MathFuncs::round(
+                MathFuncs::div(
+                    $result->getDebtDurationInDays(),
+                    TimeUtils::getDaysFromYears(1)
+                    )
+                ),
+            MathFuncs::round(
+                $result->getDebtDurationInYears()
+                )
+            );
         $this->assertEquals(
-            MathFuncs::div(
-                $result->getDebtDurationInDays(),
-                TimeUtils::getDaysFromMonths(1)
-            ),
-            $result->getDebtDurationInMonths());
+            MathFuncs::round(
+                MathFuncs::div(
+                    $result->getDebtDurationInDays(),
+                    TimeUtils::getDaysFromMonths(1)
+                    )
+                ),
+            MathFuncs::round(
+                $result->getDebtDurationInMonths()
+                )
+            );
 
         $this->assertEquals("0.12", $result->getDebtInterest());
 
@@ -203,17 +214,25 @@ class DebtAmortizatorTest extends PHPUnit_Framework_TestCase {
             $resultArray["debtPeriodLength"]["months"]);
 
         $this->assertEquals(
-            MathFuncs::div(
-                $resultArray["debtDuration"]["days"],
-                TimeUtils::getDaysFromYears(1)
+            MathFuncs::round(
+                MathFuncs::div(
+                    $resultArray["debtDuration"]["days"],
+                    TimeUtils::getDaysFromYears(1)
+                )
             ),
-            $resultArray["debtDuration"]["years"]);
+            MathFuncs::round(
+                $resultArray["debtDuration"]["years"]
+            ));
         $this->assertEquals(
-            MathFuncs::div(
-                $resultArray["debtDuration"]["days"],
-                TimeUtils::getDaysFromMonths(1)
+            MathFuncs::round(
+                MathFuncs::div(
+                    $resultArray["debtDuration"]["days"],
+                    TimeUtils::getDaysFromMonths(1)
+                )
             ),
-            $resultArray["debtDuration"]["months"]);
+            MathFuncs::round(
+                $resultArray["debtDuration"]["months"]
+            ));
 
         $this->assertEquals("0.12", $resultArray["debtInterest"]);
 

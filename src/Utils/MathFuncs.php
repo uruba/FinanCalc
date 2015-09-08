@@ -61,5 +61,14 @@ namespace FinanCalc\Utils {
         public static function comp($leftOperand, $rightOperand) {
             return bccomp($leftOperand, $rightOperand, Defaults::MONEY_DECIMAL_PLACES_PRECISION);
         }
+
+        /**
+         * @param $roundedNumber
+         * @param $precision
+         * @return string
+         */
+        public static function round($roundedNumber, $precision = 2) {
+            return (string)round((float)$roundedNumber, $precision);
+        }
     }
 }
