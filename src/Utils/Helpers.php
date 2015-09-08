@@ -56,7 +56,7 @@ namespace FinanCalc\Utils {
          * @return bool
          */
         static function checkIfNotNegativeNumberOrThrowAnException($checkedVariable) {
-            if (Helpers::checkIfPositiveNumber($checkedVariable) || Helpers::checkIfZero($checkedVariable)) {
+            if (Helpers::checkIfNotNegativeNumber($checkedVariable)) {
                 return true;
             }
 
@@ -77,6 +77,14 @@ namespace FinanCalc\Utils {
          */
         static function checkIfZero($checkedVariable) {
             return Helpers::checkNumberRelativityToZero($checkedVariable, 0);
+        }
+
+        /**
+         * @param $checkedVariable
+         * @return bool
+         */
+        static function checkIfNotNegativeNumber($checkedVariable) {
+            return Helpers::checkIfPositiveNumber($checkedVariable) || Helpers::checkIfZero($checkedVariable);
         }
 
         /**

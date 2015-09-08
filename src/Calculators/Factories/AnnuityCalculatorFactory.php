@@ -3,7 +3,7 @@
 namespace FinanCalc\Calculators\Factories {
     use FinanCalc\Calculators\AnnuityCalculator;
     use FinanCalc\Interfaces\Calculator\CalculatorFactoryAbstract;
-    use FinanCalc\Utils\Time\TimeUtils;
+    use FinanCalc\Utils\Time\TimeSpan;
 
     /**
      * Class AnnuityCalculatorFactory
@@ -23,7 +23,7 @@ namespace FinanCalc\Calculators\Factories {
                 [
                     $annuitySinglePaymentAmount,
                     $annuityNoOfCompoundingPeriods,
-                    TimeUtils::getDaysFromYears(1),
+                    TimeSpan::asDuration(1),
                     $annuityInterest
                 ]
             );
@@ -40,7 +40,7 @@ namespace FinanCalc\Calculators\Factories {
                 [
                     $annuitySinglePaymentAmount,
                     $annuityNoOfCompoundingPeriods,
-                    TimeUtils::getDaysFromMonths(1),
+                    TimeSpan::asDuration(0, 1),
                     $annuityInterest
                 ]
             );
@@ -57,7 +57,7 @@ namespace FinanCalc\Calculators\Factories {
                 [
                     $annuitySinglePaymentAmount,
                     $annuityNoOfCompoundingPeriods,
-                    1,
+                    TimeSpan::asDuration(0, 0, 1),
                     $annuityInterest
                 ]
             );
@@ -73,7 +73,7 @@ namespace FinanCalc\Calculators\Factories {
                 [
                     $annuitySinglePaymentAmount,
                     0,
-                    0,
+                    TimeSpan::asDuration(0),
                     $annuityInterest
                 ]
             );

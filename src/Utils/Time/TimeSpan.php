@@ -5,6 +5,9 @@ namespace FinanCalc\Utils\Time {
 
     use DateInterval;
     use DateTime;
+    use Exception;
+    use FinanCalc\Utils\Helpers;
+    use FinanCalc\Utils\MathFuncs;
     use InvalidArgumentException;
 
     /**
@@ -35,6 +38,10 @@ namespace FinanCalc\Utils\Time {
             $months = 0,
             $days = 0
         ) {
+            foreach (func_get_args() as $arg) {
+                Helpers::checkIfNotNegativeNumberOrThrowAnException($arg);
+            }
+
             $newThis = new TimeSpan();
             $newThis->newDateIntervalAbsolute($years, $months, $days);
 
@@ -123,24 +130,76 @@ namespace FinanCalc\Utils\Time {
         }
 
         /**
-         * @return int
+         * @return string
          */
-        public function getYears() {
-            return $this->dateInterval->y;
+        public function getYearsComponent() {
+            return (string)$this->dateInterval->y;
         }
 
         /**
-         * @return int
+         * @return string
          */
-        public function getMonths() {
-            return $this->dateInterval->m;
+        public function getMonthsComponent() {
+            return (string)$this->dateInterval->m;
         }
 
         /**
-         * @return int
+         * @return string
          */
-        public function getDays() {
-            return $this->dateInterval->d;
+        public function getDaysComponent() {
+            return (string)$this->dateInterval->d;
+        }
+
+        /**
+         * @return string
+         * @throws Exception
+         */
+        public function asYears() {
+            $monthsComponent = MathFuncs::div(
+                $this->getMonthsComponent(),
+                12
+            );
+            $daysComponent = TimeUtils::getCurrentDayCountConvention()['days_in_a_year'] == 0 ?
+                0 :
+                MathFuncs::div(
+                    $this->getDaysComponent(),
+                    TimeUtils::getCurrentDayCountConvention()['days_in_a_year']
+                );
+
+            return MathFuncs::add($this->getYearsComponent(), MathFuncs::add($monthsComponent, $daysComponent));
+        }
+
+        /**
+         * @return string
+         * @throws Exception
+         */
+        public function asMonths() {
+            $yearsComponent = MathFuncs::mul($this->getYearsComponent(), 12);
+            $daysComponent = TimeUtils::getCurrentDayCountConvention()['days_in_a_month'] == 0 ?
+                0 :
+                MathFuncs::div(
+                    $this->getDaysComponent(),
+                    TimeUtils::getCurrentDayCountConvention()['days_in_a_month']
+                );
+
+            return MathFuncs::add($this->getMonthsComponent(), MathFuncs::add($yearsComponent, $daysComponent));
+        }
+
+        /**
+         * @return string
+         * @throws Exception
+         */
+        public function asDays() {
+            $yearsComponent = MathFuncs::mul(
+                $this->getYearsComponent(),
+                TimeUtils::getCurrentDayCountConvention()['days_in_a_year']
+            );
+            $monthsComponent = MathFuncs::mul(
+                $this->getMonthsComponent(),
+                TimeUtils::getCurrentDayCountConvention()['days_in_a_month']
+            );
+
+            return MathFuncs::add($this->getDaysComponent(), MathFuncs::add($yearsComponent, $monthsComponent));
         }
 
         public function clearStartEndDate() {
@@ -153,10 +212,6 @@ namespace FinanCalc\Utils\Time {
          * @param DateInterval $dateInterval
          */
         private function setDateInterval(DateInterval $dateInterval) {
-            if($dateInterval->y == 0 && $dateInterval->m == 0 && $dateInterval->d == 0) {
-                throw new InvalidArgumentException("The duration has to be greater than zero!");
-            }
-
             $this->dateInterval = $dateInterval;
         }
 
@@ -217,6 +272,13 @@ namespace FinanCalc\Utils\Time {
             }
 
             return $dateInterval;
+        }
+
+        /**
+         * @return string
+         */
+        public function __toString() {
+            return $this->asDays();
         }
     }
 }

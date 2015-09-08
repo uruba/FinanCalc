@@ -2,7 +2,7 @@
 
 use FinanCalc\Calculators\AnnuityCalculator;
 use FinanCalc\Constants\AnnuityPaymentTypes;
-use FinanCalc\Utils\Time\TimeUtils;
+use FinanCalc\Utils\Time\TimeSpan;
 
 /**
  * Class AnnuityCalculatorTest
@@ -246,7 +246,7 @@ class AnnuityCalculatorTest extends PHPUnit_Framework_TestCase {
      * @return \FinanCalc\Calculators\AnnuityCalculator
      */
     private function newAnnuityCalculatorDirectYearly() {
-        return new AnnuityCalculator(100000, 5, TimeUtils::getDaysFromYears(1), 0.15);
+        return new AnnuityCalculator(100000, 5, TimeSpan::asDuration(1), 0.15);
     }
 
     /**

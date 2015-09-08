@@ -2,6 +2,7 @@
 
 use FinanCalc\Calculators\AnnuityCalculator;
 use FinanCalc\Utils\Helpers;
+use FinanCalc\Utils\Time\TimeSpan;
 
 /**
  * Class HelpersTest
@@ -10,7 +11,7 @@ class HelpersTest extends PHPUnit_Framework_TestCase {
 
     public function testCheckInstancePositive() {
         $isInstance = Helpers::checkIfInstanceOfAClassOrThrowAnException(
-            new AnnuityCalculator(100000, 5, 0.15, 360),
+            new AnnuityCalculator(100000, 5, TimeSpan::asDuration(1), 0.15),
             "FinanCalc\\Calculators\\AnnuityCalculator"
         );
 
@@ -21,7 +22,7 @@ class HelpersTest extends PHPUnit_Framework_TestCase {
         $this->setExpectedException('InvalidArgumentException');
 
         Helpers::checkIfInstanceOfAClassOrThrowAnException(
-            new AnnuityCalculator(100000, 5, 0.15, 360),
+            new AnnuityCalculator(100000, 5, TimeSpan::asDuration(1), 0.15),
             "Non\\Existing\\Class"
         );
     }

@@ -7,6 +7,7 @@ use FinanCalc\Utils\Time\TimeUtils;
  * Class TimeUtilsTest
  */
 class TimeUtilsTest extends PHPUnit_Framework_TestCase {
+    /** @var  TimeSpan */
     private $timeSpan;
 
     private $YEARS = 1;
@@ -14,15 +15,15 @@ class TimeUtilsTest extends PHPUnit_Framework_TestCase {
     private $DAYS = 360;
 
     public function testYearsFromTimeSpan() {
-        $this->assertEquals(1.75, TimeUtils::getYearsFromTimeSpan($this->timeSpan));
+        $this->assertEquals(1.75, $this->timeSpan->asYears());
     }
 
     public function testMonthsFromTimeSpan() {
-        $this->assertEquals(21, TimeUtils::getMonthsFromTimeSpan($this->timeSpan));
+        $this->assertEquals(21, $this->timeSpan->asMonths());
     }
 
     public function testDaysFromTimeSpan() {
-        $this->assertEquals(630, TimeUtils::getDaysFromTimeSpan($this->timeSpan));
+        $this->assertEquals(630, $this->timeSpan->asDays());
     }
 
     public function testGetYearsFromDays() {
