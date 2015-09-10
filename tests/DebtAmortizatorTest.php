@@ -131,36 +131,32 @@ class DebtAmortizatorTest extends PHPUnit_Framework_TestCase {
                 $result->getDebtPeriodLengthInDays(),
                 TimeUtils::getDaysFromYears(1)
             ),
-            $result->getDebtPeriodLengthInYears());
-        $this->assertEquals(
-            MathFuncs::div(
-                $result->getDebtPeriodLengthInDays(),
-                TimeUtils::getDaysFromMonths(1)
-            ),
-            $result->getDebtPeriodLengthInMonths());
+            $result->getDebtPeriodLengthInYears()
+        );
 
         $this->assertEquals(
-            MathFuncs::round(
-                MathFuncs::div(
-                    $result->getDebtDurationInDays(),
-                    TimeUtils::getDaysFromYears(1)
-                    )
-                ),
-            MathFuncs::round(
-                $result->getDebtDurationInYears()
-                )
-            );
-        $this->assertEquals(
-            MathFuncs::round(
-                MathFuncs::div(
-                    $result->getDebtDurationInDays(),
+            MathFuncs::div(
+                    $result->getDebtPeriodLengthInDays(),
                     TimeUtils::getDaysFromMonths(1)
-                    )
-                ),
-            MathFuncs::round(
-                $result->getDebtDurationInMonths()
-                )
-            );
+            ),
+            $result->getDebtPeriodLengthInMonths()
+        );
+
+        $this->assertEquals(
+            MathFuncs::div(
+                $result->getDebtDurationInDays(),
+                TimeUtils::getDaysFromYears(1)
+            ),
+            $result->getDebtDurationInYears()
+        );
+
+        $this->assertEquals(
+            MathFuncs::div(
+                $result->getDebtDurationInDays(),
+                TimeUtils::getDaysFromMonths(1)
+            ),
+            $result->getDebtDurationInMonths()
+        );
 
         $this->assertEquals("0.12", $result->getDebtInterest());
 
@@ -205,34 +201,32 @@ class DebtAmortizatorTest extends PHPUnit_Framework_TestCase {
                 $resultArray["debtPeriodLength"]["days"],
                 TimeUtils::getDaysFromYears(1)
             ),
-            $resultArray["debtPeriodLength"]["years"]);
+            $resultArray["debtPeriodLength"]["years"]
+        );
+
         $this->assertEquals(
             MathFuncs::div(
                 $resultArray["debtPeriodLength"]["days"],
                 TimeUtils::getDaysFromMonths(1)
             ),
-            $resultArray["debtPeriodLength"]["months"]);
+            $resultArray["debtPeriodLength"]["months"]
+        );
 
         $this->assertEquals(
-            MathFuncs::round(
-                MathFuncs::div(
-                    $resultArray["debtDuration"]["days"],
-                    TimeUtils::getDaysFromYears(1)
-                )
+            MathFuncs::div(
+                $resultArray["debtDuration"]["days"],
+                TimeUtils::getDaysFromYears(1)
             ),
-            MathFuncs::round(
-                $resultArray["debtDuration"]["years"]
-            ));
+            $resultArray["debtDuration"]["years"]
+        );
+
         $this->assertEquals(
-            MathFuncs::round(
-                MathFuncs::div(
-                    $resultArray["debtDuration"]["days"],
-                    TimeUtils::getDaysFromMonths(1)
-                )
+            MathFuncs::div(
+                $resultArray["debtDuration"]["days"],
+                TimeUtils::getDaysFromMonths(1)
             ),
-            MathFuncs::round(
-                $resultArray["debtDuration"]["months"]
-            ));
+            $resultArray["debtDuration"]["months"]
+        );
 
         $this->assertEquals("0.12", $resultArray["debtInterest"]);
 

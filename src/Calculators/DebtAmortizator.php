@@ -6,6 +6,7 @@ namespace FinanCalc\Calculators {
     use FinanCalc\Utils\Helpers;
     use FinanCalc\Utils\MathFuncs;
     use FinanCalc\Utils\Time\TimeSpan;
+    use FinanCalc\Utils\Time\TimeUtils;
 
     /**
      * Class DebtAmortizator
@@ -215,9 +216,9 @@ namespace FinanCalc\Calculators {
          * @return string [Duration of the debt in years as a string]
          */
         public function getDebtDurationInYears() {
-            return MathFuncs::mul(
-                        $this->debtNoOfCompoundingPeriods,
-                        $this->debtPeriodLength->toYears()
+            return MathFuncs::div(
+                        $this->getDebtDurationInDays(),
+                        TimeUtils::getCurrentDayCountConvention()['days_in_a_year']
                     );
         }
 
@@ -225,9 +226,9 @@ namespace FinanCalc\Calculators {
          * @return string [Duration of the debt in months as a string]
          */
         public function getDebtDurationInMonths() {
-            return MathFuncs::mul(
-                        $this->debtNoOfCompoundingPeriods,
-                        $this->debtPeriodLength->toMonths()
+            return MathFuncs::div(
+                        $this->getDebtDurationInDays(),
+                        TimeUtils::getCurrentDayCountConvention()['days_in_a_month']
                     );
         }
 

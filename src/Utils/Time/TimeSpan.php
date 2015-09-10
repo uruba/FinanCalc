@@ -155,18 +155,7 @@ namespace FinanCalc\Utils\Time {
          * @throws Exception
          */
         public function toYears() {
-            $monthsComponent = MathFuncs::div(
-                $this->getMonthsComponent(),
-                12
-            );
-            $daysComponent = TimeUtils::getCurrentDayCountConvention()['days_in_a_year'] == 0 ?
-                0 :
-                MathFuncs::div(
-                    $this->getDaysComponent(),
-                    TimeUtils::getCurrentDayCountConvention()['days_in_a_year']
-                );
-
-            return MathFuncs::add($this->getYearsComponent(), MathFuncs::add($monthsComponent, $daysComponent));
+            return MathFuncs::div($this->toDays(), TimeUtils::getCurrentDayCountConvention()['days_in_a_year']);
         }
 
         /**
@@ -174,15 +163,7 @@ namespace FinanCalc\Utils\Time {
          * @throws Exception
          */
         public function toMonths() {
-            $yearsComponent = MathFuncs::mul($this->getYearsComponent(), 12);
-            $daysComponent = TimeUtils::getCurrentDayCountConvention()['days_in_a_month'] == 0 ?
-                0 :
-                MathFuncs::div(
-                    $this->getDaysComponent(),
-                    TimeUtils::getCurrentDayCountConvention()['days_in_a_month']
-                );
-
-            return MathFuncs::add($this->getMonthsComponent(), MathFuncs::add($yearsComponent, $daysComponent));
+            return MathFuncs::div($this->toDays(), TimeUtils::getCurrentDayCountConvention()['days_in_a_month']);
         }
 
         /**
@@ -190,16 +171,10 @@ namespace FinanCalc\Utils\Time {
          * @throws Exception
          */
         public function toDays() {
-            $yearsComponent = MathFuncs::mul(
-                $this->getYearsComponent(),
-                TimeUtils::getCurrentDayCountConvention()['days_in_a_year']
-            );
-            $monthsComponent = MathFuncs::mul(
-                $this->getMonthsComponent(),
-                TimeUtils::getCurrentDayCountConvention()['days_in_a_month']
-            );
+            $yearsComponent = TimeUtils::getDaysFromYears($this->getYearsComponent());
+            $monthsComponent = TimeUtils::getDaysFromMonths($this->getMonthsComponent());
 
-            return MathFuncs::add($this->getDaysComponent(), MathFuncs::add($yearsComponent, $monthsComponent));
+            return MathFuncs::add(MathFuncs::add($yearsComponent, $monthsComponent), $this->getDaysComponent());
         }
 
         public function clearStartEndDate() {

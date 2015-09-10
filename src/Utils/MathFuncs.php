@@ -68,7 +68,7 @@ namespace FinanCalc\Utils {
          * @return string
          */
         public static function round($roundedNumber, $precision = 2) {
-            return (string)round((float)$roundedNumber, $precision);
+            return (string)number_format((float)$roundedNumber, $precision);
         }
     }
 }
