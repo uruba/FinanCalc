@@ -89,6 +89,21 @@ class TimeUtilsTest extends PHPUnit_Framework_TestCase {
         );
     }
 
+    public function testDayCountConventionNotArray() {
+        $dayCountConvention = 'invalid';
+
+        $this->assertFalse(TimeUtils::isDayCountConventionValid($dayCountConvention));
+    }
+
+    public function testDayCountConventionInvalidEntries() {
+        $dayCountConvention = array(
+                'days_in_a_year' => false,
+                'days_in_a_month' => false
+        );
+
+        $this->assertFalse(TimeUtils::isDayCountConventionValid($dayCountConvention));
+    }
+
     protected function setUp() {
         $this->timeSpan = TimeSpan::asDuration(1, 6, 90);
 

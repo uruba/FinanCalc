@@ -232,15 +232,15 @@ class AnnuityCalculatorTest extends PHPUnit_Framework_TestCase {
         );
     }
 
-    /**
-     * @return mixed
-     * @throws Exception
-     */
-    private function newAnnuityCalculatorFactoryDaily() {
-        return \FinanCalc\FinanCalc
-            ::getInstance()
-            ->getFactory('AnnuityCalculatorFactory')
-            ->newDailyAnnuity(100000, 5, 0.15);
+    public function testAnnuityToPerpetuity() {
+        $annuityCalculatorYearly = $this->newAnnuityCalculatorFactoryYearly();
+        $annuityCalculatorPerpetuity = $this->newPerpetuity();
+
+        $annuityCalculatorYearly->setAnnuityNoOfCompoundingPeriods(0);
+        $annuityCalculatorYearly->setAnnuitySinglePaymentAmount(50);
+        $annuityCalculatorYearly->setAnnuityInterest(0.08);
+
+        $this->assertEquals($annuityCalculatorPerpetuity, $annuityCalculatorYearly);
     }
 
     /**
@@ -250,6 +250,17 @@ class AnnuityCalculatorTest extends PHPUnit_Framework_TestCase {
         $this->assertTrue(
             isObjectTypeInArray('FinanCalc\\Calculators\\Factories\\AnnuityCalculatorFactory', \FinanCalc\FinanCalc::getInstance()->getFactories())
         );
+    }
+
+    /**
+     * @return mixed
+     * @throws Exception
+     */
+    private function newAnnuityCalculatorFactoryDaily() {
+        return \FinanCalc\FinanCalc
+            ::getInstance()
+            ->getFactory('AnnuityCalculatorFactory')
+            ->newDailyAnnuity(100000, 5, 0.15);
     }
 
     /**

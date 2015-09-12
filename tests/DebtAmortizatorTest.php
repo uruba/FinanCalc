@@ -127,6 +127,15 @@ class DebtAmortizatorTest extends PHPUnit_Framework_TestCase {
         $this->assertEquals("6", $result->getDebtNoOfCompoundingPeriods());
 
         $this->assertEquals(
+            TimeSpan::asDuration(
+                intval(floor($result->getDebtPeriodLengthInYears())),
+                intval((floor($result->getDebtPeriodLengthInYears()) == 0) ? $result->getDebtPeriodLengthInMonths() : $result->getDebtPeriodLengthInMonths() % $result->getDebtPeriodLengthInYears()),
+                intval((floor($result->getDebtPeriodLengthInMonths()) == 0) ? $result->getDebtPeriodLengthInDays() : $result->getDebtPeriodLengthInDays() % $result->getDebtPeriodLengthInMonths())
+            ),
+            $result->getDebtPeriodLength()
+        );
+
+        $this->assertEquals(
             MathFuncs::div(
                 $result->getDebtPeriodLengthInDays(),
                 TimeUtils::getDaysFromYears(1)
