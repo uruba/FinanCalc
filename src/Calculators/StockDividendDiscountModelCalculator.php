@@ -107,9 +107,7 @@ namespace FinanCalc\Calculators {
             }
 
             $this->stockAnnualDividendsGrowth =
-                $stockAnnualDividendsGrowth === null ?
-                    $stockAnnualDividendsGrowth :
-                    (string)$stockAnnualDividendsGrowth;
+                $stockAnnualDividendsGrowth === null ? $stockAnnualDividendsGrowth : (string)$stockAnnualDividendsGrowth;
         }
 
         /**
