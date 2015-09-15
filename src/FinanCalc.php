@@ -55,6 +55,7 @@ namespace FinanCalc {
         }
 
         protected function __clone() {
+            // we do not want the singleton object to be cloned
         }
 
         /**
