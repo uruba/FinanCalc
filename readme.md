@@ -56,7 +56,7 @@ Since the library automatically keeps track of pre-defined factory methods (cont
 
 From the main *FinanCalc* object (whose instance you get by calling its static method *getInstance()*) you have to call the *getFactory()* method, which takes in the name of the factory class as a parameter of type *string* (you can find all the included factory classes in the *src/calculators/factories* directory).
 
-This method yields you the final calculator object on which you can call the appropriate methods to retrieve your results or change input parameters via its setters.
+This method yields you the final calculator object on which you can call the appropriate methods to retrieve your results (as described in the next chapter) or change the input parameters via its setters.
 
 ```php
 use FinanCalc\FinanCalc;
