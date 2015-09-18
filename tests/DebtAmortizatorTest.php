@@ -167,6 +167,11 @@ class DebtAmortizatorTest extends PHPUnit_Framework_TestCase {
             $result->getDebtDurationInMonths()
         );
 
+        $this->assertEquals(
+            (new DateTime())->add(new DateInterval("P" . (int)$result->getDebtDurationInDays() . "D")),
+            $result->getDebtEndDate(new DateTime())
+        );
+
         $this->assertEquals("0.12", $result->getDebtInterest());
 
         $repayments = $result->getDebtRepayments();

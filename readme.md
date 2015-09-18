@@ -363,6 +363,7 @@ namespace `FinanCalc\Calculators`
 * **getDebtDurationInYears()** – gets the duration of the debt in years
 * **getDebtDurationInMonths()** – gets the duration of the debt in months
 * **getDebtDurationInDays()** – gets the duration of the debt in days
+* **getDebtEndDate(DateTime $startDate)** – gets the ending date of the debt as a DateTime object, based on the starting date passed as a parameter
 * **getDebtInterest()** – gets i
 * **getDebtRepayments()** – gets the **array of RepaymentInstance** objects representing all the individual payments within the debt comprised into an array
 * **getDebtRepaymentsAsArrays()** – gets the **array of associative arrays** (i.e., an array of RepaymentInstances converted to arrays) representing all the individual payments within the debt

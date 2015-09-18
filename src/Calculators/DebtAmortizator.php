@@ -2,6 +2,7 @@
 
 namespace FinanCalc\Calculators {
 
+    use DateTime;
     use FinanCalc\Interfaces\Calculator\CalculatorAbstract;
     use FinanCalc\Utils\Helpers;
     use FinanCalc\Utils\MathFuncs;
@@ -240,6 +241,16 @@ namespace FinanCalc\Calculators {
                         $this->debtNoOfCompoundingPeriods,
                         $this->debtPeriodLength->toDays()
                     );
+        }
+
+        /**
+         * @param DateTime $startDate [The start date of the debt]
+         * @return DateTime [The end date of the debt]
+         */
+        public function getDebtEndDate(DateTime $startDate) {
+            return TimeSpan
+                ::asDurationWithStartDate($startDate, 0, 0, (int)$this->getDebtDurationInDays())
+                ->getEndDate();
         }
 
         /**
