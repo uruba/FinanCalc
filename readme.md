@@ -360,9 +360,9 @@ namespace `FinanCalc\Calculators`
 * **getDebtPeriodLengthInYears()**  – gets the length of each compounding period in years
 * **getDebtPeriodLengthInMonths()**  – gets the length of each compounding period in months
 * **getDebtPeriodLengthInDays()** – gets the length of each compounding period in days
-* **getDebtDurationInYears()** – gets the duration of the debt in years
-* **getDebtDurationInMonths()** – gets the duration of the debt in months
-* **getDebtDurationInDays()** – gets the duration of the debt in days
+* **getDebtLengthInYears()** – gets the length of the debt in years
+* **getDebtLengthInMonths()** – gets the length of the debt in months
+* **getDebtLengthInDays()** – gets the length of the debt in days
 * **getDebtEndDate(DateTime $startDate)** – gets the ending date of the debt as a DateTime object, based on the starting date passed as a parameter
 * **getDebtInterest()** – gets i
 * **getDebtRepayments()** – gets the **array of RepaymentInstance** objects representing all the individual payments within the debt comprised into an array

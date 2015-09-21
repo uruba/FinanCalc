@@ -214,29 +214,29 @@ namespace FinanCalc\Calculators {
         }
 
         /**
-         * @return string [Duration of the debt in years as a string]
+         * @return string [Length of the debt in years as a string]
          */
-        public function getDebtDurationInYears() {
+        public function getDebtLengthInYears() {
             return MathFuncs::div(
-                        $this->getDebtDurationInDays(),
+                        $this->getDebtLengthInDays(),
                         TimeUtils::getCurrentDayCountConvention()['days_in_a_year']
                     );
         }
 
         /**
-         * @return string [Duration of the debt in months as a string]
+         * @return string [Length of the debt in months as a string]
          */
-        public function getDebtDurationInMonths() {
+        public function getDebtLengthInMonths() {
             return MathFuncs::div(
-                        $this->getDebtDurationInDays(),
+                        $this->getDebtLengthInDays(),
                         TimeUtils::getCurrentDayCountConvention()['days_in_a_month']
                     );
         }
 
         /**
-         * @return string [Duration of the debt in years as a string]
+         * @return string [Length of the debt in years as a string]
          */
-        public function getDebtDurationInDays() {
+        public function getDebtLengthInDays() {
             return MathFuncs::mul(
                         $this->debtNoOfCompoundingPeriods,
                         $this->debtPeriodLength->toDays()
@@ -249,7 +249,7 @@ namespace FinanCalc\Calculators {
          */
         public function getDebtEndDate(DateTime $startDate) {
             return TimeSpan
-                ::asDurationWithStartDate($startDate, 0, 0, (int)$this->getDebtDurationInDays())
+                ::asDurationWithStartDate($startDate, 0, 0, (int)$this->getDebtLengthInDays())
                 ->getEndDate();
         }
 

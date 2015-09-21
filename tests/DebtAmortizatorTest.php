@@ -153,22 +153,22 @@ class DebtAmortizatorTest extends PHPUnit_Framework_TestCase {
 
         $this->assertEquals(
             MathFuncs::div(
-                $result->getDebtDurationInDays(),
+                $result->getDebtLengthInDays(),
                 TimeUtils::getDaysFromYears(1)
             ),
-            $result->getDebtDurationInYears()
+            $result->getDebtLengthInYears()
         );
 
         $this->assertEquals(
             MathFuncs::div(
-                $result->getDebtDurationInDays(),
+                $result->getDebtLengthInDays(),
                 TimeUtils::getDaysFromMonths(1)
             ),
-            $result->getDebtDurationInMonths()
+            $result->getDebtLengthInMonths()
         );
 
         $this->assertEquals(
-            (new DateTime())->add(new DateInterval("P" . (int)$result->getDebtDurationInDays() . "D")),
+            (new DateTime())->add(new DateInterval("P" . (int)$result->getDebtLengthInDays() . "D")),
             $result->getDebtEndDate(new DateTime())
         );
 
