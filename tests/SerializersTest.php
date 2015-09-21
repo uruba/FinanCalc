@@ -60,15 +60,15 @@ class SerializersTest extends PHPUnit_Framework_TestCase
         // Debt duration
         $this->assertEquals(
             "6",
-            $xmlObject->debtDuration->years
+            $xmlObject->debtLength->years
         );
         $this->assertEquals(
             "72",
-            $xmlObject->debtDuration->months
+            $xmlObject->debtLength->months
         );
         $this->assertEquals(
             "2160",
-            $xmlObject->debtDuration->days
+            $xmlObject->debtLength->days
         );
         // Debt amount of single repayment
         $INDIVIDUAL_REPAYMENT = "9729.03";
@@ -201,15 +201,15 @@ class SerializersTest extends PHPUnit_Framework_TestCase
         // Debt duration
         $this->assertEquals(
             "6",
-            $jsonObject["debtDuration"]["years"]
+            $jsonObject["debtLength"]["years"]
         );
         $this->assertEquals(
             "72",
-            $jsonObject["debtDuration"]["months"]
+            $jsonObject["debtLength"]["months"]
         );
         $this->assertEquals(
             "2160",
-            $jsonObject["debtDuration"]["days"]
+            $jsonObject["debtLength"]["days"]
         );
         // Debt amount of single repayment
         $INDIVIDUAL_REPAYMENT = "9729.03";

@@ -40,11 +40,11 @@ namespace FinanCalc\Calculators {
                 ],
             "debtInterest",
             "debtDiscountFactor",
-            "debtDuration" =>
+            "debtLength" =>
                 [
-                    "years" => "debtDurationInYears",
-                    "months" => "debtDurationInMonths",
-                    "days" => "debtDurationInDays"
+                    "years" => "debtLengthInYears",
+                    "months" => "debtLengthInMonths",
+                    "days" => "debtLengthInDays"
                 ],
             "debtSingleRepayment",
             "debtRepayments" => "debtRepaymentsAsArrays"

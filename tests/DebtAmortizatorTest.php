@@ -228,18 +228,18 @@ class DebtAmortizatorTest extends PHPUnit_Framework_TestCase {
 
         $this->assertEquals(
             MathFuncs::div(
-                $resultArray["debtDuration"]["days"],
+                $resultArray["debtLength"]["days"],
                 TimeUtils::getDaysFromYears(1)
             ),
-            $resultArray["debtDuration"]["years"]
+            $resultArray["debtLength"]["years"]
         );
 
         $this->assertEquals(
             MathFuncs::div(
-                $resultArray["debtDuration"]["days"],
+                $resultArray["debtLength"]["days"],
                 TimeUtils::getDaysFromMonths(1)
             ),
-            $resultArray["debtDuration"]["months"]
+            $resultArray["debtLength"]["months"]
         );
 
         $this->assertEquals("0.12", $resultArray["debtInterest"]);
