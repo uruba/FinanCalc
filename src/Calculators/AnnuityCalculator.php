@@ -188,8 +188,8 @@ namespace FinanCalc\Calculators {
          */
         public function getAnnuityLengthInDays() {
             return MathFuncs::mul(
-                $this->debtNoOfCompoundingPeriods,
-                $this->debtPeriodLength->toDays()
+                $this->annuityNoOfCompoundingPeriods,
+                $this->annuityPeriodLength->toDays()
             );
         }
 

@@ -14,6 +14,58 @@ class AnnuityCalculatorTest extends PHPUnit_Framework_TestCase {
             $perpetuityCalculator;
 
     /**
+     * Test the annuity length
+     */
+    public function testAnnuityLengthDirect() {
+        $this->assertLengthAndEndDate($this->annuityCalculatorDirectYearly);
+    }
+
+    public function testAnnuityLengthFactory() {
+        $this->assertLengthAndEndDate($this->annuityCalculatorFactoryYearly);
+    }
+
+    /**
+     * @param AnnuityCalculator $annuityCalculator
+     */
+    private function assertLengthAndEndDate(AnnuityCalculator $annuityCalculator) {
+        $this->assertLengthYears($annuityCalculator);
+        $this->assertLengthMonths($annuityCalculator);
+        $this->assertLengthDays($annuityCalculator);
+        $this->assertEndDate($annuityCalculator);
+    }
+
+    /**
+     * @param AnnuityCalculator $annuityCalculator
+     */
+    private function assertLengthYears(AnnuityCalculator $annuityCalculator) {
+        $this->assertEquals(5, $annuityCalculator->getAnnuityLengthInYears());
+    }
+
+    /**
+     * @param AnnuityCalculator $annuityCalculator
+     */
+    private function assertLengthMonths(AnnuityCalculator $annuityCalculator) {
+        $this->assertEquals(60, $annuityCalculator->getAnnuityLengthInMonths());
+    }
+
+    /**
+     * @param AnnuityCalculator $annuityCalculator
+     */
+    private function assertLengthDays(AnnuityCalculator $annuityCalculator) {
+        $this->assertEquals(1800, $annuityCalculator->getAnnuityLengthInDays());
+    }
+
+    /**
+     * @param AnnuityCalculator $annuityCalculator
+     */
+    private function assertEndDate(AnnuityCalculator $annuityCalculator) {
+        $this->assertEquals(
+            (new DateTime())->add(new DateInterval("P" . (int)$annuityCalculator->getAnnuityLengthInDays() . "D")),
+            $annuityCalculator->getAnnuityEndDate(new DateTime())
+        );
+    }
+
+    /**
      * Test the PV in arrears
      */
     public function testPVInArrearsDirect() {
