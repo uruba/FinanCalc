@@ -2,6 +2,7 @@
 
 namespace FinanCalc\Calculators {
 
+    use DateTime;
     use Exception;
     use FinanCalc\Constants\AnnuityPaymentTypes;
     use FinanCalc\Constants\AnnuityValueTypes;
@@ -9,6 +10,7 @@ namespace FinanCalc\Calculators {
     use FinanCalc\Utils\Helpers;
     use FinanCalc\Utils\MathFuncs;
     use FinanCalc\Utils\Time\TimeSpan;
+    use FinanCalc\Utils\Time\TimeUtils;
 
     /**
      * Class AnnuityCalculator
@@ -160,6 +162,38 @@ namespace FinanCalc\Calculators {
         }
 
         /**
+         * @return string
+         * @throws Exception
+         */
+        public function getAnnuityLengthInYears() {
+            return MathFuncs::div(
+                $this->getAnnuityLengthInDays(),
+                TimeUtils::getCurrentDayCountConvention()['days_in_a_year']
+            );
+        }
+
+        /**
+         * @return string
+         * @throws Exception
+         */
+        public function getAnnuityLengthInMonths() {
+            return MathFuncs::div(
+                $this->getAnnuityLengthInDays(),
+                TimeUtils::getCurrentDayCountConvention()['days_in_a_month']
+            );
+        }
+
+        /**
+         * @return string
+         */
+        public function getAnnuityLengthInDays() {
+            return MathFuncs::mul(
+                $this->debtNoOfCompoundingPeriods,
+                $this->debtPeriodLength->toDays()
+            );
+        }
+
+        /**
          * @param AnnuityPaymentTypes $annuityType
          * @return null|string
          */
@@ -220,6 +254,16 @@ namespace FinanCalc\Calculators {
             return $this->getAnnuityFutureValue(
                 new AnnuityPaymentTypes(AnnuityPaymentTypes::IN_ARREARS)
             );
+        }
+
+        /**
+         * @param DateTime $startDate
+         * @return DateTime
+         */
+        public function getAnnuityEndDate(DateTime $startDate) {
+            return TimeSpan
+                ::asDurationWithStartDate($startDate, 0, 0, (int)$this->getAnnuityLengthInDays())
+                ->getEndDate();
         }
 
         /**
