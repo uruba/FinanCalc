@@ -23,7 +23,7 @@ A lightweight, simple and easy PHP library for calculating annuities (e.g., mort
 Much more to come – including calculators for discount securities, ~~bond valuation~~, ~~duration~~, ~~stock pricing~~...
 Also looking into other optimizations and improvements. Current hot ideas:
 * ~~utilization of reflection in the getters of the calculators' result array for easier and less error-prone implementation of new calculator classes~~ (this has already been tackled by the means of utilizing a helper array of property names)
-* ~~time functions for determining the exact dates of events pertaining to calculated instruments~~ (implemented via a TimeSpan object)
+* ~~time functions for determining the exact dates of events pertaining to calculated instruments~~ (implemented via a TimeSpan object and appropriate getter methods in applicable classes)
 
 >**Please bear in mind that this is an ALPHA version containing incomplete features. The codebase is prone to drastic changes during its way out of the alpha stage.**
 
@@ -304,7 +304,7 @@ namespace `FinanCalc\Calculators`
 * **getAnnuityLengthInYears()** – gets the length of the annuity in years
 * **getAnnuityLengthInMonths()** – gets the length of the annuity in months
 * **getAnnuityLengthInDays()** – gets the length of the annuity in days
-* **getAnnuityEndDate(DateTime $startDate)** – gets the ending date of the annuity as a DateTime object, based on the starting date passed as a parameter
+* **getAnnuityEndDate(DateTime $startDate)** – gets the ending date of the annuity as a DateTime object, based on the starting date passed in as a parameter
 * **getAnnuityPresentValue(AnnuityPaymentTypes $annuityType)** – gets the present value of the annuity
   * *AnuityPaymentTypes $annuityType* = determines whether the payments are made either at the beginning or the end of each of the annuity's periods
     [*optional for perpetuities*]
@@ -367,7 +367,7 @@ namespace `FinanCalc\Calculators`
 * **getDebtLengthInYears()** – gets the length of the debt in years
 * **getDebtLengthInMonths()** – gets the length of the debt in months
 * **getDebtLengthInDays()** – gets the length of the debt in days
-* **getDebtEndDate(DateTime $startDate)** – gets the ending date of the debt as a DateTime object, based on the starting date passed as a parameter
+* **getDebtEndDate(DateTime $startDate)** – gets the ending date of the debt as a DateTime object, based on the starting date passed in as a parameter
 * **getDebtInterest()** – gets i
 * **getDebtRepayments()** – gets the **array of RepaymentInstance** objects representing all the individual payments within the debt comprised into an array
 * **getDebtRepaymentsAsArrays()** – gets the **array of associative arrays** (i.e., an array of RepaymentInstances converted to arrays) representing all the individual payments within the debt
