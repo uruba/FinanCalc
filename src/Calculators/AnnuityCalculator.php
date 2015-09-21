@@ -194,6 +194,16 @@ namespace FinanCalc\Calculators {
         }
 
         /**
+         * @param DateTime $startDate
+         * @return DateTime
+         */
+        public function getAnnuityEndDate(DateTime $startDate) {
+            return TimeSpan
+                ::asDurationWithStartDate($startDate, 0, 0, (int)$this->getAnnuityLengthInDays())
+                ->getEndDate();
+        }
+
+        /**
          * @param AnnuityPaymentTypes $annuityType
          * @return null|string
          */
@@ -254,16 +264,6 @@ namespace FinanCalc\Calculators {
             return $this->getAnnuityFutureValue(
                 new AnnuityPaymentTypes(AnnuityPaymentTypes::IN_ARREARS)
             );
-        }
-
-        /**
-         * @param DateTime $startDate
-         * @return DateTime
-         */
-        public function getAnnuityEndDate(DateTime $startDate) {
-            return TimeSpan
-                ::asDurationWithStartDate($startDate, 0, 0, (int)$this->getAnnuityLengthInDays())
-                ->getEndDate();
         }
 
         /**

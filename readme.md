@@ -301,6 +301,10 @@ namespace `FinanCalc\Calculators`
 * **getAnnuityPeriodLengthInMonths()** – gets the length of each compounding period in months
 * **getAnnuityPeriodLengthInDays()** – gets the length of each compounding period in days
 * **getAnnuityInterest()** – gets i
+* **getAnnuityLengthInYears()** – gets the length of the annuity in years
+* **getAnnuityLengthInMonths()** – gets the length of the annuity in months
+* **getAnnuityLengthInDays()** – gets the length of the annuity in days
+* **getAnnuityEndDate(DateTime $startDate)** – gets the ending date of the annuity as a DateTime object, based on the starting date passed as a parameter
 * **getAnnuityPresentValue(AnnuityPaymentTypes $annuityType)** – gets the present value of the annuity
   * *AnuityPaymentTypes $annuityType* = determines whether the payments are made either at the beginning or the end of each of the annuity's periods
     [*optional for perpetuities*]
