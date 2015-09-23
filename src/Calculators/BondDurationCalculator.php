@@ -3,7 +3,6 @@
 namespace FinanCalc\Calculators {
 
     use FinanCalc\Interfaces\Calculator\BondCalculatorAbstract;
-    use FinanCalc\Utils\Helpers;
     use FinanCalc\Utils\MathFuncs;
 
 
@@ -67,9 +66,7 @@ namespace FinanCalc\Calculators {
          * @param $bondAnnualYield
          */
         public function setBondAnnualYield($bondAnnualYield) {
-            if (Helpers::checkIfPositiveNumberOrThrowAnException($bondAnnualYield)) {
-                $this->setProperty("bondAnnualYield", $bondAnnualYield);
-            }
+            $this->setProperty("bondAnnualYield", $bondAnnualYield, $GLOBALS["FINANCALC_FUNC_CHECK_IF_POSITIVE"]);
         }
 
         /**

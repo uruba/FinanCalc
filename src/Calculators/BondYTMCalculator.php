@@ -3,7 +3,6 @@
 namespace FinanCalc\Calculators {
 
     use FinanCalc\Interfaces\Calculator\BondCalculatorAbstract;
-    use FinanCalc\Utils\Helpers;
     use FinanCalc\Utils\MathFuncs;
 
     /**
@@ -62,9 +61,7 @@ namespace FinanCalc\Calculators {
          * @param $bondMarketValue
          */
         public function setBondMarketValue($bondMarketValue) {
-            if (Helpers::checkIfPositiveNumberOrThrowAnException($bondMarketValue)) {
-                $this->setProperty("bondMarketValue", $bondMarketValue);
-            }
+                $this->setProperty("bondMarketValue", $bondMarketValue, $GLOBALS["FINANCALC_FUNC_CHECK_IF_POSITIVE"]);
         }
 
         /**

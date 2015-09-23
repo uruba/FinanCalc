@@ -3,7 +3,6 @@
 namespace FinanCalc\Calculators {
 
     use FinanCalc\Interfaces\Calculator\BondCalculatorAbstract;
-    use FinanCalc\Utils\Helpers;
     use FinanCalc\Utils\MathFuncs;
 
     /**
@@ -62,9 +61,7 @@ namespace FinanCalc\Calculators {
          * @param $bondVIR
          */
         public function setBondVIR($bondVIR) {
-            if (Helpers::checkIfPositiveNumberOrThrowAnException($bondVIR)) {
-                $this->setProperty("bondVIR", $bondVIR);
-            }
+            $this->setProperty("bondVIR", $bondVIR, $GLOBALS["FINANCALC_FUNC_CHECK_IF_POSITIVE"]);
         }
 
         /**

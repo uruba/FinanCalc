@@ -72,18 +72,14 @@ namespace FinanCalc\Calculators {
          * @param $annuitySinglePaymentAmount
          */
         public function setAnnuitySinglePaymentAmount($annuitySinglePaymentAmount) {
-            if (Helpers::checkIfPositiveNumberOrThrowAnException($annuitySinglePaymentAmount)) {
-                $this->setProperty("annuitySinglePaymentAmount", $annuitySinglePaymentAmount);
-            }
+            $this->setProperty("annuitySinglePaymentAmount", $annuitySinglePaymentAmount, $GLOBALS["FINANCALC_FUNC_CHECK_IF_POSITIVE"]);
         }
 
         /**
          * @param $annuityNoOfCompoundingPeriods
          */
         public function setAnnuityNoOfCompoundingPeriods($annuityNoOfCompoundingPeriods) {
-            if (Helpers::checkIfNotNegativeNumberOrThrowAnException($annuityNoOfCompoundingPeriods)) {
-                $this->setProperty("annuityNoOfCompoundingPeriods", $annuityNoOfCompoundingPeriods);
-            }
+            $this->setProperty("annuityNoOfCompoundingPeriods", $annuityNoOfCompoundingPeriods, $GLOBALS["FINANCALC_FUNC_CHECK_IF_NOT_NEGATIVE"]);
 
             if ($this->annuityPeriodLength !== null) {
                 $this->setAnnuityPeriodLength($this->annuityPeriodLength);
@@ -107,9 +103,7 @@ namespace FinanCalc\Calculators {
          * @param $annuityInterest
          */
         public function setAnnuityInterest($annuityInterest) {
-            if (Helpers::checkIfPositiveNumberOrThrowAnException($annuityInterest)) {
-                $this->setProperty("annuityInterest", $annuityInterest);
-            }
+            $this->setProperty("annuityInterest", $annuityInterest, $GLOBALS["FINANCALC_FUNC_CHECK_IF_POSITIVE"]);
         }
 
         /**

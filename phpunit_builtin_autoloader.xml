@@ -1,6 +1,7 @@
 <phpunit
         convertWarningsToExceptions="false"
-        bootstrap="tests/TestBootstrapBuiltinAutoloader.php">
+        bootstrap="tests/TestBootstrapBuiltinAutoloader.php"
+        backupGlobals="false">
 
     <testsuites>
         <testsuite name="Built-in autoloader">

@@ -101,7 +101,7 @@ namespace FinanCalc\Utils {
          * @return bool|null
          */
         static function checkNumberRelativityToZero($checkedVariable, $expectedResult) {
-            if(is_numeric($checkedVariable)) {
+            if(is_numeric((string)$checkedVariable)) {
                 return MathFuncs::comp($checkedVariable, "0.00") == $expectedResult;
             }
 

@@ -4,7 +4,6 @@ namespace FinanCalc\Calculators {
 
     use DateTime;
     use FinanCalc\Interfaces\Calculator\CalculatorAbstract;
-    use FinanCalc\Utils\Helpers;
     use FinanCalc\Utils\MathFuncs;
     use FinanCalc\Utils\Time\TimeSpan;
     use FinanCalc\Utils\Time\TimeUtils;
@@ -71,27 +70,21 @@ namespace FinanCalc\Calculators {
          * @param $debtPrincipal
          */
         private function setDebtPrincipalWithoutRecalculation($debtPrincipal) {
-            if (Helpers::checkIfPositiveNumberOrThrowAnException($debtPrincipal)) {
-                $this->setProperty("debtPrincipal", $debtPrincipal);
-            }
+            $this->setProperty("debtPrincipal", $debtPrincipal, $GLOBALS["FINANCALC_FUNC_CHECK_IF_POSITIVE"]);
         }
 
         /**
          * @param $debtNoOfCompoundingPeriods
          */
         private function setDebtNoOfCompoundingPeriodsWithoutRecalculation($debtNoOfCompoundingPeriods) {
-            if (Helpers::checkIfPositiveNumberOrThrowAnException($debtNoOfCompoundingPeriods)) {
-                $this->setProperty("debtNoOfCompoundingPeriods", $debtNoOfCompoundingPeriods);
-            }
+            $this->setProperty("debtNoOfCompoundingPeriods", $debtNoOfCompoundingPeriods, $GLOBALS["FINANCALC_FUNC_CHECK_IF_POSITIVE"]);
         }
 
         /**
          * @param $debtInterest
          */
         private function setDebtInterestWithoutRecalculation($debtInterest) {
-            if (Helpers::checkIfPositiveNumberOrThrowAnException($debtInterest)) {
-                $this->setProperty("debtInterest", $debtInterest);
-            }
+            $this->setProperty("debtInterest", $debtInterest, $GLOBALS["FINANCALC_FUNC_CHECK_IF_POSITIVE"]);
         }
 
         /**
@@ -114,9 +107,7 @@ namespace FinanCalc\Calculators {
          * @param $debtPeriodLength
          */
         public function setDebtPeriodLength(TimeSpan $debtPeriodLength) {
-            if (Helpers::checkIfPositiveNumberOrThrowAnException((string)$debtPeriodLength)) {
-                $this->setProperty("debtPeriodLength", $debtPeriodLength);
-            }
+            $this->setProperty("debtPeriodLength", $debtPeriodLength, $GLOBALS["FINANCALC_FUNC_CHECK_IF_POSITIVE"]);
         }
 
         /**

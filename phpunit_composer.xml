@@ -1,6 +1,7 @@
 <phpunit
         convertWarningsToExceptions="false"
-        bootstrap="tests/TestBootstrapComposer.php">
+        bootstrap="tests/TestBootstrapComposer.php"
+        backupGlobals="false">
 
     <testsuites>
         <testsuite name="Composer autoloader">

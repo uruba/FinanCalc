@@ -14,12 +14,22 @@ namespace FinanCalc\Interfaces\Calculator {
         /**
          * @param $name
          * @param $value
+         * @param null $callbackBefore
+         * @param null $callbackAfter
          */
-        protected function setProperty($name, $value) {
+        protected function setProperty($name, $value, $callbackBefore = null, $callbackAfter = null) {
+            if (is_callable($callbackBefore)) {
+                $callbackBefore($value);
+            }
+
             if (is_object($value) || is_null($value)) {
                 $this->$name = $value;
             } else {
                 $this->$name = (string) $value;
+            }
+
+            if (is_callable($callbackAfter)) {
+                $callbackAfter($value);
             }
         }
 

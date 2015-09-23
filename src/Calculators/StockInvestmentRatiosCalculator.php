@@ -3,7 +3,6 @@
 namespace FinanCalc\Calculators {
 
     use FinanCalc\Interfaces\Calculator\CalculatorAbstract;
-    use FinanCalc\Utils\Helpers;
     use FinanCalc\Utils\MathFuncs;
 
     /**
@@ -48,27 +47,21 @@ namespace FinanCalc\Calculators {
          * @param $totalDividends
          */
         public function setTotalDividends($totalDividends) {
-            if (Helpers::checkIfPositiveNumberOrThrowAnException($totalDividends)) {
-                $this->setProperty("totalDividends", $totalDividends);
-            }
+            $this->setProperty("totalDividends", $totalDividends, $GLOBALS["FINANCALC_FUNC_CHECK_IF_POSITIVE"]);
         }
 
         /**
          * @param $earningsAfterTaxes
          */
         public function setEarningsAfterTaxes($earningsAfterTaxes) {
-            if (Helpers::checkIfPositiveNumberOrThrowAnException($earningsAfterTaxes)) {
-                $this->setProperty("earningsAfterTaxes", $earningsAfterTaxes);
-            }
+            $this->setProperty("earningsAfterTaxes", $earningsAfterTaxes, $GLOBALS["FINANCALC_FUNC_CHECK_IF_POSITIVE"]);
         }
 
         /**
          * @param $noOfStocks
          */
         public function setNoOfStocks($noOfStocks) {
-            if (Helpers::checkIfPositiveNumberOrThrowAnException($noOfStocks)) {
-                $this->setProperty("noOfStocks", $noOfStocks);
-            }
+            $this->setProperty("noOfStocks", $noOfStocks, $GLOBALS["FINANCALC_FUNC_CHECK_IF_POSITIVE"]);
         }
 
         /**

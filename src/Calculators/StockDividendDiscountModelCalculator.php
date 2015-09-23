@@ -69,18 +69,14 @@ namespace FinanCalc\Calculators {
          * @param $stockVIR
          */
         public function setStockVIR($stockVIR){
-            if (Helpers::checkIfPositiveNumberOrThrowAnException($stockVIR)) {
-                $this->setProperty("stockVIR", $stockVIR);
-            }
+            $this->setProperty("stockVIR", $stockVIR, $GLOBALS["FINANCALC_FUNC_CHECK_IF_POSITIVE"]);
         }
 
         /**
          * @param $stockAnnualDividendsValue
          */
         public function setStockAnnualDividendsValue($stockAnnualDividendsValue) {
-            if (Helpers::checkIfPositiveNumberOrThrowAnException($stockAnnualDividendsValue)) {
-                $this->setProperty("stockAnnualDividendsValue", $stockAnnualDividendsValue);
-            }
+            $this->setProperty("stockAnnualDividendsValue", $stockAnnualDividendsValue, $GLOBALS["FINANCALC_FUNC_CHECK_IF_POSITIVE"]);
         }
 
         /**
