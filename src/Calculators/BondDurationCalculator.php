@@ -14,7 +14,7 @@ namespace FinanCalc\Calculators {
     class BondDurationCalculator extends BondCalculatorAbstract {
 
         // annual yield of the bond
-        private $bondAnnualYield;
+        protected $bondAnnualYield;
 
         // INHERITED MEMBERS
         // face value of the bond = 'F'
@@ -68,7 +68,7 @@ namespace FinanCalc\Calculators {
          */
         public function setBondAnnualYield($bondAnnualYield) {
             if (Helpers::checkIfPositiveNumberOrThrowAnException($bondAnnualYield)) {
-                $this->bondAnnualYield = (string)$bondAnnualYield;
+                $this->setProperty("bondAnnualYield", $bondAnnualYield);
             }
         }
 

@@ -13,7 +13,7 @@ namespace FinanCalc\Calculators {
     class BondFairValueCalculator extends BondCalculatorAbstract {
 
         // valuation interest rate of the bond = 'i'
-        private $bondVIR;
+        protected $bondVIR;
 
         // INHERITED MEMBERS
         // face value of the bond = 'F'
@@ -63,7 +63,7 @@ namespace FinanCalc\Calculators {
          */
         public function setBondVIR($bondVIR) {
             if (Helpers::checkIfPositiveNumberOrThrowAnException($bondVIR)) {
-                $this->bondVIR = (string)$bondVIR;
+                $this->setProperty("bondVIR", $bondVIR);
             }
         }
 

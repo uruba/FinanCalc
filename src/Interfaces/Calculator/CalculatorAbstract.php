@@ -12,6 +12,18 @@ namespace FinanCalc\Interfaces\Calculator {
         protected $propResultArray = null;
 
         /**
+         * @param $name
+         * @param $value
+         */
+        protected function setProperty($name, $value) {
+            if (is_object($value) || is_null($value)) {
+                $this->$name = $value;
+            } else {
+                $this->$name = (string) $value;
+            }
+        }
+
+        /**
          * @param array $propResultArray
          * @return array
          */

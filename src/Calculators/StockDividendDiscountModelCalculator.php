@@ -17,14 +17,14 @@ namespace FinanCalc\Calculators {
 
         /** @var  StockDDMTypes */
         // the type of the dividend discount model according to which the result will be calculated
-        private $dividendDiscountModelType;
+        protected $dividendDiscountModelType;
         // stock's valuation interest rate
-        private $stockVIR;
+        protected $stockVIR;
         // absolute value of the stock's annual dividends
-        private $stockAnnualDividendsValue;
+        protected $stockAnnualDividendsValue;
         // the rate by which the stock's annual dividends grow annually (i.e., a decimal number between 0 and 1)
         // this value applies only to the multiple growth dividend discount model
-        private $stockAnnualDividendsGrowth;
+        protected $stockAnnualDividendsGrowth;
 
         // props returned by the getResultAsArray method by default
         protected $propResultArray = [
@@ -62,7 +62,7 @@ namespace FinanCalc\Calculators {
             ) {
                 $this->stockAnnualDividendsGrowth = null;
             }
-            $this->dividendDiscountModelType = $dividendDiscountModelType;
+            $this->setProperty("dividendDiscountModelType", $dividendDiscountModelType);
         }
 
         /**
@@ -70,7 +70,7 @@ namespace FinanCalc\Calculators {
          */
         public function setStockVIR($stockVIR){
             if (Helpers::checkIfPositiveNumberOrThrowAnException($stockVIR)) {
-                $this->stockVIR = (string)$stockVIR;
+                $this->setProperty("stockVIR", $stockVIR);
             }
         }
 
@@ -79,7 +79,7 @@ namespace FinanCalc\Calculators {
          */
         public function setStockAnnualDividendsValue($stockAnnualDividendsValue) {
             if (Helpers::checkIfPositiveNumberOrThrowAnException($stockAnnualDividendsValue)) {
-                $this->stockAnnualDividendsValue = (string)$stockAnnualDividendsValue;
+                $this->setProperty("stockAnnualDividendsValue", $stockAnnualDividendsValue);
             }
         }
 
@@ -106,8 +106,7 @@ namespace FinanCalc\Calculators {
                 }
             }
 
-            $this->stockAnnualDividendsGrowth =
-                $stockAnnualDividendsGrowth === null ? $stockAnnualDividendsGrowth : (string)$stockAnnualDividendsGrowth;
+            $this->setProperty("stockAnnualDividendsGrowth", $stockAnnualDividendsGrowth);
         }
 
         /**

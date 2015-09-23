@@ -19,15 +19,15 @@ namespace FinanCalc\Calculators {
     class AnnuityCalculator extends CalculatorAbstract {
 
         // amount of each individual payment = 'K'
-        private $annuitySinglePaymentAmount;
+        protected $annuitySinglePaymentAmount;
         // number of periods pertaining to the interest compounding = 'n'
         // if 'n = 0', the annuity is considered a perpetuity
-        private $annuityNoOfCompoundingPeriods;
+        protected $annuityNoOfCompoundingPeriods;
         // length of a single period as a FinanCalc\Utils\Time\TimeSpan object
         /** @var  TimeSpan */
-        private $annuityPeriodLength;
+        protected $annuityPeriodLength;
         // the interest rate by which the unpaid balance is multiplied (i.e., a decimal number) = 'i'
-        private $annuityInterest;
+        protected $annuityInterest;
 
         // props returned by the getResultAsArray method by default
         protected $propResultArray = [
@@ -73,7 +73,7 @@ namespace FinanCalc\Calculators {
          */
         public function setAnnuitySinglePaymentAmount($annuitySinglePaymentAmount) {
             if (Helpers::checkIfPositiveNumberOrThrowAnException($annuitySinglePaymentAmount)) {
-                $this->annuitySinglePaymentAmount = (string)$annuitySinglePaymentAmount;
+                $this->setProperty("annuitySinglePaymentAmount", $annuitySinglePaymentAmount);
             }
         }
 
@@ -82,7 +82,7 @@ namespace FinanCalc\Calculators {
          */
         public function setAnnuityNoOfCompoundingPeriods($annuityNoOfCompoundingPeriods) {
             if (Helpers::checkIfNotNegativeNumberOrThrowAnException($annuityNoOfCompoundingPeriods)) {
-                $this->annuityNoOfCompoundingPeriods = (string)$annuityNoOfCompoundingPeriods;
+                $this->setProperty("annuityNoOfCompoundingPeriods", $annuityNoOfCompoundingPeriods);
             }
 
             if ($this->annuityPeriodLength !== null) {
@@ -96,9 +96,9 @@ namespace FinanCalc\Calculators {
         public function setAnnuityPeriodLength(TimeSpan $annuityPeriodLength) {
             if (Helpers::checkIfNotNegativeNumberOrThrowAnException((string)$annuityPeriodLength)) {
                 if (Helpers::checkIfZero($this->annuityNoOfCompoundingPeriods)) {
-                    $this->annuityPeriodLength = TimeSpan::asDuration(0);
+                    $this->setProperty("annuityPeriodLength", TimeSpan::asDuration(0));
                 } else {
-                    $this->annuityPeriodLength = $annuityPeriodLength;
+                    $this->setProperty("annuityPeriodLength", $annuityPeriodLength);
                 }
             }
         }
@@ -108,7 +108,7 @@ namespace FinanCalc\Calculators {
          */
         public function setAnnuityInterest($annuityInterest) {
             if (Helpers::checkIfPositiveNumberOrThrowAnException($annuityInterest)) {
-                $this->annuityInterest = (string)$annuityInterest;
+                $this->setProperty("annuityInterest", $annuityInterest);
             }
         }
 

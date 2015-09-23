@@ -13,11 +13,11 @@ namespace FinanCalc\Calculators {
     class StockInvestmentRatiosCalculator extends CalculatorAbstract {
 
         // sum of dividends per a period
-        private $totalDividends;
+        protected $totalDividends;
         // amount earned after taxes
-        private $earningsAfterTaxes;
+        protected $earningsAfterTaxes;
         // number of stocks (total if constant, average if fluctuating)
-        private $noOfStocks;
+        protected $noOfStocks;
 
         // props returned by the getResultAsArray method by default
         protected $propResultArray = [
@@ -49,7 +49,7 @@ namespace FinanCalc\Calculators {
          */
         public function setTotalDividends($totalDividends) {
             if (Helpers::checkIfPositiveNumberOrThrowAnException($totalDividends)) {
-                $this->totalDividends = (string)$totalDividends;
+                $this->setProperty("totalDividends", $totalDividends);
             }
         }
 
@@ -58,7 +58,7 @@ namespace FinanCalc\Calculators {
          */
         public function setEarningsAfterTaxes($earningsAfterTaxes) {
             if (Helpers::checkIfPositiveNumberOrThrowAnException($earningsAfterTaxes)) {
-                $this->earningsAfterTaxes = (string)$earningsAfterTaxes;
+                $this->setProperty("earningsAfterTaxes", $earningsAfterTaxes);
             }
         }
 
@@ -67,7 +67,7 @@ namespace FinanCalc\Calculators {
          */
         public function setNoOfStocks($noOfStocks) {
             if (Helpers::checkIfPositiveNumberOrThrowAnException($noOfStocks)) {
-                $this->noOfStocks = (string)$noOfStocks;
+                $this->setProperty("noOfStocks", $noOfStocks);
             }
         }
 

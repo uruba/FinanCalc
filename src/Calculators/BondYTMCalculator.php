@@ -13,7 +13,7 @@ namespace FinanCalc\Calculators {
     class BondYTMCalculator extends BondCalculatorAbstract {
 
         // market value of the bond = 'P'
-        private $bondMarketValue;
+        protected $bondMarketValue;
 
         // INHERITED MEMBERS
         // face value of the bond = 'F'
@@ -63,7 +63,7 @@ namespace FinanCalc\Calculators {
          */
         public function setBondMarketValue($bondMarketValue) {
             if (Helpers::checkIfPositiveNumberOrThrowAnException($bondMarketValue)) {
-                $this->bondMarketValue = (string)$bondMarketValue;
+                $this->setProperty("bondMarketValue", $bondMarketValue);
             }
         }
 
@@ -110,6 +110,6 @@ namespace FinanCalc\Calculators {
             return $approxYTM;
         }
 
-        // TODO – add a method for precise bond YTM calculation by means of a polynominal equation
+        // TODO – add a method for precise bond YTM calculation by means of a polynomial equation
     }
 }

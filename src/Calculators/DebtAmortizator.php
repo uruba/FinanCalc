@@ -16,17 +16,17 @@ namespace FinanCalc\Calculators {
     class DebtAmortizator extends CalculatorAbstract {
         /** @var  RepaymentInstance[] */
         // list of individual debt's repayments as an array of RepaymentInstance objects
-        private $debtRepayments;
+        protected $debtRepayments;
 
         // principal of the debt = 'PV'
-        private $debtPrincipal;
+        protected $debtPrincipal;
         // number of periods pertaining to the interest compounding = 'n'
-        private $debtNoOfCompoundingPeriods;
+        protected $debtNoOfCompoundingPeriods;
         // length of a single period in days
         /** @var  TimeSpan */
-        private $debtPeriodLength;
+        protected $debtPeriodLength;
         // the interest rate by which the unpaid balance is multiplied (i.e., a decimal number) = 'i'
-        private $debtInterest;
+        protected $debtInterest;
 
         // props returned by the getResultAsArray method by default
         protected $propResultArray = [
@@ -72,7 +72,7 @@ namespace FinanCalc\Calculators {
          */
         private function setDebtPrincipalWithoutRecalculation($debtPrincipal) {
             if (Helpers::checkIfPositiveNumberOrThrowAnException($debtPrincipal)) {
-                $this->debtPrincipal = (string)$debtPrincipal;
+                $this->setProperty("debtPrincipal", $debtPrincipal);
             }
         }
 
@@ -81,7 +81,7 @@ namespace FinanCalc\Calculators {
          */
         private function setDebtNoOfCompoundingPeriodsWithoutRecalculation($debtNoOfCompoundingPeriods) {
             if (Helpers::checkIfPositiveNumberOrThrowAnException($debtNoOfCompoundingPeriods)) {
-                $this->debtNoOfCompoundingPeriods = (string)$debtNoOfCompoundingPeriods;
+                $this->setProperty("debtNoOfCompoundingPeriods", $debtNoOfCompoundingPeriods);
             }
         }
 
@@ -90,7 +90,7 @@ namespace FinanCalc\Calculators {
          */
         private function setDebtInterestWithoutRecalculation($debtInterest) {
             if (Helpers::checkIfPositiveNumberOrThrowAnException($debtInterest)) {
-                $this->debtInterest = (string)$debtInterest;
+                $this->setProperty("debtInterest", $debtInterest);
             }
         }
 
@@ -115,7 +115,7 @@ namespace FinanCalc\Calculators {
          */
         public function setDebtPeriodLength(TimeSpan $debtPeriodLength) {
             if (Helpers::checkIfPositiveNumberOrThrowAnException((string)$debtPeriodLength)) {
-                $this->debtPeriodLength = $debtPeriodLength;
+                $this->setProperty("debtPeriodLength", $debtPeriodLength);
             }
         }
 
