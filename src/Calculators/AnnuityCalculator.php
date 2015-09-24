@@ -333,13 +333,13 @@ namespace FinanCalc\Calculators {
                 }
 
                 if (isset($numerator) && isset($denominator)) {
-                    return Helpers::roundMoneyForDisplay(
+                    return
                     // PV|FV = K*(PV|FV of unit annuity)
                         MathFuncs::mul(
                             MathFuncs::div(
                                 $numerator,
                                 $denominator),
-                            $this->annuitySinglePaymentAmount));
+                            $this->annuitySinglePaymentAmount);
                 }
 
                 return null;
