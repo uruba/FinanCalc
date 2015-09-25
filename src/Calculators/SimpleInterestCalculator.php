@@ -12,22 +12,21 @@ namespace FinanCalc\Calculators {
      */
     class SimpleInterestCalculator extends CalculatorAbstract {
         // amount of principal = 'P'
-        private $principal;
+        protected $principal;
         // annual interest rate = 'i'
-        private $annualInterestRate;
+        protected $annualInterestRate;
         // the time, which converted to years = 't'
         /** @var  TimeSpan */
-        private $time;
-
+        protected $time;
 
         /**
          * @param $principal
          * @param $annualInterestRate
-         * @param $time
+         * @param TimeSpan $time
          */
         function __construct($principal,
                              $annualInterestRate,
-                             $time) {
+                             TimeSpan $time) {
             $this->setPrincipal($principal);
             $this->setAnnualInterestRate($annualInterestRate);
             $this->setTime($time);
@@ -105,7 +104,7 @@ namespace FinanCalc\Calculators {
                 $this->principal,
                 MathFuncs::mul(
                     $this->annualInterestRate,
-                    $this->getTimeInDays()
+                    $this->getTimeInYears()
                 )
             );
         }
