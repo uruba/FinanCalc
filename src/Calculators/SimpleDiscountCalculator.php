@@ -27,7 +27,9 @@ namespace FinanCalc\Calculators {
         function __construct($amountDue,
                              $annualDiscountRate,
                              TimeSpan $time) {
-
+            $this->setAmountDue($amountDue);
+            $this->setAnnualDiscountRate($annualDiscountRate);
+            $this->setTime($time);
         }
 
         /**
