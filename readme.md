@@ -505,6 +505,33 @@ namespace `FinanCalc\Calculators\Factories`
 
 * * *
 
+### SimpleInterestCalculator
+namespace `FinanCalc\Calculators`
+* **__construct($principal, $annualInterestRate, TimeSpan $time)**
+  * *$principal* = **'P'** – amount of principal
+  * *$annualInterestRate* = **'i'** – annual interest rate (i.e., a decimal number typically lower than 1 and greater than 0)
+  * *$time* = (converted to years) **'t'** – the total time as a TimeSpan object
+
+##### Setters
+* **setPrincipal($principal)** – sets P
+* **setAnnualInterestRate($annualInterestRate)** – sets i
+* **setTime(TimeSpan $time)** – sets the total time
+
+##### Getters
+* **getPrincipal()** – gets P
+* **getAnnualInterestRate()** – gets i
+* **getTime()** – gets the total time as a TimeSpan object
+* **getTimeInYears()** – gets the total time in years
+* **getTimeInMonths()** – gets the total time in months
+* **getTimeInDays()** – gets the total time in days
+* **getInterestAmount()** – gets the interest amount ('n')
+
+#### SimpleInterestCalculatorFactory (*SimpleInterestCalculator's factory object*)
+namespace `FinanCalc\Calculators\Factories`
+* **newSimpleInterest($principal, $annualInterestRate, TimeSpan $time)**
+
+* * *
+
 ### StockDividendDiscountModelCalculator
 namespace `FinanCalc\Calculators`
 * **__construct(StockDDMTypes $dividendDiscountModelType, $stockVIR, $stockAnnualDividendValue, $stockAnnualDividendsGrowth = null)**
