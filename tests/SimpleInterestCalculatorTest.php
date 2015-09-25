@@ -28,6 +28,13 @@ class SimpleInterestCalculatorTest extends PHPUnit_Framework_TestCase
      */
     private function assertInterestAmount(SimpleInterestCalculator $interestCalculator) {
         $this->assertEquals(3.75, $interestCalculator->getInterestAmount());
+
+        $this->assertEquals(100, $interestCalculator->getPrincipal());
+        $this->assertEquals(0.0375, $interestCalculator->getAnnualInterestRate());
+        $this->assertEquals(TimeSpan::asDuration(1), $interestCalculator->getTime());
+        $this->assertEquals(1, $interestCalculator->getTimeInYears());
+        $this->assertEquals(12, $interestCalculator->getTimeInMonths());
+        $this->assertEquals(360, $interestCalculator->getTimeInDays());
     }
 
     /**

@@ -27,6 +27,13 @@ class SimpleDiscountCalculatorTest extends PHPUnit_Framework_TestCase
      */
     private function assertDiscountAmount(SimpleDiscountCalculator $discountCalculator) {
         $this->assertEquals(6500, $discountCalculator->getDiscountAmount());
+
+        $this->assertEquals(100000, $discountCalculator->getAmountDue());
+        $this->assertEquals(0.13, $discountCalculator->getAnnualDiscountRate());
+        $this->assertEquals(TimeSpan::asDuration(0, 6), $discountCalculator->getTime());
+        $this->assertEquals(0.5, $discountCalculator->getTimeInYears());
+        $this->assertEquals(6, $discountCalculator->getTimeInMonths());
+        $this->assertEquals(180, $discountCalculator->getTimeInDays());
     }
 
     /**
