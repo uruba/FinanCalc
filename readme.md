@@ -525,6 +525,8 @@ namespace `FinanCalc\Calculators`
 * **getTimeInYears()** – gets the total time in years
 * **getTimeInMonths()** – gets the total time in months
 * **getTimeInDays()** – gets the total time in days
+* **getInterestNumber()** – gets the interest number ('IN')
+* **getInterestDivisor()** – gets the interest divisor ('ID')
 * **getInterestAmount()** – gets the interest amount ('n')
 
 #### SimpleInterestCalculatorFactory (*SimpleInterestCalculator's factory object*)

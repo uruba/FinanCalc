@@ -5,6 +5,7 @@ namespace FinanCalc\Calculators {
     use FinanCalc\Interfaces\Calculator\CalculatorAbstract;
     use FinanCalc\Utils\MathFuncs;
     use FinanCalc\Utils\Time\TimeSpan;
+    use FinanCalc\Utils\Time\TimeUtils;
 
     /**
      * Class SimpleInterestCalculator
@@ -98,14 +99,38 @@ namespace FinanCalc\Calculators {
         /**
          * @return string
          */
-        public function getInterestAmount() {
-            // n = P*i*t
-            return MathFuncs::mul(
-                $this->principal,
+        public function getInterestNumber() {
+            return MathFuncs::div(
+                MathFuncs::mul(
+                    $this->principal,
+                    $this->getTimeInDays()
+                ),
+                100
+            );
+        }
+
+        /**
+         * @return string
+         * @throws \Exception
+         */
+        public function getInterestDivisor() {
+            return MathFuncs::div(
+                TimeUtils::getCurrentDayCountConvention()['days_in_a_year'],
                 MathFuncs::mul(
                     $this->annualInterestRate,
-                    $this->getTimeInYears()
+                    100
                 )
+            );
+        }
+
+        /**
+         * @return string
+         */
+        public function getInterestAmount() {
+            // n = P*i*t = IN/ID
+            return MathFuncs::div(
+                $this->getInterestNumber(),
+                $this->getInterestDivisor()
             );
         }
     }
