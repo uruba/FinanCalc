@@ -2,6 +2,7 @@
 
 namespace FinanCalc\Calculators {
 
+    use Exception;
     use FinanCalc\Interfaces\Calculator\CalculatorAbstract;
     use FinanCalc\Utils\MathFuncs;
     use FinanCalc\Utils\Time\TimeSpan;
@@ -111,7 +112,7 @@ namespace FinanCalc\Calculators {
 
         /**
          * @return string
-         * @throws \Exception
+         * @throws Exception
          */
         public function getInterestDivisor() {
             return MathFuncs::div(

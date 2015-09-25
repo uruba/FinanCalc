@@ -46,6 +46,10 @@ class SimpleInterestCalculatorTest extends PHPUnit_Framework_TestCase
         return new SimpleInterestCalculator(100, 0.0375, TimeSpan::asDuration(1));
     }
 
+    /**
+     * @return SimpleInterestCalculator
+     * @throws Exception
+     */
     private function newSimpleInterestCalculatorFactory() {
         return \FinanCalc\FinanCalc
             ::getInstance()

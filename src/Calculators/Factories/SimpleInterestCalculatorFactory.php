@@ -2,7 +2,7 @@
 
 namespace FinanCalc\Calculators\Factories {
 
-    use FinanCalc\Interfaces\Calculator\CalculatorAbstract;
+    use FinanCalc\Calculators\SimpleInterestCalculator;
     use FinanCalc\Interfaces\Calculator\CalculatorFactoryAbstract;
     use FinanCalc\Utils\Time\TimeSpan;
 
@@ -17,7 +17,7 @@ namespace FinanCalc\Calculators\Factories {
          * @param $principal
          * @param $annualInterestRate
          * @param TimeSpan $time
-         * @return CalculatorAbstract
+         * @return SimpleInterestCalculator
          */
         public function newSimpleInterest($principal, $annualInterestRate, TimeSpan $time) {
             return $this->manufactureInstance(
