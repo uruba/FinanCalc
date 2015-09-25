@@ -12,6 +12,7 @@ A lightweight, simple and easy PHP library for calculating annuities (e.g., mort
 * PHPUnit for testing
 
 ## Features
+* Simple interest calculator
 * Annuity present and future value calculator
 * Debt amortization calculator
 * Bond fair value calculator
