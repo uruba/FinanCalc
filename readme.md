@@ -13,6 +13,7 @@ A lightweight, simple and easy PHP library for calculating annuities (e.g., mort
 
 ## Features
 * Simple interest calculator
+* Simple discount calculator
 * Annuity present and future value calculator
 * Debt amortization calculator
 * Bond fair value calculator
@@ -503,6 +504,33 @@ namespace `FinanCalc\Calculators\Factories`
 * **newQuarterlyCouponsBond($bondFaceValue, $bondAnnualCouponRate, $bondAnnualYield, $bondYearsToMaturity)**
 * **newMonthlyCouponsBond($bondFaceValue, $bondAnnualCouponRate, $bondAnnualYield, $bondYearsToMaturity)**
 * **newCustomCouponFrequencyBond($bondFaceValue, $bondAnnualCouponRate, $bondAnnualYield, $bondYearsToMaturity, $bondPaymentFrequency)**
+
+* * *
+
+### SimpleDiscountCalculator
+namespace `FinanCalc\Calculators`
+* **__construct($amountDue, $annualDiscountRate, TimeSpan $time)**
+  * *$principal* = **'S'** – amount due
+  * *$annualInterestRate* = **'d'** – annual discount rate (i.e., a decimal number typically lower than 1 and greater than 0)
+  * *$time* = (converted to years) **'t'** – the total time as a TimeSpan object
+
+##### Setters
+* **setAmountDue($amountDue)** – sets S
+* **setAnnualDiscountRate($annualDiscountRate)** – sets d
+* **setTime(TimeSpan $time)** – sets the total time
+
+##### Getters
+* **getAmountDue()** – gets S
+* **getAnnualDiscountRate()** – gets d
+* **getTime()** – gets the total time as a TimeSpan object
+* **getTimeInYears()** – gets the total time in years
+* **getTimeInMonths()** – gets the total time in months
+* **getTimeInDays()** – gets the total time in days
+* **getDiscountAmount()** – gets the discount amount ('D')
+
+#### SimpleDiscountCalculatorFactory (*SimpleDiscountCalculator's factory object*)
+namespace `FinanCalc\Calculators\Factories`
+* **newSimpleDiscount($amountDue, $annualDiscountRate, TimeSpan $time)**
 
 * * *
 
