@@ -22,7 +22,7 @@ A lightweight, simple and easy PHP library for calculating annuities (e.g., mort
 * Dividend Discount Model (DDM) calculator
 * Investment ratios calculator for stocks/shares
 
-Much more to come – including calculators for discount securities, ~~bond valuation~~, ~~duration~~, ~~stock pricing~~...
+Much more to come – including calculators for discount securities *(NOTE: can now be calculated with the help of the simple discount calculator)*, ~~bond valuation~~, ~~duration~~, ~~stock pricing~~...
 Also looking into other optimizations and improvements. Current hot ideas:
 * ~~utilization of reflection in the getters of the calculators' result array for easier and less error-prone implementation of new calculator classes~~ (this has already been tackled by the means of utilizing a helper array of property names)
 * ~~time functions for determining the exact dates of events pertaining to calculated instruments~~ (implemented via a TimeSpan object and appropriate getter methods in applicable classes)
