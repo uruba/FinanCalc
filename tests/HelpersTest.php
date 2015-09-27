@@ -129,6 +129,12 @@ class HelpersTest extends PHPUnit_Framework_TestCase {
         $this->assertTrue(
             Helpers::checkNumberRelativityToZero($positiveValue, 1)
         );
+
+        $nonNumericValue = "This is a non-numeric value.";
+
+        $this->assertNull(
+            Helpers::checkNumberRelativityToZero($nonNumericValue, 0)
+        );
     }
 
     public function testRoundMoneyFOrDisplayPositive() {
