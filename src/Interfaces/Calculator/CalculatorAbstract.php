@@ -2,6 +2,7 @@
 
 namespace FinanCalc\Interfaces\Calculator {
 
+    use Exception;
     use FinanCalc\Interfaces\Serializer\SerializerInterface;
 
     /**
@@ -15,22 +16,23 @@ namespace FinanCalc\Interfaces\Calculator {
          * @param $name
          * @param $value
          * @param null $callbackBefore
-         * @param null $callbackAfter
+         * @throws Exception
          */
-        protected function setProperty($name, $value, $callbackBefore = null, $callbackAfter = null) {
+        protected function setProperty($name, $value, $callbackBefore = null) {
             if (is_callable($callbackBefore)) {
                 $callbackBefore($value);
             }
 
-            if (is_object($value) || is_null($value)) {
-                $this->$name = $value;
-            } else {
-                $this->$name = (string) $value;
+            if (property_exists($this, $name)) {
+                if (is_object($value) || is_null($value)) {
+                    $this->$name = $value;
+                } else {
+                    $this->$name = (string) $value;
+                }
+                return;
             }
 
-            if (is_callable($callbackAfter)) {
-                $callbackAfter($value);
-            }
+            throw new Exception("The property " . $name . " doesn't exist in the class " . get_class($this) . "!");
         }
 
         /**
@@ -42,7 +44,7 @@ namespace FinanCalc\Interfaces\Calculator {
                 if ($this->propResultArray !== null && is_array($this->propResultArray)) {
                     $propResultArray = $this->propResultArray;
                 } else {
-                    error_log('$propResultArray has not been supplied – neither by the argument, nor by the class field');
+                    error_log('$propResultArray has not been supplied neither by the argument, nor by the class field');
                     return false;
                 }
             }
