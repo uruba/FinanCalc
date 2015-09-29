@@ -59,9 +59,13 @@ class AnnuityCalculatorTest extends PHPUnit_Framework_TestCase {
      * @param AnnuityCalculator $annuityCalculator
      */
     private function assertEndDate(AnnuityCalculator $annuityCalculator) {
+        $dateStart = new DateTime();
+        $dateEnd = clone $dateStart;
+        $dateEnd->add(new DateInterval("P" . (int)$annuityCalculator->getAnnuityLengthInDays() . "D"));
+
         $this->assertEquals(
-            (new DateTime())->add(new DateInterval("P" . (int)$annuityCalculator->getAnnuityLengthInDays() . "D")),
-            $annuityCalculator->getAnnuityEndDate(new DateTime())
+            $dateEnd,
+            $annuityCalculator->getAnnuityEndDate($dateStart)
         );
     }
 

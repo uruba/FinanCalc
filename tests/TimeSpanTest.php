@@ -9,7 +9,8 @@ class TimeSpanTest extends PHPUnit_Framework_TestCase
     public function testExceptionStartDateNotLowerThanEndDate() {
         $this->setExpectedException("InvalidArgumentException");
 
-        TimeSpan::asInterval(new DateTime(), new DateTime());
+        $testDate = new DateTime();
+        TimeSpan::asInterval($testDate, $testDate);
     }
 
     public function testTimeSpanAsDuration() {
