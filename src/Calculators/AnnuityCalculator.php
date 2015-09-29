@@ -92,10 +92,10 @@ namespace FinanCalc\Calculators {
         public function setAnnuityPeriodLength(TimeSpan $annuityPeriodLength) {
             if (Helpers::checkIfNotNegativeNumberOrThrowAnException((string)$annuityPeriodLength)) {
                 if (Helpers::checkIfZero($this->annuityNoOfCompoundingPeriods)) {
-                    $this->setProperty("annuityPeriodLength", TimeSpan::asDuration(0));
-                } else {
-                    $this->setProperty("annuityPeriodLength", $annuityPeriodLength);
+                    $annuityPeriodLength = TimeSpan::asDuration(0);
                 }
+
+                $this->setProperty("annuityPeriodLength", $annuityPeriodLength);
             }
         }
 
