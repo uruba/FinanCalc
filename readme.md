@@ -97,7 +97,7 @@ $annuityCalculatorDirect = new DebtAmortizator(
 
 ### Getting results
 
-You have three options as to how to retrieve raw results of the calculations.
+You have three options of retrieving raw results of the calculations.
 
 #### Directly accessible result object
 
