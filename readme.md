@@ -1,6 +1,6 @@
 #FinanCalc
 
-A lightweight, simple and easy PHP library for calculating annuities (e.g., mortgages) and other financial instruments according to various input data
+A lightweight, simple and easy PHP library for calculating annuities (e.g., mortgages) and other financial instruments according to various input data.
 
 [![Composer package](https://img.shields.io/packagist/v/uruba/financalc.svg)](https://packagist.org/packages/uruba/financalc)
 [![Build Status](https://travis-ci.org/uruba/FinanCalc.svg?branch=master)](https://travis-ci.org/uruba/FinanCalc)
