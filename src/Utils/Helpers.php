@@ -31,7 +31,7 @@ namespace FinanCalc\Utils {
          * @param $messageOnException
          * @return bool
          */
-        static function checkIfLeftOperandGreaterOrThrowAnEception($leftOperand, $rightOperand, $messageOnException) {
+        static function checkIfLeftOperandGreaterOrThrowAnException($leftOperand, $rightOperand, $messageOnException) {
             if (MathFuncs::comp($leftOperand, $rightOperand) === 1) {
                 return true;
             }
@@ -61,6 +61,14 @@ namespace FinanCalc\Utils {
             }
 
             throw new InvalidArgumentException(Strings::getMustNotBeNegativeNumberMessage($checkedVariable));
+        }
+
+        /**
+         * @param $checkedVariable
+         * @return bool
+         */
+        static function checkIfNotNull($checkedVariable) {
+            return $checkedVariable !== null;
         }
 
         /**

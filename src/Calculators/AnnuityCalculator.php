@@ -285,11 +285,11 @@ namespace FinanCalc\Calculators {
             }
 
             // when the annuity is not a perpetuity, we first need to check that
-            // $annuityPaymentType is not null and is of a correct type
+            // $annuityPaymentType is not null
             if (
-                Helpers::checkIfInstanceOfAClassOrThrowAnException($annuityPaymentType, AnnuityPaymentTypes::class)
+                Helpers::checkIfNotNull($annuityPaymentType)
                 &&
-                Helpers::checkIfInstanceOfAClassOrThrowAnException($annuityValueType, AnnuityValueTypes::class)
+                Helpers::checkIfNotNull($annuityValueType)
             ) {
 
                 // discount factor 'v = 1/(1+i)'

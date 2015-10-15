@@ -94,7 +94,7 @@ namespace FinanCalc\Calculators {
 
             if ($dividendDiscountModelType == StockDDMTypes::MULTIPLE_GROWTH) {
                 if (Helpers::checkIfPositiveNumberOrThrowAnException($stockAnnualDividendsGrowth)) {
-                    Helpers::checkIfLeftOperandGreaterOrThrowAnEception(
+                    Helpers::checkIfLeftOperandGreaterOrThrowAnException(
                         $this->stockVIR,
                         $stockAnnualDividendsGrowth,
                         "The stock's valuation interest rate has to be higher than the stock's annual dividend growth"
