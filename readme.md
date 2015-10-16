@@ -7,7 +7,7 @@ A lightweight, simple and easy PHP library for calculating annuities (e.g., mort
 [![codecov.io](http://codecov.io/github/uruba/FinanCalc/coverage.svg?branch=master)](http://codecov.io/github/uruba/FinanCalc?branch=master)
 
 ## Requirements
-* PHP 5.5+
+* PHP 5.4+
 * BCMath module
 * PHPUnit for testing
 
