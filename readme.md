@@ -271,7 +271,7 @@ Let's demonstrate the process for the last time on our *AnnuityCalculator*:
 
 The configuration capabilities are currently very limited so there's next to nothing to tinker with.
 
-The default configuration values are currently to be found in the "*constants/Default.php*" file, but there will be a possibility to use an easily accessible JSON configuration file in the future.
+The default configuration values are currently to be found in the "*constants/Default.php*" file, but there will be a possibility to use an easily accessible JSON (or PHP) configuration file in the future.
 
 ### Tests
 
