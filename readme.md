@@ -30,6 +30,7 @@ Also looking into other optimizations and improvements. Current hot ideas:
 * ability to create unpopulated calculator objects (which can then be populated via setters), obviating the need to pass in all the data via constructor and providing more flexibility
 * support for various day count conventions (this has been in consideration from the jump but it has not been implemented yet)
 * better modularity with a straightforward and easy-to-understand workflow
+* deserializers (as a part of an I/O package)
 
 >**Please bear in mind that this is an ALPHA version containing incomplete features. The codebase is prone to drastic changes during its way out of the alpha stage.**
 
