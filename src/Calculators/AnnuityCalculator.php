@@ -285,7 +285,7 @@ namespace FinanCalc\Calculators {
             }
 
             // when the annuity is not a perpetuity, we first need to check that
-            // $annuityPaymentType is not null
+            // $annuityPaymentType and $annuityValueType are not null
             if (
                 Helpers::checkIfNotNull($annuityPaymentType)
                 &&
