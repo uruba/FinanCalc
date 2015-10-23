@@ -1,9 +1,11 @@
 <?php
 
+use FinanCalc\Utils\Helpers;
+
 $GLOBALS["FINANCALC_FUNC_CHECK_IF_NOT_NEGATIVE"] = function($param) {
-    \FinanCalc\Utils\Helpers::checkIfNotNegativeNumberOrThrowAnException($param);
+    Helpers::checkIfNotNegativeNumberOrThrowAnException($param);
 };
 
 $GLOBALS["FINANCALC_FUNC_CHECK_IF_POSITIVE"] = function($param) {
-    \FinanCalc\Utils\Helpers::checkIfPositiveNumberOrThrowAnException($param);
+    Helpers::checkIfPositiveNumberOrThrowAnException($param);
 };

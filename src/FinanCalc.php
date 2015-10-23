@@ -32,6 +32,8 @@ namespace FinanCalc {
     use FinanCalc\Interfaces\Calculator\CalculatorFactoryAbstract;
     use FinanCalc\Utils\Config;
     use FinanCalc\Calculators\Factories;
+    use ReflectionClass;
+    use ReflectionException;
 
     $GLOBALS['FINANCALC_ROOT'] = dirname(__FILE__);
     require_once($GLOBALS['FINANCALC_ROOT'] . '/init/bootstrap.php');
@@ -122,8 +124,8 @@ namespace FinanCalc {
                         $factoryClassName = $fileTokens[$i][1];
                         try {
                             require_once($factoryFile);
-                            $factoryClassReflector = new \ReflectionClass($factoriesNamespace . '\\' . $factoryClassName);
-                        } catch (\ReflectionException $e) {
+                            $factoryClassReflector = new ReflectionClass($factoriesNamespace . '\\' . $factoryClassName);
+                        } catch (ReflectionException $e) {
                             error_log("Factory class "
                                 . $factoryClassName
                                 . " must be in the "
