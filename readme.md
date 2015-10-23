@@ -278,7 +278,7 @@ The default configuration values are currently to be found in the "*constants/De
 
 The library includes a "*test*" subdirectory which contains all the basic tests. For your peace of mind, feel free to give them a run on your setup (provided that you have PHPUnit good and ready) and ensure that everything checks out.
 
-The tests currently cover only ~50% of the library's code so they're also a subject of necessary future improvements.
+The test-case examples are adapted directly from the lectures of a university course "**[4ST608 - Introduction to Financial and Insurance Mathematics](https://isis.vse.cz/katalog/syllabus.pl?predmet=62055;lang=en)**" taught at the University of Economics in Prague by Prof. RNDr. Tomáš Cipra, DrSc., to whom goes all the credit.
 
 ## Reference
 
