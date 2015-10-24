@@ -116,7 +116,6 @@ namespace FinanCalc\Utils {
             return null;
         }
 
-
         /**
          * @param $inputValue
          * @return string
