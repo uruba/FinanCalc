@@ -126,7 +126,7 @@ namespace FinanCalc {
                             require_once($factoryFile);
                             $factoryClassReflector = new ReflectionClass($factoriesNamespace . '\\' . $factoryClassName);
                         } catch (ReflectionException $e) {
-                            error_log("Factory class "
+                            error_log("The factory class "
                                 . $factoryClassName
                                 . " must be in the "
                                 . $factoriesNamespace
@@ -138,7 +138,7 @@ namespace FinanCalc {
                             $this->factoryClasses[$factoryClassName] = $factoryClassReflector->newInstance();
                             break;
                         } else {
-                            error_log("Factory class has to extend the abstract class FinanCalc\\Interfaces\\Calculator\\CalculatorFactoryAbstract!");
+                            error_log("The factory class " . $factoryClassName . " has to extend the abstract class FinanCalc\\Interfaces\\Calculator\\CalculatorFactoryAbstract!");
                         }
                     }
                 }
