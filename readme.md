@@ -206,7 +206,7 @@ We'll again demonstrate the process on our venerable *AnnuityCalculator* using t
 
 NOTE: The name of the "root" element in the XML output can be customized by the config property `serializers_root_elem_name`. In the future, it will be automatically assigned according to the type of the result object.
 
-You can easily create your own serializer classes by implementing the *SerializerInterface*.
+You can easily create your own serializer classes by implementing the *SerializerInterface*. A minimal example of a serializer (in this particular demonstrative case to the YAML format) is here – [FinanCalc-YAMLSerializer](https://github.com/uruba/FinanCalc-YAMLSerializer).
 
 #### Array
 
