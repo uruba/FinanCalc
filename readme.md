@@ -26,7 +26,6 @@ Much more to come – including calculators for discount securities *(NOTE: can 
 Also looking into other optimizations and improvements. Current hot ideas:
 * ~~utilization of reflection in the getters of the calculators' result array for easier and less error-prone implementation of new calculator classes~~ (this has already been tackled by the means of utilizing a helper array of property names)
 * ~~time functions for determining the exact dates of events pertaining to calculated instruments~~ (implemented via a TimeSpan object and appropriate getter methods in applicable classes)
-* an extension for generating user controls, with appropriate binding (most likely as a separate project with a dependency)
 * ability to create unpopulated calculator objects (which can then be populated via setters), obviating the need to pass in all the data via constructor and thus providing more flexibility
 * support for various day count conventions (this has been in consideration from the jump but it has not been implemented yet)
 * better modularity with a straightforward and easy-to-understand workflow (~ a plugin system)
