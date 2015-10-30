@@ -1,5 +1,4 @@
 <phpunit
-        convertWarningsToExceptions="false"
         bootstrap="tests/TestBootstrapBuiltinAutoloader.php"
         backupGlobals="false">
 
