@@ -18,7 +18,7 @@ namespace FinanCalc\Interfaces\Calculator {
          * @param null $callbackBefore
          * @throws Exception
          */
-        protected function setProperty($name, $value, $callbackBefore = null) {
+        protected final function setProperty($name, $value, $callbackBefore = null) {
             if (is_callable($callbackBefore)) {
                 $callbackBefore($value);
             }
@@ -39,7 +39,7 @@ namespace FinanCalc\Interfaces\Calculator {
          * @param array $propResultArray
          * @return array
          */
-        public function getResultAsArray(array $propResultArray = null) {
+        public final function getResultAsArray(array $propResultArray = null) {
             if ($propResultArray === null) {
                 if ($this->propResultArray !== null && is_array($this->propResultArray)) {
                     $propResultArray = $this->propResultArray;
@@ -76,7 +76,7 @@ namespace FinanCalc\Interfaces\Calculator {
          * @param SerializerInterface $serializer
          * @return mixed
          */
-        public function getSerializedResult(SerializerInterface $serializer) {
+        public final function getSerializedResult(SerializerInterface $serializer) {
             return $serializer->serializeArray($this->getResultAsArray());
         }
     }

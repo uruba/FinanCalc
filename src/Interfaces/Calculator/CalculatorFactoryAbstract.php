@@ -15,7 +15,7 @@ namespace FinanCalc\Interfaces\Calculator {
         /**
          * @throws Exception
          */
-        public function __construct() {
+        public final function __construct() {
             if (!is_string(static::MANUFACTURED_CLASS_NAME)) {
                 throw new Exception("String class constant MANUFACTURED_CLASS_NAME has to be defined!");
             }
@@ -29,7 +29,7 @@ namespace FinanCalc\Interfaces\Calculator {
          * @param array $args
          * @return CalculatorAbstract
          */
-        protected function manufactureInstance(array $args) {
+        protected final function manufactureInstance(array $args) {
             $manufacturedClass = new ReflectionClass(static::MANUFACTURED_CLASS_NAME);
             return $manufacturedClass->newInstanceArgs($args);
         }
