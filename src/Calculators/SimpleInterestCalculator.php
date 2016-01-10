@@ -3,6 +3,7 @@
 namespace FinanCalc\Calculators {
 
     use Exception;
+    use FinanCalc\Constants\Lambdas;
     use FinanCalc\Interfaces\Calculator\CalculatorAbstract;
     use FinanCalc\Utils\MathFuncs;
     use FinanCalc\Utils\Time\TimeSpan;
@@ -38,21 +39,21 @@ namespace FinanCalc\Calculators {
          * @param $principal
          */
         public function setPrincipal($principal) {
-            $this->setProperty("principal", $principal, $GLOBALS["FINANCALC_FUNC_CHECK_IF_POSITIVE"]);
+            $this->setProperty("principal", $principal, Lambdas::checkIfPositive());
         }
 
         /**
          * @param $annualInterestRate
          */
         public function setAnnualInterestRate($annualInterestRate) {
-            $this->setProperty("annualInterestRate", $annualInterestRate, $GLOBALS["FINANCALC_FUNC_CHECK_IF_POSITIVE"]);
+            $this->setProperty("annualInterestRate", $annualInterestRate, Lambdas::checkIfPositive());
         }
 
         /**
          * @param TimeSpan $time
          */
         public function setTime(TimeSpan $time) {
-            $this->setProperty("time", $time, $GLOBALS["FINANCALC_FUNC_CHECK_IF_POSITIVE"]);
+            $this->setProperty("time", $time, Lambdas::checkIfPositive());
         }
 
         /**

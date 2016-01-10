@@ -3,6 +3,7 @@
 namespace FinanCalc\Calculators {
 
     use DateTime;
+    use FinanCalc\Constants\Lambdas;
     use FinanCalc\Interfaces\Calculator\CalculatorAbstract;
     use FinanCalc\Utils\MathFuncs;
     use FinanCalc\Utils\Time\TimeSpan;
@@ -70,21 +71,21 @@ namespace FinanCalc\Calculators {
          * @param $debtPrincipal
          */
         private function setDebtPrincipalWithoutRecalculation($debtPrincipal) {
-            $this->setProperty("debtPrincipal", $debtPrincipal, $GLOBALS["FINANCALC_FUNC_CHECK_IF_POSITIVE"]);
+            $this->setProperty("debtPrincipal", $debtPrincipal, Lambdas::checkIfPositive());
         }
 
         /**
          * @param $debtNoOfCompoundingPeriods
          */
         private function setDebtNoOfCompoundingPeriodsWithoutRecalculation($debtNoOfCompoundingPeriods) {
-            $this->setProperty("debtNoOfCompoundingPeriods", $debtNoOfCompoundingPeriods, $GLOBALS["FINANCALC_FUNC_CHECK_IF_POSITIVE"]);
+            $this->setProperty("debtNoOfCompoundingPeriods", $debtNoOfCompoundingPeriods, Lambdas::checkIfPositive());
         }
 
         /**
          * @param $debtInterest
          */
         private function setDebtInterestWithoutRecalculation($debtInterest) {
-            $this->setProperty("debtInterest", $debtInterest, $GLOBALS["FINANCALC_FUNC_CHECK_IF_POSITIVE"]);
+            $this->setProperty("debtInterest", $debtInterest, Lambdas::checkIfPositive());
         }
 
         /**
@@ -107,7 +108,7 @@ namespace FinanCalc\Calculators {
          * @param $debtPeriodLength
          */
         public function setDebtPeriodLength(TimeSpan $debtPeriodLength) {
-            $this->setProperty("debtPeriodLength", $debtPeriodLength, $GLOBALS["FINANCALC_FUNC_CHECK_IF_POSITIVE"]);
+            $this->setProperty("debtPeriodLength", $debtPeriodLength, Lambdas::checkIfPositive());
         }
 
         /**

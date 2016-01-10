@@ -6,6 +6,7 @@ namespace FinanCalc\Calculators {
     use Exception;
     use FinanCalc\Constants\AnnuityPaymentTypes;
     use FinanCalc\Constants\AnnuityValueTypes;
+    use FinanCalc\Constants\Lambdas;
     use FinanCalc\Interfaces\Calculator\CalculatorAbstract;
     use FinanCalc\Utils\Helpers;
     use FinanCalc\Utils\MathFuncs;
@@ -72,14 +73,14 @@ namespace FinanCalc\Calculators {
          * @param $annuitySinglePaymentAmount
          */
         public function setAnnuitySinglePaymentAmount($annuitySinglePaymentAmount) {
-            $this->setProperty("annuitySinglePaymentAmount", $annuitySinglePaymentAmount, $GLOBALS["FINANCALC_FUNC_CHECK_IF_POSITIVE"]);
+            $this->setProperty("annuitySinglePaymentAmount", $annuitySinglePaymentAmount, Lambdas::checkIfPositive());
         }
 
         /**
          * @param $annuityNoOfCompoundingPeriods
          */
         public function setAnnuityNoOfCompoundingPeriods($annuityNoOfCompoundingPeriods) {
-            $this->setProperty("annuityNoOfCompoundingPeriods", $annuityNoOfCompoundingPeriods, $GLOBALS["FINANCALC_FUNC_CHECK_IF_NOT_NEGATIVE"]);
+            $this->setProperty("annuityNoOfCompoundingPeriods", $annuityNoOfCompoundingPeriods, Lambdas::checkIfNotNegative());
 
             if ($this->annuityPeriodLength !== null) {
                 $this->setAnnuityPeriodLength($this->annuityPeriodLength);
@@ -103,7 +104,7 @@ namespace FinanCalc\Calculators {
          * @param $annuityInterest
          */
         public function setAnnuityInterest($annuityInterest) {
-            $this->setProperty("annuityInterest", $annuityInterest, $GLOBALS["FINANCALC_FUNC_CHECK_IF_POSITIVE"]);
+            $this->setProperty("annuityInterest", $annuityInterest, Lambdas::checkIfPositive());
         }
 
         /**

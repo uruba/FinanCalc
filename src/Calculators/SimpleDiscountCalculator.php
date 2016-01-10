@@ -2,6 +2,7 @@
 
 namespace FinanCalc\Calculators {
 
+    use FinanCalc\Constants\Lambdas;
     use FinanCalc\Interfaces\Calculator\CalculatorAbstract;
     use FinanCalc\Utils\MathFuncs;
     use FinanCalc\Utils\Time\TimeSpan;
@@ -36,21 +37,21 @@ namespace FinanCalc\Calculators {
          * @param $amountDue
          */
         public function setAmountDue($amountDue) {
-            $this->setProperty("amountDue", $amountDue, $GLOBALS["FINANCALC_FUNC_CHECK_IF_POSITIVE"]);
+            $this->setProperty("amountDue", $amountDue, Lambdas::checkIfPositive());
         }
 
         /**
          * @param $annualDiscountRate
          */
         public function setAnnualDiscountRate($annualDiscountRate) {
-            $this->setProperty("annualDiscountRate", $annualDiscountRate, $GLOBALS["FINANCALC_FUNC_CHECK_IF_POSITIVE"]);
+            $this->setProperty("annualDiscountRate", $annualDiscountRate, Lambdas::checkIfPositive());
         }
 
         /**
          * @param TimeSpan $time
          */
         public function setTime(TimeSpan $time) {
-            $this->setProperty("time", $time, $GLOBALS["FINANCALC_FUNC_CHECK_IF_POSITIVE"]);
+            $this->setProperty("time", $time, Lambdas::checkIfPositive());
         }
 
         /**

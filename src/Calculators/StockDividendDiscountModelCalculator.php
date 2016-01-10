@@ -3,6 +3,7 @@
 namespace FinanCalc\Calculators {
 
     use Exception;
+    use FinanCalc\Constants\Lambdas;
     use FinanCalc\Constants\StockDDMTypes;
     use FinanCalc\Interfaces\Calculator\CalculatorAbstract;
     use FinanCalc\Utils\Helpers;
@@ -69,14 +70,14 @@ namespace FinanCalc\Calculators {
          * @param $stockVIR
          */
         public function setStockVIR($stockVIR){
-            $this->setProperty("stockVIR", $stockVIR, $GLOBALS["FINANCALC_FUNC_CHECK_IF_POSITIVE"]);
+            $this->setProperty("stockVIR", $stockVIR, Lambdas::checkIfPositive());
         }
 
         /**
          * @param $stockAnnualDividendsValue
          */
         public function setStockAnnualDividendsValue($stockAnnualDividendsValue) {
-            $this->setProperty("stockAnnualDividendsValue", $stockAnnualDividendsValue, $GLOBALS["FINANCALC_FUNC_CHECK_IF_POSITIVE"]);
+            $this->setProperty("stockAnnualDividendsValue", $stockAnnualDividendsValue, Lambdas::checkIfPositive());
         }
 
         /**

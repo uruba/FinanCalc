@@ -2,6 +2,7 @@
 
 namespace FinanCalc\Calculators {
 
+    use FinanCalc\Constants\Lambdas;
     use FinanCalc\Interfaces\Calculator\CalculatorAbstract;
     use FinanCalc\Utils\MathFuncs;
 
@@ -47,21 +48,21 @@ namespace FinanCalc\Calculators {
          * @param $totalDividends
          */
         public function setTotalDividends($totalDividends) {
-            $this->setProperty("totalDividends", $totalDividends, $GLOBALS["FINANCALC_FUNC_CHECK_IF_POSITIVE"]);
+            $this->setProperty("totalDividends", $totalDividends, Lambdas::checkIfPositive());
         }
 
         /**
          * @param $earningsAfterTaxes
          */
         public function setEarningsAfterTaxes($earningsAfterTaxes) {
-            $this->setProperty("earningsAfterTaxes", $earningsAfterTaxes, $GLOBALS["FINANCALC_FUNC_CHECK_IF_POSITIVE"]);
+            $this->setProperty("earningsAfterTaxes", $earningsAfterTaxes, Lambdas::checkIfPositive());
         }
 
         /**
          * @param $noOfStocks
          */
         public function setNoOfStocks($noOfStocks) {
-            $this->setProperty("noOfStocks", $noOfStocks, $GLOBALS["FINANCALC_FUNC_CHECK_IF_POSITIVE"]);
+            $this->setProperty("noOfStocks", $noOfStocks, Lambdas::checkIfPositive());
         }
 
         /**
