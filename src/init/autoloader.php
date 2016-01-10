@@ -1,10 +1,6 @@
 <?php
 
 spl_autoload_register(function($class) {
-    if (!isset($GLOBALS['FINANCALC_ROOT'])) {
-        throw new Exception('Global variable containing path to the library root has not been set.');
-    }
-
     $exploded_class = explode("\\", $class);
     if (count($exploded_class) > 1)
         array_shift($exploded_class);
@@ -15,14 +11,12 @@ spl_autoload_register(function($class) {
     $relative_class_path = implode("/", $exploded_class);
 
     $class_path =
-        $GLOBALS['FINANCALC_ROOT'] .
-        (empty($GLOBALS['FINANCALC_ROOT'])
-            ? '' : '/') .
+        dirname(dirname(__FILE__)) .
+        '/' .
         $relative_class_path .
         '.php';
 
     if (file_exists($class_path)) {
         require_once($class_path);
     }
-
 });

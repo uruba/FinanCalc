@@ -35,9 +35,6 @@ namespace FinanCalc {
     use ReflectionClass;
     use ReflectionException;
 
-    $GLOBALS['FINANCALC_ROOT'] = dirname(__FILE__);
-    require_once($GLOBALS['FINANCALC_ROOT'] . '/init/bootstrap.php');
-
     /**
      * Class FinanCalc
      * @package FinanCalc
@@ -109,7 +106,7 @@ namespace FinanCalc {
          */
 
         private function populateFactoryClassesArray() {
-            $factoryFiles = glob($GLOBALS['FINANCALC_ROOT'] . Config::getConfigField('factories_relative_path') . '/*.php');
+            $factoryFiles = glob(__DIR__ . Config::getConfigField('factories_relative_path') . '/*.php');
             $factoriesNamespace = Config::getConfigField('factories_namespace');
 
             foreach ($factoryFiles as $factoryFile) {

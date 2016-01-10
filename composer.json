@@ -17,6 +17,6 @@
     "phpunit/phpunit": "*"
   },
   "autoload": {
-    "files": ["src/FinanCalc.php"]
+    "files": ["init.php"]
   }
 }
