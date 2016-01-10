@@ -43,14 +43,18 @@ Alternatively, you can obtain the library as a package via Composer. It's hosted
 
 ### Include it in your project
 
-The initialization is dead simple. Just include the main **FinanCalc.php** file and you are good to go!
+The initialization is dead simple. Just include the **init.php** file in the main directory and you are good to go!
 
 ```php
 // replace the example Composer-bound path with yours
-require_once dirname(__FILE__) . '/vendor/uruba/financalc/src/FinanCalc.php';
+require_once 'vendor/uruba/financalc/init.php';
 ```
 
-Or, if you are using Composer, you can use its `autoload.php` file.
+Or, if you are using Composer, you can use its `autoload.php` file instead.
+
+```php
+require_once 'vendor/autoload.php';
+```
 
 ### Instantiation
 
