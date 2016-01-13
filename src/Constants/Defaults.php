@@ -31,15 +31,13 @@ namespace FinanCalc\Constants {
             'day_count_convention' => '30/360',
             'available_day_count_conventions' => [
                 '30/360' => [
-                    'days_in_a_year' => '360',
-                    'days_in_a_month' => '30'
+                    'days_in_a_year' => '360'
                 ]
                 /**
                  Not working yet
                 ,
                 'Actual/365' => [
                     'days_in_a_year' => '365',
-                    'days_in_a_month' => '0'
                 ]
                  *
                  */

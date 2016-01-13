@@ -126,6 +126,7 @@ namespace FinanCalc\Utils\Time {
             $dayCountConvention = $availableDayCountConventions[$dayCountConventionIdentifier];
 
             if (self::isDayCountConventionValid($dayCountConvention)) {
+                $dayCountConvention['days_in_a_month'] = MathFuncs::div($dayCountConvention['days_in_a_year'], 12);
                 return $dayCountConvention;
             }
 
@@ -138,11 +139,9 @@ namespace FinanCalc\Utils\Time {
          */
         public static function isDayCountConventionValid($dayCountConvention) {
             if (is_array($dayCountConvention)) {
-                foreach (['days_in_a_year', 'days_in_a_month'] as $field) {
-                    $dayCountConventionField = $dayCountConvention[$field];
-                    if (!is_string($dayCountConventionField) || !ctype_digit($dayCountConventionField)) {
-                        return false;
-                    }
+                $dayCountConventionField = $dayCountConvention['days_in_a_year'];
+                if (!is_string($dayCountConventionField) || !ctype_digit($dayCountConventionField)) {
+                    return false;
                 }
 
                 return true;
