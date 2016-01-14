@@ -22,7 +22,7 @@ A lightweight, simple and easy PHP library for calculating annuities (e.g., mort
 * Dividend Discount Model (DDM) calculator
 * Investment ratios calculator for stocks/shares
 
-Much more to come – including calculators for discount securities *(NOTE: can now be calculated with the help of the simple discount calculator)*, ~~bond valuation~~, ~~duration~~, ~~stock pricing~~...
+Much more to come – including calculators for discount securities *(NOTE: can now be calculated with help of the simple discount calculator)*, ~~bond valuation~~, ~~duration~~, ~~stock pricing~~...
 Also looking into other optimizations and improvements. Current hot ideas:
 * ~~utilization of reflection in the getters of the calculators' result array for easier and less error-prone implementation of new calculator classes~~ (this has already been tackled by the means of utilizing a helper array of property names)
 * ~~time functions for determining the exact dates of events pertaining to calculated instruments~~ (implemented via a TimeSpan object and appropriate getter methods in applicable classes)
@@ -292,9 +292,9 @@ The implicit type of setters'/constructors' arguments as well as getters' return
 ### AnnuityCalculator
 namespace `FinanCalc\Calculators`
 * **__construct($annuitySinglePaymentAmount, $annuityNoOfCompoundingPeriods, TimeSpan $annuityPeriodLength, $annuityInterest)**
-  * *$annuitySinglePaymentAmount* = **'K'** – amount of each individual payment (number greater than zero)
-  * *$annuityNoOfCompoundingPeriods* = **'n'** – number of periods pertaining to the interest compounding; if 'n = 0', the annuity is considered a perpetuity
-  * *$annuityPeriodLength* = length of a single period as a TimeSpan object
+  * *$annuitySinglePaymentAmount* = **'K'** – the amount of each individual payment (number greater than zero)
+  * *$annuityNoOfCompoundingPeriods* = **'n'** – the number of periods pertaining to the interest compounding; if 'n = 0', the annuity is considered a perpetuity
+  * *$annuityPeriodLength* = the length of a single period as a TimeSpan object
   * *$annuityInterest* = **'i'** – the interest rate *per a single payment period* by which the unpaid balance is multiplied (i.e., a decimal number typically lower than 1 and greater than 0)
 
 ##### Setters
@@ -355,9 +355,9 @@ namespace `FinanCalc\Constants`
 namespace `FinanCalc\Calculators`
 * **__construct($debtPrincipal, $debtNoOfCompoundingPeriods, TimeSpan $debtPeriodLength, $debtInterest)**
   * *$debtPrincipal* = **'PV'** – the principal of the debt (number greater than zero)
-  * *$debtNoOfCompoundingPeriods* = **'n'** – number of the debt's compounding periods (number greater than zero)
-  * *$debtPeriodLength* = length of each of the debt's compounding periods as a TimeSpan object
-  * *$debtInterest* = **'i'** – interest per a compounding period, by which the outstanding balance is multiplied (i.e., a decimal number typically lower than 1 and greater than 0)
+  * *$debtNoOfCompoundingPeriods* = **'n'** – the count of the debt's compounding periods (number greater than zero)
+  * *$debtPeriodLength* = the length of each of the debt's compounding periods as a TimeSpan object
+  * *$debtInterest* = **'i'** – the interest per a compounding period, by which the outstanding balance is multiplied (i.e., a decimal number typically lower than 1 and greater than 0)
 
 ##### Setters
 * **setDebtPrincipal($debtPrincipal)** – sets PV
@@ -402,11 +402,11 @@ namespace `FinanCalc\Calculators\DebtAmortizator`
 ### BondFairValueCalculator
 namespace `FinanCalc\Calculators`
 * **__construct($bondFaceValue, $bondAnnualCouponRate, $bondVIR, $bondYearsToMaturity, $bondPaymentFrequency = 1)**
-  * *$bondFaceValue* = **'F'** – face value of the bond (number greater than zero)
-  * *$bondAnnualCouponRate* = **'c'** – annual coupon rate of the bond (i.e., a decimal number typically lower than 1 and greater than 0)
-  * *$bondVIR* = **'i' or 'VIR'** – valuation interest rate of the bond (i.e., a decimal number typically lower than 1 and greater than 0)
-  * *bondYearsToMaturity* = number of years to the maturity of the bond (number greater than zero, can be a decimal number)
-  * *bondPaymentFrequency* = frequency of bond payments (expressed in a divisor of 12 months ~ 1 year); e.g.: divisor 2 means semi-annual payments
+  * *$bondFaceValue* = **'F'** – the face value of the bond (number greater than zero)
+  * *$bondAnnualCouponRate* = **'c'** – the annual coupon rate of the bond (i.e., a decimal number typically lower than 1 and greater than 0)
+  * *$bondVIR* = **'i' or 'VIR'** – the valuation interest rate of the bond (i.e., a decimal number typically lower than 1 and greater than 0)
+  * *bondYearsToMaturity* = the number of years to the maturity of the bond (number greater than zero, can be a decimal number)
+  * *bondPaymentFrequency* = the frequency of bond payments (expressed in a divisor of 12 months ~ 1 year); e.g.: divisor 2 means semi-annual payments
 
 ##### Setters
 * **setBondFaceValue($bondFaceValue)** – sets F
@@ -439,11 +439,11 @@ namespace `FinanCalc\Calculators\Factories`
 ### BondYTMCalculator
 namespace `FinanCalc\Calculators`
 * **__construct($bondFaceValue, $bondMarketValue, $bondAnnualCouponRate, $bondYearsToMaturity, $bondPaymentFrequency = 1)**
-  * *$bondFaceValue* = **'F'** – face value of the bond (number greater than zero)
-  * *$bondMarketValue* = **'P'** – market value (i.e., price) of the bond (number greater than zero)
-  * *$bondAnnualCouponRate* = **'c'** – annual coupon rate of the bond (i.e., a decimal number typically lower than 1 and greater than 0)
-  * *bondYearsToMaturity* = number of years to the maturity of the bond (number greater than zero, can be a decimal number)
-  * *bondPaymentFrequency* = frequency of bond payments (expressed in a divisor of 12 months ~ 1 year); e.g.: divisor 2 means semi-annual payments
+  * *$bondFaceValue* = **'F'** – the face value of the bond (number greater than zero)
+  * *$bondMarketValue* = **'P'** – the market value (i.e., price) of the bond (number greater than zero)
+  * *$bondAnnualCouponRate* = **'c'** – the annual coupon rate of the bond (i.e., a decimal number typically lower than 1 and greater than 0)
+  * *bondYearsToMaturity* = the number of years to the maturity of the bond (number greater than zero, can be a decimal number)
+  * *bondPaymentFrequency* = the frequency of bond payments (expressed in a divisor of 12 months ~ 1 year); e.g.: divisor 2 means semi-annual payments
 
 ##### Setters
 * **setBondFaceValue($bondFaceValue)** – sets F
@@ -476,11 +476,11 @@ namespace `FinanCalc\Calculators\Factories`
 ### BondDurationCalculator
 namespace `FinanCalc\Calculators`
 * **__construct($bondFaceValue, $bondAnnualCouponRate, $bondAnnualYield, $bondYearsToMaturity, $bondPaymentFrequency = 1)**
-  * *$bondFaceValue* = **'F'** – face value of the bond (number greater than zero)
-  * *$bondAnnualCouponRate* = **'c'** – annual coupon rate of the bond (i.e., a decimal number typically lower than 1 and greater than 0)
-  * *$bondAnnualYield* = annual yield of the bond (calculated as an interest rate divided by the bond's' value)
-  * *bondYearsToMaturity* = number of years to the maturity of the bond (number greater than zero, can be a decimal number)
-  * *bondPaymentFrequency* = frequency of bond payments (expressed in a divisor of 12 months ~ 1 year); e.g.: divisor 2 means semi-annual payments
+  * *$bondFaceValue* = **'F'** – the face value of the bond (number greater than zero)
+  * *$bondAnnualCouponRate* = **'c'** – the annual coupon rate of the bond (i.e., a decimal number typically lower than 1 and greater than 0)
+  * *$bondAnnualYield* = the annual yield of the bond (calculated as an interest rate divided by the bond's' value)
+  * *bondYearsToMaturity* = the number of years to the maturity of the bond (number greater than zero, can be a decimal number)
+  * *bondPaymentFrequency* = the frequency of bond payments (expressed in a divisor of 12 months ~ 1 year); e.g.: divisor 2 means semi-annual payments
 
 ##### Setters
 * **setBondFaceValue($bondFaceValue)** – sets F
@@ -517,8 +517,8 @@ namespace `FinanCalc\Calculators\Factories`
 ### SimpleDiscountCalculator
 namespace `FinanCalc\Calculators`
 * **__construct($amountDue, $annualDiscountRate, TimeSpan $time)**
-  * *$principal* = **'S'** – amount due
-  * *$annualInterestRate* = **'d'** – annual discount rate (i.e., a decimal number typically lower than 1 and greater than 0)
+  * *$principal* = **'S'** – the amount due
+  * *$annualInterestRate* = **'d'** – the annual discount rate (i.e., a decimal number typically lower than 1 and greater than 0)
   * *$time* = (converted to years) **'t'** – the total time as a TimeSpan object
 
 ##### Setters
@@ -544,8 +544,8 @@ namespace `FinanCalc\Calculators\Factories`
 ### SimpleInterestCalculator
 namespace `FinanCalc\Calculators`
 * **__construct($principal, $annualInterestRate, TimeSpan $time)**
-  * *$principal* = **'P'** – amount of principal
-  * *$annualInterestRate* = **'i'** – annual interest rate (i.e., a decimal number typically lower than 1 and greater than 0)
+  * *$principal* = **'P'** – the amount of principal
+  * *$annualInterestRate* = **'i'** – the annual interest rate (i.e., a decimal number typically lower than 1 and greater than 0)
   * *$time* = (converted to years) **'t'** – the total time as a TimeSpan object
 
 ##### Setters
@@ -574,8 +574,8 @@ namespace `FinanCalc\Calculators\Factories`
 namespace `FinanCalc\Calculators`
 * **__construct(StockDDMTypes $dividendDiscountModelType, $stockVIR, $stockAnnualDividendValue, $stockAnnualDividendsGrowth = null)**
   * *$dividendDiscountModelType* = the type of the dividend discount model according to which the result will be calculated (value of the type *StockDDMTypes*)
-  * *$stockVIR* = **'i'** – stock's valuation interest rate
-  * *$stockAnnualDividendsValue* = **'D'** – absolute value of the stock's annual dividends
+  * *$stockVIR* = **'i'** – the stock's valuation interest rate
+  * *$stockAnnualDividendsValue* = **'D'** – the absolute value of the stock's annual dividends
   * *$stockAnnualDividendsGrowth* = **'g'** – the rate by which the stock's annual dividends are annually multiplied (i.e., a decimal number between 0 and 1) [*this value applies only to the multiple growth dividend discount model*]
 
 #### Setters
@@ -608,9 +608,9 @@ namespace `FinanCalc\Constants`
 ### StockInvestmentRatiosCalculator
 namespace `FinanCalc\Calculators`
 * **__construct($totalDividends, $earningsAfterTaxes, $noOfStocks)**
-  * *$totalDividends* = sum of dividends per a period
-  * *$earningsAfterTaxes* = amount earned after taxes
-  * *$noOfStocks* = number of stocks (total if constant, average if fluctuating)
+  * *$totalDividends* = the sum of dividends per a period
+  * *$earningsAfterTaxes* = the amount earned after taxes
+  * *$noOfStocks* = the number of stocks (total if constant, average if fluctuating)
 
 #### Setters
 * **setTotalDividends($totalDividends)** – sets the sum of dividends per a period
