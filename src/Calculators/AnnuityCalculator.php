@@ -6,9 +6,9 @@ namespace FinanCalc\Calculators {
     use Exception;
     use FinanCalc\Constants\AnnuityPaymentTypes;
     use FinanCalc\Constants\AnnuityValueTypes;
-    use FinanCalc\Constants\Lambdas;
     use FinanCalc\Interfaces\Calculator\CalculatorAbstract;
     use FinanCalc\Utils\Helpers;
+    use FinanCalc\Utils\Lambdas;
     use FinanCalc\Utils\MathFuncs;
     use FinanCalc\Utils\Time\TimeSpan;
     use FinanCalc\Utils\Time\TimeUtils;

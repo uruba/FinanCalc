@@ -1,7 +1,5 @@
 <?php
-namespace FinanCalc\Constants {
-
-    use FinanCalc\Utils\Helpers;
+namespace FinanCalc\Utils {
 
     /**
      * Class Lambdas

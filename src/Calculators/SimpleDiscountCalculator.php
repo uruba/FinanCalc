@@ -2,8 +2,8 @@
 
 namespace FinanCalc\Calculators {
 
-    use FinanCalc\Constants\Lambdas;
     use FinanCalc\Interfaces\Calculator\CalculatorAbstract;
+    use FinanCalc\Utils\Lambdas;
     use FinanCalc\Utils\MathFuncs;
     use FinanCalc\Utils\Time\TimeSpan;
 

@@ -3,10 +3,10 @@
 namespace FinanCalc\Calculators {
 
     use Exception;
-    use FinanCalc\Constants\Lambdas;
     use FinanCalc\Constants\StockDDMTypes;
     use FinanCalc\Interfaces\Calculator\CalculatorAbstract;
     use FinanCalc\Utils\Helpers;
+    use FinanCalc\Utils\Lambdas;
     use FinanCalc\Utils\MathFuncs;
     use InvalidArgumentException;
 
