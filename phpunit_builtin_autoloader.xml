@@ -1,6 +1,4 @@
-<phpunit
-        bootstrap="tests/TestBootstrapBuiltinAutoloader.php"
-        backupGlobals="false">
+<phpunit bootstrap="tests/TestBootstrapBuiltinAutoloader.php">
 
     <testsuites>
         <testsuite name="Built-in autoloader">

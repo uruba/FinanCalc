@@ -1,6 +1,4 @@
-<phpunit
-        bootstrap="tests/TestBootstrapComposer.php"
-        backupGlobals="false">
+<phpunit bootstrap="tests/TestBootstrapComposer.php">
 
     <testsuites>
         <testsuite name="Composer autoloader">
