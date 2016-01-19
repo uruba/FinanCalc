@@ -1,3 +1,3 @@
 <?php
 
-require_once('src/init/bootstrap.php');
+require_once('src/init/autoloader.php');
