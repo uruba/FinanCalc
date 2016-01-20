@@ -131,11 +131,13 @@ namespace FinanCalc {
                             continue;
                         }
 
-                        if ($factoryClassReflector->isSubclassOf('FinanCalc\\Interfaces\\Calculator\\CalculatorFactoryAbstract')) {
+                        $factoryAbstractClass = 'FinanCalc\\Interfaces\\Calculator\\CalculatorFactoryAbstract';
+
+                        if ($factoryClassReflector->isSubclassOf($factoryAbstractClass)) {
                             $this->factoryClasses[$factoryClassName] = $factoryClassReflector->newInstance();
                             break;
                         } else {
-                            error_log("The factory class " . $factoryClassName . " has to extend the abstract class FinanCalc\\Interfaces\\Calculator\\CalculatorFactoryAbstract!");
+                            error_log("The factory class " . $factoryClassName . " has to extend the abstract class " . $factoryAbstractClass . "!");
                         }
                     }
                 }
