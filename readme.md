@@ -9,7 +9,9 @@ A lightweight, simple and easy PHP library for calculating annuities (e.g., mort
 ## Requirements
 * PHP 5.4+
 * BCMath module
-* PHPUnit (*for testing – optional*)
+
+Optional:
+* PHPUnit (*for testing*)
 
 ## Features
 * Simple interest calculator
