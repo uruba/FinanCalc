@@ -120,6 +120,7 @@ namespace FinanCalc {
                     if ($fileTokens[$i-2][0] == T_CLASS) {
                         $factoryClassName = $fileTokens[$i][1];
                         try {
+                            /** @noinspection PhpIncludeInspection */
                             require_once($factoryFile);
                             $factoryClassReflector = new ReflectionClass($factoriesNamespace . '\\' . $factoryClassName);
                         } catch (ReflectionException $e) {
