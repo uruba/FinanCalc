@@ -32,6 +32,7 @@ Also looking into other optimizations and improvements. Current hot ideas:
 * support for various day count conventions (this has been in consideration from the jump but it has not been implemented yet)
 * better modularity with a straightforward and easy-to-understand workflow (~ a plugin system)
 * deserializers (as a part of an I/O package)
+* avoid perpetual usage of reflection by means of caching
 
 >**Please bear in mind that this is an ALPHA version containing incomplete features. The codebase is prone to drastic changes during its way out of the alpha stage.**
 
