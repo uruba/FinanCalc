@@ -1,6 +1,7 @@
 <?php
 
 use FinanCalc\Calculators\AnnuityCalculator;
+use FinanCalc\Constants\ErrorMessages;
 use FinanCalc\Utils\Helpers;
 use FinanCalc\Utils\Time\TimeSpan;
 
@@ -19,7 +20,7 @@ class HelpersTest extends PHPUnit_Framework_TestCase {
     }
 
     public function testCheckInstanceException() {
-        $this->setExpectedException('InvalidArgumentException');
+        $this->setExpectedException('InvalidArgumentException', ErrorMessages::getIncompatibleTypesMessage("Non\\Existing\\Class", "FinanCalc\\Calculators\\AnnuityCalculator"));
 
         Helpers::checkIfInstanceOfAClassOrThrowAnException(
             new AnnuityCalculator(100000, 5, TimeSpan::asDuration(1), 0.15),
@@ -50,7 +51,7 @@ class HelpersTest extends PHPUnit_Framework_TestCase {
     }
 
     public function testCheckIfPositiveNumberException() {
-        $this->setExpectedException('InvalidArgumentException');
+        $this->setExpectedException('InvalidArgumentException', ErrorMessages::getMustBePositiveNumberMessage("0"));
 
         Helpers::checkIfPositiveNumberOrThrowAnException(0);
     }
@@ -66,7 +67,7 @@ class HelpersTest extends PHPUnit_Framework_TestCase {
     }
 
     public function testCheckIfNotNegativeNumberException() {
-        $this->setExpectedException('InvalidArgumentException');
+        $this->setExpectedException('InvalidArgumentException', ErrorMessages::getMustNotBeNegativeNumberMessage("-6"));
 
         Helpers::checkIfNotNegativeNumberOrThrowAnException(-6);
     }

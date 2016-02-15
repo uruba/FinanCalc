@@ -1,6 +1,7 @@
 <?php
 
 use FinanCalc\Constants\Defaults;
+use FinanCalc\Constants\ErrorMessages;
 use FinanCalc\Utils\Config;
 
 /**
@@ -41,7 +42,7 @@ class ConfigTest extends PHPUnit_Framework_TestCase {
     }
 
     public function testGetNonExistentConfigValue() {
-        $this->setExpectedException("Exception");
+        $this->setExpectedException("Exception", ErrorMessages::getConfigFieldNotFoundMessage("NonExistent"));
 
         Config::setConfigField("NonExistent", null);
         Config::getConfigField("NonExistent");
