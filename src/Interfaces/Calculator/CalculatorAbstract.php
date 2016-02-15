@@ -45,7 +45,7 @@ namespace FinanCalc\Interfaces\Calculator {
                 if ($this->propResultArray !== null && is_array($this->propResultArray)) {
                     $propResultArray = $this->propResultArray;
                 } else {
-                    error_log('$propResultArray has not been supplied neither by the argument, nor by the class field');
+                    error_log(ErrorMessages::getPropresultarrayNotSuppliedMessage());
                     return false;
                 }
             }
@@ -58,7 +58,7 @@ namespace FinanCalc\Interfaces\Calculator {
                         if (method_exists($this, $propGetter)) {
                             $processedArray[is_string($key) ? $key : $prop] = call_user_func(array($this, $propGetter));
                         } else {
-                            error_log("Method '" . $propGetter . "()' doesn't exist in the class " . get_class($this));
+                            error_log(ErrorMessages::getMethodDoesNotExistMessage($propGetter, get_class($this)));
                         }
                     }
                     if (is_array($prop)) {

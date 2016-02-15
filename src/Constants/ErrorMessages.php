@@ -133,17 +133,37 @@ namespace FinanCalc\Constants {
         }
 
         /**
-         * @return string [message as a string]
+         * @return string [Message as a string]
          */
         static function getStartDateMustBeBeforeEndDateMessage() {
             return Strings::getString('message_start_date_must_be_before_end_date');
         }
 
         /**
-         * @return string [message as a string]
+         * @return string [Message as a string]
          */
-        static function getDayCountConventionNotDefined() {
+        static function getDayCountConventionNotDefinedMessage() {
             return Strings::getString('message_day_count_convention_not_defined');
+        }
+
+        /**
+         * @return string [Message as a string]
+         */
+        static function getPropresultarrayNotSuppliedMessage() {
+            return Strings::getString('message_propresultarray_not_supplied');
+        }
+
+        /**
+         * @param $methodName [Name of the method]
+         * @param $className  [Name of the class]
+         * @return string     [Concatenated message as a string]
+         */
+        static function getMethodDoesNotExistMessage($methodName, $className) {
+            return Strings::getFormattedString(
+                'message_method_does_not_exist',
+                $methodName,
+                $className
+            );
         }
     }
 }

@@ -131,7 +131,7 @@ namespace FinanCalc\Utils\Time {
                 return $dayCountConvention;
             }
 
-            throw new Exception(ErrorMessages::getDayCountConventionNotDefined());
+            throw new Exception(ErrorMessages::getDayCountConventionNotDefinedMessage());
         }
 
         /**

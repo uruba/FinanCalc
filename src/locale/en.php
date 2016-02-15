@@ -16,5 +16,7 @@ return array(
     'message_class_not_defined' => 'Class %s not defined',
     'message_invalid_type_specified' => 'Invalid type specified!',
     'message_start_date_must_be_before_end_date' => 'Start date has to be lower than the end date!',
-    'message_day_count_convention_not_defined' => 'The day count convention is not defined properly in the config!'
+    'message_day_count_convention_not_defined' => 'The day count convention is not defined properly in the config!',
+    'message_propresultarray_not_supplied' => '$propResultArray has not been supplied neither by the argument, nor by the class field',
+    'message_method_does_not_exist' => 'Method %s doesn\'t exist in the class %s!'
 );
