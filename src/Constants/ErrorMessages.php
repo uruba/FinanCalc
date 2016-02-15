@@ -11,7 +11,7 @@ namespace FinanCalc\Constants {
     class ErrorMessages
     {
         /**
-         * @param $expectedTypeName [Name of expected class as a string]
+         * @param $expectedTypeName [Name of the expected class as a string]
          * @param $foundTypeName    [Name of the class that was used instead]
          * @return string           [Concatenated message as a string]
          */
@@ -57,14 +57,54 @@ namespace FinanCalc\Constants {
             );
         }
 
-
         /**
          * @param $propertyName [Name of the property as a string]
          * @param $className    [Name of the class as a string]
          * @return string       [Concatenated message as a string]
          */
         static function getNonExistentPropertyMessage($propertyName, $className) {
-            return sprintf(Strings::getString('message_nonexistent_property'), $propertyName, $className);
+            return sprintf(
+                Strings::getString('message_nonexistent_property'),
+                $propertyName,
+                $className
+            );
+        }
+
+        /**
+         * @param $factoryClassName [Name of the uninitialized factory class as a string]
+         * @return string           [Concatenated message as a string]
+         */
+        static function getFactoryClassNotInitializedMessage($factoryClassName) {
+            return sprintf(
+                Strings::getString('message_factory_class_not_initialized'),
+                $factoryClassName
+            );
+        }
+
+        /**
+         * @param $factoryClassName   [Name of the factory class as a string]
+         * @param $factoriesNamespace [Name of the namespace that the factory class is supposed to be in as a string]
+         * @return string             [Concatenated message as a string]
+         */
+        static function getFactoryClassExpectedInNamespace($factoryClassName, $factoriesNamespace) {
+            return sprintf(
+                Strings::getString('message_factory_class_expected_in_namespace'),
+                $factoryClassName,
+                $factoriesNamespace
+            );
+        }
+
+        /**
+         * @param $factoryClassName         [Name of the factory class as a string]
+         * @param $factoryClassAncestorName [Name of the factory class' expected parent class name as a string]
+         * @return string                   [Concatenated message as a string]
+         */
+        static function getFactoryClassExpectedAncestor($factoryClassName, $factoryClassAncestorName) {
+            return sprintf(
+                Strings::getString('message_factory_class_expected_ancestor'),
+                $factoryClassName,
+                $factoryClassAncestorName
+            );
         }
     }
 }

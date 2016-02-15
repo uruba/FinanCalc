@@ -29,6 +29,7 @@
  */
 namespace FinanCalc {
     use Exception;
+    use FinanCalc\Constants\ErrorMessages;
     use FinanCalc\Interfaces\Calculator\CalculatorFactoryAbstract;
     use FinanCalc\Utils\Config;
     use FinanCalc\Calculators\Factories;
@@ -96,7 +97,7 @@ namespace FinanCalc {
             if (array_key_exists($factoryClassName, $this->factoryClasses))
                 return $this->factoryClasses[$factoryClassName];
             else
-                throw new Exception("Factory class " . $factoryClassName . " is not initialized!");
+                throw new Exception(ErrorMessages::getFactoryClassNotInitializedMessage($factoryClassName));
         }
 
         /**
@@ -131,11 +132,7 @@ namespace FinanCalc {
                             require_once($factoryFile);
                             $factoryClassReflector = new ReflectionClass($factoriesNamespace . '\\' . $factoryClassName);
                         } catch (ReflectionException $e) {
-                            error_log("The factory class "
-                                . $factoryClassName
-                                . " must be in the "
-                                . $factoriesNamespace
-                                . " namespace.");
+                            error_log(ErrorMessages::getFactoryClassExpectedInNamespace($factoryClassName, $factoriesNamespace));
                             continue;
                         }
 
@@ -145,7 +142,7 @@ namespace FinanCalc {
                             $this->factoryClasses[$factoryClassName] = $factoryClassReflector->newInstance();
                             break;
                         } else {
-                            error_log("The factory class " . $factoryClassName . " has to extend the abstract class " . $factoryAbstractClass . "!");
+                            error_log(ErrorMessages::getFactoryClassExpectedAncestor($factoryClassName, $factoryAbstractClass));
                         }
                     }
                 }
