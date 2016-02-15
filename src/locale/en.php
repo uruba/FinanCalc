@@ -14,5 +14,6 @@ return array(
     'message_must_set_growth_value' => 'You have to set the $stockAnnualDividendsGrowth for the multiple growth model!',
     'message_must_define_manufactured_class_name' => 'String class constant MANUFACTURED_CLASS_NAME has to be defined!',
     'message_class_not_defined' => 'Class %s not defined',
-    'message_invalid_type_specified' => 'Invalid type specified!'
+    'message_invalid_type_specified' => 'Invalid type specified!',
+    'message_start_date_must_be_before_end_date' => 'Start date has to be lower than the end date!'
 );

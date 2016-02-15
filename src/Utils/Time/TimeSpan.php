@@ -6,6 +6,7 @@ namespace FinanCalc\Utils\Time {
     use DateInterval;
     use DateTime;
     use Exception;
+    use FinanCalc\Constants\ErrorMessages;
     use FinanCalc\Utils\Helpers;
     use FinanCalc\Utils\MathFuncs;
     use InvalidArgumentException;
@@ -226,7 +227,7 @@ namespace FinanCalc\Utils\Time {
             if ($startDate < $endDate) {
                 $this->newDateIntervalDifference($startDate, $endDate);
             } else {
-                throw new InvalidArgumentException("Start date has to be lower than the end date!");
+                throw new InvalidArgumentException(ErrorMessages::getStartDateMustBeBeforeEndDateMessage());
             }
         }
 

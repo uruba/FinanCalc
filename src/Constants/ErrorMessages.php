@@ -131,5 +131,12 @@ namespace FinanCalc\Constants {
         static function getInvalidTypeMessage() {
             return Strings::getString('message_invalid_type_specified');
         }
+
+        /**
+         * @return string [message as a string]
+         */
+        static function getStartDateMustBeBeforeEndDateMessage() {
+            return Strings::getString('message_start_date_must_be_before_end_date');
+        }
     }
 }
