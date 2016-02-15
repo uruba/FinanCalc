@@ -4,6 +4,7 @@
 namespace FinanCalc\Utils\Time {
 
     use Exception;
+    use FinanCalc\Constants\ErrorMessages;
     use FinanCalc\Utils\Config;
     use FinanCalc\Utils\MathFuncs;
 
@@ -130,7 +131,7 @@ namespace FinanCalc\Utils\Time {
                 return $dayCountConvention;
             }
 
-            throw new Exception("The day count convention is not defined properly in the config!");
+            throw new Exception(ErrorMessages::getDayCountConventionNotDefined());
         }
 
         /**

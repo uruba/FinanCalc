@@ -138,5 +138,12 @@ namespace FinanCalc\Constants {
         static function getStartDateMustBeBeforeEndDateMessage() {
             return Strings::getString('message_start_date_must_be_before_end_date');
         }
+
+        /**
+         * @return string [message as a string]
+         */
+        static function getDayCountConventionNotDefined() {
+            return Strings::getString('message_day_count_convention_not_defined');
+        }
     }
 }

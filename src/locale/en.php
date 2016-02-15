@@ -15,5 +15,6 @@ return array(
     'message_must_define_manufactured_class_name' => 'String class constant MANUFACTURED_CLASS_NAME has to be defined!',
     'message_class_not_defined' => 'Class %s not defined',
     'message_invalid_type_specified' => 'Invalid type specified!',
-    'message_start_date_must_be_before_end_date' => 'Start date has to be lower than the end date!'
+    'message_start_date_must_be_before_end_date' => 'Start date has to be lower than the end date!',
+    'message_day_count_convention_not_defined' => 'The day count convention is not defined properly in the config!'
 );
