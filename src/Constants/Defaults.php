@@ -22,6 +22,8 @@ namespace FinanCalc\Constants {
          * CONFIG defaults
          */
         public static $configDefault = array(
+            // locale
+            'locale' => 'en',
             // Factories
             'factories_relative_path' => '/Calculators/Factories',
             'factories_namespace' => 'FinanCalc\\Calculators\\Factories',

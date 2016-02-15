@@ -1,11 +1,14 @@
 <?php
 
 namespace FinanCalc\Constants {
+
+    use FinanCalc\Utils\Strings;
+
     /**
-     * Class Strings
+     * Class ErrorMessages
      * @package FinanCalc\Constants
      */
-    class Strings
+    class ErrorMessages
     {
         /**
          * @param $expectedTypeName [Name of expected class as a string]
@@ -13,9 +16,11 @@ namespace FinanCalc\Constants {
          * @return string           [Concatenated message as a string]
          */
         static function getIncompatibleTypesMessage($expectedTypeName, $foundTypeName) {
-            $INCOMPATIBLE_TYPES_MESSAGE = "The value has to be of the type %s, but currently is of the type %s instead.";
-            
-            return sprintf($INCOMPATIBLE_TYPES_MESSAGE, $expectedTypeName, $foundTypeName);
+            return sprintf(
+                Strings::getString('message_incompatible_types'),
+                $expectedTypeName,
+                $foundTypeName
+            );
         }
 
         /**
@@ -23,9 +28,10 @@ namespace FinanCalc\Constants {
          * @return string     [Concatenated message as a string]
          */
         static function getMustBePositiveNumberMessage($foundValue) {
-            $MUST_BE_POSITIVE_NUMBER_MESSAGE = "Expected positive number value, found '%s' instead.";
-
-            return sprintf($MUST_BE_POSITIVE_NUMBER_MESSAGE, $foundValue);
+            return sprintf(
+                Strings::getString('message_must_be_positive_number'),
+                $foundValue
+            );
         }
 
 
@@ -34,9 +40,10 @@ namespace FinanCalc\Constants {
          * @return string     [Concatenated message as a string]
          */
         static function getMustNotBeNegativeNumberMessage($foundValue) {
-            $MUST_BE_NOT_NEGATIVE_NUMBER_MESSAGE = "Expected positive number value or zero, found '%s' instead.";
-
-            return sprintf($MUST_BE_NOT_NEGATIVE_NUMBER_MESSAGE, $foundValue);
+            return sprintf(
+                Strings::getString('message_must_not_be_negative'),
+                $foundValue
+            );
         }
 
         /**
@@ -44,9 +51,10 @@ namespace FinanCalc\Constants {
          * @return string      [Concatenated message as a string]
          */
         static function getConfigFieldNotFoundMessage($configField) {
-            $CONFIG_FIELD_NOT_FOUND_MESSAGE = "Config field %s has not been defined!";
-
-            return sprintf($CONFIG_FIELD_NOT_FOUND_MESSAGE, $configField);
+            return sprintf(
+                Strings::getString('message_config_field_not_found'),
+                $configField
+            );
         }
     }
 }

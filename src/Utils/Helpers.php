@@ -3,7 +3,7 @@
 namespace FinanCalc\Utils {
     use Exception;
     use FinanCalc\Constants\Defaults;
-    use FinanCalc\Constants\Strings;
+    use FinanCalc\Constants\ErrorMessages;
     use InvalidArgumentException;
 
     /**
@@ -22,7 +22,7 @@ namespace FinanCalc\Utils {
                 return true;
             }
 
-            throw new InvalidArgumentException(Strings::getIncompatibleTypesMessage($nameOfTheExpectedClass, get_class($checkedVariable)));
+            throw new InvalidArgumentException(ErrorMessages::getIncompatibleTypesMessage($nameOfTheExpectedClass, get_class($checkedVariable)));
         }
 
         /**
@@ -48,7 +48,7 @@ namespace FinanCalc\Utils {
                 return true;
             }
 
-            throw new InvalidArgumentException(Strings::getMustBePositiveNumberMessage($checkedVariable));
+            throw new InvalidArgumentException(ErrorMessages::getMustBePositiveNumberMessage($checkedVariable));
         }
 
         /**
@@ -60,7 +60,7 @@ namespace FinanCalc\Utils {
                 return true;
             }
 
-            throw new InvalidArgumentException(Strings::getMustNotBeNegativeNumberMessage($checkedVariable));
+            throw new InvalidArgumentException(ErrorMessages::getMustNotBeNegativeNumberMessage($checkedVariable));
         }
 
         /**

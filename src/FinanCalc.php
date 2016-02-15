@@ -68,6 +68,13 @@ namespace FinanCalc {
         }
 
         /**
+         * @return string
+         */
+        public static function getPath() {
+            return __DIR__;
+        }
+
+        /**
          *
          * Business logic IMPLEMENTATION
          *

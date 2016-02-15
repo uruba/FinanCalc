@@ -4,7 +4,7 @@ namespace FinanCalc\Utils {
 
     use Exception;
     use FinanCalc\Constants\Defaults;
-    use FinanCalc\Constants\Strings;
+    use FinanCalc\Constants\ErrorMessages;
 
     /**
      * Class Config
@@ -43,7 +43,7 @@ namespace FinanCalc\Utils {
             $configField = static::$configArray[$key];
 
             if ($configField === null) {
-                throw new Exception(Strings::getConfigFieldNotFoundMessage($key));
+                throw new Exception(ErrorMessages::getConfigFieldNotFoundMessage($key));
             }
 
             return $configField;
