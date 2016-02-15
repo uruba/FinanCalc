@@ -13,5 +13,6 @@ return array(
     'message_vir_must_be_higher_than_growth_value' => 'The stock\'s valuation interest rate has to be higher than the stock\'s annual dividend growth',
     'message_must_set_growth_value' => 'You have to set the $stockAnnualDividendsGrowth for the multiple growth model!',
     'message_must_define_manufactured_class_name' => 'String class constant MANUFACTURED_CLASS_NAME has to be defined!',
-    'message_class_not_defined' => 'Class %s not defined'
+    'message_class_not_defined' => 'Class %s not defined',
+    'message_invalid_type_specified' => 'Invalid type specified!'
 );

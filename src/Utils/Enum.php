@@ -2,6 +2,7 @@
 
 namespace FinanCalc\Utils {
     use Exception;
+    use FinanCalc\Constants\ErrorMessages;
 
     /**
      * util Enum class pulled in its entirety from here: http://www.codeproject.com/Articles/683009/Enum-support-in-PHP
@@ -33,7 +34,7 @@ namespace FinanCalc\Utils {
             if ($this->isValidEnumValue($value))
                 $this->value = $value;
             else
-                throw new Exception("Invalid type specified!");
+                throw new Exception(ErrorMessages::getInvalidTypeMessage());
         }
 
         /**

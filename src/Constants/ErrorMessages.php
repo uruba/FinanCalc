@@ -124,5 +124,12 @@ namespace FinanCalc\Constants {
                 $className
             );
         }
+
+        /**
+         * @return string [Message as a string]
+         */
+        static function getInvalidTypeMessage() {
+            return Strings::getString('message_invalid_type_specified');
+        }
     }
 }
