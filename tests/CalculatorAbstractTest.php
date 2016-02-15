@@ -1,5 +1,6 @@
 <?php
 
+use FinanCalc\Constants\ErrorMessages;
 use FinanCalc\Interfaces\Calculator\CalculatorAbstract;
 
 /**
@@ -19,7 +20,7 @@ class CalculatorAbstractTest extends PHPUnit_Framework_TestCase
     }
 
     public function testNonExistentProperty() {
-        $this->setExpectedException("Exception", "The property nonExistentProperty doesn't exist in the class TestCalculator!");
+        $this->setExpectedException("Exception", ErrorMessages::getNonExistentPropertyMessage("nonExistentProperty", "TestCalculator"));
 
         $this->testCalculator->setNonExistentProperty();
     }
