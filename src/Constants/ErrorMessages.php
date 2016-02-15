@@ -16,8 +16,8 @@ namespace FinanCalc\Constants {
          * @return string           [Concatenated message as a string]
          */
         static function getIncompatibleTypesMessage($expectedTypeName, $foundTypeName) {
-            return sprintf(
-                Strings::getString('message_incompatible_types'),
+            return Strings::getFormattedString(
+                'message_incompatible_types',
                 $expectedTypeName,
                 $foundTypeName
             );
@@ -28,8 +28,8 @@ namespace FinanCalc\Constants {
          * @return string     [Concatenated message as a string]
          */
         static function getMustBePositiveNumberMessage($foundValue) {
-            return sprintf(
-                Strings::getString('message_must_be_positive_number'),
+            return Strings::getFormattedString(
+                'message_must_be_positive_number',
                 $foundValue
             );
         }
@@ -40,8 +40,8 @@ namespace FinanCalc\Constants {
          * @return string     [Concatenated message as a string]
          */
         static function getMustNotBeNegativeNumberMessage($foundValue) {
-            return sprintf(
-                Strings::getString('message_must_not_be_negative'),
+            return Strings::getFormattedString(
+                'message_must_not_be_negative',
                 $foundValue
             );
         }
@@ -51,8 +51,8 @@ namespace FinanCalc\Constants {
          * @return string      [Concatenated message as a string]
          */
         static function getConfigFieldNotFoundMessage($configField) {
-            return sprintf(
-                Strings::getString('message_config_field_not_found'),
+            return Strings::getFormattedString(
+                'message_config_field_not_found',
                 $configField
             );
         }
@@ -63,8 +63,8 @@ namespace FinanCalc\Constants {
          * @return string       [Concatenated message as a string]
          */
         static function getNonExistentPropertyMessage($propertyName, $className) {
-            return sprintf(
-                Strings::getString('message_nonexistent_property'),
+            return Strings::getFormattedString(
+                'message_nonexistent_property',
                 $propertyName,
                 $className
             );
@@ -75,8 +75,8 @@ namespace FinanCalc\Constants {
          * @return string           [Concatenated message as a string]
          */
         static function getFactoryClassNotInitializedMessage($factoryClassName) {
-            return sprintf(
-                Strings::getString('message_factory_class_not_initialized'),
+            return Strings::getFormattedString(
+                'message_factory_class_not_initialized',
                 $factoryClassName
             );
         }
@@ -87,8 +87,8 @@ namespace FinanCalc\Constants {
          * @return string             [Concatenated message as a string]
          */
         static function getFactoryClassExpectedInNamespaceMessage($factoryClassName, $factoriesNamespace) {
-            return sprintf(
-                Strings::getString('message_factory_class_expected_in_namespace'),
+            return Strings::getFormattedString(
+                'message_factory_class_expected_in_namespace',
                 $factoryClassName,
                 $factoriesNamespace
             );
@@ -100,8 +100,8 @@ namespace FinanCalc\Constants {
          * @return string                   [Concatenated message as a string]
          */
         static function getFactoryClassExpectedAncestorMessage($factoryClassName, $factoryClassAncestorName) {
-            return sprintf(
-                Strings::getString('message_factory_class_expected_ancestor'),
+            return Strings::getFormattedString(
+                'message_factory_class_expected_ancestor',
                 $factoryClassName,
                 $factoryClassAncestorName
             );
@@ -119,8 +119,8 @@ namespace FinanCalc\Constants {
          * @return string    [Concatenated message as a string]
          */
         static function getClassNotDefinedMessage($className) {
-            return sprintf(
-                Strings::getString('message_class_not_defined'),
+            return Strings::getFormattedString(
+                'message_class_not_defined',
                 $className
             );
         }

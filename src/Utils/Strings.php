@@ -42,5 +42,17 @@ namespace FinanCalc\Utils {
 
             return $strings[$identifier];
         }
+
+        /**
+         * @param $identifier
+         * @param null $formatArgs
+         * @return string
+         */
+        static function getFormattedString($identifier, $formatArgs = null) {
+            $formatArgs = func_get_args();
+            array_shift($formatArgs);
+
+            return vsprintf(Strings::getString($identifier), $formatArgs);
+        }
     }
 }
