@@ -106,5 +106,23 @@ namespace FinanCalc\Constants {
                 $factoryClassAncestorName
             );
         }
+
+        /**
+         * @return string [Message as a string]
+         */
+        static function getMustDefineManufacturedClassNameMessage() {
+            return Strings::getString('message_must_define_manufactured_class_name');
+        }
+
+        /**
+         * @param $className [Name of the class that has not been defined]
+         * @return string    [Concatenated message as a string]
+         */
+        static function getClassNotDefinedMessage($className) {
+            return sprintf(
+                Strings::getString('message_class_not_defined'),
+                $className
+            );
+        }
     }
 }

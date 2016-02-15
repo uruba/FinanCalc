@@ -11,5 +11,7 @@ return array(
     'message_factory_class_expected_ancestor' => 'The factory class %s has to extend the abstract class %s!',
     'message_cannot_set_growth_value_on_zero_growth_type' => 'You cannot set the $stockAnnualDividendsGrowth on the zero-growth type discount dividend model calculator!',
     'message_vir_must_be_higher_than_growth_value' => 'The stock\'s valuation interest rate has to be higher than the stock\'s annual dividend growth',
-    'message_must_set_growth_value' => 'You have to set the $stockAnnualDividendsGrowth for the multiple growth model!'
+    'message_must_set_growth_value' => 'You have to set the $stockAnnualDividendsGrowth for the multiple growth model!',
+    'message_must_define_manufactured_class_name' => 'String class constant MANUFACTURED_CLASS_NAME has to be defined!',
+    'message_class_not_defined' => 'Class %s not defined'
 );

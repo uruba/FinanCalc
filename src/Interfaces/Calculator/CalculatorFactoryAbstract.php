@@ -3,6 +3,7 @@
 namespace FinanCalc\Interfaces\Calculator {
 
     use Exception;
+    use FinanCalc\Constants\ErrorMessages;
     use ReflectionClass;
 
     /**
@@ -17,11 +18,11 @@ namespace FinanCalc\Interfaces\Calculator {
          */
         public final function __construct() {
             if (!is_string(static::MANUFACTURED_CLASS_NAME)) {
-                throw new Exception("String class constant MANUFACTURED_CLASS_NAME has to be defined!");
+                throw new Exception(ErrorMessages::getMustDefineManufacturedClassNameMessage());
             }
 
             if (!class_exists(static::MANUFACTURED_CLASS_NAME)) {
-                throw new Exception("Class" . static::MANUFACTURED_CLASS_NAME .  " not defined");
+                throw new Exception(ErrorMessages::getClassNotDefinedMessage(static::MANUFACTURED_CLASS_NAME));
             }
         }
 
