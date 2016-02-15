@@ -56,5 +56,15 @@ namespace FinanCalc\Constants {
                 $configField
             );
         }
+
+
+        /**
+         * @param $propertyName [Name of the property as a string]
+         * @param $className    [Name of the class as a string]
+         * @return string       [Concatenated message as a string]
+         */
+        static function getNonExistentPropertyMessage($propertyName, $className) {
+            return sprintf(Strings::getString('message_nonexistent_property'), $propertyName, $className);
+        }
     }
 }

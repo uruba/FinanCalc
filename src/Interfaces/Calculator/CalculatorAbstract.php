@@ -3,6 +3,7 @@
 namespace FinanCalc\Interfaces\Calculator {
 
     use Exception;
+    use FinanCalc\Constants\ErrorMessages;
     use FinanCalc\Interfaces\Serializer\SerializerInterface;
 
     /**
@@ -32,7 +33,7 @@ namespace FinanCalc\Interfaces\Calculator {
                 return;
             }
 
-            throw new Exception("The property " . $name . " doesn't exist in the class " . get_class($this) . "!");
+            throw new Exception(ErrorMessages::getNonExistentPropertyMessage($name, get_class($this)));
         }
 
         /**
