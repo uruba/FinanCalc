@@ -132,7 +132,7 @@ namespace FinanCalc {
                             require_once($factoryFile);
                             $factoryClassReflector = new ReflectionClass($factoriesNamespace . '\\' . $factoryClassName);
                         } catch (ReflectionException $e) {
-                            error_log(ErrorMessages::getFactoryClassExpectedInNamespace($factoryClassName, $factoriesNamespace));
+                            error_log(ErrorMessages::getFactoryClassExpectedInNamespaceMessage($factoryClassName, $factoriesNamespace));
                             continue;
                         }
 
@@ -142,7 +142,7 @@ namespace FinanCalc {
                             $this->factoryClasses[$factoryClassName] = $factoryClassReflector->newInstance();
                             break;
                         } else {
-                            error_log(ErrorMessages::getFactoryClassExpectedAncestor($factoryClassName, $factoryAbstractClass));
+                            error_log(ErrorMessages::getFactoryClassExpectedAncestorMessage($factoryClassName, $factoryAbstractClass));
                         }
                     }
                 }

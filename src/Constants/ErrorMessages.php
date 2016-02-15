@@ -86,7 +86,7 @@ namespace FinanCalc\Constants {
          * @param $factoriesNamespace [Name of the namespace that the factory class is supposed to be in as a string]
          * @return string             [Concatenated message as a string]
          */
-        static function getFactoryClassExpectedInNamespace($factoryClassName, $factoriesNamespace) {
+        static function getFactoryClassExpectedInNamespaceMessage($factoryClassName, $factoriesNamespace) {
             return sprintf(
                 Strings::getString('message_factory_class_expected_in_namespace'),
                 $factoryClassName,
@@ -99,7 +99,7 @@ namespace FinanCalc\Constants {
          * @param $factoryClassAncestorName [Name of the factory class' expected parent class name as a string]
          * @return string                   [Concatenated message as a string]
          */
-        static function getFactoryClassExpectedAncestor($factoryClassName, $factoryClassAncestorName) {
+        static function getFactoryClassExpectedAncestorMessage($factoryClassName, $factoryClassAncestorName) {
             return sprintf(
                 Strings::getString('message_factory_class_expected_ancestor'),
                 $factoryClassName,
