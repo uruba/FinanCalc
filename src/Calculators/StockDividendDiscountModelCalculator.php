@@ -8,6 +8,7 @@ namespace FinanCalc\Calculators {
     use FinanCalc\Utils\Helpers;
     use FinanCalc\Utils\Lambdas;
     use FinanCalc\Utils\MathFuncs;
+    use FinanCalc\Utils\Strings;
     use InvalidArgumentException;
 
     /**
@@ -90,7 +91,7 @@ namespace FinanCalc\Calculators {
                 &&
                 $stockAnnualDividendsGrowth !== null
             ) {
-                throw new InvalidArgumentException('You cannot set the $stockAnnualDividendsGrowth on the zero-growth type discount dividend model calculator!');
+                throw new InvalidArgumentException(Strings::getString('message_cannot_set_growth_value_on_zero_growth_type'));
             }
 
             if ($dividendDiscountModelType == StockDDMTypes::MULTIPLE_GROWTH) {
@@ -98,7 +99,7 @@ namespace FinanCalc\Calculators {
                     Helpers::checkIfLeftOperandGreaterOrThrowAnException(
                         $this->stockVIR,
                         $stockAnnualDividendsGrowth,
-                        "The stock's valuation interest rate has to be higher than the stock's annual dividend growth"
+                        Strings::getString('message_vir_must_be_higher_than_growth_value')
                     );
                 }
             }
@@ -148,7 +149,7 @@ namespace FinanCalc\Calculators {
                     );
                 case StockDDMTypes::MULTIPLE_GROWTH:
                     if ($this->stockAnnualDividendsGrowth === null) {
-                        throw new Exception("You have to set the stockAnnualDividendsGrowth for the multiple growth model!");
+                        throw new Exception(Strings::getString('message_must_set_growth_value'));
                     }
                     // PV = (D*(1+g))/(i-g)
                     return MathFuncs::mul(
