@@ -19,7 +19,7 @@ namespace FinanCalc\Utils {
         /**
          * @param $identifier
          * @param null $locale
-         * @return null
+         * @return string
          * @throws \Exception
          */
         static function getString($identifier, $locale = null) {
