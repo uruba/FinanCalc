@@ -11,4 +11,10 @@
         </listener>
     </listeners>
 
+    <filter>
+        <whitelist>
+            <directory>src</directory>
+        </whitelist>
+    </filter>
+
 </phpunit>
