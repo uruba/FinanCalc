@@ -6,4 +6,9 @@
         </testsuite>
     </testsuites>
 
+    <listeners>
+        <listener class="MockFilesHandler" file="tests/MockFilesHandler.php">
+        </listener>
+    </listeners>
+
 </phpunit>
