@@ -36,7 +36,7 @@ namespace FinanCalc\Utils {
             /** @noinspection PhpIncludeInspection */
             $strings = include($localePath);
 
-            if (is_null($strings)) {
+            if (!is_array($strings) || !array_key_exists($identifier, $strings)) {
                 return null;
             }
 
@@ -45,14 +45,18 @@ namespace FinanCalc\Utils {
 
         /**
          * @param $identifier
+         * @param $locale
          * @param null $formatArgs
          * @return string
          */
-        static function getFormattedString($identifier, $formatArgs = null) {
-            $formatArgs = func_get_args();
-            array_shift($formatArgs);
+        static function getFormattedString($identifier, $locale, $formatArgs = null) {
+            $formatArgs = array_slice(func_get_args(), 2);
 
-            return vsprintf(Strings::getString($identifier), $formatArgs);
+            $unformattedString = Strings::getString($identifier, $locale);
+
+            return is_null($unformattedString) ?
+                null :
+                vsprintf($unformattedString, $formatArgs);
         }
     }
 }

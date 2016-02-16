@@ -18,6 +18,7 @@ namespace FinanCalc\Constants {
         static function getIncompatibleTypesMessage($expectedTypeName, $foundTypeName) {
             return Strings::getFormattedString(
                 'message_incompatible_types',
+                null,
                 $expectedTypeName,
                 $foundTypeName
             );
@@ -30,6 +31,7 @@ namespace FinanCalc\Constants {
         static function getMustBePositiveNumberMessage($foundValue) {
             return Strings::getFormattedString(
                 'message_must_be_positive_number',
+                null,
                 $foundValue
             );
         }
@@ -42,6 +44,7 @@ namespace FinanCalc\Constants {
         static function getMustNotBeNegativeNumberMessage($foundValue) {
             return Strings::getFormattedString(
                 'message_must_not_be_negative',
+                null,
                 $foundValue
             );
         }
@@ -53,6 +56,7 @@ namespace FinanCalc\Constants {
         static function getConfigFieldNotFoundMessage($configField) {
             return Strings::getFormattedString(
                 'message_config_field_not_found',
+                null,
                 $configField
             );
         }
@@ -65,6 +69,7 @@ namespace FinanCalc\Constants {
         static function getNonExistentPropertyMessage($propertyName, $className) {
             return Strings::getFormattedString(
                 'message_nonexistent_property',
+                null,
                 $propertyName,
                 $className
             );
@@ -77,6 +82,7 @@ namespace FinanCalc\Constants {
         static function getFactoryClassNotInitializedMessage($factoryClassName) {
             return Strings::getFormattedString(
                 'message_factory_class_not_initialized',
+                null,
                 $factoryClassName
             );
         }
@@ -89,6 +95,7 @@ namespace FinanCalc\Constants {
         static function getFactoryClassExpectedInNamespaceMessage($factoryClassName, $factoriesNamespace) {
             return Strings::getFormattedString(
                 'message_factory_class_expected_in_namespace',
+                null,
                 $factoryClassName,
                 $factoriesNamespace
             );
@@ -102,6 +109,7 @@ namespace FinanCalc\Constants {
         static function getFactoryClassExpectedAncestorMessage($factoryClassName, $factoryClassAncestorName) {
             return Strings::getFormattedString(
                 'message_factory_class_expected_ancestor',
+                null,
                 $factoryClassName,
                 $factoryClassAncestorName
             );
@@ -121,6 +129,7 @@ namespace FinanCalc\Constants {
         static function getClassNotDefinedMessage($className) {
             return Strings::getFormattedString(
                 'message_class_not_defined',
+                null,
                 $className
             );
         }
@@ -161,6 +170,7 @@ namespace FinanCalc\Constants {
         static function getMethodDoesNotExistMessage($methodName, $className) {
             return Strings::getFormattedString(
                 'message_method_does_not_exist',
+                null,
                 $methodName,
                 $className
             );
