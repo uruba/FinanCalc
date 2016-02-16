@@ -34,7 +34,9 @@ class MockFilesManager {
 
     public static function cleanUpMockFiles() {
         foreach (static::$mockFilePaths as $mockFilePath) {
-            unlink($mockFilePath);
+            if (file_exists($mockFilePath)) {
+                unlink($mockFilePath);
+            }
         }
 
         static::$mockFilePaths = null;
@@ -48,8 +50,10 @@ class MockFilesManager {
     private static function copyMockFile($name, $destination) {
         $destinationPath = dirname(dirname(__FILE__)) . '/src/' . $destination  . '/' . $name . '.php';
 
-        copy(__DIR__ . '/MockFiles/' . $name . '.php', $destinationPath);
+        if (!file_exists($destinationPath)) {
+            copy(__DIR__ . '/MockFiles/' . $name . '.php', $destinationPath);
 
-        static::$mockFilePaths[] = $destinationPath;
+            static::$mockFilePaths[] = $destinationPath;
+        }
     }
 }
