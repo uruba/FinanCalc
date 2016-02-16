@@ -1,5 +1,7 @@
 <?php
 
+use FinanCalc\Constants\ErrorMessages;
+use FinanCalc\Utils\Config;
 use FinanCalc\Utils\Time\TimeSpan;
 use FinanCalc\Utils\Time\TimeUtils;
 
@@ -102,6 +104,21 @@ class TimeUtilsTest extends PHPUnit_Framework_TestCase {
         );
 
         $this->assertFalse(TimeUtils::isDayCountConventionValid($dayCountConvention));
+    }
+
+    public function testDayCountConventionInvalid() {
+        $this->setExpectedException('Exception', ErrorMessages::getDayCountConventionNotDefinedMessage());
+
+        $availableDayCountConventions = Config::getConfigField('available_day_count_conventions');
+        $dayCountConvention = Config::getConfigField('day_count_convention');
+
+        Config::setConfigField('available_day_count_conventions', ['faulty']);
+        Config::setConfigField('day_count_convention', 'faulty');
+
+        TimeUtils::getCurrentDayCountConvention();
+
+        Config::setConfigField('available_day_count_conventions', $availableDayCountConventions);
+        Config::setConfigField('day_count_convention', $dayCountConvention);
     }
 
     protected function setUp() {

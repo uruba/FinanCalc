@@ -124,11 +124,16 @@ namespace FinanCalc\Utils\Time {
         public static function getCurrentDayCountConvention() {
             $dayCountConventionIdentifier = Config::getConfigField('day_count_convention');
             $availableDayCountConventions = Config::getConfigField('available_day_count_conventions');
-            $dayCountConvention = $availableDayCountConventions[$dayCountConventionIdentifier];
 
-            if (self::isDayCountConventionValid($dayCountConvention)) {
-                $dayCountConvention['days_in_a_month'] = MathFuncs::div($dayCountConvention['days_in_a_year'], 12);
-                return $dayCountConvention;
+            if (is_array($availableDayCountConventions) &&
+                array_key_exists($dayCountConventionIdentifier, $availableDayCountConventions)
+            ) {
+                $dayCountConvention = $availableDayCountConventions[$dayCountConventionIdentifier];
+
+                if (self::isDayCountConventionValid($dayCountConvention)) {
+                    $dayCountConvention['days_in_a_month'] = MathFuncs::div($dayCountConvention['days_in_a_year'], 12);
+                    return $dayCountConvention;
+                }
             }
 
             throw new Exception(ErrorMessages::getDayCountConventionNotDefinedMessage());
