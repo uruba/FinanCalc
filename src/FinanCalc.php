@@ -40,7 +40,7 @@ namespace FinanCalc {
      * Class FinanCalc
      * @package FinanCalc
      */
-    class FinanCalc {
+    final class FinanCalc {
         private $factoryClasses = array();
         private static $instance = null;
 
@@ -118,12 +118,9 @@ namespace FinanCalc {
             $factoriesNamespace = Config::getConfigField('factories_namespace');
 
             foreach ($factoryFiles as $factoryFile) {
-                if (file_exists($factoryFile)) {
-                    $factoryFileContents = file_get_contents($factoryFile);
-                } else {
-                    continue;
-                }
+                $factoryFileContents = file_get_contents($factoryFile);
                 $fileTokens = token_get_all($factoryFileContents);
+
                 for ($i = 2; $i < count($fileTokens); $i++) {
                     if ($fileTokens[$i-2][0] == T_CLASS) {
                         $factoryClassName = $fileTokens[$i][1];
