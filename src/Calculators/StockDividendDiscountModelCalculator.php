@@ -136,7 +136,7 @@ namespace FinanCalc\Calculators {
         }
 
         /**
-         * @return null|string
+         * @return string
          * @throws Exception
          */
         public function getStockPresentValue() {
@@ -165,8 +165,6 @@ namespace FinanCalc\Calculators {
                             )
                         )
                     );
-                default:
-                    return null;
             }
         }
     }
