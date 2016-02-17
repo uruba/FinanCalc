@@ -114,7 +114,7 @@ namespace FinanCalc {
          */
 
         private function populateFactoryClassesArray() {
-            $factoryFiles = glob(__DIR__ . Config::getConfigField('factories_relative_path') . '/*.php');
+            $factoryFiles = glob(FinanCalc::getPath() . Config::getConfigField('factories_relative_path') . '/*.php');
             $factoriesNamespace = Config::getConfigField('factories_namespace');
 
             foreach ($factoryFiles as $factoryFile) {
