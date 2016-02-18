@@ -286,12 +286,8 @@ namespace FinanCalc\Calculators {
             }
 
             // when the annuity is not a perpetuity, we first need to check that
-            // $annuityPaymentType and $annuityValueType are not null
-            if (
-                Helpers::checkIfNotNull($annuityPaymentType)
-                &&
-                Helpers::checkIfNotNull($annuityValueType)
-            ) {
+            // the $annuityPaymentType is not null
+            if (Helpers::checkIfNotNull($annuityPaymentType)) {
 
                 // discount factor 'v = 1/(1+i)'
                 $discountFactor = MathFuncs::div(
@@ -342,8 +338,6 @@ namespace FinanCalc\Calculators {
                                 $denominator),
                             $this->annuitySinglePaymentAmount);
                 }
-
-                return null;
             }
 
             return null;
