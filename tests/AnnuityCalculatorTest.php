@@ -2,6 +2,7 @@
 
 use FinanCalc\Calculators\AnnuityCalculator;
 use FinanCalc\Constants\AnnuityPaymentTypes;
+use FinanCalc\Constants\AnnuityValueTypes;
 use FinanCalc\Utils\Time\TimeSpan;
 
 /**
@@ -12,6 +13,14 @@ class AnnuityCalculatorTest extends PHPUnit_Framework_TestCase {
     private $annuityCalculatorDirectYearly,
             $annuityCalculatorFactoryYearly,
             $perpetuityCalculator;
+
+    /**
+     * Test the "null" scenario
+     * (if annuityPaymentType = null AND the annuity is not a perpetuity -> should return null for the queried annuity value)
+     */
+    public function testAnnuityPaymentTypeNull() {
+        $this->assertNull($this->annuityCalculatorDirectYearly->getAnnuityValue(null, new AnnuityValueTypes(AnnuityValueTypes::PRESENT_VALUE)));
+    }
 
     /**
      * Test the annuity length
