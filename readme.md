@@ -292,7 +292,7 @@ Here you can find the documentation for each of the vanilla calculator types.
 
 The implicit type of setters'/constructors' arguments as well as getters' returned values is String if not stated otherwise.
 
-### AnnuityCalculator
+### [AnnuityCalculator](src/Calculators/AnnuityCalculator.php)
 namespace `FinanCalc\Calculators`
 * **__construct($annuitySinglePaymentAmount, $annuityNoOfCompoundingPeriods, TimeSpan $annuityPeriodLength, $annuityInterest)**
   * *$annuitySinglePaymentAmount* = **'K'** – the amount of each individual payment (number greater than zero)
@@ -354,7 +354,7 @@ namespace `FinanCalc\Constants`
 
 * * *
 
-### DebtAmortizator
+### [DebtAmortizator](src/Calculators/DebtAmortizator.php)
 namespace `FinanCalc\Calculators`
 * **__construct($debtPrincipal, $debtNoOfCompoundingPeriods, TimeSpan $debtPeriodLength, $debtInterest)**
   * *$debtPrincipal* = **'PV'** – the principal of the debt (number greater than zero)
@@ -402,7 +402,7 @@ namespace `FinanCalc\Calculators\DebtAmortizator`
 
 * * *
 
-### BondFairValueCalculator
+### [BondFairValueCalculator](src/Calculators/BondFairValueCalculator.php)
 namespace `FinanCalc\Calculators`
 * **__construct($bondFaceValue, $bondAnnualCouponRate, $bondVIR, $bondYearsToMaturity, $bondPaymentFrequency = 1)**
   * *$bondFaceValue* = **'F'** – the face value of the bond (number greater than zero)
@@ -439,7 +439,7 @@ namespace `FinanCalc\Calculators\Factories`
 
 * * *
 
-### BondYTMCalculator
+### [BondYTMCalculator](src/Calculators/BondYTMCalculator.php)
 namespace `FinanCalc\Calculators`
 * **__construct($bondFaceValue, $bondMarketValue, $bondAnnualCouponRate, $bondYearsToMaturity, $bondPaymentFrequency = 1)**
   * *$bondFaceValue* = **'F'** – the face value of the bond (number greater than zero)
@@ -476,7 +476,7 @@ namespace `FinanCalc\Calculators\Factories`
 
 * * *
 
-### BondDurationCalculator
+### [BondDurationCalculator](src/Calculators/BondDurationCalculator.php)
 namespace `FinanCalc\Calculators`
 * **__construct($bondFaceValue, $bondAnnualCouponRate, $bondAnnualYield, $bondYearsToMaturity, $bondPaymentFrequency = 1)**
   * *$bondFaceValue* = **'F'** – the face value of the bond (number greater than zero)
@@ -517,7 +517,7 @@ namespace `FinanCalc\Calculators\Factories`
 
 * * *
 
-### SimpleDiscountCalculator
+### [SimpleDiscountCalculator](src/Calculators/SimpleDiscountCalculator.php)
 namespace `FinanCalc\Calculators`
 * **__construct($amountDue, $annualDiscountRate, TimeSpan $time)**
   * *$principal* = **'S'** – the amount due
@@ -544,7 +544,7 @@ namespace `FinanCalc\Calculators\Factories`
 
 * * *
 
-### SimpleInterestCalculator
+### [SimpleInterestCalculator](src/Calculators/SimpleInterestCalculator.php)
 namespace `FinanCalc\Calculators`
 * **__construct($principal, $annualInterestRate, TimeSpan $time)**
   * *$principal* = **'P'** – the amount of principal
@@ -573,7 +573,7 @@ namespace `FinanCalc\Calculators\Factories`
 
 * * *
 
-### StockDividendDiscountModelCalculator
+### [StockDividendDiscountModelCalculator](src/Calculators/StockDividendDiscountModelCalculator.php)
 namespace `FinanCalc\Calculators`
 * **__construct(StockDDMTypes $dividendDiscountModelType, $stockVIR, $stockAnnualDividendValue, $stockAnnualDividendsGrowth = null)**
   * *$dividendDiscountModelType* = the type of the dividend discount model according to which the result will be calculated (value of the type *StockDDMTypes*)
@@ -608,7 +608,7 @@ namespace `FinanCalc\Constants`
 
 * * *
 
-### StockInvestmentRatiosCalculator
+### [StockInvestmentRatiosCalculator](src/Calculators/StockInvestmentRatiosCalculator.php)
 namespace `FinanCalc\Calculators`
 * **__construct($totalDividends, $earningsAfterTaxes, $noOfStocks)**
   * *$totalDividends* = the sum of dividends per a period
