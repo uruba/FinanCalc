@@ -394,7 +394,7 @@ namespace `FinanCalc\Calculators\Factories`
 * **newDailyDebtAmortization($debtPrincipal, $debtNoOfPeriods, $debtInterest)**
 * **newDebtAmortizationCustomPeriodLength($debtPrincipal, $debtNoOfPeriods, $debtInterest, $debtSinglePeriodLength)**
 
-#### [RepaymentInstance](src/Calculators/DebtAmortizator.php#L294)
+#### [RepaymentInstance](src/Calculators/DebtAmortizator.php#L298)
 namespace `FinanCalc\Calculators\DebtAmortizator`
 * **getPrincipalAmount()** – gets the amount of the debt's principal covered by this single repayment
 * **getInterestAmount()** – gets the amount of the debt's interest covered by this single repayment
