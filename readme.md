@@ -335,19 +335,19 @@ namespace `FinanCalc\Calculators`
 * **getResultAsArray(array $propResultArray = null)** – gets the array of the pertinent property values which you can specify (e.g., if you want only a specified subset thereof) via the optional argument
 * **getSerializedResult(SerializerInterface $serializer)** – gets the serialized result, according to the passed SerializerInterface object
 
-#### AnnuityCalculatorFactory (*AnnuityCalculator's factory object*)
+#### [AnnuityCalculatorFactory](src/Calculators/Factories/AnnuityCalculatorFactory.php) (*AnnuityCalculator's factory object*)
 namespace `FinanCalc\Calculators\Factories`
 * **newYearlyAnnuity($annuitySinglePaymentAmount, $annuityNoOfCompoundingPeriods, $annuityInterest)**
 * **newMonthlyAnnuity($annuitySinglePaymentAmount, $annuityNoOfCompoundingPeriods, $annuityInterest)**
 * **newDailyAnnuity($annuitySinglePaymentAmount, $annuityNoOfCompoundingPeriods, $annuityInterest)**
 * **newPerpetuity($annuitySinglePaymentAmount, $annuityInterest)**
 
-#### AnnuityPaymentTypes
+#### [AnnuityPaymentTypes](src/Constants/AnnuityPaymentTypes.php)
 namespace `FinanCalc\Constants`
 * *IN_ADVANCE* = 1
 * *IN_ARREARS* = 2
 
-#### AnnuityValueTypes
+#### [AnnuityValueTypes](src/Constants/AnnuityValueTypes.php)
 namespace `FinanCalc\Constants`
 * *PRESENT_VALUE* = 1
 * *FUTURE_VALUE* = 2
@@ -387,14 +387,14 @@ namespace `FinanCalc\Calculators`
 * **getResultAsArray(array $propResultArray = null)** – gets the array of the pertinent property values which you can specify (e.g., if you want only a specified subset thereof) via the optional argument
 * **getSerializedResult(SerializerInterface $serializer)** – gets the serialized result, according to the passed SerializerInterface object
 
-#### DebtAmortizatorFactory (*DebtAmortizator's factory object*)
+#### [DebtAmortizatorFactory](src/Calculators/Factories/DebtAmortizatorFactory.php) (*DebtAmortizator's factory object*)
 namespace `FinanCalc\Calculators\Factories`
 * **newYearlyDebtAmortization($debtPrincipal, $debtNoOfPeriods, $debtInterest)**
 * **newMonthlyDebtAmortization($debtPrincipal, $debtNoOfPeriods, $debtInterest)**
 * **newDailyDebtAmortization($debtPrincipal, $debtNoOfPeriods, $debtInterest)**
 * **newDebtAmortizationCustomPeriodLength($debtPrincipal, $debtNoOfPeriods, $debtInterest, $debtSinglePeriodLength)**
 
-#### RepaymentInstance
+#### [RepaymentInstance](src/Calculators/DebtAmortizator.php#L294)
 namespace `FinanCalc\Calculators\DebtAmortizator`
 * **getPrincipalAmount()** – gets the amount of the debt's principal covered by this single repayment
 * **getInterestAmount()** – gets the amount of the debt's interest covered by this single repayment
@@ -429,7 +429,7 @@ namespace `FinanCalc\Calculators`
 * **getResultAsArray(array $propResultArray = null)** – gets the array of the pertinent property values which you can specify (e.g., if you want only a specified subset thereof) via the optional argument
 * **getSerializedResult(SerializerInterface $serializer)** – gets the serialized result, according to the passed SerializerInterface object
 
-#### BondFairValueCalculatorFactory (*BondFairValueCalculator's factory object*)
+#### [BondFairValueCalculatorFactory](src/Calculators/Factories/BondFairValueCalculatorFactory.php) (*BondFairValueCalculator's factory object*)
 namespace `FinanCalc\Calculators\Factories`
 * **newAnnualCouponsBond($bondFaceValue, $bondAnnualCouponRate, $bondVIR, $bondYearsToMaturity)**
 * **newSemiAnnualCouponsBond($bondFaceValue, $bondAnnualCouponRate, $bondVIR, $bondYearsToMaturity)**
@@ -466,7 +466,7 @@ namespace `FinanCalc\Calculators`
 * **getResultAsArray(array $propResultArray = null)** – gets the array of the pertinent property values which you can specify (e.g., if you want only a specified subset thereof) via the optional argument
 * **getSerializedResult(SerializerInterface $serializer)** – gets the serialized result, according to the passed SerializerInterface object
 
-#### BondYTMCalculatorFactory (*BondYTMCalculator's factory object*)
+#### [BondYTMCalculatorFactory](src/Calculators/Factories/BondYTMCalculatorFactory.php) (*BondYTMCalculator's factory object*)
 namespace `FinanCalc\Calculators\Factories`
 * **newAnnualCouponsBond($bondFaceValue, $bondMarketValue, $bondAnnualCouponRate, $bondYearsToMaturity)**
 * **newSemiAnnualCouponsBond($bondFaceValue, $bondMarketValue, $bondAnnualCouponRate, $bondYearsToMaturity)**
@@ -507,7 +507,7 @@ namespace `FinanCalc\Calculators`
 * **getResultAsArray(array $propResultArray = null)** – gets the array of the pertinent property values which you can specify (e.g., if you want only a specified subset thereof) via the optional argument
 * **getSerializedResult(SerializerInterface $serializer)** – gets the serialized result, according to the passed SerializerInterface object
 
-#### BondDurationCalculatorFactory (*BondDurationCalculator's factory object*)
+#### [BondDurationCalculatorFactory](src/Calculators/Factories/BondDurationCalculatorFactory.php) (*BondDurationCalculator's factory object*)
 namespace `FinanCalc\Calculators\Factories`
 * **newAnnualCouponsBond($bondFaceValue, $bondAnnualCouponRate, $bondAnnualYield, $bondYearsToMaturity)**
 * **newSemiAnnualCouponsBond($bondFaceValue, $bondAnnualCouponRate, $bondAnnualYield, $bondYearsToMaturity)**
@@ -538,7 +538,7 @@ namespace `FinanCalc\Calculators`
 * **getTimeInDays()** – gets the total time in days
 * **getDiscountAmount()** – gets the discount amount ('D')
 
-#### SimpleDiscountCalculatorFactory (*SimpleDiscountCalculator's factory object*)
+#### [SimpleDiscountCalculatorFactory](src/Calculators/Factories/SimpleDiscountCalculatorFactory.php) (*SimpleDiscountCalculator's factory object*)
 namespace `FinanCalc\Calculators\Factories`
 * **newSimpleDiscount($amountDue, $annualDiscountRate, TimeSpan $time)**
 
@@ -567,7 +567,7 @@ namespace `FinanCalc\Calculators`
 * **getInterestDivisor()** – gets the interest divisor ('ID')
 * **getInterestAmount()** – gets the interest amount ('n')
 
-#### SimpleInterestCalculatorFactory (*SimpleInterestCalculator's factory object*)
+#### [SimpleInterestCalculatorFactory](src/Calculators/Factories/SimpleInterestCalculatorFactory.php) (*SimpleInterestCalculator's factory object*)
 namespace `FinanCalc\Calculators\Factories`
 * **newSimpleInterest($principal, $annualInterestRate, TimeSpan $time)**
 
@@ -596,12 +596,12 @@ namespace `FinanCalc\Calculators`
 * **getResultAsArray(array $propResultArray = null)** – gets the array of the pertinent property values which you can specify (e.g., if you want only a specified subset thereof) via the optional argument
 * **getSerializedResult(SerializerInterface $serializer)** – gets the serialized result, according to the passed SerializerInterface object
 
-#### StockDividendDiscountModelCalculatorFactory (*StockDividendDiscountModelCalculator's factory object*)
+#### [StockDividendDiscountModelCalculatorFactory](src/Calculators/Factories/StockDividendDiscountModelCalculatorFactory.php) (*StockDividendDiscountModelCalculator's factory object*)
 namespace `FinanCalc\Calculators\Factories`
 * **newZeroGrowthDividendDiscountModel($stockVIR, $stockAnnualDividendValue)**
 * **newMultipleGrowthDividendDiscountModel($stockVIR, $stockAnnualDividendValue, $stockAnnualDividendsGrowth)**
 
-#### StockDDMTypes
+#### [StockDDMTypes](src/Constants/StockDDMTypes.php)
 namespace `FinanCalc\Constants`
 * *ZERO_GROWTH* = 1
 * *MULTIPLE_GROWTH* = 2
@@ -632,7 +632,7 @@ namespace `FinanCalc\Calculators`
 * **getResultAsArray(array $propResultArray = null)** – gets the array of the pertinent property values which you can specify (e.g., if you want only a specified subset thereof) via the optional argument
 * **getSerializedResult(SerializerInterface $serializer)** – gets the serialized result, according to the passed SerializerInterface object
 
-#### StockInvestmentRatiosCalculatorFactory (*StockInvestmentRatiosCalculator's factory object*)
+#### [StockInvestmentRatiosCalculatorFactory](src/Calculators/Factories/StockInvestmentRatiosCalculatorFactory.php) (*StockInvestmentRatiosCalculator's factory object*)
 namespace `FinanCalc\Calculators\Factories`
 * **newCustomStocks($totalDividends, $earningAfterTaxes, $noOfStocks)**
 
