@@ -47,10 +47,10 @@ namespace FinanCalc\Calculators {
          * @param $bondPaymentFrequency
          */
         function __construct($bondFaceValue,
-                             $bondAnnualCouponRate,
-                             $bondVIR,
-                             $bondYearsToMaturity,
-                             $bondPaymentFrequency = 1) {
+                                $bondAnnualCouponRate,
+                                $bondVIR,
+                                $bondYearsToMaturity,
+                                $bondPaymentFrequency = 1) {
             $this->setBondFaceValue($bondFaceValue);
             $this->setBondAnnualCouponRate($bondAnnualCouponRate);
             $this->setBondVIR($bondVIR);
@@ -73,7 +73,7 @@ namespace FinanCalc\Calculators {
         }
 
         /**
-         * @return float
+         * @return string
          */
         public function getBondFairValue() {
             // we need to get the coupon rate per payment period = c/payment frequency

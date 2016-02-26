@@ -28,8 +28,8 @@ namespace FinanCalc\Calculators {
          * @param TimeSpan $time
          */
         function __construct($principal,
-                             $annualInterestRate,
-                             TimeSpan $time) {
+                                $annualInterestRate,
+                                TimeSpan $time) {
             $this->setPrincipal($principal);
             $this->setAnnualInterestRate($annualInterestRate);
             $this->setTime($time);

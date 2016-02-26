@@ -31,12 +31,12 @@ namespace FinanCalc\Utils {
         }
 
         /**
-         * @param $key
+         * @param string $key
          * @return mixed
          * @throws Exception
          */
-        public static function getConfigField($key){
-            if(empty(static::$configArray)) {
+        public static function getConfigField($key) {
+            if (empty(static::$configArray)) {
                 Config::init();
             }
 
@@ -53,8 +53,8 @@ namespace FinanCalc\Utils {
          * @param $key
          * @param $value
          */
-        public static function setConfigField($key, $value){
-            if(empty(static::$configArray)) {
+        public static function setConfigField($key, $value) {
+            if (empty(static::$configArray)) {
                 Config::init();
             }
 

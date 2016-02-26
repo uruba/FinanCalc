@@ -52,10 +52,10 @@ namespace FinanCalc\Calculators {
          * @param $bondPaymentFrequency
          */
         function __construct($bondFaceValue,
-                             $bondAnnualCouponRate,
-                             $bondAnnualYield,
-                             $bondYearsToMaturity,
-                             $bondPaymentFrequency = 1) {
+                                $bondAnnualCouponRate,
+                                $bondAnnualYield,
+                                $bondYearsToMaturity,
+                                $bondPaymentFrequency = 1) {
             $this->setBondFaceValue($bondFaceValue);
             $this->setBondAnnualCouponRate($bondAnnualCouponRate);
             $this->setBondAnnualYield($bondAnnualYield);
@@ -90,7 +90,7 @@ namespace FinanCalc\Calculators {
         public function getBondNominalCashFlows() {
             // nominal cash flows = coupons each period + face value in the last period
             $numberOfPayments = $this->getBondNoOfPayments();
-            $couponPayment =  $this->getCouponPayment();
+            $couponPayment = $this->getCouponPayment();
 
             $nominalCashFlows = array();
             for ($i = 1; $i <= $numberOfPayments; $i++) {

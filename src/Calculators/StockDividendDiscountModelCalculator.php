@@ -44,9 +44,9 @@ namespace FinanCalc\Calculators {
          * @param null $stockAnnualDividendsGrowth
          */
         function __construct(StockDDMTypes $dividendDiscountModelType,
-                             $stockVIR,
-                             $stockAnnualDividendValue,
-                             $stockAnnualDividendsGrowth = null) {
+                                $stockVIR,
+                                $stockAnnualDividendValue,
+                                $stockAnnualDividendsGrowth = null) {
             $this->setDividendDiscountModelType($dividendDiscountModelType);
             $this->setStockVIR($stockVIR);
             $this->setStockAnnualDividendsValue($stockAnnualDividendValue);
@@ -70,7 +70,7 @@ namespace FinanCalc\Calculators {
         /**
          * @param $stockVIR
          */
-        public function setStockVIR($stockVIR){
+        public function setStockVIR($stockVIR) {
             $this->setProperty("stockVIR", $stockVIR, Lambdas::checkIfPositive());
         }
 

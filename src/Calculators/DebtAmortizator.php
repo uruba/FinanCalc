@@ -57,9 +57,9 @@ namespace FinanCalc\Calculators {
          * @param $debtInterest
          */
         function __construct($debtPrincipal,
-                             $debtNoOfCompoundingPeriods,
-                             TimeSpan $debtPeriodLength,
-                             $debtInterest) {
+                                $debtNoOfCompoundingPeriods,
+                                TimeSpan $debtPeriodLength,
+                                $debtInterest) {
             $this->setDebtPrincipalWithoutRecalculation($debtPrincipal);
             $this->setDebtNoOfCompoundingPeriodsWithoutRecalculation($debtNoOfCompoundingPeriods);
             $this->setDebtPeriodLength($debtPeriodLength);
@@ -131,7 +131,7 @@ namespace FinanCalc\Calculators {
             // storing the debt repayments (i.e., representing the amortization schedule)
             // NOTE: rounding to two decimal places takes place when calculating the interest and principal parts
             // of a single repayment
-            for($i = 1; $i <= $this->debtNoOfCompoundingPeriods; $i++) {
+            for ($i = 1; $i <= $this->debtNoOfCompoundingPeriods; $i++) {
                 $interestAmount = MathFuncs::mul($this->debtInterest, $unpaidBalance);
                 $principalAmount = MathFuncs::sub($this->getDebtSingleRepayment(), $interestAmount);
 

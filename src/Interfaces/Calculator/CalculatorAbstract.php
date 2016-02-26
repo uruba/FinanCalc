@@ -14,9 +14,9 @@ namespace FinanCalc\Interfaces\Calculator {
         protected $propResultArray = null;
 
         /**
-         * @param $name
+         * @param string $name
          * @param $value
-         * @param null $callbackBefore
+         * @param \Closure $callbackBefore
          * @throws Exception
          */
         protected final function setProperty($name, $value, $callbackBefore = null) {
@@ -28,7 +28,7 @@ namespace FinanCalc\Interfaces\Calculator {
                 if (is_object($value) || is_null($value)) {
                     $this->$name = $value;
                 } else {
-                    $this->$name = (string) $value;
+                    $this->$name = (string)$value;
                 }
                 return;
             }
@@ -50,11 +50,11 @@ namespace FinanCalc\Interfaces\Calculator {
                 }
             }
 
-            $processArray = function ($inputArray) use (&$processArray) {
+            $processArray = function($inputArray) use (&$processArray) {
                 $processedArray = array();
                 foreach ($inputArray as $key => $prop) {
                     if (is_string($prop)) {
-                        $propGetter = "get" . ucfirst($prop);
+                        $propGetter = "get".ucfirst($prop);
                         if (method_exists($this, $propGetter)) {
                             $processedArray[is_string($key) ? $key : $prop] = call_user_func(array($this, $propGetter));
                         } else {
