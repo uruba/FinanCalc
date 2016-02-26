@@ -32,7 +32,6 @@ namespace FinanCalc {
     use FinanCalc\Constants\ErrorMessages;
     use FinanCalc\Interfaces\Calculator\CalculatorFactoryAbstract;
     use FinanCalc\Utils\Config;
-    use FinanCalc\Calculators\Factories;
     use ReflectionClass;
     use ReflectionException;
 
@@ -94,10 +93,11 @@ namespace FinanCalc {
          * @throws Exception
          */
         public function getFactory($factoryClassName) {
-            if (array_key_exists($factoryClassName, $this->factoryClasses))
-                return $this->factoryClasses[$factoryClassName];
-            else
-                throw new Exception(ErrorMessages::getFactoryClassNotInitializedMessage($factoryClassName));
+            if (array_key_exists($factoryClassName, $this->factoryClasses)) {
+                            return $this->factoryClasses[$factoryClassName];
+            } else {
+                            throw new Exception(ErrorMessages::getFactoryClassNotInitializedMessage($factoryClassName));
+            }
         }
 
         /**
@@ -114,7 +114,7 @@ namespace FinanCalc {
          */
 
         private function populateFactoryClassesArray() {
-            $factoryFiles = glob(FinanCalc::getPath() . Config::getConfigField('factories_relative_path') . '/*.php');
+            $factoryFiles = glob(FinanCalc::getPath().Config::getConfigField('factories_relative_path').'/*.php');
             $factoriesNamespace = Config::getConfigField('factories_namespace');
 
             foreach ($factoryFiles as $factoryFile) {
@@ -127,7 +127,7 @@ namespace FinanCalc {
                         try {
                             /** @noinspection PhpIncludeInspection */
                             require_once($factoryFile);
-                            $factoryClassReflector = new ReflectionClass($factoriesNamespace . '\\' . $factoryClassName);
+                            $factoryClassReflector = new ReflectionClass($factoriesNamespace.'\\'.$factoryClassName);
                         } catch (ReflectionException $e) {
                             error_log(ErrorMessages::getFactoryClassExpectedInNamespaceMessage($factoryClassName, $factoriesNamespace));
                             continue;

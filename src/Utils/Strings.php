@@ -44,7 +44,7 @@ namespace FinanCalc\Utils {
         }
 
         /**
-         * @param $identifier
+         * @param string $identifier
          * @param $locale
          * @param null $formatArgs
          * @return string
@@ -55,8 +55,7 @@ namespace FinanCalc\Utils {
             $unformattedString = Strings::getString($identifier, $locale);
 
             return is_null($unformattedString) ?
-                null :
-                vsprintf($unformattedString, $formatArgs);
+                null : vsprintf($unformattedString, $formatArgs);
         }
     }
 }

@@ -12,7 +12,7 @@ namespace FinanCalc\Constants {
     {
         /**
          * @param $expectedTypeName [Name of the expected class as a string]
-         * @param $foundTypeName    [Name of the class that was used instead]
+         * @param string $foundTypeName    [Name of the class that was used instead]
          * @return string           [Concatenated message as a string]
          */
         static function getIncompatibleTypesMessage($expectedTypeName, $foundTypeName) {
@@ -63,7 +63,7 @@ namespace FinanCalc\Constants {
 
         /**
          * @param $propertyName [Name of the property as a string]
-         * @param $className    [Name of the class as a string]
+         * @param string $className    [Name of the class as a string]
          * @return string       [Concatenated message as a string]
          */
         static function getNonExistentPropertyMessage($propertyName, $className) {
@@ -103,7 +103,7 @@ namespace FinanCalc\Constants {
 
         /**
          * @param $factoryClassName         [Name of the factory class as a string]
-         * @param $factoryClassAncestorName [Name of the factory class' expected parent class name as a string]
+         * @param string $factoryClassAncestorName [Name of the factory class' expected parent class name as a string]
          * @return string                   [Concatenated message as a string]
          */
         static function getFactoryClassExpectedAncestorMessage($factoryClassName, $factoryClassAncestorName) {
@@ -163,8 +163,8 @@ namespace FinanCalc\Constants {
         }
 
         /**
-         * @param $methodName [Name of the method]
-         * @param $className  [Name of the class]
+         * @param string $methodName [Name of the method]
+         * @param string $className  [Name of the class]
          * @return string     [Concatenated message as a string]
          */
         static function getMethodDoesNotExistMessage($methodName, $className) {
