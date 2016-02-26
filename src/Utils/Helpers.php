@@ -28,7 +28,7 @@ namespace FinanCalc\Utils {
         /**
          * @param $leftOperand
          * @param $rightOperand
-         * @param $messageOnException
+         * @param string $messageOnException
          * @return bool
          */
         static function checkIfLeftOperandGreaterOrThrowAnException($leftOperand, $rightOperand, $messageOnException) {
@@ -64,7 +64,7 @@ namespace FinanCalc\Utils {
         }
 
         /**
-         * @param $checkedVariable
+         * @param null|\FinanCalc\Constants\AnnuityPaymentTypes $checkedVariable
          * @return bool
          */
         static function checkIfNotNull($checkedVariable) {
@@ -105,11 +105,11 @@ namespace FinanCalc\Utils {
 
         /**
          * @param $checkedVariable
-         * @param $expectedResult
+         * @param integer $expectedResult
          * @return bool|null
          */
         static function checkNumberRelativityToZero($checkedVariable, $expectedResult) {
-            if(is_numeric((string)$checkedVariable)) {
+            if (is_numeric((string)$checkedVariable)) {
                 return MathFuncs::comp($checkedVariable, "0.00") == $expectedResult;
             }
 
@@ -117,7 +117,7 @@ namespace FinanCalc\Utils {
         }
 
         /**
-         * @param $inputValue
+         * @param string $inputValue
          * @return string
          */
         static function roundMoneyForDisplay($inputValue) {

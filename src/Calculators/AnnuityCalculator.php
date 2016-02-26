@@ -143,7 +143,7 @@ namespace FinanCalc\Calculators {
         }
 
         /**
-         * @return mixed
+         * @return string
          */
         public function getAnnuityPeriodLengthInDays() {
             return $this->annuityPeriodLength->toDays();

@@ -37,8 +37,8 @@ namespace FinanCalc\Calculators {
          * @param $noOfStocks
          */
         function __construct($totalDividends,
-                             $earningsAfterTaxes,
-                             $noOfStocks) {
+                                $earningsAfterTaxes,
+                                $noOfStocks) {
             $this->setTotalDividends($totalDividends);
             $this->setEarningsAfterTaxes($earningsAfterTaxes);
             $this->setNoOfStocks($noOfStocks);

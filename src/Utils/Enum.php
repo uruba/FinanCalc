@@ -16,7 +16,7 @@ namespace FinanCalc\Utils {
         /**
          * Return string representation of this enum
          *
-         * @return string
+         * @return integer
          */
         public function getValue()
         {
@@ -31,10 +31,11 @@ namespace FinanCalc\Utils {
          */
         public function setValue($value)
         {
-            if ($this->isValidEnumValue($value))
-                $this->value = $value;
-            else
-                throw new Exception(ErrorMessages::getInvalidTypeMessage());
+            if ($this->isValidEnumValue($value)) {
+                            $this->value = $value;
+            } else {
+                            throw new Exception(ErrorMessages::getInvalidTypeMessage());
+            }
         }
 
         /**
@@ -48,7 +49,9 @@ namespace FinanCalc\Utils {
             $reflector = new \ReflectionClass(get_class($this));
             foreach ($reflector->getConstants() as $validValue)
             {
-                if ($validValue == $checkValue) return true;
+                if ($validValue == $checkValue) {
+                    return true;
+                }
             }
             return false;
         }
@@ -71,7 +74,7 @@ namespace FinanCalc\Utils {
          * </code>
          *
          * @param string $property
-         * @return string
+         * @return integer
          */
         function __get($property)
         {
