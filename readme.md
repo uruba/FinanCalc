@@ -5,6 +5,7 @@ A lightweight, simple and easy PHP library for calculating annuities (e.g., mort
 [![Composer package](https://img.shields.io/packagist/v/uruba/financalc.svg)](https://packagist.org/packages/uruba/financalc)
 [![Build Status](https://travis-ci.org/uruba/FinanCalc.svg?branch=master)](https://travis-ci.org/uruba/FinanCalc)
 [![Code Climate](https://codeclimate.com/github/uruba/FinanCalc/badges/gpa.svg)](https://codeclimate.com/github/uruba/FinanCalc)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/uruba/FinanCalc/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/uruba/FinanCalc/?branch=master)
 [![codecov.io](http://codecov.io/github/uruba/FinanCalc/coverage.svg?branch=master)](http://codecov.io/github/uruba/FinanCalc?branch=master)
 
 ## Requirements
