@@ -1,4 +1,4 @@
-#FinanCalc
+# FinanCalc
 
 A lightweight, simple and easy PHP library for calculating annuities (e.g., mortgages) and other financial instruments according to various input data.
 
