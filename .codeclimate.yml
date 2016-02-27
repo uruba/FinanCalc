@@ -1,9 +1,18 @@
 languages:
   PHP: true
 engines:
+  duplication:
+    enabled: true
+    config:
+      languages:
+      - php
+  fixme:
+    enabled: true
   phpmd:
     enabled: true
     config:
       rulesets: "phpmd_ruleset.xml"
+  phpcodesniffer:
+    enabled: true
 exclude_paths:
 - tests/
