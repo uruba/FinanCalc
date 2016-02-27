@@ -61,10 +61,10 @@ namespace FinanCalc {
          * @return FinanCalc
          */
         public static function getInstance() {
-            if (static::$instance === null) {
-                static::$instance = new FinanCalc();
+            if (self::$instance === null) {
+                self::$instance = new FinanCalc();
             }
-            return static::$instance;
+            return self::$instance;
         }
 
         /**
