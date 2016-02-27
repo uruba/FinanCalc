@@ -11,7 +11,7 @@ namespace FinanCalc\Utils {
      * @package FinanCalc\Utils
      */
     class Config {
-        private static $configArray = array();
+        protected static $configArray = array();
 
         /**
          * PRIVATE constructor
