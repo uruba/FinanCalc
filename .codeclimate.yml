@@ -1,9 +1,9 @@
 languages:
-	PHP: true
+  PHP: true
 engines:
-	phpmd:
-		enabled: true
-		config:
-			rulesets: "phpmd_ruleset.xml"
+  phpmd:
+    enabled: true
+    config:
+	  rulesets: "phpmd_ruleset.xml"
 exclude_paths:
 - tests/
