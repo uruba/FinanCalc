@@ -4,6 +4,6 @@ engines:
   phpmd:
     enabled: true
     config:
-	  rulesets: "phpmd_ruleset.xml"
+      rulesets: "phpmd_ruleset.xml"
 exclude_paths:
 - tests/
