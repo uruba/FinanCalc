@@ -14,5 +14,8 @@ engines:
       rulesets: "phpmd_ruleset.xml"
   phpcodesniffer:
     enabled: true
+ratings:
+  paths:
+  - src/**
 exclude_paths:
 - tests/
