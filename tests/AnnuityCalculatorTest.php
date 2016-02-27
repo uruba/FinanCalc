@@ -8,35 +8,41 @@ use FinanCalc\Utils\Time\TimeSpan;
 /**
  * Class AnnuityCalculatorTest
  */
-class AnnuityCalculatorTest extends PHPUnit_Framework_TestCase {
+class AnnuityCalculatorTest extends PHPUnit_Framework_TestCase
+{
     /** @var  AnnuityCalculator */
     private $annuityCalculatorDirectYearly,
-            $annuityCalculatorFactoryYearly,
-            $perpetuityCalculator;
+        $annuityCalculatorFactoryYearly,
+        $perpetuityCalculator;
 
     /**
      * Test the "null" scenario
      * (if annuityPaymentType = null AND the annuity is not a perpetuity -> should return null for the queried annuity value)
      */
-    public function testAnnuityPaymentTypeNull() {
-        $this->assertNull($this->annuityCalculatorDirectYearly->getAnnuityValue(null, new AnnuityValueTypes(AnnuityValueTypes::PRESENT_VALUE)));
+    public function testAnnuityPaymentTypeNull()
+    {
+        $this->assertNull($this->annuityCalculatorDirectYearly->getAnnuityValue(null,
+            new AnnuityValueTypes(AnnuityValueTypes::PRESENT_VALUE)));
     }
 
     /**
      * Test the annuity length
      */
-    public function testAnnuityLengthDirect() {
+    public function testAnnuityLengthDirect()
+    {
         $this->assertLengthAndEndDate($this->annuityCalculatorDirectYearly);
     }
 
-    public function testAnnuityLengthFactory() {
+    public function testAnnuityLengthFactory()
+    {
         $this->assertLengthAndEndDate($this->annuityCalculatorFactoryYearly);
     }
 
     /**
      * @param AnnuityCalculator $annuityCalculator
      */
-    private function assertLengthAndEndDate(AnnuityCalculator $annuityCalculator) {
+    private function assertLengthAndEndDate(AnnuityCalculator $annuityCalculator)
+    {
         $this->assertLengthYears($annuityCalculator);
         $this->assertLengthMonths($annuityCalculator);
         $this->assertLengthDays($annuityCalculator);
@@ -46,28 +52,32 @@ class AnnuityCalculatorTest extends PHPUnit_Framework_TestCase {
     /**
      * @param AnnuityCalculator $annuityCalculator
      */
-    private function assertLengthYears(AnnuityCalculator $annuityCalculator) {
+    private function assertLengthYears(AnnuityCalculator $annuityCalculator)
+    {
         $this->assertEquals(5, $annuityCalculator->getAnnuityLengthInYears());
     }
 
     /**
      * @param AnnuityCalculator $annuityCalculator
      */
-    private function assertLengthMonths(AnnuityCalculator $annuityCalculator) {
+    private function assertLengthMonths(AnnuityCalculator $annuityCalculator)
+    {
         $this->assertEquals(60, $annuityCalculator->getAnnuityLengthInMonths());
     }
 
     /**
      * @param AnnuityCalculator $annuityCalculator
      */
-    private function assertLengthDays(AnnuityCalculator $annuityCalculator) {
+    private function assertLengthDays(AnnuityCalculator $annuityCalculator)
+    {
         $this->assertEquals(1800, $annuityCalculator->getAnnuityLengthInDays());
     }
 
     /**
      * @param AnnuityCalculator $annuityCalculator
      */
-    private function assertEndDate(AnnuityCalculator $annuityCalculator) {
+    private function assertEndDate(AnnuityCalculator $annuityCalculator)
+    {
         $dateStart = new DateTime();
         $dateEnd = clone $dateStart;
         $dateEnd->add(new DateInterval("P" . (int)$annuityCalculator->getAnnuityLengthInDays() . "D"));
@@ -81,11 +91,13 @@ class AnnuityCalculatorTest extends PHPUnit_Framework_TestCase {
     /**
      * Test the PV in arrears
      */
-    public function testPVInArrearsDirect() {
+    public function testPVInArrearsDirect()
+    {
         $this->assertPVInArrears($this->annuityCalculatorDirectYearly);
     }
 
-    public function testPVInArrearsFactory() {
+    public function testPVInArrearsFactory()
+    {
         $this->assertPVInArrears($this->annuityCalculatorFactoryYearly);
     }
 
@@ -93,7 +105,8 @@ class AnnuityCalculatorTest extends PHPUnit_Framework_TestCase {
     /**
      * @param AnnuityCalculator $annuityCalculator
      */
-    private function assertPVInArrears(AnnuityCalculator $annuityCalculator) {
+    private function assertPVInArrears(AnnuityCalculator $annuityCalculator)
+    {
         $PV_direct = $annuityCalculator->getAnnuityPresentValue(
             new AnnuityPaymentTypes(AnnuityPaymentTypes::IN_ARREARS)
         );
@@ -109,11 +122,13 @@ class AnnuityCalculatorTest extends PHPUnit_Framework_TestCase {
     /**
      * Test the FV in arrears
      */
-    public function testFVInArrearsDirect() {
+    public function testFVInArrearsDirect()
+    {
         $this->assertFVInArrears($this->annuityCalculatorDirectYearly);
     }
 
-    public function testFVInArrearsFactory() {
+    public function testFVInArrearsFactory()
+    {
         $this->assertFVInArrears($this->annuityCalculatorFactoryYearly);
     }
 
@@ -121,7 +136,8 @@ class AnnuityCalculatorTest extends PHPUnit_Framework_TestCase {
     /**
      * @param AnnuityCalculator $annuityCalculator
      */
-    private function assertFVInArrears(AnnuityCalculator $annuityCalculator) {
+    private function assertFVInArrears(AnnuityCalculator $annuityCalculator)
+    {
         $FV_direct = $annuityCalculator->getAnnuityFutureValue(
             new AnnuityPaymentTypes(AnnuityPaymentTypes::IN_ARREARS)
         );
@@ -137,11 +153,13 @@ class AnnuityCalculatorTest extends PHPUnit_Framework_TestCase {
     /**
      * Test the PV in advance
      */
-    public function testPVInAdvanceDirect() {
+    public function testPVInAdvanceDirect()
+    {
         $this->assertPVInAdvance($this->annuityCalculatorDirectYearly);
     }
 
-    public function testPVInAdvanceFactory() {
+    public function testPVInAdvanceFactory()
+    {
         $this->assertPVInAdvance($this->annuityCalculatorFactoryYearly);
     }
 
@@ -149,7 +167,8 @@ class AnnuityCalculatorTest extends PHPUnit_Framework_TestCase {
     /**
      * @param AnnuityCalculator $annuityCalculator
      */
-    private function assertPVInAdvance(AnnuityCalculator $annuityCalculator) {
+    private function assertPVInAdvance(AnnuityCalculator $annuityCalculator)
+    {
         $PV_direct = $annuityCalculator->getAnnuityPresentValue(
             new AnnuityPaymentTypes(AnnuityPaymentTypes::IN_ADVANCE)
         );
@@ -165,11 +184,13 @@ class AnnuityCalculatorTest extends PHPUnit_Framework_TestCase {
     /**
      * Test the FV in advance
      */
-    public function testFVInAdvanceDirect() {
+    public function testFVInAdvanceDirect()
+    {
         $this->assertFVInAdvance($this->annuityCalculatorDirectYearly);
     }
 
-    public function testFVInAdvanceFactory() {
+    public function testFVInAdvanceFactory()
+    {
         $this->assertFVInAdvance($this->annuityCalculatorFactoryYearly);
     }
 
@@ -177,7 +198,8 @@ class AnnuityCalculatorTest extends PHPUnit_Framework_TestCase {
     /**
      * @param AnnuityCalculator $annuityCalculator
      */
-    private function assertFVInAdvance(AnnuityCalculator $annuityCalculator) {
+    private function assertFVInAdvance(AnnuityCalculator $annuityCalculator)
+    {
         $FV_direct = $annuityCalculator->getAnnuityFutureValue(
             new AnnuityPaymentTypes(AnnuityPaymentTypes::IN_ADVANCE)
         );
@@ -193,7 +215,8 @@ class AnnuityCalculatorTest extends PHPUnit_Framework_TestCase {
     /**
      * Test perpetuity
      */
-    public function testPVPerpetuity() {
+    public function testPVPerpetuity()
+    {
         $PV_direct = $this->perpetuityCalculator->getAnnuityPresentValue();
 
         $PV_array_advance = $this->perpetuityCalculator->getResultAsArray()["annuityPresentValue"]["in_advance"];
@@ -205,7 +228,8 @@ class AnnuityCalculatorTest extends PHPUnit_Framework_TestCase {
         $this->assertEquals($expected, $PV_array_arrears);
     }
 
-    public function testFVPerpetuity() {
+    public function testFVPerpetuity()
+    {
         $FV_direct = $this->perpetuityCalculator->getAnnuityFutureValue();
 
         $FV_array_advance = $this->perpetuityCalculator->getResultAsArray()["annuityFutureValue"]["in_advance"];
@@ -219,7 +243,8 @@ class AnnuityCalculatorTest extends PHPUnit_Framework_TestCase {
     /**
      * Test monthly annuity factory
      */
-    public function testMonthlyAnnuityFactory() {
+    public function testMonthlyAnnuityFactory()
+    {
         $annuityCalculatorFactoryMonthly = $this->newAnnuityCalculatorFactoryMonthly();
 
         $this->assertFVInAdvance(
@@ -239,7 +264,7 @@ class AnnuityCalculatorTest extends PHPUnit_Framework_TestCase {
         );
 
         $this->assertEquals(
-            TimeSpan::asDuration(0,1,0),
+            TimeSpan::asDuration(0, 1, 0),
             $annuityCalculatorFactoryMonthly
                 ->getAnnuityPeriodLength()
         );
@@ -255,7 +280,8 @@ class AnnuityCalculatorTest extends PHPUnit_Framework_TestCase {
      * @return mixed
      * @throws Exception
      */
-    private function newAnnuityCalculatorFactoryMonthly() {
+    private function newAnnuityCalculatorFactoryMonthly()
+    {
         return \FinanCalc\FinanCalc
             ::getInstance()
             ->getFactory('AnnuityCalculatorFactory')
@@ -265,7 +291,8 @@ class AnnuityCalculatorTest extends PHPUnit_Framework_TestCase {
     /**
      * Test daily annuity factory
      */
-    public function testDailyAnnuityFactory() {
+    public function testDailyAnnuityFactory()
+    {
         $annuityCalculatorFactoryDaily = $this->newAnnuityCalculatorFactoryDaily();
 
         $this->assertFVInAdvance(
@@ -285,7 +312,7 @@ class AnnuityCalculatorTest extends PHPUnit_Framework_TestCase {
         );
 
         $this->assertEquals(
-            TimeSpan::asDuration(0,0,1),
+            TimeSpan::asDuration(0, 0, 1),
             $annuityCalculatorFactoryDaily
                 ->getAnnuityPeriodLength()
         );
@@ -297,7 +324,8 @@ class AnnuityCalculatorTest extends PHPUnit_Framework_TestCase {
         );
     }
 
-    public function testAnnuityToPerpetuity() {
+    public function testAnnuityToPerpetuity()
+    {
         $annuityCalculatorYearly = $this->newAnnuityCalculatorFactoryYearly();
         $annuityCalculatorPerpetuity = $this->newPerpetuity();
 
@@ -311,9 +339,11 @@ class AnnuityCalculatorTest extends PHPUnit_Framework_TestCase {
     /**
      * Test presence in the main Factories array
      */
-    public function testPresenceInMainFactoriesArray() {
+    public function testPresenceInMainFactoriesArray()
+    {
         $this->assertTrue(
-            isObjectTypeInArray('FinanCalc\\Calculators\\Factories\\AnnuityCalculatorFactory', \FinanCalc\FinanCalc::getInstance()->getFactories())
+            isObjectTypeInArray('FinanCalc\\Calculators\\Factories\\AnnuityCalculatorFactory',
+                \FinanCalc\FinanCalc::getInstance()->getFactories())
         );
     }
 
@@ -321,7 +351,8 @@ class AnnuityCalculatorTest extends PHPUnit_Framework_TestCase {
      * @return mixed
      * @throws Exception
      */
-    private function newAnnuityCalculatorFactoryDaily() {
+    private function newAnnuityCalculatorFactoryDaily()
+    {
         return \FinanCalc\FinanCalc
             ::getInstance()
             ->getFactory('AnnuityCalculatorFactory')
@@ -331,7 +362,8 @@ class AnnuityCalculatorTest extends PHPUnit_Framework_TestCase {
     /**
      * @return \FinanCalc\Calculators\AnnuityCalculator
      */
-    private function newAnnuityCalculatorDirectYearly() {
+    private function newAnnuityCalculatorDirectYearly()
+    {
         return new AnnuityCalculator(100000, 5, TimeSpan::asDuration(1), 0.15);
     }
 
@@ -339,7 +371,8 @@ class AnnuityCalculatorTest extends PHPUnit_Framework_TestCase {
      * @return \FinanCalc\Calculators\AnnuityCalculator
      * @throws Exception
      */
-    private function newAnnuityCalculatorFactoryYearly() {
+    private function newAnnuityCalculatorFactoryYearly()
+    {
         return \FinanCalc\FinanCalc
             ::getInstance()
             ->getFactory('AnnuityCalculatorFactory')
@@ -350,14 +383,16 @@ class AnnuityCalculatorTest extends PHPUnit_Framework_TestCase {
      * @return \FinanCalc\Calculators\AnnuityCalculator
      * @throws Exception
      */
-    private function newPerpetuity() {
+    private function newPerpetuity()
+    {
         return \FinanCalc\FinanCalc
             ::getInstance()
             ->getFactory('AnnuityCalculatorFactory')
             ->newPerpetuity(50, 0.08);
     }
 
-    protected function setUp() {
+    protected function setUp()
+    {
         $this->annuityCalculatorDirectYearly = $this->newAnnuityCalculatorDirectYearly();
         $this->annuityCalculatorFactoryYearly = $this->newAnnuityCalculatorFactoryYearly();
         $this->perpetuityCalculator = $this->newPerpetuity();

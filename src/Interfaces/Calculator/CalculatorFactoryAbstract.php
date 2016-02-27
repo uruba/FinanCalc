@@ -10,13 +10,15 @@ namespace FinanCalc\Interfaces\Calculator {
      * Class CalculatorFactoryAbstract
      * @package FinanCalc\Interfaces
      */
-    abstract class CalculatorFactoryAbstract {
+    abstract class CalculatorFactoryAbstract
+    {
         const MANUFACTURED_CLASS_NAME = null;
 
         /**
          * @throws Exception
          */
-        public final function __construct() {
+        public final function __construct()
+        {
             if (!is_string(static::MANUFACTURED_CLASS_NAME)) {
                 throw new Exception(ErrorMessages::getMustDefineManufacturedClassNameMessage());
             }
@@ -30,7 +32,8 @@ namespace FinanCalc\Interfaces\Calculator {
          * @param array $args
          * @return CalculatorAbstract
          */
-        protected final function manufactureInstance(array $args) {
+        protected final function manufactureInstance(array $args)
+        {
             $manufacturedClass = new ReflectionClass(static::MANUFACTURED_CLASS_NAME);
             return $manufacturedClass->newInstanceArgs($args);
         }

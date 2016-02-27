@@ -6,7 +6,8 @@ namespace FinanCalc\Interfaces\Serializer {
      * Interface SerializerInterface
      * @package FinanCalc\Interfaces\Serializer
      */
-    interface SerializerInterface {
+    interface SerializerInterface
+    {
 
         /**
          * @param array $inputArray

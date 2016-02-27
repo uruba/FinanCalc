@@ -9,7 +9,8 @@ namespace FinanCalc\Interfaces\Calculator {
      * Class BondInstanceAbstract
      * @package FinanCalc\Interfaces
      */
-    abstract class BondCalculatorAbstract extends CalculatorAbstract {
+    abstract class BondCalculatorAbstract extends CalculatorAbstract
+    {
         // face value of the bond = 'F'
         protected $bondFaceValue;
         // coupon rate of the bond per annum = 'c'
@@ -23,7 +24,8 @@ namespace FinanCalc\Interfaces\Calculator {
         /**
          * @param $bondFaceValue
          */
-        public function setBondFaceValue($bondFaceValue) {
+        public function setBondFaceValue($bondFaceValue)
+        {
             if (Helpers::checkIfPositiveNumberOrThrowAnException($bondFaceValue)) {
                 $this->setProperty("bondFaceValue", $bondFaceValue);
             }
@@ -32,7 +34,8 @@ namespace FinanCalc\Interfaces\Calculator {
         /**
          * @param $bondAnnualCouponRate
          */
-        public function setBondAnnualCouponRate($bondAnnualCouponRate) {
+        public function setBondAnnualCouponRate($bondAnnualCouponRate)
+        {
             if (Helpers::checkIfPositiveNumberOrThrowAnException($bondAnnualCouponRate)) {
                 $this->setProperty("bondAnnualCouponRate", $bondAnnualCouponRate);
             }
@@ -41,7 +44,8 @@ namespace FinanCalc\Interfaces\Calculator {
         /**
          * @param $bondYearsToMaturity
          */
-        public function setBondYearsToMaturity($bondYearsToMaturity) {
+        public function setBondYearsToMaturity($bondYearsToMaturity)
+        {
             if (Helpers::checkIfPositiveNumberOrThrowAnException($bondYearsToMaturity)) {
                 $this->setProperty("bondYearsToMaturity", $bondYearsToMaturity);
             }
@@ -50,7 +54,8 @@ namespace FinanCalc\Interfaces\Calculator {
         /**
          * @param $bondPaymentFrequency
          */
-        public function setBondPaymentFrequency($bondPaymentFrequency) {
+        public function setBondPaymentFrequency($bondPaymentFrequency)
+        {
             if (Helpers::checkIfPositiveNumberOrThrowAnException($bondPaymentFrequency)) {
                 $this->setProperty("bondPaymentFrequency", $bondPaymentFrequency);
             }
@@ -59,42 +64,48 @@ namespace FinanCalc\Interfaces\Calculator {
         /**
          * @return mixed
          */
-        public function getBondFaceValue() {
+        public function getBondFaceValue()
+        {
             return $this->bondFaceValue;
         }
 
         /**
          * @return mixed
          */
-        public function getBondAnnualCouponRate() {
+        public function getBondAnnualCouponRate()
+        {
             return $this->bondAnnualCouponRate;
         }
 
         /**
          * @return mixed
          */
-        public function getBondYearsToMaturity() {
+        public function getBondYearsToMaturity()
+        {
             return $this->bondYearsToMaturity;
         }
 
         /**
          * @return mixed
          */
-        public function getBondPaymentFrequency() {
+        public function getBondPaymentFrequency()
+        {
             return $this->bondPaymentFrequency;
         }
 
         /**
          * @return float
          */
-        public function getCouponPayment() {
+        public function getCouponPayment()
+        {
             return ($this->bondAnnualCouponRate / $this->bondPaymentFrequency) * $this->bondFaceValue;
         }
 
         /**
          * @return int
          */
-        public function getBondNoOfPayments() {
+        public function getBondNoOfPayments()
+        {
             // number of payments during the duration of the bond (up to the moment of its maturity)
             // is calculated from the number of years of the duration of the bond
             // multiplied by the number of payments per year (i.e., payment frequency)

@@ -15,10 +15,11 @@ class SerializersTest extends PHPUnit_Framework_TestCase
     // the example is the same as in the DebtAmortizatorTest
     private $debtAmortizatorFactory;
 
-    public function testXMLSerializer() {
+    public function testXMLSerializer()
+    {
         $xml_output = $this
-                        ->debtAmortizatorFactory
-                        ->getSerializedResult(new XMLSerializer());
+            ->debtAmortizatorFactory
+            ->getSerializedResult(new XMLSerializer());
 
         $xmlObject = new SimpleXMLElement($xml_output);
 
@@ -156,10 +157,11 @@ class SerializersTest extends PHPUnit_Framework_TestCase
         );
     }
 
-    public function testJSONSerializer() {
+    public function testJSONSerializer()
+    {
         $json_output = $this
-                        ->debtAmortizatorFactory
-                        ->getSerializedResult(new JSONSerializer());
+            ->debtAmortizatorFactory
+            ->getSerializedResult(new JSONSerializer());
 
         $jsonObject = json_decode($json_output, true);
 
@@ -301,11 +303,13 @@ class SerializersTest extends PHPUnit_Framework_TestCase
      * @param $roundedObject
      * @return float
      */
-    private function round2DP($roundedObject) {
+    private function round2DP($roundedObject)
+    {
         return round((float)$roundedObject, 2);
     }
 
-    protected function setUp() {
+    protected function setUp()
+    {
         $this->debtAmortizatorFactory = FinanCalc
             ::getInstance()
             ->getFactory('DebtAmortizatorFactory')

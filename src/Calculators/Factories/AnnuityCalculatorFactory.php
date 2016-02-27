@@ -1,6 +1,7 @@
 <?php
 
 namespace FinanCalc\Calculators\Factories {
+
     use FinanCalc\Calculators\AnnuityCalculator;
     use FinanCalc\Interfaces\Calculator\CalculatorFactoryAbstract;
     use FinanCalc\Utils\Time\TimeSpan;
@@ -9,7 +10,8 @@ namespace FinanCalc\Calculators\Factories {
      * Class AnnuityCalculatorFactory
      * @package FinanCalc\Calculators\Factories
      */
-    class AnnuityCalculatorFactory extends CalculatorFactoryAbstract {
+    class AnnuityCalculatorFactory extends CalculatorFactoryAbstract
+    {
         const MANUFACTURED_CLASS_NAME = 'FinanCalc\\Calculators\\AnnuityCalculator';
 
         /**
@@ -18,7 +20,8 @@ namespace FinanCalc\Calculators\Factories {
          * @param $annuityInterest
          * @return AnnuityCalculator
          */
-        public function newYearlyAnnuity($annuitySinglePaymentAmount, $annuityNoOfCompoundingPeriods, $annuityInterest) {
+        public function newYearlyAnnuity($annuitySinglePaymentAmount, $annuityNoOfCompoundingPeriods, $annuityInterest)
+        {
             return $this->manufactureInstance(
                 [
                     $annuitySinglePaymentAmount,
@@ -35,7 +38,8 @@ namespace FinanCalc\Calculators\Factories {
          * @param $annuityInterest
          * @return AnnuityCalculator
          */
-        public function newMonthlyAnnuity($annuitySinglePaymentAmount, $annuityNoOfCompoundingPeriods, $annuityInterest) {
+        public function newMonthlyAnnuity($annuitySinglePaymentAmount, $annuityNoOfCompoundingPeriods, $annuityInterest)
+        {
             return $this->manufactureInstance(
                 [
                     $annuitySinglePaymentAmount,
@@ -52,7 +56,8 @@ namespace FinanCalc\Calculators\Factories {
          * @param $annuityInterest
          * @return AnnuityCalculator
          */
-        public function newDailyAnnuity($annuitySinglePaymentAmount, $annuityNoOfCompoundingPeriods, $annuityInterest) {
+        public function newDailyAnnuity($annuitySinglePaymentAmount, $annuityNoOfCompoundingPeriods, $annuityInterest)
+        {
             return $this->manufactureInstance(
                 [
                     $annuitySinglePaymentAmount,
@@ -68,7 +73,8 @@ namespace FinanCalc\Calculators\Factories {
          * @param $annuityInterest
          * @return AnnuityCalculator
          */
-        public function newPerpetuity($annuitySinglePaymentAmount, $annuityInterest) {
+        public function newPerpetuity($annuitySinglePaymentAmount, $annuityInterest)
+        {
             return $this->manufactureInstance(
                 [
                     $annuitySinglePaymentAmount,

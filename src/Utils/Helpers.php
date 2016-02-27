@@ -1,6 +1,7 @@
 <?php
 
 namespace FinanCalc\Utils {
+
     use Exception;
     use FinanCalc\Constants\Defaults;
     use FinanCalc\Constants\ErrorMessages;
@@ -10,19 +11,22 @@ namespace FinanCalc\Utils {
      * Class Helpers
      * @package FinanCalc\Utils
      */
-    class Helpers {
+    class Helpers
+    {
         /**
          * @param $checkedVariable
          * @param $nameOfTheExpectedClass
          * @return bool
          * @throws Exception
          */
-        static function checkIfInstanceOfAClassOrThrowAnException($checkedVariable, $nameOfTheExpectedClass) {
+        static function checkIfInstanceOfAClassOrThrowAnException($checkedVariable, $nameOfTheExpectedClass)
+        {
             if (is_a($checkedVariable, $nameOfTheExpectedClass)) {
                 return true;
             }
 
-            throw new InvalidArgumentException(ErrorMessages::getIncompatibleTypesMessage($nameOfTheExpectedClass, get_class($checkedVariable)));
+            throw new InvalidArgumentException(ErrorMessages::getIncompatibleTypesMessage($nameOfTheExpectedClass,
+                get_class($checkedVariable)));
         }
 
         /**
@@ -31,7 +35,8 @@ namespace FinanCalc\Utils {
          * @param string $messageOnException
          * @return bool
          */
-        static function checkIfLeftOperandGreaterOrThrowAnException($leftOperand, $rightOperand, $messageOnException) {
+        static function checkIfLeftOperandGreaterOrThrowAnException($leftOperand, $rightOperand, $messageOnException)
+        {
             if (MathFuncs::comp($leftOperand, $rightOperand) === 1) {
                 return true;
             }
@@ -43,7 +48,8 @@ namespace FinanCalc\Utils {
          * @param $checkedVariable
          * @return bool
          */
-        static function checkIfPositiveNumberOrThrowAnException($checkedVariable) {
+        static function checkIfPositiveNumberOrThrowAnException($checkedVariable)
+        {
             if (Helpers::checkIfPositiveNumber($checkedVariable)) {
                 return true;
             }
@@ -55,7 +61,8 @@ namespace FinanCalc\Utils {
          * @param $checkedVariable
          * @return bool
          */
-        static function checkIfNotNegativeNumberOrThrowAnException($checkedVariable) {
+        static function checkIfNotNegativeNumberOrThrowAnException($checkedVariable)
+        {
             if (Helpers::checkIfNotNegativeNumber($checkedVariable)) {
                 return true;
             }
@@ -67,7 +74,8 @@ namespace FinanCalc\Utils {
          * @param null|\FinanCalc\Constants\AnnuityPaymentTypes $checkedVariable
          * @return bool
          */
-        static function checkIfNotNull($checkedVariable) {
+        static function checkIfNotNull($checkedVariable)
+        {
             return $checkedVariable !== null;
         }
 
@@ -75,7 +83,8 @@ namespace FinanCalc\Utils {
          * @param $checkedVariable
          * @return bool|null
          */
-        static function checkIfPositiveNumber($checkedVariable) {
+        static function checkIfPositiveNumber($checkedVariable)
+        {
             return Helpers::checkNumberRelativityToZero($checkedVariable, 1);
         }
 
@@ -83,7 +92,8 @@ namespace FinanCalc\Utils {
          * @param $checkedVariable
          * @return bool|null
          */
-        static function checkIfZero($checkedVariable) {
+        static function checkIfZero($checkedVariable)
+        {
             return Helpers::checkNumberRelativityToZero($checkedVariable, 0);
         }
 
@@ -91,7 +101,8 @@ namespace FinanCalc\Utils {
          * @param $checkedVariable
          * @return bool
          */
-        static function checkIfNotNegativeNumber($checkedVariable) {
+        static function checkIfNotNegativeNumber($checkedVariable)
+        {
             return Helpers::checkIfPositiveNumber($checkedVariable) || Helpers::checkIfZero($checkedVariable);
         }
 
@@ -99,7 +110,8 @@ namespace FinanCalc\Utils {
          * @param $checkedVariable
          * @return bool|null
          */
-        static function checkIfNegativeNumber($checkedVariable) {
+        static function checkIfNegativeNumber($checkedVariable)
+        {
             return Helpers::checkNumberRelativityToZero($checkedVariable, -1);
         }
 
@@ -108,7 +120,8 @@ namespace FinanCalc\Utils {
          * @param integer $expectedResult
          * @return bool|null
          */
-        static function checkNumberRelativityToZero($checkedVariable, $expectedResult) {
+        static function checkNumberRelativityToZero($checkedVariable, $expectedResult)
+        {
             if (is_numeric((string)$checkedVariable)) {
                 return MathFuncs::comp($checkedVariable, "0.00") == $expectedResult;
             }
@@ -120,7 +133,8 @@ namespace FinanCalc\Utils {
          * @param string $inputValue
          * @return string
          */
-        static function roundMoneyForDisplay($inputValue) {
+        static function roundMoneyForDisplay($inputValue)
+        {
             return (string)round($inputValue, Defaults::MONEY_DECIMAL_PLACES_DISPLAY);
         }
 

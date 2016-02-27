@@ -7,16 +7,19 @@ use FinanCalc\Utils\Strings;
  */
 class StringTest extends PHPUnit_Framework_TestCase
 {
-    public function testNonExistentLocale() {
+    public function testNonExistentLocale()
+    {
         $this->assertNull(Strings::getString('message_incompatible_types', 'non_existent_locale'));
     }
 
-    public function testNonExistentIdentifier() {
+    public function testNonExistentIdentifier()
+    {
         $this->assertNull(Strings::getString('non_existent_identifier'));
         $this->assertNull(Strings::getFormattedString('non_existent_identifier', null));
     }
 
-    public function testGetString() {
+    public function testGetString()
+    {
         $this->assertEquals(
             'The value has to be of the type %s, but currently is of the type %s instead.',
             Strings::getString('message_incompatible_types')

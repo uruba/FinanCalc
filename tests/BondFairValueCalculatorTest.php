@@ -5,19 +5,35 @@ use FinanCalc\Calculators\BondFairValueCalculator;
 /**
  * Class BondFairValueCalculatorTest
  */
-class BondFairValueCalculatorTest extends PHPUnit_Framework_TestCase {
+class BondFairValueCalculatorTest extends PHPUnit_Framework_TestCase
+{
     private $bondFairValueCalculatorDirectSemiAnnually,
-            $bondFairValueCalculatorFactorySemiAnnually;
+        $bondFairValueCalculatorFactorySemiAnnually;
 
-    public function testFairValueDirectSemiAnnually() {
+    public function testFairValueDirectSemiAnnually()
+    {
         $this->assertFairValue($this->bondFairValueCalculatorDirectSemiAnnually);
     }
 
-    public function testFairValueFactorySemiAnnually() {
-        $this->assertFairValue($this->bondFairValueCalculatorFactorySemiAnnually);
+    /**
+     * @param BondFairValueCalculator $bondFairValueCalculator
+     */
+    private function assertFairValue(BondFairValueCalculator $bondFairValueCalculator)
+    {
+        $fairValue_direct = $bondFairValueCalculator->getBondFairValue();
+        $fairValue_array = $bondFairValueCalculator->getResultAsArray()["bondFairValue"];
+
+        $expected = "11038";
+        $this->assertEquals($expected, round($fairValue_direct, 0));
+        $this->assertEquals($expected, round($fairValue_array, 0));
     }
 
     /** Test other factory methods */
+
+    public function testFairValueFactorySemiAnnually()
+    {
+        $this->assertFairValue($this->bondFairValueCalculatorFactorySemiAnnually);
+    }
 
     /**
      * Test annual coupons bond factory
@@ -25,7 +41,8 @@ class BondFairValueCalculatorTest extends PHPUnit_Framework_TestCase {
      * we need to halve the 'annual coupon rate' and 'VIR' values
      * and double the 'years to maturity')
      */
-    public function testFairValueFactoryAnnually() {
+    public function testFairValueFactoryAnnually()
+    {
         $this->assertFairValue(\FinanCalc\FinanCalc
             ::getInstance()
             ->getFactory('BondFairValueCalculatorFactory')
@@ -38,7 +55,8 @@ class BondFairValueCalculatorTest extends PHPUnit_Framework_TestCase {
      * we need to double the 'annual coupon rate' and 'VIR' values
      * and halve the 'years to maturity')
      */
-    public function testFairValueFactoryQuarterly() {
+    public function testFairValueFactoryQuarterly()
+    {
         $this->assertFairValue(\FinanCalc\FinanCalc
             ::getInstance()
             ->getFactory('BondFairValueCalculatorFactory')
@@ -51,7 +69,8 @@ class BondFairValueCalculatorTest extends PHPUnit_Framework_TestCase {
      * we need to sextuple the 'annual coupon rate' and 'VIR' values
      * and divide the 'years to maturity' by six)
      */
-    public function testFairValueFactoryMonthly() {
+    public function testFairValueFactoryMonthly()
+    {
         $this->assertFairValue(\FinanCalc\FinanCalc
             ::getInstance()
             ->getFactory('BondFairValueCalculatorFactory')
@@ -64,39 +83,38 @@ class BondFairValueCalculatorTest extends PHPUnit_Framework_TestCase {
      * but manufactured by the custom bond coupon frequency
      * factory
      */
-    public function testFairValueFactoryCustom() {
+    public function testFairValueFactoryCustom()
+    {
         $this->assertFairValue(\FinanCalc\FinanCalc
             ::getInstance()
             ->getFactory('BondFairValueCalculatorFactory')
             ->newCustomCouponFrequencyBond(10000, 0.12, 0.1, 7.5, 2));
     }
 
-
-    /**
-     * @param BondFairValueCalculator $bondFairValueCalculator
-     */
-    private function assertFairValue(BondFairValueCalculator $bondFairValueCalculator) {
-        $fairValue_direct = $bondFairValueCalculator->getBondFairValue();
-        $fairValue_array = $bondFairValueCalculator->getResultAsArray()["bondFairValue"];
-
-        $expected = "11038";
-        $this->assertEquals($expected, round($fairValue_direct, 0));
-        $this->assertEquals($expected, round($fairValue_array, 0));
-    }
-
     /**
      * Test presence in the main Factories array
      */
-    public function testPresenceInMainFactoriesArray() {
+    public function testPresenceInMainFactoriesArray()
+    {
         $this->assertTrue(
-            isObjectTypeInArray('FinanCalc\\Calculators\\Factories\\BondFairvalueCalculatorFactory', \FinanCalc\FinanCalc::getInstance()->getFactories())
+            isObjectTypeInArray('FinanCalc\\Calculators\\Factories\\BondFairvalueCalculatorFactory',
+                \FinanCalc\FinanCalc::getInstance()->getFactories())
         );
+    }
+
+    protected function setUp()
+    {
+        $this->bondFairValueCalculatorDirectSemiAnnually = $this->newBondFairValueCalculatorDirectSemiAnnually();
+        $this->bondFairValueCalculatorFactorySemiAnnually = $this->newBondFairValueCalculatorFactorySemiAnnually();
+
+        parent::setUp();
     }
 
     /**
      * @return BondFairValueCalculator
      */
-    private function newBondFairValueCalculatorDirectSemiAnnually() {
+    private function newBondFairValueCalculatorDirectSemiAnnually()
+    {
         return new BondFairValueCalculator(10000, 0.12, 0.1, 7.5, 2);
     }
 
@@ -104,17 +122,11 @@ class BondFairValueCalculatorTest extends PHPUnit_Framework_TestCase {
      * @return mixed
      * @throws Exception
      */
-    private function newBondFairValueCalculatorFactorySemiAnnually() {
+    private function newBondFairValueCalculatorFactorySemiAnnually()
+    {
         return \FinanCalc\FinanCalc
             ::getInstance()
             ->getFactory('BondFairValueCalculatorFactory')
             ->newSemiAnnualCouponsBond(10000, 0.12, 0.1, 7.5);
-    }
-
-    protected function setUp() {
-        $this->bondFairValueCalculatorDirectSemiAnnually = $this->newBondFairValueCalculatorDirectSemiAnnually();
-        $this->bondFairValueCalculatorFactorySemiAnnually = $this->newBondFairValueCalculatorFactorySemiAnnually();
-
-        parent::setUp();
     }
 }

@@ -12,14 +12,16 @@ namespace FinanCalc\Utils\Time {
      * Class TimeUtils
      * @package FinanCalc\Utils
      */
-    class TimeUtils {
+    class TimeUtils
+    {
 
         /**
          * @param $numberOfDays
          * @return string
          * @throws Exception
          */
-        public static function getYearsFromDays($numberOfDays) {
+        public static function getYearsFromDays($numberOfDays)
+        {
             return MathFuncs::div(
                 $numberOfDays,
                 self::getCurrentDayCountConvention()['days_in_a_year']
@@ -30,7 +32,8 @@ namespace FinanCalc\Utils\Time {
          * @param $numberOfMonths
          * @return string
          */
-        public static function getYearsFromMonths($numberOfMonths) {
+        public static function getYearsFromMonths($numberOfMonths)
+        {
             return MathFuncs::div(
                 $numberOfMonths,
                 12
@@ -41,7 +44,8 @@ namespace FinanCalc\Utils\Time {
          * @param $numberOfYears
          * @return string
          */
-        public static function getYearsFromYears($numberOfYears) {
+        public static function getYearsFromYears($numberOfYears)
+        {
             return MathFuncs::div(
                 $numberOfYears,
                 1
@@ -53,7 +57,8 @@ namespace FinanCalc\Utils\Time {
          * @return string
          * @throws Exception
          */
-        public static function getMonthsFromDays($numberOfDays) {
+        public static function getMonthsFromDays($numberOfDays)
+        {
             return MathFuncs::div(
                 $numberOfDays,
                 self::getCurrentDayCountConvention()['days_in_a_month']
@@ -64,7 +69,8 @@ namespace FinanCalc\Utils\Time {
          * @param $numberOfMonths
          * @return string
          */
-        public static function getMonthsFromMonths($numberOfMonths) {
+        public static function getMonthsFromMonths($numberOfMonths)
+        {
             return MathFuncs::div(
                 $numberOfMonths,
                 1
@@ -75,7 +81,8 @@ namespace FinanCalc\Utils\Time {
          * @param $numberOfYears
          * @return string
          */
-        public static function getMonthsFromYears($numberOfYears) {
+        public static function getMonthsFromYears($numberOfYears)
+        {
             return MathFuncs::mul(
                 $numberOfYears,
                 12
@@ -86,7 +93,8 @@ namespace FinanCalc\Utils\Time {
          * @param $numberOfDays
          * @return string
          */
-        public static function getDaysFromDays($numberOfDays) {
+        public static function getDaysFromDays($numberOfDays)
+        {
             return MathFuncs::div(
                 $numberOfDays,
                 1
@@ -98,7 +106,8 @@ namespace FinanCalc\Utils\Time {
          * @return string
          * @throws Exception
          */
-        public static function getDaysFromMonths($numberOfMonths) {
+        public static function getDaysFromMonths($numberOfMonths)
+        {
             return MathFuncs::mul(
                 $numberOfMonths,
                 self::getCurrentDayCountConvention()['days_in_a_month']
@@ -110,7 +119,8 @@ namespace FinanCalc\Utils\Time {
          * @return string
          * @throws Exception
          */
-        public static function getDaysFromYears($numberOfYears) {
+        public static function getDaysFromYears($numberOfYears)
+        {
             return MathFuncs::mul(
                 $numberOfYears,
                 self::getCurrentDayCountConvention()['days_in_a_year']
@@ -121,7 +131,8 @@ namespace FinanCalc\Utils\Time {
          * @return mixed
          * @throws Exception
          */
-        public static function getCurrentDayCountConvention() {
+        public static function getCurrentDayCountConvention()
+        {
             $dayCountConventionIdentifier = Config::getConfigField('day_count_convention');
             $availableDayCountConventions = Config::getConfigField('available_day_count_conventions');
 
@@ -143,7 +154,8 @@ namespace FinanCalc\Utils\Time {
          * @param $dayCountConvention
          * @return bool
          */
-        public static function isDayCountConventionValid($dayCountConvention) {
+        public static function isDayCountConventionValid($dayCountConvention)
+        {
             if (is_array($dayCountConvention)) {
                 $dayCountConventionField = $dayCountConvention['days_in_a_year'];
                 if (!is_string($dayCountConventionField) || !ctype_digit($dayCountConventionField)) {

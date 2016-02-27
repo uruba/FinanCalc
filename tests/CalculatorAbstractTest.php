@@ -11,7 +11,8 @@ class CalculatorAbstractTest extends PHPUnit_Framework_TestCase
     /** @var  TestCalculator */
     private $testCalculator;
 
-    public function testExistentProperty() {
+    public function testExistentProperty()
+    {
         $this->assertNull($this->testCalculator->getExistentProperty());
 
         $this->testCalculator->setExistentProperty();
@@ -19,13 +20,16 @@ class CalculatorAbstractTest extends PHPUnit_Framework_TestCase
         $this->assertEquals("some value", $this->testCalculator->getExistentProperty());
     }
 
-    public function testNonExistentProperty() {
-        $this->setExpectedException("Exception", ErrorMessages::getNonExistentPropertyMessage("nonExistentProperty", "TestCalculator"));
+    public function testNonExistentProperty()
+    {
+        $this->setExpectedException("Exception",
+            ErrorMessages::getNonExistentPropertyMessage("nonExistentProperty", "TestCalculator"));
 
         $this->testCalculator->setNonExistentProperty();
     }
 
-    protected function setUp() {
+    protected function setUp()
+    {
         $this->testCalculator = new TestCalculator();
 
         parent::setUp();
@@ -35,18 +39,22 @@ class CalculatorAbstractTest extends PHPUnit_Framework_TestCase
 /**
  * Class TestCalculator
  */
-class TestCalculator extends CalculatorAbstract {
+class TestCalculator extends CalculatorAbstract
+{
     protected $existentProperty;
 
-    public function setExistentProperty() {
-        $this->setProperty("existentProperty", "some value");
-    }
-
-    public function setNonExistentProperty() {
+    public function setNonExistentProperty()
+    {
         $this->setProperty("nonExistentProperty", "some value");
     }
 
-    public function getExistentProperty() {
+    public function getExistentProperty()
+    {
         return $this->existentProperty;
+    }
+
+    public function setExistentProperty()
+    {
+        $this->setProperty("existentProperty", "some value");
     }
 }

@@ -5,13 +5,15 @@ namespace FinanCalc\Utils {
      * Class Lambdas
      * @package FinanCalc\Constants
      */
-    class Lambdas {
+    class Lambdas
+    {
 
         /**
          * @return \Closure
          */
-        public static function checkIfNotNegative() {
-            return function($param) {
+        public static function checkIfNotNegative()
+        {
+            return function ($param) {
                 Helpers::checkIfNotNegativeNumberOrThrowAnException($param);
             };
         }
@@ -19,8 +21,9 @@ namespace FinanCalc\Utils {
         /**
          * @return \Closure
          */
-        public static function checkIfPositive() {
-            return function($param) {
+        public static function checkIfPositive()
+        {
+            return function ($param) {
                 Helpers::checkIfPositiveNumberOrThrowAnException($param);
             };
         }

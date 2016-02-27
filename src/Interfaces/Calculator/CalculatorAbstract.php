@@ -10,7 +10,8 @@ namespace FinanCalc\Interfaces\Calculator {
      * Interface CalculatorAbstract
      * @package FinanCalc\Interfaces
      */
-    abstract class CalculatorAbstract {
+    abstract class CalculatorAbstract
+    {
         protected $propResultArray = null;
 
         /**
@@ -19,7 +20,8 @@ namespace FinanCalc\Interfaces\Calculator {
          * @param \Closure $callbackBefore
          * @throws Exception
          */
-        protected final function setProperty($name, $value, $callbackBefore = null) {
+        protected final function setProperty($name, $value, $callbackBefore = null)
+        {
             if (is_callable($callbackBefore)) {
                 $callbackBefore($value);
             }
@@ -40,7 +42,8 @@ namespace FinanCalc\Interfaces\Calculator {
          * @param array $propResultArray
          * @return array
          */
-        public final function getResultAsArray(array $propResultArray = null) {
+        public final function getResultAsArray(array $propResultArray = null)
+        {
             if ($propResultArray === null) {
                 if ($this->propResultArray !== null && is_array($this->propResultArray)) {
                     $propResultArray = $this->propResultArray;
@@ -50,11 +53,11 @@ namespace FinanCalc\Interfaces\Calculator {
                 }
             }
 
-            $processArray = function($inputArray) use (&$processArray) {
+            $processArray = function ($inputArray) use (&$processArray) {
                 $processedArray = array();
                 foreach ($inputArray as $key => $prop) {
                     if (is_string($prop)) {
-                        $propGetter = "get".ucfirst($prop);
+                        $propGetter = "get" . ucfirst($prop);
                         if (method_exists($this, $propGetter)) {
                             $processedArray[is_string($key) ? $key : $prop] = call_user_func(array($this, $propGetter));
                         } else {
@@ -77,7 +80,8 @@ namespace FinanCalc\Interfaces\Calculator {
          * @param SerializerInterface $serializer
          * @return mixed
          */
-        public final function getSerializedResult(SerializerInterface $serializer) {
+        public final function getSerializedResult(SerializerInterface $serializer)
+        {
             return $serializer->serializeArray($this->getResultAsArray());
         }
     }

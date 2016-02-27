@@ -1,6 +1,7 @@
 <?php
 
 namespace FinanCalc\Utils {
+
     use Exception;
     use FinanCalc\Constants\ErrorMessages;
 
@@ -9,8 +10,8 @@ namespace FinanCalc\Utils {
      *
      * @author Johan Ohlin
      */
-
-    abstract class Enum {
+    abstract class Enum
+    {
         protected $value;
 
         /**
@@ -32,9 +33,9 @@ namespace FinanCalc\Utils {
         public function setValue($value)
         {
             if ($this->isValidEnumValue($value)) {
-                            $this->value = $value;
+                $this->value = $value;
             } else {
-                            throw new Exception(ErrorMessages::getInvalidTypeMessage());
+                throw new Exception(ErrorMessages::getInvalidTypeMessage());
             }
         }
 
@@ -47,8 +48,7 @@ namespace FinanCalc\Utils {
         public function isValidEnumValue($checkValue)
         {
             $reflector = new \ReflectionClass(get_class($this));
-            foreach ($reflector->getConstants() as $validValue)
-            {
+            foreach ($reflector->getConstants() as $validValue) {
                 if ($validValue == $checkValue) {
                     return true;
                 }

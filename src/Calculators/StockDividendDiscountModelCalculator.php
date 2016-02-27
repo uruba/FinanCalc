@@ -15,7 +15,8 @@ namespace FinanCalc\Calculators {
      * Class StockDividendDiscountModelCalculator
      * @package FinanCalc\Calculators
      */
-    class StockDividendDiscountModelCalculator extends CalculatorAbstract {
+    class StockDividendDiscountModelCalculator extends CalculatorAbstract
+    {
 
         /** @var  StockDDMTypes */
         // the type of the dividend discount model according to which the result will be calculated
@@ -43,10 +44,12 @@ namespace FinanCalc\Calculators {
          * @param $stockAnnualDividendValue
          * @param null $stockAnnualDividendsGrowth
          */
-        function __construct(StockDDMTypes $dividendDiscountModelType,
-                                $stockVIR,
-                                $stockAnnualDividendValue,
-                                $stockAnnualDividendsGrowth = null) {
+        function __construct(
+            StockDDMTypes $dividendDiscountModelType,
+            $stockVIR,
+            $stockAnnualDividendValue,
+            $stockAnnualDividendsGrowth = null
+        ) {
             $this->setDividendDiscountModelType($dividendDiscountModelType);
             $this->setStockVIR($stockVIR);
             $this->setStockAnnualDividendsValue($stockAnnualDividendValue);
@@ -56,7 +59,8 @@ namespace FinanCalc\Calculators {
         /**
          * @param StockDDMTypes $dividendDiscountModelType
          */
-        public function setDividendDiscountModelType(StockDDMTypes $dividendDiscountModelType) {
+        public function setDividendDiscountModelType(StockDDMTypes $dividendDiscountModelType)
+        {
             if (
                 $dividendDiscountModelType->getValue() == StockDDMTypes::ZERO_GROWTH
                 &&
@@ -70,21 +74,24 @@ namespace FinanCalc\Calculators {
         /**
          * @param $stockVIR
          */
-        public function setStockVIR($stockVIR) {
+        public function setStockVIR($stockVIR)
+        {
             $this->setProperty("stockVIR", $stockVIR, Lambdas::checkIfPositive());
         }
 
         /**
          * @param $stockAnnualDividendsValue
          */
-        public function setStockAnnualDividendsValue($stockAnnualDividendsValue) {
+        public function setStockAnnualDividendsValue($stockAnnualDividendsValue)
+        {
             $this->setProperty("stockAnnualDividendsValue", $stockAnnualDividendsValue, Lambdas::checkIfPositive());
         }
 
         /**
          * @param $stockAnnualDividendsGrowth
          */
-        public function setStockAnnualDividendsGrowth($stockAnnualDividendsGrowth) {
+        public function setStockAnnualDividendsGrowth($stockAnnualDividendsGrowth)
+        {
             $dividendDiscountModelType = $this->dividendDiscountModelType->getValue();
 
             if ($dividendDiscountModelType == StockDDMTypes::ZERO_GROWTH
@@ -110,28 +117,32 @@ namespace FinanCalc\Calculators {
         /**
          * @return mixed
          */
-        public function getDividendDiscountModelType() {
+        public function getDividendDiscountModelType()
+        {
             return $this->dividendDiscountModelType;
         }
 
         /**
          * @return mixed
          */
-        public function getStockVIR() {
+        public function getStockVIR()
+        {
             return $this->stockVIR;
         }
 
         /**
          * @return mixed
          */
-        public function getStockAnnualDividendsValue() {
+        public function getStockAnnualDividendsValue()
+        {
             return $this->stockAnnualDividendsValue;
         }
 
         /**
          * @return mixed
          */
-        public function getStockAnnualDividendsGrowth() {
+        public function getStockAnnualDividendsGrowth()
+        {
             return $this->stockAnnualDividendsGrowth;
         }
 
@@ -139,7 +150,8 @@ namespace FinanCalc\Calculators {
          * @return string
          * @throws Exception
          */
-        public function getStockPresentValue() {
+        public function getStockPresentValue()
+        {
             switch ($this->dividendDiscountModelType->getValue()) {
                 case StockDDMTypes::ZERO_GROWTH:
                     // PV = D/i

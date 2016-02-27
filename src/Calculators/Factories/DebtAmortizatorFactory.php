@@ -1,7 +1,8 @@
 <?php
 
 namespace FinanCalc\Calculators\Factories {
-    use \FinanCalc\Calculators\DebtAmortizator;
+
+    use FinanCalc\Calculators\DebtAmortizator;
     use FinanCalc\Interfaces\Calculator\CalculatorFactoryAbstract;
     use FinanCalc\Utils\Time\TimeSpan;
 
@@ -9,7 +10,8 @@ namespace FinanCalc\Calculators\Factories {
      * Class DebtAmortizatorFactory
      * @package FinanCalc\Calculators\Factories
      */
-    class DebtAmortizatorFactory extends CalculatorFactoryAbstract {
+    class DebtAmortizatorFactory extends CalculatorFactoryAbstract
+    {
         const MANUFACTURED_CLASS_NAME = 'FinanCalc\\Calculators\\DebtAmortizator';
 
         /**
@@ -73,7 +75,12 @@ namespace FinanCalc\Calculators\Factories {
          * @param $debtInterest
          * @return \FinanCalc\Interfaces\Calculator\CalculatorAbstract
          */
-        public function newDebtAmortizationCustomPeriodLength($debtPrincipal, $debtNoOfPeriods, TimeSpan $debtPeriodLength, $debtInterest) {
+        public function newDebtAmortizationCustomPeriodLength(
+            $debtPrincipal,
+            $debtNoOfPeriods,
+            TimeSpan $debtPeriodLength,
+            $debtInterest
+        ) {
             return $this->manufactureInstance(
                 [
                     $debtPrincipal,

@@ -9,7 +9,8 @@ namespace FinanCalc\Utils\Serializers {
      * Class XMLSerializer
      * @package FinanCalc\Utils\Serializers
      */
-    class XMLSerializer implements SerializerInterface {
+    class XMLSerializer implements SerializerInterface
+    {
 
         /**
          * @param array $inputArray
@@ -28,7 +29,7 @@ namespace FinanCalc\Utils\Serializers {
             $domDocument->appendChild($rootElem);
 
             $funcArrayToXML =
-                function(\DOMElement $parentNode, $inputArray)
+                function (\DOMElement $parentNode, $inputArray)
                 use ($domDocument, &$funcArrayToXML) {
                     foreach ($inputArray as $key => $value) {
                         $key = preg_replace('/(^[0-9])/', '_\1', str_replace(' ', '_', $key));

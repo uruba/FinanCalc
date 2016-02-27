@@ -6,24 +6,77 @@ use FinanCalc\Constants\StockDDMTypes;
 /**
  * Class StockDividendDiscountModelCalculatorTest
  */
-class StockDividendDiscountModelCalculatorTest extends PHPUnit_Framework_TestCase {
+class StockDividendDiscountModelCalculatorTest extends PHPUnit_Framework_TestCase
+{
     /** @var  StockDividendDiscountModelCalculator */
     private $stockDividendDiscountModelCalculatorDirect,
-            $stockDividendDiscountModelCalculatorFactory;
+        $stockDividendDiscountModelCalculatorFactory;
 
-    public function testStockDividendDiscountModelDirect() {
+    public function testStockDividendDiscountModelDirect()
+    {
         $this->assertStockDDM(
             $this->stockDividendDiscountModelCalculatorDirect
         );
     }
 
-    public function testStockDividendDiscountModelFactory() {
+    /**
+     * @param $stockDividendDiscountModelCalculator
+     */
+    private function assertStockDDM(StockDividendDiscountModelCalculator $stockDividendDiscountModelCalculator)
+    {
+        $this->assertZeroGrowthStockDDM($stockDividendDiscountModelCalculator);
+
+        $stockDividendDiscountModelCalculator->setDividendDiscountModelType(new StockDDMTypes(StockDDMTypes::MULTIPLE_GROWTH));
+        $stockDividendDiscountModelCalculator->setStockAnnualDividendsGrowth(0.05);
+        $this->assertMultipleGrowthStockDDM($stockDividendDiscountModelCalculator);
+
+        $stockDividendDiscountModelCalculator->setDividendDiscountModelType(new StockDDMTypes(StockDDMTypes::ZERO_GROWTH));
+        $this->assertNull($stockDividendDiscountModelCalculator->getStockAnnualDividendsGrowth());
+    }
+
+    /**
+     * @param StockDividendDiscountModelCalculator $stockDividendDiscountModelCalculator
+     */
+    private function assertZeroGrowthStockDDM(StockDividendDiscountModelCalculator $stockDividendDiscountModelCalculator
+    ) {
+        $this->assertStockDDMsFairValue(750, $stockDividendDiscountModelCalculator);
+    }
+
+    /**
+     * @param $expected
+     * @param StockDividendDiscountModelCalculator $stockDividendDiscountModelCalculator
+     * @throws Exception
+     */
+    private function assertStockDDMsFairValue(
+        $expected,
+        StockDividendDiscountModelCalculator $stockDividendDiscountModelCalculator
+    ) {
+        $FV_direct = $stockDividendDiscountModelCalculator->getStockPresentValue();
+        $FV_array = $stockDividendDiscountModelCalculator
+            ->getResultAsArray()["stockPresentValue"];
+
+        $this->assertEquals($expected, $FV_direct);
+        $this->assertEquals($expected, $FV_array);
+    }
+
+    /**
+     * @param StockDividendDiscountModelCalculator $stockDividendDiscountModelCalculator
+     */
+    private function assertMultipleGrowthStockDDM(
+        StockDividendDiscountModelCalculator $stockDividendDiscountModelCalculator
+    ) {
+        $this->assertStockDDMsFairValue(1575, $stockDividendDiscountModelCalculator);
+    }
+
+    public function testStockDividendDiscountModelFactory()
+    {
         $this->assertStockDDM(
             $this->stockDividendDiscountModelCalculatorFactory
         );
     }
 
-    public function testExceptionStockPresentValue() {
+    public function testExceptionStockPresentValue()
+    {
         $this->setExpectedException("Exception");
 
         $stockDDMCalculator = $this->stockDividendDiscountModelCalculatorDirect;
@@ -31,7 +84,8 @@ class StockDividendDiscountModelCalculatorTest extends PHPUnit_Framework_TestCas
         $stockDDMCalculator->getStockPresentValue();
     }
 
-    public function testExceptionGrowthRateGreaterThanVIR() {
+    public function testExceptionGrowthRateGreaterThanVIR()
+    {
         $this->setExpectedException("InvalidArgumentException");
 
         $stockDDMCalculator = $this->stockDividendDiscountModelCalculatorDirect;
@@ -39,14 +93,16 @@ class StockDividendDiscountModelCalculatorTest extends PHPUnit_Framework_TestCas
         $stockDDMCalculator->setStockAnnualDividendsGrowth(0.1);
     }
 
-    public function testExceptionSetGrowthRateOnZeroGrowth() {
+    public function testExceptionSetGrowthRateOnZeroGrowth()
+    {
         $this->setExpectedException("InvalidArgumentException");
 
         $stockDDMCalculator = $this->stockDividendDiscountModelCalculatorDirect;
         $stockDDMCalculator->setStockAnnualDividendsGrowth(0.05);
     }
 
-    public function testFactoryMultipleGrowthDividendDiscountModel() {
+    public function testFactoryMultipleGrowthDividendDiscountModel()
+    {
         $stockDDMCalculator = \FinanCalc\FinanCalc
             ::getInstance()
             ->getFactory('StockDividendDiscountModelCalculatorFactory')
@@ -59,53 +115,19 @@ class StockDividendDiscountModelCalculatorTest extends PHPUnit_Framework_TestCas
         $this->assertEquals(1575, $stockDDMCalculator->getStockPresentValue());
     }
 
-    /**
-     * @param $stockDividendDiscountModelCalculator
-     */
-    private function assertStockDDM(StockDividendDiscountModelCalculator $stockDividendDiscountModelCalculator) {
-        $this->assertZeroGrowthStockDDM($stockDividendDiscountModelCalculator);
+    protected function setUp()
+    {
+        $this->stockDividendDiscountModelCalculatorDirect = $this->newStockDividendDiscountModelCalculatorDirect();
+        $this->stockDividendDiscountModelCalculatorFactory = $this->newStockDividendDiscountModelCalculatorFactory();
 
-        $stockDividendDiscountModelCalculator->setDividendDiscountModelType(new StockDDMTypes(StockDDMTypes::MULTIPLE_GROWTH));
-        $stockDividendDiscountModelCalculator->setStockAnnualDividendsGrowth(0.05);
-        $this->assertMultipleGrowthStockDDM($stockDividendDiscountModelCalculator);
-
-        $stockDividendDiscountModelCalculator->setDividendDiscountModelType(new StockDDMTypes(StockDDMTypes::ZERO_GROWTH));
-        $this->assertNull($stockDividendDiscountModelCalculator->getStockAnnualDividendsGrowth());
-    }
-
-
-    /**
-     * @param StockDividendDiscountModelCalculator $stockDividendDiscountModelCalculator
-     */
-    private function assertZeroGrowthStockDDM(StockDividendDiscountModelCalculator $stockDividendDiscountModelCalculator) {
-        $this->assertStockDDMsFairValue(750, $stockDividendDiscountModelCalculator);
-    }
-
-    /**
-     * @param StockDividendDiscountModelCalculator $stockDividendDiscountModelCalculator
-     */
-    private function assertMultipleGrowthStockDDM(StockDividendDiscountModelCalculator $stockDividendDiscountModelCalculator) {
-        $this->assertStockDDMsFairValue(1575, $stockDividendDiscountModelCalculator);
-    }
-
-    /**
-     * @param $expected
-     * @param StockDividendDiscountModelCalculator $stockDividendDiscountModelCalculator
-     * @throws Exception
-     */
-    private function assertStockDDMsFairValue($expected, StockDividendDiscountModelCalculator $stockDividendDiscountModelCalculator) {
-        $FV_direct = $stockDividendDiscountModelCalculator->getStockPresentValue();
-        $FV_array = $stockDividendDiscountModelCalculator
-            ->getResultAsArray()["stockPresentValue"];
-
-        $this->assertEquals($expected, $FV_direct);
-        $this->assertEquals($expected, $FV_array);
+        parent::setUp();
     }
 
     /**
      * @return StockDividendDiscountModelCalculator
      */
-    private function newStockDividendDiscountModelCalculatorDirect() {
+    private function newStockDividendDiscountModelCalculatorDirect()
+    {
         return new StockDividendDiscountModelCalculator(
             new StockDDMTypes(StockDDMTypes::ZERO_GROWTH),
             0.1,
@@ -116,7 +138,8 @@ class StockDividendDiscountModelCalculatorTest extends PHPUnit_Framework_TestCas
      * @return mixed
      * @throws Exception
      */
-    private function newStockDividendDiscountModelCalculatorFactory() {
+    private function newStockDividendDiscountModelCalculatorFactory()
+    {
         return \FinanCalc\FinanCalc
             ::getInstance()
             ->getFactory('StockDividendDiscountModelCalculatorFactory')
@@ -124,12 +147,5 @@ class StockDividendDiscountModelCalculatorTest extends PHPUnit_Framework_TestCas
                 0.1,
                 75
             );
-    }
-
-    protected function setUp() {
-        $this->stockDividendDiscountModelCalculatorDirect = $this->newStockDividendDiscountModelCalculatorDirect();
-        $this->stockDividendDiscountModelCalculatorFactory = $this->newStockDividendDiscountModelCalculatorFactory();
-
-        parent::setUp();
     }
 }

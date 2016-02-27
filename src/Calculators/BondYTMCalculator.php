@@ -10,7 +10,8 @@ namespace FinanCalc\Calculators {
      * Class BondYTMCalculator
      * @package FinanCalc\Calculators
      */
-    class BondYTMCalculator extends BondCalculatorAbstract {
+    class BondYTMCalculator extends BondCalculatorAbstract
+    {
 
         // market value of the bond = 'P'
         protected $bondMarketValue;
@@ -46,11 +47,13 @@ namespace FinanCalc\Calculators {
          * @param $bondYearsToMaturity
          * @param $bondPaymentFrequency
          */
-        function __construct($bondFaceValue,
-                             $bondMarketValue,
-                             $bondAnnualCouponRate,
-                             $bondYearsToMaturity,
-                             $bondPaymentFrequency = 1) {
+        function __construct(
+            $bondFaceValue,
+            $bondMarketValue,
+            $bondAnnualCouponRate,
+            $bondYearsToMaturity,
+            $bondPaymentFrequency = 1
+        ) {
             $this->setBondFaceValue($bondFaceValue);
             $this->setBondMarketValue($bondMarketValue);
             $this->setBondAnnualCouponRate($bondAnnualCouponRate);
@@ -61,21 +64,24 @@ namespace FinanCalc\Calculators {
         /**
          * @param $bondMarketValue
          */
-        public function setBondMarketValue($bondMarketValue) {
-                $this->setProperty("bondMarketValue", $bondMarketValue, Lambdas::checkIfPositive());
+        public function setBondMarketValue($bondMarketValue)
+        {
+            $this->setProperty("bondMarketValue", $bondMarketValue, Lambdas::checkIfPositive());
         }
 
         /**
          * @return mixed
          */
-        public function getBondMarketValue() {
+        public function getBondMarketValue()
+        {
             return $this->bondMarketValue;
         }
 
         /**
          * @return string
          */
-        public function getApproxBondYTM() {
+        public function getApproxBondYTM()
+        {
             // we need to calculate the coupon payment C = F*(c/payment frequency)
             $couponPayment =
                 MathFuncs::mul(

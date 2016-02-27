@@ -15,7 +15,8 @@ namespace FinanCalc\Utils\Time {
      * Class TimeSpan
      * @package FinanCalc\Utils\Time
      */
-    class TimeSpan {
+    class TimeSpan
+    {
         /** @var  DateTime */
         private $startDate, $endDate;
         /** @var  DateInterval */
@@ -24,7 +25,8 @@ namespace FinanCalc\Utils\Time {
         /**
          * PRIVATE constructor
          */
-        private function __construct() {
+        private function __construct()
+        {
 
         }
 
@@ -88,7 +90,8 @@ namespace FinanCalc\Utils\Time {
         /**
          * @param DateTime $startDate
          */
-        public function setStartDate(DateTime $startDate) {
+        public function setStartDate(DateTime $startDate)
+        {
             if ($this->endDate !== null) {
                 $this->checkStartEndDateAndSetInterval($startDate, $this->endDate);
             } else {
@@ -102,7 +105,8 @@ namespace FinanCalc\Utils\Time {
         /**
          * @param DateTime $endDate
          */
-        public function setEndDate(DateTime $endDate) {
+        public function setEndDate(DateTime $endDate)
+        {
             if ($this->startDate !== null) {
                 $this->checkStartEndDateAndSetInterval($this->startDate, $endDate);
             } else {
@@ -119,35 +123,40 @@ namespace FinanCalc\Utils\Time {
         /**
          * @return DateTime
          */
-        public function getStartDate() {
+        public function getStartDate()
+        {
             return $this->startDate;
         }
 
         /**
          * @return DateTime
          */
-        public function getEndDate() {
+        public function getEndDate()
+        {
             return $this->endDate;
         }
 
         /**
          * @return string
          */
-        public function getYearsComponent() {
+        public function getYearsComponent()
+        {
             return (string)$this->dateInterval->y;
         }
 
         /**
          * @return string
          */
-        public function getMonthsComponent() {
+        public function getMonthsComponent()
+        {
             return (string)$this->dateInterval->m;
         }
 
         /**
          * @return string
          */
-        public function getDaysComponent() {
+        public function getDaysComponent()
+        {
             return (string)$this->dateInterval->d;
         }
 
@@ -155,7 +164,8 @@ namespace FinanCalc\Utils\Time {
          * @return string
          * @throws Exception
          */
-        public function toYears() {
+        public function toYears()
+        {
             return MathFuncs::div($this->toDays(), TimeUtils::getCurrentDayCountConvention()['days_in_a_year']);
         }
 
@@ -163,7 +173,8 @@ namespace FinanCalc\Utils\Time {
          * @return string
          * @throws Exception
          */
-        public function toMonths() {
+        public function toMonths()
+        {
             return MathFuncs::div($this->toDays(), TimeUtils::getCurrentDayCountConvention()['days_in_a_month']);
         }
 
@@ -171,14 +182,16 @@ namespace FinanCalc\Utils\Time {
          * @return string
          * @throws Exception
          */
-        public function toDays() {
+        public function toDays()
+        {
             $yearsComponent = TimeUtils::getDaysFromYears($this->getYearsComponent());
             $monthsComponent = TimeUtils::getDaysFromMonths($this->getMonthsComponent());
 
             return MathFuncs::add(MathFuncs::add($yearsComponent, $monthsComponent), $this->getDaysComponent());
         }
 
-        public function clearStartEndDate() {
+        public function clearStartEndDate()
+        {
             $this->startDate = $this->endDate = null;
         }
 
@@ -187,7 +200,8 @@ namespace FinanCalc\Utils\Time {
         /**
          * @param DateInterval $dateInterval
          */
-        private function setDateInterval(DateInterval $dateInterval) {
+        private function setDateInterval(DateInterval $dateInterval)
+        {
             $this->dateInterval = $dateInterval;
         }
 
@@ -196,7 +210,8 @@ namespace FinanCalc\Utils\Time {
          * @param $months
          * @param $days
          */
-        private function newDateIntervalAbsolute($years, $months, $days) {
+        private function newDateIntervalAbsolute($years, $months, $days)
+        {
             $this->setdateInterval(
                 new DateInterval(
                     "P" .
@@ -211,7 +226,8 @@ namespace FinanCalc\Utils\Time {
          * @param DateTime $startDate
          * @param DateTime $endDate
          */
-        private function newDateIntervalDifference(DateTime $startDate, DateTime $endDate) {
+        private function newDateIntervalDifference(DateTime $startDate, DateTime $endDate)
+        {
             $this->setDateInterval(
                 $this->roundDateInterval(
                     $startDate->diff($endDate)
@@ -223,7 +239,8 @@ namespace FinanCalc\Utils\Time {
          * @param DateTime $startDate
          * @param DateTime $endDate
          */
-        private function checkStartEndDateAndSetInterval(DateTime $startDate, DateTime $endDate) {
+        private function checkStartEndDateAndSetInterval(DateTime $startDate, DateTime $endDate)
+        {
             if ($startDate < $endDate) {
                 $this->newDateIntervalDifference($startDate, $endDate);
             } else {
@@ -235,7 +252,8 @@ namespace FinanCalc\Utils\Time {
          * @param DateInterval $dateInterval
          * @return DateInterval
          */
-        private function roundDateInterval(DateInterval $dateInterval) {
+        private function roundDateInterval(DateInterval $dateInterval)
+        {
             // TODO: make more intelligent rounding based on the start and end date
             if (in_array($dateInterval->d, [30, 31])) {
                 $dateInterval->d = 0;
@@ -253,7 +271,8 @@ namespace FinanCalc\Utils\Time {
         /**
          * @return string
          */
-        public function __toString() {
+        public function __toString()
+        {
             return $this->toDays();
         }
     }

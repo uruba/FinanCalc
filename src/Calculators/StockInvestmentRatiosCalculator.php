@@ -10,7 +10,8 @@ namespace FinanCalc\Calculators {
      * Class StockInvestmentRatiosCalculator
      * @package FinanCalc\Calculators
      */
-    class StockInvestmentRatiosCalculator extends CalculatorAbstract {
+    class StockInvestmentRatiosCalculator extends CalculatorAbstract
+    {
 
         // sum of dividends per a period
         protected $totalDividends;
@@ -21,14 +22,14 @@ namespace FinanCalc\Calculators {
 
         // props returned by the getResultAsArray method by default
         protected $propResultArray = [
-                "totalDividends",
-                "earningsAfterTaxes",
-                "noOfStocks",
-                "dividendPerStock",
-                "earningsPerStock",
-                "payoutRatio",
-                "dividendRatio",
-                "retentionRatio"
+            "totalDividends",
+            "earningsAfterTaxes",
+            "noOfStocks",
+            "dividendPerStock",
+            "earningsPerStock",
+            "payoutRatio",
+            "dividendRatio",
+            "retentionRatio"
         ];
 
         /**
@@ -36,9 +37,11 @@ namespace FinanCalc\Calculators {
          * @param $earningsAfterTaxes
          * @param $noOfStocks
          */
-        function __construct($totalDividends,
-                                $earningsAfterTaxes,
-                                $noOfStocks) {
+        function __construct(
+            $totalDividends,
+            $earningsAfterTaxes,
+            $noOfStocks
+        ) {
             $this->setTotalDividends($totalDividends);
             $this->setEarningsAfterTaxes($earningsAfterTaxes);
             $this->setNoOfStocks($noOfStocks);
@@ -47,49 +50,56 @@ namespace FinanCalc\Calculators {
         /**
          * @param $totalDividends
          */
-        public function setTotalDividends($totalDividends) {
+        public function setTotalDividends($totalDividends)
+        {
             $this->setProperty("totalDividends", $totalDividends, Lambdas::checkIfPositive());
         }
 
         /**
          * @param $earningsAfterTaxes
          */
-        public function setEarningsAfterTaxes($earningsAfterTaxes) {
+        public function setEarningsAfterTaxes($earningsAfterTaxes)
+        {
             $this->setProperty("earningsAfterTaxes", $earningsAfterTaxes, Lambdas::checkIfPositive());
         }
 
         /**
          * @param $noOfStocks
          */
-        public function setNoOfStocks($noOfStocks) {
+        public function setNoOfStocks($noOfStocks)
+        {
             $this->setProperty("noOfStocks", $noOfStocks, Lambdas::checkIfPositive());
         }
 
         /**
          * @return mixed
          */
-        public function getTotalDividends() {
+        public function getTotalDividends()
+        {
             return $this->totalDividends;
         }
 
         /**
          * @return mixed
          */
-        public function getEarningsAfterTaxes() {
+        public function getEarningsAfterTaxes()
+        {
             return $this->earningsAfterTaxes;
         }
 
         /**
          * @return mixed
          */
-        public function getNoOfStocks() {
+        public function getNoOfStocks()
+        {
             return $this->noOfStocks;
         }
 
         /**
          * @return string
          */
-        public function getDividendPerStock() {
+        public function getDividendPerStock()
+        {
             return MathFuncs::div(
                 $this->totalDividends,
                 $this->noOfStocks
@@ -99,7 +109,8 @@ namespace FinanCalc\Calculators {
         /**
          * @return string
          */
-        public function getEarningsPerStock() {
+        public function getEarningsPerStock()
+        {
             return MathFuncs::div(
                 $this->earningsAfterTaxes,
                 $this->noOfStocks
@@ -109,7 +120,8 @@ namespace FinanCalc\Calculators {
         /**
          * @return string
          */
-        public function getPayoutRatio() {
+        public function getPayoutRatio()
+        {
             return MathFuncs::div(
                 $this->getDividendPerStock(),
                 $this->getEarningsPerStock()
@@ -119,7 +131,8 @@ namespace FinanCalc\Calculators {
         /**
          * @return string
          */
-        public function getDividendRatio() {
+        public function getDividendRatio()
+        {
             return MathFuncs::div(
                 $this->getEarningsPerStock(),
                 $this->getDividendPerStock()
@@ -129,7 +142,8 @@ namespace FinanCalc\Calculators {
         /**
          * @return string
          */
-        public function getRetentionRatio() {
+        public function getRetentionRatio()
+        {
             return MathFuncs::sub(
                 1,
                 $this->getPayoutRatio()

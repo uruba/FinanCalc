@@ -9,12 +9,14 @@ use FinanCalc\Utils\Time\TimeUtils;
 /**
  * Class DebtAmortizatorTest
  */
-class DebtAmortizatorTest extends PHPUnit_Framework_TestCase {
+class DebtAmortizatorTest extends PHPUnit_Framework_TestCase
+{
 
     /**
      * Test the "factory" version
      */
-    public function testRepaymentsFactoryYearly() {
+    public function testRepaymentsFactoryYearly()
+    {
         // initialize a variable representing a DebtAmortizator
         // object obtained via a FACTORY method
         $debtAmortizatorFactory = FinanCalc
@@ -50,7 +52,8 @@ class DebtAmortizatorTest extends PHPUnit_Framework_TestCase {
     /**
      * Test the "direct" version
      */
-    public function testRepaymentsDirectYearly() {
+    public function testRepaymentsDirectYearly()
+    {
         // initialize a variable representing a DebtAmortizator
         // object obtained via DIRECT instantiation
         $debtAmortizatorDirect = new DebtAmortizator(
@@ -66,7 +69,8 @@ class DebtAmortizatorTest extends PHPUnit_Framework_TestCase {
     /**
      * Test the monthly factory version
      */
-    public function testRepaymentsFactoryMonthly() {
+    public function testRepaymentsFactoryMonthly()
+    {
         // initialize a variable representing a DebtAmortizator
         // object obtained via a FACTORY method
         $debtAmortizatorFactory = FinanCalc
@@ -84,7 +88,8 @@ class DebtAmortizatorTest extends PHPUnit_Framework_TestCase {
     /**
      * Test the daily factory version
      */
-    public function testRepaymentsFactoryDaily() {
+    public function testRepaymentsFactoryDaily()
+    {
         // initialize a variable representing a DebtAmortizator
         // object obtained via a FACTORY method
         $debtAmortizatorFactory = FinanCalc
@@ -102,7 +107,8 @@ class DebtAmortizatorTest extends PHPUnit_Framework_TestCase {
     /**
      * Test the yearly version, manufactured by a custom period length factory
      */
-    public function testRepaymentsFactoryCustom() {
+    public function testRepaymentsFactoryCustom()
+    {
         // initialize a variable representing a DebtAmortizator
         // object obtained via a FACTORY method
         $debtAmortizatorFactory = FinanCalc
@@ -122,7 +128,8 @@ class DebtAmortizatorTest extends PHPUnit_Framework_TestCase {
     /**
      * @param DebtAmortizator $result
      */
-    private function processResult(DebtAmortizator $result) {
+    private function processResult(DebtAmortizator $result)
+    {
         $this->assertEquals("40000", $result->getDebtPrincipal());
         $this->assertEquals("6", $result->getDebtNoOfCompoundingPeriods());
 
@@ -145,8 +152,8 @@ class DebtAmortizatorTest extends PHPUnit_Framework_TestCase {
 
         $this->assertEquals(
             MathFuncs::div(
-                    $result->getDebtPeriodLengthInDays(),
-                    TimeUtils::getDaysFromMonths(1)
+                $result->getDebtPeriodLengthInDays(),
+                TimeUtils::getDaysFromMonths(1)
             ),
             $result->getDebtPeriodLengthInMonths()
         );
@@ -209,7 +216,8 @@ class DebtAmortizatorTest extends PHPUnit_Framework_TestCase {
     /**
      * @param array $resultArray
      */
-    private function processArray(array $resultArray) {
+    private function processArray(array $resultArray)
+    {
         $this->assertEquals("40000", $resultArray["debtPrincipal"]);
         $this->assertEquals("6", $resultArray["debtNoOfCompoundingPeriods"]);
 
@@ -278,9 +286,11 @@ class DebtAmortizatorTest extends PHPUnit_Framework_TestCase {
     /**
      * Test presence in the main Factories array
      */
-    public function testPresenceInMainFactoriesArray() {
+    public function testPresenceInMainFactoriesArray()
+    {
         $this->assertTrue(
-            isObjectTypeInArray('FinanCalc\\Calculators\\Factories\\BondYTMCalculatorFactory', \FinanCalc\FinanCalc::getInstance()->getFactories())
+            isObjectTypeInArray('FinanCalc\\Calculators\\Factories\\BondYTMCalculatorFactory',
+                \FinanCalc\FinanCalc::getInstance()->getFactories())
         );
     }
 }

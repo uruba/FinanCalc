@@ -10,23 +10,21 @@ class SimpleInterestCalculatorTest extends PHPUnit_Framework_TestCase
 {
     /** @var  SimpleInterestCalculator */
     private $simpleInterestCalculatorDirect,
-            $simpleInterestCalculatorFactory;
+        $simpleInterestCalculatorFactory;
 
     /**
      *  Test interest amount
      */
-    public function testSimpleInterestAmountDirect() {
+    public function testSimpleInterestAmountDirect()
+    {
         $this->assertInterestAmount($this->simpleInterestCalculatorDirect);
-    }
-
-    public function testSimpleInterestAmountFactory() {
-        $this->assertInterestAmount($this->simpleInterestCalculatorFactory);
     }
 
     /**
      * @param SimpleInterestCalculator $interestCalculator
      */
-    private function assertInterestAmount(SimpleInterestCalculator $interestCalculator) {
+    private function assertInterestAmount(SimpleInterestCalculator $interestCalculator)
+    {
         $this->assertEquals(3.75, $interestCalculator->getInterestAmount());
 
         $this->assertEquals(100, $interestCalculator->getPrincipal());
@@ -37,19 +35,35 @@ class SimpleInterestCalculatorTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(360, $interestCalculator->getTimeInDays());
     }
 
+    public function testSimpleInterestAmountFactory()
+    {
+        $this->assertInterestAmount($this->simpleInterestCalculatorFactory);
+    }
+
     /**
      * Test presence in the main Factories array
      */
-    public function testPresenceInMainFactoriesArray() {
+    public function testPresenceInMainFactoriesArray()
+    {
         $this->assertTrue(
-            isObjectTypeInArray('FinanCalc\\Calculators\\Factories\\SimpleInterestCalculatorFactory', \FinanCalc\FinanCalc::getInstance()->getFactories())
+            isObjectTypeInArray('FinanCalc\\Calculators\\Factories\\SimpleInterestCalculatorFactory',
+                \FinanCalc\FinanCalc::getInstance()->getFactories())
         );
+    }
+
+    protected function setUp()
+    {
+        $this->simpleInterestCalculatorDirect = $this->newSimpleInterestCalculatorDirect();
+        $this->simpleInterestCalculatorFactory = $this->newSimpleInterestCalculatorFactory();
+
+        parent::setUp();
     }
 
     /**
      * @return SimpleInterestCalculator
      */
-    private function newSimpleInterestCalculatorDirect() {
+    private function newSimpleInterestCalculatorDirect()
+    {
         return new SimpleInterestCalculator(100, 0.0375, TimeSpan::asDuration(1));
     }
 
@@ -57,17 +71,11 @@ class SimpleInterestCalculatorTest extends PHPUnit_Framework_TestCase
      * @return SimpleInterestCalculator
      * @throws Exception
      */
-    private function newSimpleInterestCalculatorFactory() {
+    private function newSimpleInterestCalculatorFactory()
+    {
         return \FinanCalc\FinanCalc
             ::getInstance()
             ->getFactory('SimpleInterestCalculatorFactory')
             ->newSimpleInterest(100, 0.0375, TimeSpan::asDuration(1));
-    }
-
-    protected function setUp() {
-        $this->simpleInterestCalculatorDirect = $this->newSimpleInterestCalculatorDirect();
-        $this->simpleInterestCalculatorFactory = $this->newSimpleInterestCalculatorFactory();
-
-        parent::setUp();
     }
 }

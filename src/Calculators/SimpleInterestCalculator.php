@@ -13,7 +13,8 @@ namespace FinanCalc\Calculators {
      * Class SimpleInterestCalculator
      * @package FinanCalc\Calculators
      */
-    class SimpleInterestCalculator extends CalculatorAbstract {
+    class SimpleInterestCalculator extends CalculatorAbstract
+    {
         // amount of principal = 'P'
         protected $principal;
         // annual interest rate = 'i'
@@ -27,9 +28,11 @@ namespace FinanCalc\Calculators {
          * @param $annualInterestRate
          * @param TimeSpan $time
          */
-        function __construct($principal,
-                                $annualInterestRate,
-                                TimeSpan $time) {
+        function __construct(
+            $principal,
+            $annualInterestRate,
+            TimeSpan $time
+        ) {
             $this->setPrincipal($principal);
             $this->setAnnualInterestRate($annualInterestRate);
             $this->setTime($time);
@@ -38,70 +41,80 @@ namespace FinanCalc\Calculators {
         /**
          * @param $principal
          */
-        public function setPrincipal($principal) {
+        public function setPrincipal($principal)
+        {
             $this->setProperty("principal", $principal, Lambdas::checkIfPositive());
         }
 
         /**
          * @param $annualInterestRate
          */
-        public function setAnnualInterestRate($annualInterestRate) {
+        public function setAnnualInterestRate($annualInterestRate)
+        {
             $this->setProperty("annualInterestRate", $annualInterestRate, Lambdas::checkIfPositive());
         }
 
         /**
          * @param TimeSpan $time
          */
-        public function setTime(TimeSpan $time) {
+        public function setTime(TimeSpan $time)
+        {
             $this->setProperty("time", $time, Lambdas::checkIfPositive());
         }
 
         /**
          * @return string
          */
-        public function getPrincipal() {
+        public function getPrincipal()
+        {
             return $this->principal;
         }
 
         /**
          * @return string
          */
-        public function getAnnualInterestRate() {
+        public function getAnnualInterestRate()
+        {
             return $this->annualInterestRate;
         }
 
         /**
          * @return TimeSpan
          */
-        public function getTime() {
+        public function getTime()
+        {
             return $this->time;
         }
 
         /**
          * @return string
          */
-        public function getTimeInYears() {
+        public function getTimeInYears()
+        {
             return $this->time->toYears();
         }
 
         /**
          * @return string
          */
-        public function getTimeInMonths() {
+        public function getTimeInMonths()
+        {
             return $this->time->toMonths();
         }
 
         /**
          * @return string
          */
-        public function getTimeInDays() {
+        public function getTimeInDays()
+        {
             return $this->time->toDays();
         }
 
         /**
          * @return string
          */
-        public function getInterestNumber() {
+        public function getInterestNumber()
+        {
             return MathFuncs::div(
                 MathFuncs::mul(
                     $this->principal,
@@ -115,7 +128,8 @@ namespace FinanCalc\Calculators {
          * @return string
          * @throws Exception
          */
-        public function getInterestDivisor() {
+        public function getInterestDivisor()
+        {
             return MathFuncs::div(
                 TimeUtils::getCurrentDayCountConvention()['days_in_a_year'],
                 MathFuncs::mul(
@@ -128,7 +142,8 @@ namespace FinanCalc\Calculators {
         /**
          * @return string
          */
-        public function getInterestAmount() {
+        public function getInterestAmount()
+        {
             // n = P*i*t = IN/ID
             return MathFuncs::div(
                 $this->getInterestNumber(),

@@ -8,9 +8,11 @@ use FinanCalc\Utils\Time\TimeSpan;
 /**
  * Class HelpersTest
  */
-class HelpersTest extends PHPUnit_Framework_TestCase {
+class HelpersTest extends PHPUnit_Framework_TestCase
+{
 
-    public function testCheckInstancePositive() {
+    public function testCheckInstancePositive()
+    {
         $isInstance = Helpers::checkIfInstanceOfAClassOrThrowAnException(
             new AnnuityCalculator(100000, 5, TimeSpan::asDuration(1), 0.15),
             "FinanCalc\\Calculators\\AnnuityCalculator"
@@ -19,8 +21,11 @@ class HelpersTest extends PHPUnit_Framework_TestCase {
         $this->assertTrue($isInstance);
     }
 
-    public function testCheckInstanceException() {
-        $this->setExpectedException('InvalidArgumentException', ErrorMessages::getIncompatibleTypesMessage("Non\\Existing\\Class", "FinanCalc\\Calculators\\AnnuityCalculator"));
+    public function testCheckInstanceException()
+    {
+        $this->setExpectedException('InvalidArgumentException',
+            ErrorMessages::getIncompatibleTypesMessage("Non\\Existing\\Class",
+                "FinanCalc\\Calculators\\AnnuityCalculator"));
 
         Helpers::checkIfInstanceOfAClassOrThrowAnException(
             new AnnuityCalculator(100000, 5, TimeSpan::asDuration(1), 0.15),
@@ -28,10 +33,11 @@ class HelpersTest extends PHPUnit_Framework_TestCase {
         );
     }
 
-    public function testCheckPositiveNumberPositive() {
+    public function testCheckPositiveNumberPositive()
+    {
         $values = array("6.23", 8);
 
-        foreach($values as $value) {
+        foreach ($values as $value) {
             $isPositive = Helpers::checkIfPositiveNumber($value);
             $this->assertTrue($isPositive);
 
@@ -40,79 +46,88 @@ class HelpersTest extends PHPUnit_Framework_TestCase {
         }
     }
 
-    public function testCheckIfPositiveNumberNegative() {
+    public function testCheckIfPositiveNumberNegative()
+    {
         $values = array("-86.5", -43);
 
-        foreach($values as $value) {
+        foreach ($values as $value) {
             $isPositive = Helpers::checkIfPositiveNumber($value);
 
             $this->assertFalse($isPositive);
         }
     }
 
-    public function testCheckIfPositiveNumberException() {
+    public function testCheckIfPositiveNumberException()
+    {
         $this->setExpectedException('InvalidArgumentException', ErrorMessages::getMustBePositiveNumberMessage("0"));
 
         Helpers::checkIfPositiveNumberOrThrowAnException(0);
     }
 
-    public function testCheckIfNotNegativeNumberPositive() {
+    public function testCheckIfNotNegativeNumberPositive()
+    {
         $values = array("0", 0, "26", 84.3);
 
-        foreach($values as $value) {
+        foreach ($values as $value) {
             $isNotNegative = Helpers::checkIfNotNegativeNumberOrThrowAnException($value);
 
             $this->assertTrue($isNotNegative);
         }
     }
 
-    public function testCheckIfNotNegativeNumberException() {
+    public function testCheckIfNotNegativeNumberException()
+    {
         $this->setExpectedException('InvalidArgumentException', ErrorMessages::getMustNotBeNegativeNumberMessage("-6"));
 
         Helpers::checkIfNotNegativeNumberOrThrowAnException(-6);
     }
 
-    public function testCheckIfZeroPositive() {
+    public function testCheckIfZeroPositive()
+    {
         $values = array("0", 0);
 
-        foreach($values as $value) {
+        foreach ($values as $value) {
             $isZero = Helpers::checkIfZero($value);
 
             $this->assertTrue($isZero);
         }
     }
 
-    public function testCheckIfZeroNegative() {
+    public function testCheckIfZeroNegative()
+    {
         $values = array("-26.3", -45, "55", 13.3);
 
-        foreach($values as $value) {
+        foreach ($values as $value) {
             $isZero = Helpers::checkIfZero($value);
 
             $this->assertFalse($isZero);
         }
     }
 
-    public function testCheckIfNegativeNumberPositive() {
+    public function testCheckIfNegativeNumberPositive()
+    {
         $values = array("-38.66", -5);
 
-        foreach($values as $value) {
+        foreach ($values as $value) {
             $isNegative = Helpers::checkIfNegativeNumber($value);
 
             $this->assertTrue($isNegative);
         }
     }
 
-    public function testCheckIfNegativeNumberNegative() {
+    public function testCheckIfNegativeNumberNegative()
+    {
         $values = array("0", 0, "13", 87.6);
 
-        foreach($values as $value) {
+        foreach ($values as $value) {
             $isNegative = Helpers::checkIfNegativeNumber($value);
 
             $this->assertFalse($isNegative);
         }
     }
 
-    public function testCheckNumberRelativityToZero() {
+    public function testCheckNumberRelativityToZero()
+    {
         $negativeValue = -53;
 
         $this->assertTrue(
@@ -138,7 +153,8 @@ class HelpersTest extends PHPUnit_Framework_TestCase {
         );
     }
 
-    public function testRoundMoneyFOrDisplayPositive() {
+    public function testRoundMoneyFOrDisplayPositive()
+    {
         $unroundedNumber = 666.6666;
 
         $this->assertEquals(
@@ -154,7 +170,8 @@ class HelpersTest extends PHPUnit_Framework_TestCase {
         );
     }
 
-    public function testRoundMoneyFOrDisplayNegative() {
+    public function testRoundMoneyFOrDisplayNegative()
+    {
         $unroundedNumber = 666.6666;
 
         $this->assertNotEquals(
@@ -170,7 +187,8 @@ class HelpersTest extends PHPUnit_Framework_TestCase {
         );
     }
 
-    public function testIsObjectTypeInArrayFalse() {
+    public function testIsObjectTypeInArrayFalse()
+    {
         $this->assertFalse(
             isObjectTypeInArray('Fake', [])
         );

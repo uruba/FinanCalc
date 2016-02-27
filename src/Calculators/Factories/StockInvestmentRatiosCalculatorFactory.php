@@ -9,7 +9,8 @@ namespace FinanCalc\Calculators\Factories {
      * Class StockInvestmentRatiosCalculatorFactory
      * @package FinanCalc\Calculators\Factories
      */
-    class StockInvestmentRatiosCalculatorFactory extends CalculatorFactoryAbstract {
+    class StockInvestmentRatiosCalculatorFactory extends CalculatorFactoryAbstract
+    {
         const MANUFACTURED_CLASS_NAME = 'FinanCalc\\Calculators\\StockInvestmentRatiosCalculator';
 
         /**
@@ -18,7 +19,8 @@ namespace FinanCalc\Calculators\Factories {
          * @param $noOfStocks
          * @return StockInvestmentRatiosCalculator
          */
-        public function newCustomStocks($totalDividends, $earningAfterTaxes, $noOfStocks) {
+        public function newCustomStocks($totalDividends, $earningAfterTaxes, $noOfStocks)
+        {
             return $this->manufactureInstance(
                 [
                     $totalDividends,

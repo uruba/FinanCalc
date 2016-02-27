@@ -10,18 +10,22 @@ namespace FinanCalc\Utils {
      * Class Config
      * @package FinanCalc\Utils
      */
-    class Config {
+    class Config
+    {
         protected static $configArray = array();
 
         /**
          * PRIVATE constructor
          */
-        private function __construct() {}
+        private function __construct()
+        {
+        }
 
         /**
          * @param null $defaultValues
          */
-        public static function init($defaultValues = null) {
+        public static function init($defaultValues = null)
+        {
             if ($defaultValues == null) {
                 $defaultValues = Defaults::$configDefault;
             } else {
@@ -35,7 +39,8 @@ namespace FinanCalc\Utils {
          * @return mixed
          * @throws Exception
          */
-        public static function getConfigField($key) {
+        public static function getConfigField($key)
+        {
             if (empty(static::$configArray)) {
                 Config::init();
             }
@@ -53,7 +58,8 @@ namespace FinanCalc\Utils {
          * @param $key
          * @param $value
          */
-        public static function setConfigField($key, $value) {
+        public static function setConfigField($key, $value)
+        {
             if (empty(static::$configArray)) {
                 Config::init();
             }
@@ -64,7 +70,8 @@ namespace FinanCalc\Utils {
         /**
          * @return array
          */
-        public static function getConfigArray() {
+        public static function getConfigArray()
+        {
             return static::$configArray;
         }
     }

@@ -5,21 +5,37 @@ use FinanCalc\Calculators\BondDurationCalculator;
 /**
  * Class BondDurationCalculatorTest
  */
-class BondDurationCalculatorTest extends PHPUnit_Framework_TestCase {
+class BondDurationCalculatorTest extends PHPUnit_Framework_TestCase
+{
     private $bondDurationCalculatorDirectAnnually,
-            $bondDurationCalculatorFactoryAnnually;
+        $bondDurationCalculatorFactoryAnnually;
 
-    public function testDurationDirectAnnually() {
+    public function testDurationDirectAnnually()
+    {
         $this->assertDuration($this->bondDurationCalculatorDirectAnnually);
     }
 
-    public function testDurationFactoryAnnually() {
-        $this->assertDuration($this->bondDurationCalculatorFactoryAnnually);
+    /**
+     * @param BondDurationCalculator $bondDurationCalculator
+     */
+    private function assertDuration(BondDurationCalculator $bondDurationCalculator)
+    {
+        $bondDuration_direct = $bondDurationCalculator->getBondDuration();
+        $bondDuration_array = $bondDurationCalculator->getResultAsArray()["bondDuration"];
+
+        $expected = "2.78";
+        $this->assertEquals($expected, round($bondDuration_direct, 2));
+        $this->assertEquals($expected, round($bondDuration_array, 2));
     }
 
     /**
      * Test other factory methods
      */
+
+    public function testDurationFactoryAnnually()
+    {
+        $this->assertDuration($this->bondDurationCalculatorFactoryAnnually);
+    }
 
     /**
      * Test semi-annual coupons bond factory
@@ -27,7 +43,8 @@ class BondDurationCalculatorTest extends PHPUnit_Framework_TestCase {
      * we need to halve the 'years to maturity' value
      * and double the 'annual coupon rate' and 'annual yield')
      */
-    public function testDurationFactorySemiAnnually() {
+    public function testDurationFactorySemiAnnually()
+    {
         $this->assertDuration(\FinanCalc\FinanCalc
             ::getInstance()
             ->getFactory('BondDurationCalculatorFactory')
@@ -40,7 +57,8 @@ class BondDurationCalculatorTest extends PHPUnit_Framework_TestCase {
      * we need to divide the 'years to maturity' value by four
      * and quadruple the 'annual coupon rate' and 'annual yield')
      */
-    public function testDurationFactoryQuarterly() {
+    public function testDurationFactoryQuarterly()
+    {
         $this->assertDuration(\FinanCalc\FinanCalc
             ::getInstance()
             ->getFactory('BondDurationCalculatorFactory')
@@ -53,7 +71,8 @@ class BondDurationCalculatorTest extends PHPUnit_Framework_TestCase {
      * we need to divide the 'years to maturity' value by twelve
      * and multiply the 'annual coupon rate' and 'annual yield'
      */
-    public function testDurationFactoryMonthly() {
+    public function testDurationFactoryMonthly()
+    {
         $this->assertDuration(\FinanCalc\FinanCalc
             ::getInstance()
             ->getFactory('BondDurationCalculatorFactory')
@@ -66,39 +85,38 @@ class BondDurationCalculatorTest extends PHPUnit_Framework_TestCase {
      * but manufactured by the custom bond coupon frequency
      * factory
      */
-    public function testDurationFactoryCustom() {
+    public function testDurationFactoryCustom()
+    {
         $this->assertDuration(\FinanCalc\FinanCalc
             ::getInstance()
             ->getFactory('BondDurationCalculatorFactory')
             ->newCustomCouponFrequencyBond(1000, 0.08, 0.1, 3, 1));
     }
 
-
-    /**
-     * @param BondDurationCalculator $bondDurationCalculator
-     */
-    private function assertDuration(BondDurationCalculator $bondDurationCalculator) {
-        $bondDuration_direct = $bondDurationCalculator->getBondDuration();
-        $bondDuration_array = $bondDurationCalculator->getResultAsArray()["bondDuration"];
-
-        $expected = "2.78";
-        $this->assertEquals($expected, round($bondDuration_direct, 2));
-        $this->assertEquals($expected, round($bondDuration_array, 2));
-    }
-
     /**
      * Test presence in the main Factories array
      */
-    public function testPresenceInMainFactoriesArray() {
+    public function testPresenceInMainFactoriesArray()
+    {
         $this->assertTrue(
-            isObjectTypeInArray('FinanCalc\\Calculators\\Factories\\BondDurationCalculatorFactory', \FinanCalc\FinanCalc::getInstance()->getFactories())
+            isObjectTypeInArray('FinanCalc\\Calculators\\Factories\\BondDurationCalculatorFactory',
+                \FinanCalc\FinanCalc::getInstance()->getFactories())
         );
+    }
+
+    protected function setUp()
+    {
+        $this->bondDurationCalculatorDirectAnnually = $this->newBondInstanceDirectAnnually();
+        $this->bondDurationCalculatorFactoryAnnually = $this->newBondInstanceFactoryAnnually();
+
+        parent::setUp();
     }
 
     /**
      * @return BondDurationCalculator
      */
-    private function newBondInstanceDirectAnnually() {
+    private function newBondInstanceDirectAnnually()
+    {
         return new BondDurationCalculator(1000, 0.08, 0.1, 3);
     }
 
@@ -106,17 +124,11 @@ class BondDurationCalculatorTest extends PHPUnit_Framework_TestCase {
      * @return mixed
      * @throws Exception
      */
-    private function newBondInstanceFactoryAnnually() {
+    private function newBondInstanceFactoryAnnually()
+    {
         return \FinanCalc\FinanCalc
             ::getInstance()
             ->getFactory('BondDurationCalculatorFactory')
             ->newAnnualCouponsBond(1000, 0.08, 0.1, 3);
-    }
-
-    protected function setUp() {
-        $this->bondDurationCalculatorDirectAnnually = $this->newBondInstanceDirectAnnually();
-        $this->bondDurationCalculatorFactoryAnnually = $this->newBondInstanceFactoryAnnually();
-
-        parent::setUp();
     }
 }

@@ -7,7 +7,8 @@ date_default_timezone_set("Europe/London");
  * @param $array
  * @return bool
  */
-function isObjectTypeInArray($objectType, $array) {
+function isObjectTypeInArray($objectType, $array)
+{
     foreach ($array as $arrayEntry) {
         if ($arrayEntry instanceof $objectType) {
             return true;

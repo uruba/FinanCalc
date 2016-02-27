@@ -11,7 +11,8 @@ namespace FinanCalc\Calculators {
      * Class BondDurationCalculator
      * @package FinanCalc\Calculators
      */
-    class BondDurationCalculator extends BondCalculatorAbstract {
+    class BondDurationCalculator extends BondCalculatorAbstract
+    {
 
         // annual yield of the bond
         protected $bondAnnualYield;
@@ -51,11 +52,13 @@ namespace FinanCalc\Calculators {
          * @param $bondYearsToMaturity
          * @param $bondPaymentFrequency
          */
-        function __construct($bondFaceValue,
-                                $bondAnnualCouponRate,
-                                $bondAnnualYield,
-                                $bondYearsToMaturity,
-                                $bondPaymentFrequency = 1) {
+        function __construct(
+            $bondFaceValue,
+            $bondAnnualCouponRate,
+            $bondAnnualYield,
+            $bondYearsToMaturity,
+            $bondPaymentFrequency = 1
+        ) {
             $this->setBondFaceValue($bondFaceValue);
             $this->setBondAnnualCouponRate($bondAnnualCouponRate);
             $this->setBondAnnualYield($bondAnnualYield);
@@ -66,28 +69,32 @@ namespace FinanCalc\Calculators {
         /**
          * @param $bondAnnualYield
          */
-        public function setBondAnnualYield($bondAnnualYield) {
+        public function setBondAnnualYield($bondAnnualYield)
+        {
             $this->setProperty("bondAnnualYield", $bondAnnualYield, Lambdas::checkIfPositive());
         }
 
         /**
          * @return mixed
          */
-        public function getBondAnnualYield() {
+        public function getBondAnnualYield()
+        {
             return $this->bondAnnualYield;
         }
 
         /**
          * @return string
          */
-        public function getBondYieldPerPaymentPeriod() {
+        public function getBondYieldPerPaymentPeriod()
+        {
             return MathFuncs::div($this->bondAnnualYield, $this->bondPaymentFrequency);
         }
 
         /**
          * @return array
          */
-        public function getBondNominalCashFlows() {
+        public function getBondNominalCashFlows()
+        {
             // nominal cash flows = coupons each period + face value in the last period
             $numberOfPayments = $this->getBondNoOfPayments();
             $couponPayment = $this->getCouponPayment();
@@ -107,7 +114,8 @@ namespace FinanCalc\Calculators {
         /**
          * @return array
          */
-        public function getBondDiscountedCashFlows() {
+        public function getBondDiscountedCashFlows()
+        {
             // discounted cash flows = nominal cash flows discounted by the means of yield
             $discountFactor = MathFuncs::div(1, MathFuncs::add(1, $this->getBondYieldPerPaymentPeriod()));
 
@@ -129,7 +137,8 @@ namespace FinanCalc\Calculators {
         /**
          * @return float
          */
-        public function getBondPresentValue() {
+        public function getBondPresentValue()
+        {
             // bond present value = sum of all discounted cash flows during the life of the bond
             $presentValue = 0;
             foreach ($this->getBondDiscountedCashFlows() as $discountedCashFlowEntry) {
@@ -142,7 +151,8 @@ namespace FinanCalc\Calculators {
         /**
          * @return string
          */
-        public function getBondDuration() {
+        public function getBondDuration()
+        {
             // duration of the bond = sum of auxiliary values of all periods / bond present value
             // auxiliary value for a period = discounted cash flow in the period * number of the period
             $auxiliaryValue = 0;

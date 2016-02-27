@@ -1,6 +1,7 @@
 <?php
 
 namespace FinanCalc\Constants {
+
     /**
      * Class Defaults
      * @package FinanCalc\Constants
@@ -36,11 +37,11 @@ namespace FinanCalc\Constants {
                     'days_in_a_year' => '360'
                 ]
                 /**
-                 Not working yet
-                ,
-                'Actual/365' => [
-                    'days_in_a_year' => '365',
-                ]
+                 * Not working yet
+                 * ,
+                 * 'Actual/365' => [
+                 * 'days_in_a_year' => '365',
+                 * ]
                  *
                  */
             ]

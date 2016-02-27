@@ -28,6 +28,7 @@
  * @license http://unlicense.org The Unlicense
  */
 namespace FinanCalc {
+
     use Exception;
     use FinanCalc\Constants\ErrorMessages;
     use FinanCalc\Interfaces\Calculator\CalculatorFactoryAbstract;
@@ -39,7 +40,8 @@ namespace FinanCalc {
      * Class FinanCalc
      * @package FinanCalc
      */
-    final class FinanCalc {
+    final class FinanCalc
+    {
         private $factoryClasses = array();
         private static $instance = null;
 
@@ -49,18 +51,21 @@ namespace FinanCalc {
          *
          */
 
-        private function __construct() {
+        private function __construct()
+        {
             $this->populateFactoryClassesArray();
         }
 
-        protected function __clone() {
+        protected function __clone()
+        {
             // we do not want the singleton object to be cloned
         }
 
         /**
          * @return FinanCalc
          */
-        public static function getInstance() {
+        public static function getInstance()
+        {
             if (self::$instance === null) {
                 self::$instance = new FinanCalc();
             }
@@ -70,7 +75,8 @@ namespace FinanCalc {
         /**
          * @return string
          */
-        public static function getPath() {
+        public static function getPath()
+        {
             return __DIR__;
         }
 
@@ -83,7 +89,8 @@ namespace FinanCalc {
         /**
          * @return CalculatorFactoryAbstract[]
          */
-        public function getFactories() {
+        public function getFactories()
+        {
             return $this->factoryClasses;
         }
 
@@ -92,18 +99,20 @@ namespace FinanCalc {
          * @return CalculatorFactoryAbstract
          * @throws Exception
          */
-        public function getFactory($factoryClassName) {
+        public function getFactory($factoryClassName)
+        {
             if (array_key_exists($factoryClassName, $this->factoryClasses)) {
-                            return $this->factoryClasses[$factoryClassName];
+                return $this->factoryClasses[$factoryClassName];
             } else {
-                            throw new Exception(ErrorMessages::getFactoryClassNotInitializedMessage($factoryClassName));
+                throw new Exception(ErrorMessages::getFactoryClassNotInitializedMessage($factoryClassName));
             }
         }
 
         /**
          * @param $configArray
          */
-        public function setConfig($configArray = null) {
+        public function setConfig($configArray = null)
+        {
             Config::init($configArray);
         }
 
@@ -113,8 +122,9 @@ namespace FinanCalc {
          *
          */
 
-        private function populateFactoryClassesArray() {
-            $factoryFiles = glob(FinanCalc::getPath().Config::getConfigField('factories_relative_path').'/*.php');
+        private function populateFactoryClassesArray()
+        {
+            $factoryFiles = glob(FinanCalc::getPath() . Config::getConfigField('factories_relative_path') . '/*.php');
             $factoriesNamespace = Config::getConfigField('factories_namespace');
 
             foreach ($factoryFiles as $factoryFile) {
@@ -122,14 +132,15 @@ namespace FinanCalc {
                 $fileTokens = token_get_all($factoryFileContents);
 
                 for ($i = 2; $i < count($fileTokens); $i++) {
-                    if ($fileTokens[$i-2][0] == T_CLASS) {
+                    if ($fileTokens[$i - 2][0] == T_CLASS) {
                         $factoryClassName = $fileTokens[$i][1];
                         try {
                             /** @noinspection PhpIncludeInspection */
                             require_once($factoryFile);
-                            $factoryClassReflector = new ReflectionClass($factoriesNamespace.'\\'.$factoryClassName);
+                            $factoryClassReflector = new ReflectionClass($factoriesNamespace . '\\' . $factoryClassName);
                         } catch (ReflectionException $e) {
-                            error_log(ErrorMessages::getFactoryClassExpectedInNamespaceMessage($factoryClassName, $factoriesNamespace));
+                            error_log(ErrorMessages::getFactoryClassExpectedInNamespaceMessage($factoryClassName,
+                                $factoriesNamespace));
                             continue;
                         }
 
@@ -139,7 +150,8 @@ namespace FinanCalc {
                             $this->factoryClasses[$factoryClassName] = $factoryClassReflector->newInstance();
                             break;
                         } else {
-                            error_log(ErrorMessages::getFactoryClassExpectedAncestorMessage($factoryClassName, $factoryAbstractClass));
+                            error_log(ErrorMessages::getFactoryClassExpectedAncestorMessage($factoryClassName,
+                                $factoryAbstractClass));
                         }
                     }
                 }

@@ -11,7 +11,8 @@ namespace FinanCalc\Calculators {
      * Class SimpleDiscountCalculator
      * @package FinanCalc\Calculators
      */
-    class SimpleDiscountCalculator extends CalculatorAbstract {
+    class SimpleDiscountCalculator extends CalculatorAbstract
+    {
         // amount due = 'S'
         protected $amountDue;
         // annual discount rate = 'd'
@@ -25,9 +26,11 @@ namespace FinanCalc\Calculators {
          * @param $annualDiscountRate
          * @param TimeSpan $time
          */
-        function __construct($amountDue,
-                                $annualDiscountRate,
-                                TimeSpan $time) {
+        function __construct(
+            $amountDue,
+            $annualDiscountRate,
+            TimeSpan $time
+        ) {
             $this->setAmountDue($amountDue);
             $this->setAnnualDiscountRate($annualDiscountRate);
             $this->setTime($time);
@@ -36,70 +39,80 @@ namespace FinanCalc\Calculators {
         /**
          * @param $amountDue
          */
-        public function setAmountDue($amountDue) {
+        public function setAmountDue($amountDue)
+        {
             $this->setProperty("amountDue", $amountDue, Lambdas::checkIfPositive());
         }
 
         /**
          * @param $annualDiscountRate
          */
-        public function setAnnualDiscountRate($annualDiscountRate) {
+        public function setAnnualDiscountRate($annualDiscountRate)
+        {
             $this->setProperty("annualDiscountRate", $annualDiscountRate, Lambdas::checkIfPositive());
         }
 
         /**
          * @param TimeSpan $time
          */
-        public function setTime(TimeSpan $time) {
+        public function setTime(TimeSpan $time)
+        {
             $this->setProperty("time", $time, Lambdas::checkIfPositive());
         }
 
         /**
          * @return string
          */
-        public function getAmountDue() {
+        public function getAmountDue()
+        {
             return $this->amountDue;
         }
 
         /**
          * @return string
          */
-        public function getAnnualDiscountRate() {
+        public function getAnnualDiscountRate()
+        {
             return $this->annualDiscountRate;
         }
 
         /**
          * @return TimeSpan
          */
-        public function getTime() {
+        public function getTime()
+        {
             return $this->time;
         }
 
         /**
          * @return string
          */
-        public function getTimeInYears() {
+        public function getTimeInYears()
+        {
             return $this->time->toYears();
         }
 
         /**
          * @return string
          */
-        public function getTimeInMonths() {
+        public function getTimeInMonths()
+        {
             return $this->time->toMonths();
         }
 
         /**
          * @return string
          */
-        public function getTimeInDays() {
+        public function getTimeInDays()
+        {
             return $this->time->toDays();
         }
 
         /**
          * @return string
          */
-        public function getDiscountAmount() {
+        public function getDiscountAmount()
+        {
             // D = S*d*t
             return MathFuncs::mul(
                 $this->amountDue,

@@ -17,7 +17,8 @@ namespace FinanCalc\Calculators {
      * Class AnnuityCalculator
      * @package FinanCalc\Calculators
      */
-    class AnnuityCalculator extends CalculatorAbstract {
+    class AnnuityCalculator extends CalculatorAbstract
+    {
 
         // amount of each individual payment = 'K'
         protected $annuitySinglePaymentAmount;
@@ -59,10 +60,12 @@ namespace FinanCalc\Calculators {
          * @param $annuityPeriodLength
          * @param $annuityInterest
          */
-        function __construct($annuitySinglePaymentAmount,
-                             $annuityNoOfCompoundingPeriods,
-                             TimeSpan $annuityPeriodLength,
-                             $annuityInterest) {
+        function __construct(
+            $annuitySinglePaymentAmount,
+            $annuityNoOfCompoundingPeriods,
+            TimeSpan $annuityPeriodLength,
+            $annuityInterest
+        ) {
             $this->setAnnuitySinglePaymentAmount($annuitySinglePaymentAmount);
             $this->setAnnuityNoOfCompoundingPeriods($annuityNoOfCompoundingPeriods);
             $this->setAnnuityPeriodLength($annuityPeriodLength);
@@ -72,15 +75,18 @@ namespace FinanCalc\Calculators {
         /**
          * @param $annuitySinglePaymentAmount
          */
-        public function setAnnuitySinglePaymentAmount($annuitySinglePaymentAmount) {
+        public function setAnnuitySinglePaymentAmount($annuitySinglePaymentAmount)
+        {
             $this->setProperty("annuitySinglePaymentAmount", $annuitySinglePaymentAmount, Lambdas::checkIfPositive());
         }
 
         /**
          * @param $annuityNoOfCompoundingPeriods
          */
-        public function setAnnuityNoOfCompoundingPeriods($annuityNoOfCompoundingPeriods) {
-            $this->setProperty("annuityNoOfCompoundingPeriods", $annuityNoOfCompoundingPeriods, Lambdas::checkIfNotNegative());
+        public function setAnnuityNoOfCompoundingPeriods($annuityNoOfCompoundingPeriods)
+        {
+            $this->setProperty("annuityNoOfCompoundingPeriods", $annuityNoOfCompoundingPeriods,
+                Lambdas::checkIfNotNegative());
 
             if ($this->annuityPeriodLength !== null) {
                 $this->setAnnuityPeriodLength($this->annuityPeriodLength);
@@ -90,7 +96,8 @@ namespace FinanCalc\Calculators {
         /**
          * @param $annuityPeriodLength
          */
-        public function setAnnuityPeriodLength(TimeSpan $annuityPeriodLength) {
+        public function setAnnuityPeriodLength(TimeSpan $annuityPeriodLength)
+        {
             if (Helpers::checkIfNotNegativeNumberOrThrowAnException((string)$annuityPeriodLength)) {
                 if (Helpers::checkIfZero($this->annuityNoOfCompoundingPeriods)) {
                     $annuityPeriodLength = TimeSpan::asDuration(0);
@@ -103,56 +110,64 @@ namespace FinanCalc\Calculators {
         /**
          * @param $annuityInterest
          */
-        public function setAnnuityInterest($annuityInterest) {
+        public function setAnnuityInterest($annuityInterest)
+        {
             $this->setProperty("annuityInterest", $annuityInterest, Lambdas::checkIfPositive());
         }
 
         /**
          * @return mixed
          */
-        public function getAnnuitySinglePaymentAmount() {
+        public function getAnnuitySinglePaymentAmount()
+        {
             return $this->annuitySinglePaymentAmount;
         }
 
         /**
          * @return mixed
          */
-        public function getAnnuityNoOfCompoundingPeriods() {
+        public function getAnnuityNoOfCompoundingPeriods()
+        {
             return $this->annuityNoOfCompoundingPeriods;
         }
 
         /**
          * @return TimeSpan
          */
-        public function getAnnuityPeriodLength() {
+        public function getAnnuityPeriodLength()
+        {
             return $this->annuityPeriodLength;
         }
 
         /**
          * @return string
          */
-        public function getAnnuityPeriodLengthInYears() {
+        public function getAnnuityPeriodLengthInYears()
+        {
             return $this->annuityPeriodLength->toYears();
         }
 
         /**
          * @return string
          */
-        public function getAnnuityPeriodLengthInMonths() {
+        public function getAnnuityPeriodLengthInMonths()
+        {
             return $this->annuityPeriodLength->toMonths();
         }
 
         /**
          * @return string
          */
-        public function getAnnuityPeriodLengthInDays() {
+        public function getAnnuityPeriodLengthInDays()
+        {
             return $this->annuityPeriodLength->toDays();
         }
 
         /**
          * @return mixed
          */
-        public function getAnnuityInterest() {
+        public function getAnnuityInterest()
+        {
             return $this->annuityInterest;
         }
 
@@ -160,7 +175,8 @@ namespace FinanCalc\Calculators {
          * @return string
          * @throws Exception
          */
-        public function getAnnuityLengthInYears() {
+        public function getAnnuityLengthInYears()
+        {
             return MathFuncs::div(
                 $this->getAnnuityLengthInDays(),
                 TimeUtils::getCurrentDayCountConvention()['days_in_a_year']
@@ -171,7 +187,8 @@ namespace FinanCalc\Calculators {
          * @return string
          * @throws Exception
          */
-        public function getAnnuityLengthInMonths() {
+        public function getAnnuityLengthInMonths()
+        {
             return MathFuncs::div(
                 $this->getAnnuityLengthInDays(),
                 TimeUtils::getCurrentDayCountConvention()['days_in_a_month']
@@ -181,7 +198,8 @@ namespace FinanCalc\Calculators {
         /**
          * @return string
          */
-        public function getAnnuityLengthInDays() {
+        public function getAnnuityLengthInDays()
+        {
             return MathFuncs::mul(
                 $this->annuityNoOfCompoundingPeriods,
                 $this->annuityPeriodLength->toDays()
@@ -192,7 +210,8 @@ namespace FinanCalc\Calculators {
          * @param DateTime $startDate
          * @return DateTime
          */
-        public function getAnnuityEndDate(DateTime $startDate) {
+        public function getAnnuityEndDate(DateTime $startDate)
+        {
             return TimeSpan
                 ::asDurationWithStartDate($startDate, 0, 0, (int)$this->getAnnuityLengthInDays())
                 ->getEndDate();
@@ -202,7 +221,8 @@ namespace FinanCalc\Calculators {
          * @param AnnuityPaymentTypes $annuityType
          * @return null|string
          */
-        public function getAnnuityPresentValue(AnnuityPaymentTypes $annuityType = null) {
+        public function getAnnuityPresentValue(AnnuityPaymentTypes $annuityType = null)
+        {
             return $this
                 ->getAnnuityValue(
                     $annuityType,
@@ -213,7 +233,8 @@ namespace FinanCalc\Calculators {
         /**
          * @return null|string
          */
-        public function getAnnuityPresentValueInAdvance() {
+        public function getAnnuityPresentValueInAdvance()
+        {
             return $this
                 ->getAnnuityPresentValue(
                     new AnnuityPaymentTypes(AnnuityPaymentTypes::IN_ADVANCE)
@@ -223,7 +244,8 @@ namespace FinanCalc\Calculators {
         /**
          * @return null|string
          */
-        public function getAnnuityPresentValueInArrears() {
+        public function getAnnuityPresentValueInArrears()
+        {
             return $this
                 ->getAnnuityPresentValue(
                     new AnnuityPaymentTypes(AnnuityPaymentTypes::IN_ARREARS)
@@ -234,7 +256,8 @@ namespace FinanCalc\Calculators {
          * @param AnnuityPaymentTypes $annuityType
          * @return null|string
          */
-        public function getAnnuityFutureValue(AnnuityPaymentTypes $annuityType = null) {
+        public function getAnnuityFutureValue(AnnuityPaymentTypes $annuityType = null)
+        {
             return $this
                 ->getAnnuityValue(
                     $annuityType,
@@ -245,7 +268,8 @@ namespace FinanCalc\Calculators {
         /**
          * @return null|string
          */
-        public function getAnnuityFutureValueInAdvance() {
+        public function getAnnuityFutureValueInAdvance()
+        {
             return $this
                 ->getAnnuityFutureValue(
                     new AnnuityPaymentTypes(AnnuityPaymentTypes::IN_ADVANCE)
@@ -255,7 +279,8 @@ namespace FinanCalc\Calculators {
         /**
          * @return null|string
          */
-        public function getAnnuityFutureValueInArrears() {
+        public function getAnnuityFutureValueInArrears()
+        {
             return $this->getAnnuityFutureValue(
                 new AnnuityPaymentTypes(AnnuityPaymentTypes::IN_ARREARS)
             );
@@ -267,7 +292,10 @@ namespace FinanCalc\Calculators {
          * @return null|string
          * @throws Exception
          */
-        public function getAnnuityValue(AnnuityPaymentTypes $annuityPaymentType = null, AnnuityValueTypes $annuityValueType) {
+        public function getAnnuityValue(
+            AnnuityPaymentTypes $annuityPaymentType = null,
+            AnnuityValueTypes $annuityValueType
+        ) {
             // if the number of the annuity's compounding periods
             // is set to zero, we're dealing with a perpetuity
             if (Helpers::checkIfZero($this->annuityNoOfCompoundingPeriods)) {
@@ -331,7 +359,7 @@ namespace FinanCalc\Calculators {
 
                 if (isset($numerator) && isset($denominator)) {
                     return
-                    // PV|FV = K*(PV|FV of unit annuity)
+                        // PV|FV = K*(PV|FV of unit annuity)
                         MathFuncs::mul(
                             MathFuncs::div(
                                 $numerator,

@@ -9,23 +9,21 @@ use FinanCalc\Utils\Time\TimeSpan;
 class SimpleDiscountCalculatorTest extends PHPUnit_Framework_TestCase
 {
     private $simpleDiscountCalculatorDirect,
-            $simpleDiscountCalculatorFactory;
+        $simpleDiscountCalculatorFactory;
 
     /**
      * Test discount amount
      */
-    public function testSimpleDiscountAmountDirect() {
+    public function testSimpleDiscountAmountDirect()
+    {
         $this->assertDiscountAmount($this->simpleDiscountCalculatorDirect);
-    }
-
-    public function testSimpleDiscountAmountFactory() {
-        $this->assertDiscountAmount($this->simpleDiscountCalculatorFactory);
     }
 
     /**
      * @param SimpleDiscountCalculator $discountCalculator
      */
-    private function assertDiscountAmount(SimpleDiscountCalculator $discountCalculator) {
+    private function assertDiscountAmount(SimpleDiscountCalculator $discountCalculator)
+    {
         $this->assertEquals(6500, $discountCalculator->getDiscountAmount());
 
         $this->assertEquals(100000, $discountCalculator->getAmountDue());
@@ -36,19 +34,35 @@ class SimpleDiscountCalculatorTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(180, $discountCalculator->getTimeInDays());
     }
 
+    public function testSimpleDiscountAmountFactory()
+    {
+        $this->assertDiscountAmount($this->simpleDiscountCalculatorFactory);
+    }
+
     /**
      * Test presence in the main Factories array
      */
-    public function testPresenceInMainFactoriesArray() {
+    public function testPresenceInMainFactoriesArray()
+    {
         $this->assertTrue(
-            isObjectTypeInArray('FinanCalc\\Calculators\\Factories\\SimpleDiscountCalculatorFactory', \FinanCalc\FinanCalc::getInstance()->getFactories())
+            isObjectTypeInArray('FinanCalc\\Calculators\\Factories\\SimpleDiscountCalculatorFactory',
+                \FinanCalc\FinanCalc::getInstance()->getFactories())
         );
+    }
+
+    protected function setUp()
+    {
+        $this->simpleDiscountCalculatorDirect = $this->newSimpleDiscountCalculatorDirect();
+        $this->simpleDiscountCalculatorFactory = $this->newSimpleDiscountCalculatorFactory();
+
+        parent::setUp();
     }
 
     /**
      * @return SimpleDiscountCalculator
      */
-    private function newSimpleDiscountCalculatorDirect() {
+    private function newSimpleDiscountCalculatorDirect()
+    {
         return new SimpleDiscountCalculator(100000, 0.13, TimeSpan::asDuration(0, 6));
     }
 
@@ -56,17 +70,11 @@ class SimpleDiscountCalculatorTest extends PHPUnit_Framework_TestCase
      * @return mixed
      * @throws Exception
      */
-    private function newSimpleDiscountCalculatorFactory() {
+    private function newSimpleDiscountCalculatorFactory()
+    {
         return \FinanCalc\FinanCalc
             ::getInstance()
             ->getFactory('SimpleDiscountCalculatorFactory')
             ->newSimpleDiscount(100000, 0.13, TimeSpan::asDuration(0, 6));
-    }
-
-    protected function setUp() {
-        $this->simpleDiscountCalculatorDirect = $this->newSimpleDiscountCalculatorDirect();
-        $this->simpleDiscountCalculatorFactory = $this->newSimpleDiscountCalculatorFactory();
-
-        parent::setUp();
     }
 }

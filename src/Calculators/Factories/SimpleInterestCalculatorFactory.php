@@ -10,7 +10,8 @@ namespace FinanCalc\Calculators\Factories {
      * Class SimpleInterestCalculatorFactory
      * @package FinanCalc\Calculators\Factories
      */
-    class SimpleInterestCalculatorFactory extends CalculatorFactoryAbstract {
+    class SimpleInterestCalculatorFactory extends CalculatorFactoryAbstract
+    {
         const MANUFACTURED_CLASS_NAME = 'FinanCalc\\Calculators\\SimpleInterestCalculator';
 
         /**
@@ -19,7 +20,8 @@ namespace FinanCalc\Calculators\Factories {
          * @param TimeSpan $time
          * @return SimpleInterestCalculator
          */
-        public function newSimpleInterest($principal, $annualInterestRate, TimeSpan $time) {
+        public function newSimpleInterest($principal, $annualInterestRate, TimeSpan $time)
+        {
             return $this->manufactureInstance(
                 [
                     $principal,

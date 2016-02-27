@@ -7,9 +7,11 @@ use FinanCalc\Utils\Config;
 /**
  * Class ConfigTest
  */
-class ConfigTest extends PHPUnit_Framework_TestCase {
+class ConfigTest extends PHPUnit_Framework_TestCase
+{
 
-    public function testSetNewValue() {
+    public function testSetNewValue()
+    {
         Config::setConfigField('test_field', 'test');
 
         $this->assertEquals(
@@ -17,7 +19,8 @@ class ConfigTest extends PHPUnit_Framework_TestCase {
             Config::getConfigField('test_field'));
     }
 
-    public function testInitAndGetConfigViaMainObject() {
+    public function testInitAndGetConfigViaMainObject()
+    {
         FinanCalc\FinanCalc::getInstance()->setConfig(['test_field' => 'test from main object']);
 
         $this->assertEquals(
@@ -26,7 +29,8 @@ class ConfigTest extends PHPUnit_Framework_TestCase {
         );
     }
 
-    public function testInitNullConfigViaMainObject() {
+    public function testInitNullConfigViaMainObject()
+    {
         FinanCalc\FinanCalc::getInstance()->setConfig();
 
         $this->assertEquals(
@@ -35,20 +39,23 @@ class ConfigTest extends PHPUnit_Framework_TestCase {
         );
     }
 
-    public function testGetOneOfTheDefaultValues() {
+    public function testGetOneOfTheDefaultValues()
+    {
         $this->assertEquals(
             '/Calculators/Factories',
             Config::getConfigField('factories_relative_path'));
     }
 
-    public function testGetNonExistentConfigValue() {
+    public function testGetNonExistentConfigValue()
+    {
         $this->setExpectedException("Exception", ErrorMessages::getConfigFieldNotFoundMessage("NonExistent"));
 
         Config::setConfigField("NonExistent", null);
         Config::getConfigField("NonExistent");
     }
 
-    public function testConfigArrayEmpty() {
+    public function testConfigArrayEmpty()
+    {
         $resetConfig = function () {
             $reflectionClass = new ReflectionClass("FinanCalc\\Utils\\Config");
             $reflectedProperty = $reflectionClass->getProperty('configArray');

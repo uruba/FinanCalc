@@ -6,9 +6,11 @@ use FinanCalc\Constants\AnnuityValueTypes;
 /**
  * Class EnumTest
  */
-class EnumTest extends PHPUnit_Framework_TestCase {
+class EnumTest extends PHPUnit_Framework_TestCase
+{
 
-    public function testAnnuityValueTypes() {
+    public function testAnnuityValueTypes()
+    {
         // test PV
         $annuityValueType = new AnnuityValueTypes(AnnuityValueTypes::PRESENT_VALUE);
         $this->assertEquals(
@@ -22,7 +24,8 @@ class EnumTest extends PHPUnit_Framework_TestCase {
             $annuityValueType->getValue());
     }
 
-    public function testMagicProperty() {
+    public function testMagicProperty()
+    {
         $annuityValueType = new AnnuityValueTypes(AnnuityValueTypes::FUTURE_VALUE);
         // the enum's value should now be able to be channged by so much as assigning a magic property
         // lets change it from the future value to present value and see if it comes through
@@ -37,14 +40,16 @@ class EnumTest extends PHPUnit_Framework_TestCase {
         );
     }
 
-    public function testToString() {
+    public function testToString()
+    {
         $annuityValueType = new AnnuityValueTypes(AnnuityValueTypes::PRESENT_VALUE);
 
         $this->expectOutputString('1');
         echo($annuityValueType);
     }
 
-    public function testAnnuityValueTypesException() {
+    public function testAnnuityValueTypesException()
+    {
         $this->setExpectedException('Exception');
 
         // this should throw an exception
@@ -52,7 +57,8 @@ class EnumTest extends PHPUnit_Framework_TestCase {
     }
 
 
-    public function testAnnuityPaymentTypes() {
+    public function testAnnuityPaymentTypes()
+    {
         $annuityPaymentType = new AnnuityPaymentTypes(AnnuityPaymentTypes::IN_ADVANCE);
         $this->assertEquals(
             AnnuityPaymentTypes::IN_ADVANCE,
@@ -64,7 +70,8 @@ class EnumTest extends PHPUnit_Framework_TestCase {
             $annuityPaymentType->getValue());
     }
 
-    public function testAnnuityPaymentTypesException() {
+    public function testAnnuityPaymentTypesException()
+    {
         $this->setExpectedException('Exception');
 
         // this should throw an exception

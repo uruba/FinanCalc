@@ -8,7 +8,8 @@ namespace FinanCalc\Utils\Serializers {
      * Class JSONSerializer
      * @package FinanCalc\Utils\Serializers
      */
-    class JSONSerializer implements SerializerInterface {
+    class JSONSerializer implements SerializerInterface
+    {
 
         /**
          * @param array $inputArray

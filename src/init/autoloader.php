@@ -1,6 +1,6 @@
 <?php
 
-spl_autoload_register(function($class) {
+spl_autoload_register(function ($class) {
     $exploded_class = explode("\\", $class);
 
     if (count($exploded_class) > 1) {

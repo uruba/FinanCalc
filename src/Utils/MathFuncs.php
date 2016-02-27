@@ -1,19 +1,22 @@
 <?php
 
 namespace FinanCalc\Utils {
+
     use FinanCalc\Constants\Defaults;
 
     /**
      * Class MathFuncs
      * @package FinanCalc\Utils
      */
-    class MathFuncs {
+    class MathFuncs
+    {
         /**
          * @param $leftOperand
          * @param $rightOperand
          * @return string
          */
-        public static function add($leftOperand, $rightOperand) {
+        public static function add($leftOperand, $rightOperand)
+        {
             return bcadd($leftOperand, $rightOperand, Defaults::MONEY_DECIMAL_PLACES_PRECISION);
         }
 
@@ -22,7 +25,8 @@ namespace FinanCalc\Utils {
          * @param $rightOperand
          * @return string
          */
-        public static function sub($leftOperand, $rightOperand) {
+        public static function sub($leftOperand, $rightOperand)
+        {
             return bcsub($leftOperand, $rightOperand, Defaults::MONEY_DECIMAL_PLACES_PRECISION);
         }
 
@@ -31,7 +35,8 @@ namespace FinanCalc\Utils {
          * @param $rightOperand
          * @return string
          */
-        public static function mul($leftOperand, $rightOperand) {
+        public static function mul($leftOperand, $rightOperand)
+        {
             return bcmul($leftOperand, $rightOperand, Defaults::MONEY_DECIMAL_PLACES_PRECISION);
         }
 
@@ -40,7 +45,8 @@ namespace FinanCalc\Utils {
          * @param $rightOperand
          * @return string
          */
-        public static function div($leftOperand, $rightOperand) {
+        public static function div($leftOperand, $rightOperand)
+        {
             return bcdiv($leftOperand, $rightOperand, Defaults::MONEY_DECIMAL_PLACES_PRECISION);
         }
 
@@ -49,7 +55,8 @@ namespace FinanCalc\Utils {
          * @param $rightOperand
          * @return string
          */
-        public static function pow($leftOperand, $rightOperand) {
+        public static function pow($leftOperand, $rightOperand)
+        {
             return bcpow($leftOperand, $rightOperand, Defaults::MONEY_DECIMAL_PLACES_PRECISION);
         }
 
@@ -58,7 +65,8 @@ namespace FinanCalc\Utils {
          * @param $rightOperand
          * @return int
          */
-        public static function comp($leftOperand, $rightOperand) {
+        public static function comp($leftOperand, $rightOperand)
+        {
             return bccomp($leftOperand, $rightOperand, Defaults::MONEY_DECIMAL_PLACES_PRECISION);
         }
 
@@ -67,7 +75,8 @@ namespace FinanCalc\Utils {
          * @param $precision
          * @return string
          */
-        public static function round($roundedNumber, $precision = 2) {
+        public static function round($roundedNumber, $precision = 2)
+        {
             return (string)number_format((float)$roundedNumber, $precision);
         }
     }

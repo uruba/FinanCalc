@@ -9,7 +9,8 @@ namespace FinanCalc\Calculators\FaultyFactories {
      * Class MockCalculatorFactoryFaultyNamespace
      * @package FinanCalc\Calculators\FaultyFactories
      */
-    class MockCalculatorFactoryFaultyNamespace extends CalculatorFactoryAbstract {
+    class MockCalculatorFactoryFaultyNamespace extends CalculatorFactoryAbstract
+    {
         const MANUFACTURED_CLASS_NAME = 'FinanCalc\\Calculators\\FaultyNamespaceCalculator';
     }
 }

@@ -10,7 +10,8 @@ namespace FinanCalc\Calculators {
      * Class BondFairValueCalculator
      * @package FinanCalc\Calculators
      */
-    class BondFairValueCalculator extends BondCalculatorAbstract {
+    class BondFairValueCalculator extends BondCalculatorAbstract
+    {
 
         // valuation interest rate of the bond = 'i'
         protected $bondVIR;
@@ -46,11 +47,13 @@ namespace FinanCalc\Calculators {
          * @param $bondYearsToMaturity
          * @param $bondPaymentFrequency
          */
-        function __construct($bondFaceValue,
-                                $bondAnnualCouponRate,
-                                $bondVIR,
-                                $bondYearsToMaturity,
-                                $bondPaymentFrequency = 1) {
+        function __construct(
+            $bondFaceValue,
+            $bondAnnualCouponRate,
+            $bondVIR,
+            $bondYearsToMaturity,
+            $bondPaymentFrequency = 1
+        ) {
             $this->setBondFaceValue($bondFaceValue);
             $this->setBondAnnualCouponRate($bondAnnualCouponRate);
             $this->setBondVIR($bondVIR);
@@ -61,21 +64,24 @@ namespace FinanCalc\Calculators {
         /**
          * @param $bondVIR
          */
-        public function setBondVIR($bondVIR) {
+        public function setBondVIR($bondVIR)
+        {
             $this->setProperty("bondVIR", $bondVIR, Lambdas::checkIfPositive());
         }
 
         /**
          * @return mixed
          */
-        public function getBondVIR() {
+        public function getBondVIR()
+        {
             return $this->bondVIR;
         }
 
         /**
          * @return string
          */
-        public function getBondFairValue() {
+        public function getBondFairValue()
+        {
             // we need to get the coupon rate per payment period = c/payment frequency
             $couponRateForPeriod = MathFuncs::div(
                 $this->bondAnnualCouponRate,

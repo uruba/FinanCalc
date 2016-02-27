@@ -9,33 +9,38 @@ use FinanCalc\Interfaces\Calculator\CalculatorFactoryAbstract;
  */
 class FinanCalcTest extends PHPUnit_Framework_TestCase
 {
-    public function testFinanCalcClone() {
+    public function testFinanCalcClone()
+    {
         $finanCalc = FinanCalc::getInstance();
         $finanCalcClone = invokeMethod($finanCalc, "__clone");
 
         $this->assertNull($finanCalcClone);
     }
 
-    public function testGetInvalidFactory() {
+    public function testGetInvalidFactory()
+    {
         $this->setExpectedException("Exception");
 
         FinanCalc::getInstance()->getFactory("NonExistentFactory");
     }
 
-    public function testCalculatorAbstract() {
+    public function testCalculatorAbstract()
+    {
         $calculatorAbstractMock = $this->getMockForAbstractClass("FinanCalc\\Interfaces\\Calculator\\CalculatorAbstract");
 
         $this->assertFalse($calculatorAbstractMock->getResultAsArray());
         $this->assertEmpty($calculatorAbstractMock->getResultAsArray(["nonExistentField"]));
     }
 
-    public function testCalculatorFactoryAbstractConstantNotDefined() {
+    public function testCalculatorFactoryAbstractConstantNotDefined()
+    {
         $this->setExpectedException("Exception");
 
         new MockCalculatorFactoryUndefinedConstant();
     }
 
-    public function testCalculatorFactoryAbstractConstantWrong() {
+    public function testCalculatorFactoryAbstractConstantWrong()
+    {
         $this->setExpectedException("Exception");
 
         new MockCalculatorFactoryBadConstant();
@@ -45,13 +50,15 @@ class FinanCalcTest extends PHPUnit_Framework_TestCase
 /**
  * Class MockCalculatorFactoryUndefinedConstant
  */
-class MockCalculatorFactoryUndefinedConstant extends CalculatorFactoryAbstract {
+class MockCalculatorFactoryUndefinedConstant extends CalculatorFactoryAbstract
+{
 
 }
 
 /**
  * Class MockCalculatorFactoryBadConstant
  */
-class MockCalculatorFactoryBadConstant extends CalculatorFactoryAbstract {
+class MockCalculatorFactoryBadConstant extends CalculatorFactoryAbstract
+{
     const MANUFACTURED_CLASS_NAME = "NonExistentName";
 }
