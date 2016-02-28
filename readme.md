@@ -646,6 +646,6 @@ Attribution is welcome, but certainly not required.
 
 **NOTE**
 The library is currently work-in-progress and it is certain that new features will be added in the process.Consider this, therefore, as a preview product prone to abrupt and extensive changes that may affect functionality of an external code adapted to a prior version(s) of the library.
-Always explore the provisional compatibility of the library with your project in case you upgrade to a new version of the library (by means of an extensive testing of the code in which you are exerting the library's features).
+Always explore the provisional compatibility of the library with your project in case you upgrade to a new version of the library (by means of extensive testing of the code in which you are exerting the library's features).
 
 **Be everything as it may, thank you for checking out FinanCalc :bowtie:**
