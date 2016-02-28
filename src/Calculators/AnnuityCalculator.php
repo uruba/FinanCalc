@@ -60,7 +60,7 @@ namespace FinanCalc\Calculators {
          * @param $annuityPeriodLength
          * @param $annuityInterest
          */
-        function __construct(
+        public function __construct(
             $annuitySinglePaymentAmount,
             $annuityNoOfCompoundingPeriods,
             TimeSpan $annuityPeriodLength,
@@ -347,6 +347,8 @@ namespace FinanCalc\Calculators {
                         ),
                         1
                     );
+                } else {
+                    return null;
                 }
 
                 if ($annuityPaymentType->getValue() == AnnuityPaymentTypes::IN_ADVANCE) {
@@ -355,17 +357,17 @@ namespace FinanCalc\Calculators {
                 } elseif ($annuityPaymentType->getValue() == AnnuityPaymentTypes::IN_ARREARS) {
                     // in arrears denom. = i
                     $denominator = $this->annuityInterest;
+                } else {
+                    return null;
                 }
 
-                if (isset($numerator) && isset($denominator)) {
-                    return
-                        // PV|FV = K*(PV|FV of unit annuity)
-                        MathFuncs::mul(
-                            MathFuncs::div(
-                                $numerator,
-                                $denominator),
-                            $this->annuitySinglePaymentAmount);
-                }
+                return
+                    // PV|FV = K*(PV|FV of unit annuity)
+                    MathFuncs::mul(
+                        MathFuncs::div(
+                            $numerator,
+                            $denominator),
+                        $this->annuitySinglePaymentAmount);
             }
 
             return null;
