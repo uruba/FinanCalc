@@ -57,7 +57,7 @@ namespace FinanCalc\Calculators {
          * @param TimeSpan $debtPeriodLength
          * @param $debtInterest
          */
-        function __construct(
+        public function __construct(
             $debtPrincipal,
             $debtNoOfCompoundingPeriods,
             TimeSpan $debtPeriodLength,
@@ -323,13 +323,16 @@ namespace FinanCalc\Calculators {
      */
     class RepaymentInstance
     {
-        private $principalAmount, $interestAmount;
+        // the "principal" part of the individual repayment instance
+        private $principalAmount;
+        // the "interest" part of the individual repayment instance
+        private $interestAmount;
 
         /**
          * @param string $principalAmount [Value of the amount of the payment's 'principal part' as a string]
          * @param string $interestAmount [Value of the amount of the payment's 'interest part' as a string]
          */
-        function __construct($principalAmount, $interestAmount)
+        public function __construct($principalAmount, $interestAmount)
         {
             $this->principalAmount = $principalAmount;
             $this->interestAmount = $interestAmount;

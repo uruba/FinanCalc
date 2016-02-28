@@ -15,7 +15,7 @@ namespace FinanCalc\Constants {
          * @param string $foundTypeName [Name of the class that was used instead]
          * @return string           [Concatenated message as a string]
          */
-        static function getIncompatibleTypesMessage($expectedTypeName, $foundTypeName)
+        public static function getIncompatibleTypesMessage($expectedTypeName, $foundTypeName)
         {
             return Strings::getFormattedString(
                 'message_incompatible_types',
@@ -29,7 +29,7 @@ namespace FinanCalc\Constants {
          * @param $foundValue [Name of the expected value as a string]
          * @return string     [Concatenated message as a string]
          */
-        static function getMustBePositiveNumberMessage($foundValue)
+        public static function getMustBePositiveNumberMessage($foundValue)
         {
             return Strings::getFormattedString(
                 'message_must_be_positive_number',
@@ -43,7 +43,7 @@ namespace FinanCalc\Constants {
          * @param $foundValue [Name of the expected value as a string]
          * @return string     [Concatenated message as a string]
          */
-        static function getMustNotBeNegativeNumberMessage($foundValue)
+        public static function getMustNotBeNegativeNumberMessage($foundValue)
         {
             return Strings::getFormattedString(
                 'message_must_not_be_negative',
@@ -56,7 +56,7 @@ namespace FinanCalc\Constants {
          * @param $configField [Name of the expected value as a string]
          * @return string      [Concatenated message as a string]
          */
-        static function getConfigFieldNotFoundMessage($configField)
+        public static function getConfigFieldNotFoundMessage($configField)
         {
             return Strings::getFormattedString(
                 'message_config_field_not_found',
@@ -70,7 +70,7 @@ namespace FinanCalc\Constants {
          * @param string $className [Name of the class as a string]
          * @return string       [Concatenated message as a string]
          */
-        static function getNonExistentPropertyMessage($propertyName, $className)
+        public static function getNonExistentPropertyMessage($propertyName, $className)
         {
             return Strings::getFormattedString(
                 'message_nonexistent_property',
@@ -84,7 +84,7 @@ namespace FinanCalc\Constants {
          * @param $factoryClassName [Name of the uninitialized factory class as a string]
          * @return string           [Concatenated message as a string]
          */
-        static function getFactoryClassNotInitializedMessage($factoryClassName)
+        public static function getFactoryClassNotInitializedMessage($factoryClassName)
         {
             return Strings::getFormattedString(
                 'message_factory_class_not_initialized',
@@ -98,7 +98,7 @@ namespace FinanCalc\Constants {
          * @param $factoriesNamespace [Name of the namespace that the factory class is supposed to be in as a string]
          * @return string             [Concatenated message as a string]
          */
-        static function getFactoryClassExpectedInNamespaceMessage($factoryClassName, $factoriesNamespace)
+        public static function getFactoryClassExpectedInNamespaceMessage($factoryClassName, $factoriesNamespace)
         {
             return Strings::getFormattedString(
                 'message_factory_class_expected_in_namespace',
@@ -113,7 +113,7 @@ namespace FinanCalc\Constants {
          * @param string $factoryClassAncestorName [Name of the factory class' expected parent class name as a string]
          * @return string                   [Concatenated message as a string]
          */
-        static function getFactoryClassExpectedAncestorMessage($factoryClassName, $factoryClassAncestorName)
+        public static function getFactoryClassExpectedAncestorMessage($factoryClassName, $factoryClassAncestorName)
         {
             return Strings::getFormattedString(
                 'message_factory_class_expected_ancestor',
@@ -126,7 +126,7 @@ namespace FinanCalc\Constants {
         /**
          * @return string [Message as a string]
          */
-        static function getMustDefineManufacturedClassNameMessage()
+        public static function getMustDefineManufacturedClassNameMessage()
         {
             return Strings::getString('message_must_define_manufactured_class_name');
         }
@@ -135,7 +135,7 @@ namespace FinanCalc\Constants {
          * @param $className [Name of the class that has not been defined]
          * @return string    [Concatenated message as a string]
          */
-        static function getClassNotDefinedMessage($className)
+        public static function getClassNotDefinedMessage($className)
         {
             return Strings::getFormattedString(
                 'message_class_not_defined',
@@ -147,7 +147,7 @@ namespace FinanCalc\Constants {
         /**
          * @return string [Message as a string]
          */
-        static function getInvalidTypeMessage()
+        public static function getInvalidTypeMessage()
         {
             return Strings::getString('message_invalid_type_specified');
         }
@@ -155,7 +155,7 @@ namespace FinanCalc\Constants {
         /**
          * @return string [Message as a string]
          */
-        static function getStartDateMustBeBeforeEndDateMessage()
+        public static function getStartDateMustBeBeforeEndDateMessage()
         {
             return Strings::getString('message_start_date_must_be_before_end_date');
         }
@@ -163,7 +163,7 @@ namespace FinanCalc\Constants {
         /**
          * @return string [Message as a string]
          */
-        static function getDayCountConventionNotDefinedMessage()
+        public static function getDayCountConventionNotDefinedMessage()
         {
             return Strings::getString('message_day_count_convention_not_defined');
         }
@@ -171,7 +171,7 @@ namespace FinanCalc\Constants {
         /**
          * @return string [Message as a string]
          */
-        static function getPropresultarrayNotSuppliedMessage()
+        public static function getPropresultarrayNotSuppliedMessage()
         {
             return Strings::getString('message_propresultarray_not_supplied');
         }
@@ -181,7 +181,7 @@ namespace FinanCalc\Constants {
          * @param string $className [Name of the class]
          * @return string     [Concatenated message as a string]
          */
-        static function getMethodDoesNotExistMessage($methodName, $className)
+        public static function getMethodDoesNotExistMessage($methodName, $className)
         {
             return Strings::getFormattedString(
                 'message_method_does_not_exist',

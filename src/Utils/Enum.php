@@ -59,7 +59,7 @@ namespace FinanCalc\Utils {
         /**
          * @param string $value Value for this display type
          */
-        function __construct($value)
+        public function __construct($value)
         {
             $this->setValue($value);
         }
@@ -76,7 +76,7 @@ namespace FinanCalc\Utils {
          * @param string $property
          * @return integer
          */
-        function __get($property)
+        public function __get($property)
         {
             return $this->value;
         }
@@ -94,7 +94,7 @@ namespace FinanCalc\Utils {
          * @param string $value
          * @throws Exception Throws exception if an invalid type is used
          */
-        function __set($property, $value)
+        public function __set($property, $value)
         {
             $this->setValue($value);
         }
@@ -105,7 +105,7 @@ namespace FinanCalc\Utils {
          *
          * @return string
          */
-        function __toString()
+        public function __toString()
         {
             return (string)$this->value;
         }

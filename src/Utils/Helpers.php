@@ -19,7 +19,7 @@ namespace FinanCalc\Utils {
          * @return bool
          * @throws Exception
          */
-        static function checkIfInstanceOfAClassOrThrowAnException($checkedVariable, $nameOfTheExpectedClass)
+        public static function checkIfInstanceOfAClassOrThrowAnException($checkedVariable, $nameOfTheExpectedClass)
         {
             if (is_a($checkedVariable, $nameOfTheExpectedClass)) {
                 return true;
@@ -35,7 +35,7 @@ namespace FinanCalc\Utils {
          * @param string $messageOnException
          * @return bool
          */
-        static function checkIfLeftOperandGreaterOrThrowAnException($leftOperand, $rightOperand, $messageOnException)
+        public static function checkIfLeftOperandGreaterOrThrowAnException($leftOperand, $rightOperand, $messageOnException)
         {
             if (MathFuncs::comp($leftOperand, $rightOperand) === 1) {
                 return true;
@@ -48,7 +48,7 @@ namespace FinanCalc\Utils {
          * @param $checkedVariable
          * @return bool
          */
-        static function checkIfPositiveNumberOrThrowAnException($checkedVariable)
+        public static function checkIfPositiveNumberOrThrowAnException($checkedVariable)
         {
             if (Helpers::checkIfPositiveNumber($checkedVariable)) {
                 return true;
@@ -61,7 +61,7 @@ namespace FinanCalc\Utils {
          * @param $checkedVariable
          * @return bool
          */
-        static function checkIfNotNegativeNumberOrThrowAnException($checkedVariable)
+        public static function checkIfNotNegativeNumberOrThrowAnException($checkedVariable)
         {
             if (Helpers::checkIfNotNegativeNumber($checkedVariable)) {
                 return true;
@@ -74,7 +74,7 @@ namespace FinanCalc\Utils {
          * @param null|\FinanCalc\Constants\AnnuityPaymentTypes $checkedVariable
          * @return bool
          */
-        static function checkIfNotNull($checkedVariable)
+        public static function checkIfNotNull($checkedVariable)
         {
             return $checkedVariable !== null;
         }
@@ -83,7 +83,7 @@ namespace FinanCalc\Utils {
          * @param $checkedVariable
          * @return bool|null
          */
-        static function checkIfPositiveNumber($checkedVariable)
+        public static function checkIfPositiveNumber($checkedVariable)
         {
             return Helpers::checkNumberRelativityToZero($checkedVariable, 1);
         }
@@ -92,7 +92,7 @@ namespace FinanCalc\Utils {
          * @param $checkedVariable
          * @return bool|null
          */
-        static function checkIfZero($checkedVariable)
+        public static function checkIfZero($checkedVariable)
         {
             return Helpers::checkNumberRelativityToZero($checkedVariable, 0);
         }
@@ -101,7 +101,7 @@ namespace FinanCalc\Utils {
          * @param $checkedVariable
          * @return bool
          */
-        static function checkIfNotNegativeNumber($checkedVariable)
+        public static function checkIfNotNegativeNumber($checkedVariable)
         {
             return Helpers::checkIfPositiveNumber($checkedVariable) || Helpers::checkIfZero($checkedVariable);
         }
@@ -110,7 +110,7 @@ namespace FinanCalc\Utils {
          * @param $checkedVariable
          * @return bool|null
          */
-        static function checkIfNegativeNumber($checkedVariable)
+        public static function checkIfNegativeNumber($checkedVariable)
         {
             return Helpers::checkNumberRelativityToZero($checkedVariable, -1);
         }
@@ -120,7 +120,7 @@ namespace FinanCalc\Utils {
          * @param integer $expectedResult
          * @return bool|null
          */
-        static function checkNumberRelativityToZero($checkedVariable, $expectedResult)
+        public static function checkNumberRelativityToZero($checkedVariable, $expectedResult)
         {
             if (is_numeric((string)$checkedVariable)) {
                 return MathFuncs::comp($checkedVariable, "0.00") == $expectedResult;
@@ -133,7 +133,7 @@ namespace FinanCalc\Utils {
          * @param string $inputValue
          * @return string
          */
-        static function roundMoneyForDisplay($inputValue)
+        public static function roundMoneyForDisplay($inputValue)
         {
             return (string)round($inputValue, Defaults::MONEY_DECIMAL_PLACES_DISPLAY);
         }

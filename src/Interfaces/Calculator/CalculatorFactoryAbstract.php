@@ -17,7 +17,7 @@ namespace FinanCalc\Interfaces\Calculator {
         /**
          * @throws Exception
          */
-        public final function __construct()
+        final public function __construct()
         {
             if (!is_string(static::MANUFACTURED_CLASS_NAME)) {
                 throw new Exception(ErrorMessages::getMustDefineManufacturedClassNameMessage());
@@ -32,7 +32,7 @@ namespace FinanCalc\Interfaces\Calculator {
          * @param array $args
          * @return CalculatorAbstract
          */
-        protected final function manufactureInstance(array $args)
+        final protected function manufactureInstance(array $args)
         {
             $manufacturedClass = new ReflectionClass(static::MANUFACTURED_CLASS_NAME);
             return $manufacturedClass->newInstanceArgs($args);

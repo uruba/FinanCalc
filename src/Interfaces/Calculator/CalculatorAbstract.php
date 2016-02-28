@@ -20,7 +20,7 @@ namespace FinanCalc\Interfaces\Calculator {
          * @param \Closure $callbackBefore
          * @throws Exception
          */
-        protected final function setProperty($name, $value, $callbackBefore = null)
+        final protected function setProperty($name, $value, $callbackBefore = null)
         {
             if (is_callable($callbackBefore)) {
                 $callbackBefore($value);
@@ -42,14 +42,14 @@ namespace FinanCalc\Interfaces\Calculator {
          * @param array $propResultArray
          * @return array
          */
-        public final function getResultAsArray(array $propResultArray = null)
+        final public function getResultAsArray(array $propResultArray = null)
         {
             if ($propResultArray === null) {
                 if ($this->propResultArray !== null && is_array($this->propResultArray)) {
                     $propResultArray = $this->propResultArray;
                 } else {
                     error_log(ErrorMessages::getPropresultarrayNotSuppliedMessage());
-                    return false;
+                    return [];
                 }
             }
 
@@ -80,7 +80,7 @@ namespace FinanCalc\Interfaces\Calculator {
          * @param SerializerInterface $serializer
          * @return mixed
          */
-        public final function getSerializedResult(SerializerInterface $serializer)
+        final public function getSerializedResult(SerializerInterface $serializer)
         {
             return $serializer->serializeArray($this->getResultAsArray());
         }

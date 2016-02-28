@@ -131,7 +131,8 @@ namespace FinanCalc {
                 $factoryFileContents = file_get_contents($factoryFile);
                 $fileTokens = token_get_all($factoryFileContents);
 
-                for ($i = 2; $i < count($fileTokens); $i++) {
+                $numTokens = count($fileTokens);
+                for ($i = 2; $i < $numTokens; $i++) {
                     if ($fileTokens[$i - 2][0] == T_CLASS) {
                         $factoryClassName = $fileTokens[$i][1];
                         try {

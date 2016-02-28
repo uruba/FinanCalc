@@ -26,7 +26,7 @@ namespace FinanCalc\Calculators {
          * @param $annualDiscountRate
          * @param TimeSpan $time
          */
-        function __construct(
+        public function __construct(
             $amountDue,
             $annualDiscountRate,
             TimeSpan $time

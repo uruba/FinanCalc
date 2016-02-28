@@ -18,11 +18,10 @@ namespace FinanCalc\Utils {
     {
         /**
          * @param string $identifier
-         * @param $locale
-         * @param null $formatArgs
+         * @param string|null $locale
          * @return string
          */
-        static function getFormattedString($identifier, $locale, $formatArgs = null)
+        public static function getFormattedString($identifier, $locale)
         {
             $formatArgs = array_slice(func_get_args(), 2);
 
@@ -33,12 +32,12 @@ namespace FinanCalc\Utils {
         }
 
         /**
-         * @param $identifier
-         * @param null $locale
+         * @param string $identifier
+         * @param string|null $locale
          * @return string
          * @throws \Exception
          */
-        static function getString($identifier, $locale = null)
+        public static function getString($identifier, $locale = null)
         {
             if (is_null($locale)) {
                 $locale = Config::getConfigField("locale");

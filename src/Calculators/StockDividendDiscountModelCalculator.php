@@ -44,7 +44,7 @@ namespace FinanCalc\Calculators {
          * @param $stockAnnualDividendValue
          * @param null $stockAnnualDividendsGrowth
          */
-        function __construct(
+        public function __construct(
             StockDDMTypes $dividendDiscountModelType,
             $stockVIR,
             $stockAnnualDividendValue,

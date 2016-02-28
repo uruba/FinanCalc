@@ -18,7 +18,9 @@ namespace FinanCalc\Utils\Time {
     class TimeSpan
     {
         /** @var  DateTime */
-        private $startDate, $endDate;
+        private $startDate;
+        /** @var  DateTime */
+        private $endDate;
         /** @var  DateInterval */
         private $dateInterval;
 

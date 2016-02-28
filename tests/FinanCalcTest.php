@@ -28,7 +28,7 @@ class FinanCalcTest extends PHPUnit_Framework_TestCase
     {
         $calculatorAbstractMock = $this->getMockForAbstractClass("FinanCalc\\Interfaces\\Calculator\\CalculatorAbstract");
 
-        $this->assertFalse($calculatorAbstractMock->getResultAsArray());
+        $this->assertEmpty($calculatorAbstractMock->getResultAsArray());
         $this->assertEmpty($calculatorAbstractMock->getResultAsArray(["nonExistentField"]));
     }
 

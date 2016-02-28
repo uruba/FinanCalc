@@ -47,7 +47,7 @@ namespace FinanCalc\Calculators {
          * @param $bondYearsToMaturity
          * @param $bondPaymentFrequency
          */
-        function __construct(
+        public function __construct(
             $bondFaceValue,
             $bondAnnualCouponRate,
             $bondVIR,

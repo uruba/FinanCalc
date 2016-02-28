@@ -37,7 +37,7 @@ namespace FinanCalc\Calculators {
          * @param $earningsAfterTaxes
          * @param $noOfStocks
          */
-        function __construct(
+        public function __construct(
             $totalDividends,
             $earningsAfterTaxes,
             $noOfStocks
