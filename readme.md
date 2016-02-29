@@ -640,6 +640,51 @@ namespace `FinanCalc\Calculators\Factories`
 
 * * *
 
+Time values are primarily represented by individual instances of `TimeSpan` class. Its concept is (roughly) similar to [a structure of the same (unqualified) name in .NET Framework](https://msdn.microsoft.com/en-gb/library/system.timespan%28v=vs.110%29.aspx).
+
+### [TimeSpan](src/Utils/Time/TimeSpan.php)
+namespace `FinanCalc\Utils\Time`
+
+To initialize the class, you should use one of its three static factory methods (the default constructor is declared as private and it is not advised to circumvent this measure).
+* **asDuration($years, $months = 0, $days = 0)** – simple (rounded) time duration defined by numerical values of its time components
+* **asDurationWithStartDate(DateTime $startDate, $years, $months = 0, $days = 0)** – simple (rounded) time duration defined by numerical values of its time components, keeping track of its starting date
+* **asInterval(DateTime $startDate, DateTime $endDate)** – precise representation of a time duration specified by its starting and ending date
+
+#### Setters
+* **setStartDate(DateTime $startDate)** – sets or re-sets the starting date
+* **setEndDate(DateTime $endDate)** – sets or re-sets the ending date
+* **clearStartEndDate()** – sets both the starting and ending date to null
+
+#### Getters
+* **getStartDate()** – gets the starting date
+* **getEndDate()** – gets the ending date
+* **getYearsComponent()** – gets the "year" component of the underlying `DateInterval` object
+* **getMonthsComponent()** – gets the "month" component of the underlying `DateInterval` object
+* **getDaysComponent()** – gets the "day" component of the underlying `DateInterval` object
+* **toYears()** – converts the entire time duration (i.e., accounting for all its components – year, month and day) to years
+* **toMonths()** – converts the entire time duration (i.e., accounting for all its components – year, month and day) to months
+* **toDays()** – converts the entire time duration (i.e., accounting for all its components – year, month and day) to days
+
+* * *
+
+If you' ever need a convenient way to convert time units, feel free to make use of static methods of the `TimeUtils` class which is built for this purpose (it's also used internally within the library). It takes into account the day count convention that's currently set in the library's configuration.
+
+### [TimeUtils](src/Utils/Time/TimeUtils)
+namespace `FinanCalc\Utils\Time`
+
+#### Getters
+* **getYearsFromDays($numberOfDays)** – converts the given number of days to years (taking into account the day count convention currently set in the configuration)
+* **getYearsFromMonths($numberOfMonths)** – converts the given number of months to years
+* **getYearsFromYears($numberOfYears)** – converts the given number of years to years (just a proxy method)
+* **getMonthsFromDays($numberOfDays)** – converts the given number of days to months (taking into account the day count convention currently set in the configuration)
+* **getMonthsFromMonths($numberOfMonths)** – converts the given number of months to months (just a proxy method)
+* **getMonthsFromYears($numberOfYears)** – converts the given number of years to months
+* **getDaysFromDays($numberOfDays)** – converts the given number of days to days (just a proxy method)
+* **getDaysFromMonths($numberOfMonths)** – converts the given number of months to days (taking into account the day count convention currently set in the configuration)
+* **getDaysFromYears($numberOfYears)** – converts the given number of years to days (taking into account the day count convention currently set in the configuration)
+* **getCurrentDayCountConvention()** – gets the current day count convention
+* **isDayCountConventionValid($dayCountConvention)** – checks whether a day count convention (passed in by the argument) is a valid day count convention
+
 ## DISCLAIMER
 You are free to use/modify/extend the library as you please - for it to serve your purpose. As per the (un)license, the software is provided as is and the original author cannot be held liable for any losses/damages directly or indirectly resulting from using thereof.
 Attribution is welcome, but certainly not required.
