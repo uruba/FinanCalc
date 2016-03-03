@@ -667,7 +667,7 @@ To initialize the class, you should use one of its three static factory methods 
 
 * * *
 
-If you ever need a convenient way to convert time units, feel free to make use of static methods of the `TimeUtils` class which is built for this purpose (it's also used internally within the library). It takes into account the day count convention that's currently set in the library's configuration.
+If you ever need a convenient way to convert time units, feel free to make use of static methods of the `TimeUtils` class which is built for this purpose (it's also used internally within the library). It also takes into account the day count convention that's currently set in the library's configuration (i.e., the number of days in a year).
 
 ### [TimeUtils](src/Utils/Time/TimeUtils.php)
 namespace `FinanCalc\Utils\Time`
