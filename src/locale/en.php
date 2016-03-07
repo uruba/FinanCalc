@@ -12,7 +12,7 @@ return array(
     'message_cannot_set_growth_value_on_zero_growth_type' => 'You cannot set the $stockAnnualDividendsGrowth on the zero-growth type discount dividend model calculator!',
     'message_vir_must_be_higher_than_growth_value' => 'The stock\'s valuation interest rate has to be higher than the stock\'s annual dividend growth',
     'message_must_set_growth_value' => 'You have to set the $stockAnnualDividendsGrowth for the multiple growth model!',
-    'message_must_define_manufactured_class_name' => 'String class constant MANUFACTURED_CLASS_NAME has to be defined!',
+    'message_must_define_manufactured_class_name' => 'String class constant MANUFACTURED_CLASS_NAME has to be defined in this factory class!',
     'message_class_not_defined' => 'Class %s not defined',
     'message_invalid_type_specified' => 'Invalid type specified!',
     'message_start_date_must_be_before_end_date' => 'Start date has to be lower than the end date!',
