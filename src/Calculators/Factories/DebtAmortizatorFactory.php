@@ -78,8 +78,8 @@ namespace FinanCalc\Calculators\Factories {
         public function newDebtAmortizationCustomPeriodLength(
             $debtPrincipal,
             $debtNoOfPeriods,
-            TimeSpan $debtPeriodLength,
-            $debtInterest
+            $debtInterest,
+            TimeSpan $debtPeriodLength
         ) {
             return $this->manufactureInstance(
                 [
