@@ -136,7 +136,7 @@ We'll demonstrate the process on our *AnnuityCalculator* – step by step, day b
                                         0.15);
     ```
 
-2. step is to get the desired value by exploiting appropriate getter methods (for a detailed list of available gettter methods please refer to the **Reference** chapter)
+2. step is to get the desired value by exploiting the appropriate getter methods (for a detailed list of available gettter methods please refer to the **Reference** chapter)
 
     ```php
     // get the present value of the annuity in arrears
@@ -155,11 +155,11 @@ Therewith the process is concluded and you can now use the obtained results in a
 
 #### Serialized output
 
-If you want to get the marshaled object representation of the result, you can utilize the built-in `getSerializedResult(SerializerInterface $serializer)` which is implemented in the base abstract class from which every calculator class inherits. You just have to pass a serializer object (i.e., one which implements the *SerializerInterface* interface).
+If you want to get the marshaled object representation of the result, you can utilize the built-in method `getSerializedResult(SerializerInterface $serializer)` which is implemented in the base abstract class, from which every calculator class inherits. You just have to pass a serializer object (i.e., any object of a class which implements the *SerializerInterface* interface) to it.
 
 We'll again demonstrate the process on our venerable *AnnuityCalculator* using the *XMLSerializer*:
 
-1. step is the same – instantiate the appropriate calculator class, either by constructor or by a factory method (refer to the previous chapter for more information)
+1. step is the same – instantiate the appropriate calculator class, either through the constructor or via a factory method (refer to the previous chapter for more information)
 
     ```php
     use FinanCalc\FinanCalc;
@@ -188,7 +188,7 @@ We'll again demonstrate the process on our venerable *AnnuityCalculator* using t
     $result = $annuityCalculatorObject->getSerializedResult(new XMLSerializer());
     ```
 
-3. now we have the comprehensive representation of the result object in the target format. In our example it looks like this:
+3. now we have a comprehensive representation of the result object in the target format. In our example it looks like this:
 
     ```xml
     <?xml version="1.0" encoding="UTF-8"?>
@@ -214,15 +214,15 @@ We'll again demonstrate the process on our venerable *AnnuityCalculator* using t
 
 NOTE: The name of the "root" element in the XML output can be customized by the config property `serializers_root_elem_name`. In the future, it will be automatically assigned according to the type of the result object.
 
-You can easily create your own serializer classes by implementing the *SerializerInterface*. A minimal example of a serializer (in this particular demonstrative case to the YAML format) is here – [FinanCalc-YAMLSerializer](https://github.com/uruba/FinanCalc-YAMLSerializer).
+You can easily create your own serializer classes by implementing the *SerializerInterface*. A minimal example of a serializer (in this particular demonstrative case with YAML-formatted output) is here – [FinanCalc-YAMLSerializer](https://github.com/uruba/FinanCalc-YAMLSerializer).
 
 #### Array
 
-You can also get a result's representation as an array. This representation is primarily used to pass the calculator object's properties to a serializer. The output should therefore be equivalent except for the semantic representation. It also enables you to easily implement your own serializer classes.
+You can also get a result's representation as an array. This representation is primarily used to pass the calculator object's properties to a serializer. The output should therefore be equivalent except for the semantic representation. It also enables you to easily implement your own serializer classes, which are then passed the array as their parameter.
 
 Let's demonstrate the process for the last time on our *AnnuityCalculator*:
 
-1. step is the same – instantiate the appropriate calculator class, either by constructor or by a factory method (refer to the previous chapter for more information)
+1. step is the same – instantiate the appropriate calculator class, either through the constructor or via a factory method (refer to the previous chapter for more information)
 
     ```php
     use FinanCalc\FinanCalc;
@@ -394,9 +394,9 @@ namespace `FinanCalc\Calculators\Factories`
 * **newYearlyDebtAmortization($debtPrincipal, $debtNoOfPeriods, $debtInterest)**
 * **newMonthlyDebtAmortization($debtPrincipal, $debtNoOfPeriods, $debtInterest)**
 * **newDailyDebtAmortization($debtPrincipal, $debtNoOfPeriods, $debtInterest)**
-* **newDebtAmortizationCustomPeriodLength($debtPrincipal, $debtNoOfPeriods, $debtInterest, $debtSinglePeriodLength)**
+* **newDebtAmortizationCustomPeriodLength($debtPrincipal, $debtNoOfPeriods, $debtInterest, TimeSpan $debtSinglePeriodLength)**
 
-#### [RepaymentInstance](src/Calculators/DebtAmortizator.php#L298)
+#### [RepaymentInstance](src/Calculators/DebtAmortizator.php#L324)
 namespace `FinanCalc\Calculators\DebtAmortizator`
 * **getPrincipalAmount()** – gets the amount of the debt's principal covered by this single repayment
 * **getInterestAmount()** – gets the amount of the debt's interest covered by this single repayment
