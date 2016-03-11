@@ -117,8 +117,8 @@ class DebtAmortizatorTest extends PHPUnit_Framework_TestCase
             ->newDebtAmortizationCustomPeriodLength(
                 40000,
                 6,
-                TimeSpan::asDuration(1),
-                0.12);
+                0.12,
+                TimeSpan::asDuration(1));
 
         $this->processResult($debtAmortizatorFactory);
         $this->processArray($debtAmortizatorFactory->getResultAsArray());

@@ -71,8 +71,8 @@ namespace FinanCalc\Calculators\Factories {
         /**
          * @param $debtPrincipal
          * @param $debtNoOfPeriods
-         * @param TimeSpan $debtPeriodLength
          * @param $debtInterest
+         * @param TimeSpan $debtPeriodLength
          * @return \FinanCalc\Interfaces\Calculator\CalculatorAbstract
          */
         public function newDebtAmortizationCustomPeriodLength(
