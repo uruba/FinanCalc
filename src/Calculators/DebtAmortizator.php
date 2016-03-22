@@ -48,7 +48,9 @@ namespace FinanCalc\Calculators {
                     "days" => "debtLengthInDays"
                 ],
             "debtSingleRepayment",
-            "debtRepayments" => "debtRepaymentsAsArrays"
+            "debtSingleRepayment_Rounded",
+            "debtRepayments" => "debtRepaymentsAsArrays",
+            "debtRepayments_Rounded" => "debtRepaymentsAsArrays_Rounded"
         ];
 
         /**
@@ -288,6 +290,27 @@ namespace FinanCalc\Calculators {
                 )
             );
         }
+        
+        /**
+         * @return string [Value of a single debt repayment instance as a string]
+         */
+        public function getDebtSingleRepayment_Rounded() {
+            // single repayment 'K = PV/((1-v^n)/i)'
+            return MathFuncs::round_up(
+            	MathFuncs::div(
+                $this->debtPrincipal,
+                MathFuncs::div(
+                    MathFuncs::sub(
+                        1,
+                        MathFuncs::pow(
+                            $this->getDebtDiscountFactor(),
+                            $this->debtNoOfCompoundingPeriods
+                        )
+                    ),
+                    $this->debtInterest
+                )
+            ), 2);
+        }
 
         /**
          * @return RepaymentInstance[] [Array of individual debt repayments (RepaymentInstances)]
@@ -314,7 +337,43 @@ namespace FinanCalc\Calculators {
 
             return $repayments;
         }
+				
+				 /**
+         * @return array
+         */
+        public function getDebtRepaymentsAsArrays_Rounded()
+        {
+            $repayments = array();
+            $i = 1;
+            $balance = $this->debtPrincipal;            
+            foreach ($this->debtRepayments as $repayment) {
+          			if($balance > $repayment->getTotalAmount()) {      
+										$totalAmount = MathFuncs::round_up($repayment->getTotalAmount(), 2);
+										$interestAmount = MathFuncs::round($repayment->getInterestAmount(), 2);
+										$principalAmount = MathFuncs::round($totalAmount - $interestAmount, 2);
+								}
+								else {
+										$interestAmount = MathFuncs::round($repayment->getInterestAmount(), 2);
+										$totalAmount = MathFuncs::round(MathFuncs::add($balance, $interestAmount), 2);
+										$principalAmount = MathFuncs::round($balance, 2);
+								}
+            		
+            		$beginningBalance = $balance;
+            		$endingBalance = MathFuncs::sub($balance, $principalAmount);
+            		$balance = MathFuncs::sub($balance, $principalAmount);
+            		
+                $repayments[$i++] = [
+                		"beginningBalance" => MathFuncs::round($beginningBalance, 2),
+                		"totalAmount" => $totalAmount,
+                    "principalAmount" => $principalAmount,
+                    "interestAmount" => $interestAmount,
+                    "endingBalance" => MathFuncs::round($endingBalance, 2)
+                ];
+            }
 
+            return $repayments;
+        }
+        
     }
 
     /**
