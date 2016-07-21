@@ -42,4 +42,14 @@ class MathFuncsTest extends PHPUnit_Framework_TestCase
     {
         $this->assertEquals("3.68", MathFuncs::round(3.675624));
     }
+    
+    public function testRoundUp()
+    {
+        $this->assertEquals("3.69", MathFuncs::round(3.675624));
+    }
+    
+    public function testRoundDown()
+    {
+        $this->assertEquals("3.67", MathFuncs::round(3.675624));
+    }
 }

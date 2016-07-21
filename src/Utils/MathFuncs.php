@@ -85,7 +85,7 @@ namespace FinanCalc\Utils {
          * @param $precision
          * @return string
          */
-        public static function round_up($roundedNumber, $precision = 2) 
+        public static function roundUp($roundedNumber, $precision = 2) 
         {
             return (string)ceil((float)$roundedNumber * pow(10, $precision)) / pow(10, $precision);
         }
@@ -95,7 +95,7 @@ namespace FinanCalc\Utils {
          * @param $precision
          * @return string
          */
-        public static function round_down($roundedNumber, $precision = 2) 
+        public static function roundDown($roundedNumber, $precision = 2) 
         {
             return (string)floor((float)$roundedNumber * pow(10, $precision)) / pow(10, $precision);
         }
