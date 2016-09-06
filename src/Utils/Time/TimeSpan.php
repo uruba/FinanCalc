@@ -214,7 +214,7 @@ namespace FinanCalc\Utils\Time {
          */
         private function newDateIntervalAbsolute($years, $months, $days)
         {
-            $this->setdateInterval(
+            $this->setDateInterval(
                 new DateInterval(
                     "P" .
                     (string)$years . "Y" .
