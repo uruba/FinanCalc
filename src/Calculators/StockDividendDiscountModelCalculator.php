@@ -178,6 +178,8 @@ namespace FinanCalc\Calculators {
                         )
                     );
             }
+
+            return null;
         }
     }
 }

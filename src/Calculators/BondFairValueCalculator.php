@@ -94,7 +94,7 @@ namespace FinanCalc\Calculators {
                 $this->bondPaymentFrequency
             );
 
-            // we also save the bond's number of payments to an auxillary variable
+            // we also save the bond's number of payments to an auxiliary variable
             $bondNoOfPayments = $this->getBondNoOfPayments();
 
             // next, we also need the present value of the unit annuity pertaining to the bond, in arrears
