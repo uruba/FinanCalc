@@ -114,6 +114,6 @@ namespace FinanCalc\Calculators {
             return $approxYTM;
         }
 
-        // TODO – add a method for precise bond YTM calculation by means of a polynomial equation
+        // TODO â€“ add a method for precise bond YTM calculation by means of a polynomial equation
     }
 }
