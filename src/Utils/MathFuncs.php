@@ -79,5 +79,25 @@ namespace FinanCalc\Utils {
         {
             return (string)number_format((float)$roundedNumber, $precision);
         }
+        
+         /**
+         * @param $roundedNumber
+         * @param $precision
+         * @return string
+         */
+        public static function roundUp($roundedNumber, $precision = 2) 
+        {
+            return (string)ceil((float)$roundedNumber * pow(10, $precision)) / pow(10, $precision);
+        }
+        
+        /**
+         * @param $roundedNumber
+         * @param $precision
+         * @return string
+         */
+        public static function roundDown($roundedNumber, $precision = 2) 
+        {
+            return (string)floor((float)$roundedNumber * pow(10, $precision)) / pow(10, $precision);
+        }
     }
 }
